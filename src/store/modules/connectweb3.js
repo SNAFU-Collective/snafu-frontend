@@ -3,9 +3,7 @@ import Web3 from "web3";
 import ERC1155ABI from "../../assets/abis/ERC1155.json";
 import SNAFU20 from "@/assets/abis/SNAFU20Pair.json";
 
-const snafuNftAddress = "0xED1eFC6EFCEAAB9F6d609feC89c9E675Bf1efB0a";
-const snafu20Address = "0x27B9C2Bd4BaEa18ABdF49169054c1C1c12af9862";
-const xdaiWebSocket = "wss://rpc.xdaichain.com/wss";
+import {snafu20Address, snafuNftAddress, xdaiWebSocket} from "../../utils/constants"
 
 import { getField, updateField } from 'vuex-map-fields';
 
