@@ -3,31 +3,32 @@ import Web3 from "web3";
 import ERC1155ABI from "../../assets/abis/ERC1155.json";
 import SNAFU20 from "@/assets/abis/SNAFU20Pair.json";
 
-const snafuNftAddress = "";
-const snafu20Address = "";
+const snafuNftAddress = "0xED1eFC6EFCEAAB9F6d609feC89c9E675Bf1efB0a";
+const snafu20Address = "0x27B9C2Bd4BaEa18ABdF49169054c1C1c12af9862";
 const xdaiWebSocket = "wss://rpc.xdaichain.com/wss";
+
+import { getField, updateField } from 'vuex-map-fields';
 
 export default {
     namespaced: true,
     state: {
         web3: null,
+        isConnected: false,
         isLoaded: false,
         account: null,
-        pairCount: 0,
-        pairs: [],
-        trendingPairs: [],
-        currentProject: null,
-        selectedNfts: [],
-        selectedNftsIn: [],
-        selectedNftsOut: [],
-        tokenSelected: "",
-        casDeposit: "",
-        casWithdraw: "",
-        casPrice: 0,
-        didSelectNfts: false,
         isLoading: false,
+
+        snafuBalance: null
+    },
+    getters:{
+        getField,
+        getSnafu20: (state) => state.snafu20,
+        getNftSnafu: (state) => state.snafuNft,
     },
     mutations: {
+        updateField,
+        setConnected: (state, payload) => state.isConnected = payload,
+        setSnafuBalance: (state, payload) => state.snafuBalance = payload,
         disconnectWallet: async function(state) {
             let web3 = new Web3(
                 new Web3.providers.WebsocketProvider(
@@ -36,8 +37,12 @@ export default {
             );
             state.web3 = web3;
             state.account = null;
-        },
-        setWeb3: async function(state, web3) {
+        }
+    },
+    actions: {
+        setWeb3: async function(context, web3) {
+            let state = context.state;
+
             console.log("OLD ACCOUNT", state.account);
             if (state.web3 != null && state.account != null) {
                 //   // state.web3 = null;
@@ -46,8 +51,8 @@ export default {
             state.web3 = web3;
             state.account = (await web3.eth.getAccounts())[0];
             
-            state.snafuNft = new web3.eth.Contract(ERC1155ABI, snafuNftAddress);
-            state.snafu20 = new web3.eth.Contract(SNAFU20.abi, snafu20Address);
+            state.snafuNft = await new web3.eth.Contract(ERC1155ABI, snafuNftAddress);
+            state.snafu20 = await new web3.eth.Contract(SNAFU20.abi, snafu20Address);
 
             console.log("NEW ACCOUNT", state.account);
             if (state.isLoaded || state.isLoading) {
@@ -56,39 +61,8 @@ export default {
             state.isLoading = true;
 
             console.log("set Web3");
-            state.isLoaded = true;
+            state.isLoaded = true;    
         },
-
-/*         setCurrentProject(state, payload) {
-            state.currentProject = payload;
-        },
-        setSelectedNfts(state, payload) {
-            state.selectedNfts = payload;
-        },
-        setSelectedNftsIn(state, payload) {
-            state.selectedNftsIn = payload;
-        },
-
-        setSelectedNftsOut(state, payload) {
-            state.selectedNftsOut = payload;
-        },
-        setDidSelectNfts(state, payload) {
-            state.didSelectNfts = payload;
-        },
-        setTokenSelected(state, payload) {
-            state.tokenSelected = payload;
-        },
-        setCasWithdraw(state, payload) {
-            state.casWithdraw = payload;
-        },
-        setCasDeposit(state, payload) {
-            state.casDeposit = payload;
-        },
-        setCasPrice(state, payload) {
-            state.casPrice = payload;
-        },
- */    },
-    actions: {
         connectWallet: async function(context) {
             console.log("connecting");
 
@@ -97,7 +71,11 @@ export default {
             // provider.clearCachedProvider();
 
             const web3 = new Web3(provider);
-            context.commit("setWeb3", web3);
+            await context.dispatch("setWeb3", web3);
+            context.commit("setConnected", true)
+            context.dispatch("updateSnafu20Balance")
+            
+
 
             // eslint-disable-next-line no-unused-vars
             provider.on("accountsChanged", (accounts) => {
@@ -105,10 +83,9 @@ export default {
             });
 
             // Subscribe to chainId change
-            // eslint-disable-next-line no-unused-vars
             provider.on("chainChanged", (chainId) => {
                 //TODO: alert with wrong chain
-                context.dispatch("connectWallet");
+                console.log("chainId", chainId)
             });
 
             // Subscribe to provider disconnection
@@ -117,24 +94,34 @@ export default {
                 //TODO: error!
                 // context.dispatch("connectWallet");
             });
+            
         },
         disconnectWallet: async function(context) {
             await this._vm.$web3Modal.clearCachedProvider();
             context.commit("disconnectWallet");
+            context.commit("setConnected", false)
         },
         startWeb3: async function(context) {
-            let web3 = new Web3(
-                new Web3.providers.WebsocketProvider(
-                    xdaiWebSocket
-                )
-            );
+  
             if (this._vm.$web3Modal.cachedProvider) {
                 //This is case where someone already connected
-                const provider = await this._vm.$web3Modal.connect();
-                web3 = new Web3(provider);
+                context.dispatch("connectWallet")
+            }else{
+                let web3 = new Web3(
+                    new Web3.providers.WebsocketProvider(
+                        xdaiWebSocket
+                    )
+                );
+                context.commit("setWeb3", web3);
             }
-
-            context.commit("setWeb3", web3);
         },
+        async updateSnafu20Balance(context){
+            let contract = context.state.snafu20;
+            let account = context.state.account;
+            console.log("updatingBalance")
+            let balance = await contract.methods.balanceOf(account).call();
+            console.log("balance", balance)
+            context.commit("setSnafuBalance", balance);
+        }
     }
 }

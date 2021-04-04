@@ -1,20 +1,18 @@
 <template>
   <v-app>
     <v-main>
-      <connect-wallet />
+      <router-view />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import ConnectWallet from "./components/ConnectWallet.vue";
 import {mapActions} from "vuex"
 
 export default {
   name: "App",
 
   components: {
-    ConnectWallet,
   },
 
   methods: {

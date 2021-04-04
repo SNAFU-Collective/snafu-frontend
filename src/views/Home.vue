@@ -1,18 +1,33 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-container>
+    <v-row justify="end">
+    <wallet-status class="mt-5"/>
+    </v-row>
+    <v-row justify="center" class="pt-10">
+      <swap-card />
+    </v-row>
+    <v-row justify="center" class="pt-10">
+      <collection-info />
+    </v-row>
+    <v-row justify="center" class="pt-10">
+      <nfts-pool-list /> 
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import CollectionInfo from '../components/Collection/CollectionInfo.vue'
+import NftsPoolList from '../components/Collection/NftsPoolList.vue'
+import SwapCard from '../components/Swap/SwapCard.vue'
+import WalletStatus from '../components/Wallet/WalletStatus.vue'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    WalletStatus,
+    SwapCard,
+    CollectionInfo,
+    NftsPoolList
   }
 }
 </script>
