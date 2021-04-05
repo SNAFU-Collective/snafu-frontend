@@ -50,7 +50,7 @@ export default {
             state.account = (await web3.eth.getAccounts())[0];
             
             state.snafuNft = await new web3.eth.Contract(ERC1155ABI, snafuNftAddress);
-            state.snafu20 = await new web3.eth.Contract(SNAFU20.abi, snafu20Address);
+            state.snafu20 = await new web3.eth.Contract(SNAFU20, snafu20Address);
 
             context.dispatch("nftContract/getNftsFromPool", null, { root: true })
 
