@@ -85,6 +85,9 @@ export default {
 
             console.log(events);
             console.log(nfts);
+            nfts.sort((a,b) => {
+                return +b.id - +a.id
+            })
             context.commit("setNftPool", nfts)
 
         }
