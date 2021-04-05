@@ -52,6 +52,8 @@ export default {
             state.snafuNft = await new web3.eth.Contract(ERC1155ABI, snafuNftAddress);
             state.snafu20 = await new web3.eth.Contract(SNAFU20.abi, snafu20Address);
 
+            context.dispatch("nftContract/getNftsFromPool", null, { root: true })
+
             console.log("NEW ACCOUNT", state.account);
             if (state.isLoaded || state.isLoading) {
                 return;
@@ -72,6 +74,7 @@ export default {
             await context.dispatch("setWeb3", web3);
             context.commit("setConnected", true)
             context.dispatch("updateSnafu20Balance")
+            
             
 
 

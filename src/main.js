@@ -10,6 +10,7 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import axios from "axios";
 import VueAxios from "vue-axios";
 import AsyncComputed from "vue-async-computed";
+import {xdaiRPC} from "./utils/constants"
 
 Vue.config.productionTip = false
 
@@ -21,7 +22,7 @@ const providerOptions = {
       package: WalletConnectProvider, // required
       options:{
       rpc: {
-        100: process.env.VUE_APP_XDAI_RPC
+        100: xdaiRPC
       },
     }
   },
