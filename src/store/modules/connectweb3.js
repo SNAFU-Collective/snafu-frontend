@@ -16,7 +16,8 @@ export default {
         account: null,
         isLoading: false,
 
-        snafuBalance: null
+        snafuBalance: null,
+        snafuSupply: 0
     },
     getters:{
         getField,
@@ -27,6 +28,7 @@ export default {
         updateField,
         setConnected: (state, payload) => state.isConnected = payload,
         setSnafuBalance: (state, payload) => state.snafuBalance = payload,
+        setSnafuSupply:(state, payload) => state.snafuSupply = payload,
         disconnectWallet: async function(state) {
             let web3 = new Web3(
                 new Web3.providers.WebsocketProvider(
@@ -73,7 +75,8 @@ export default {
             const web3 = new Web3(provider);
             await context.dispatch("setWeb3", web3);
             context.commit("setConnected", true)
-            context.dispatch("updateSnafu20Balance")
+            context.dispatch("updateSnafu20Balance");
+            context.dispatch("updateSnafu20Supply");
             
             
 
@@ -123,6 +126,13 @@ export default {
             let balance = await contract.methods.balanceOf(account).call();
             console.log("balance", balance)
             context.commit("setSnafuBalance", balance);
+        },
+        async updateSnafu20Supply(context){
+            let contract = context.state.snafu20;
+            console.log("updatingSupply")
+            let supply = await contract.methods.totalSupply().call();
+            console.log("supply", supply)
+            context.commit("setSnafuSupply", supply);
         }
     }
 }
