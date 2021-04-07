@@ -3,13 +3,14 @@ import Web3 from "web3";
 import ERC1155ABI from "../../assets/abis/ERC1155.json";
 import SNAFU20 from "@/assets/abis/SNAFU20Pair.json";
 
-import {snafu20Address, snafuNftAddress, xdaiWebSocket} from "../../utils/constants"
+import { snafu20Address, snafuNftAddress, xdaiRPC, xdaiWebSocket } from "../../utils/constants"
 
 import { getField, updateField } from 'vuex-map-fields';
 
 export default {
     namespaced: true,
     state: {
+        connected: {},
         web3: null,
         isConnected: false,
         isLoaded: false,
@@ -19,7 +20,7 @@ export default {
         snafuBalance: null,
         snafuSupply: 0
     },
-    getters:{
+    getters: {
         getField,
         getSnafu20: (state) => state.snafu20,
         getNftSnafu: (state) => state.snafuNft,
@@ -28,8 +29,8 @@ export default {
         updateField,
         setConnected: (state, payload) => state.isConnected = payload,
         setSnafuBalance: (state, payload) => state.snafuBalance = payload,
-        setSnafuSupply:(state, payload) => state.snafuSupply = payload,
-        disconnectWallet: async function(state) {
+        setSnafuSupply: (state, payload) => state.snafuSupply = payload,
+        disconnectWallet: async function (state) {
             let web3 = new Web3(
                 new Web3.providers.WebsocketProvider(
                     xdaiWebSocket
@@ -40,45 +41,43 @@ export default {
         }
     },
     actions: {
-        setWeb3: async function(context, web3) {
+        setWeb3: async function (context, payload) {
+            let { web3, connected } = payload;
             let state = context.state;
+            console.log("connected", connected)
 
-            console.log("OLD ACCOUNT", state.account);
-            if (state.web3 != null && state.account != null) {
-                //   // state.web3 = null;
-                return;
+            if (connected) {
+                state = context.state.connected;
+                context.state.account = (await web3.eth.getAccounts())[0];
             }
+
             state.web3 = web3;
-            state.account = (await web3.eth.getAccounts())[0];
-            
+
             state.snafuNft = await new web3.eth.Contract(ERC1155ABI, snafuNftAddress);
             state.snafu20 = await new web3.eth.Contract(SNAFU20, snafu20Address);
 
-            context.dispatch("nftContract/getNftsFromPool", null, { root: true })
+            if (!connected) {
+                context.dispatch("nftContract/getNftsFromPool", null, { root: true })
+                context.dispatch("updateSnafu20Supply");
+            }
+
 
             console.log("NEW ACCOUNT", state.account);
-            if (state.isLoaded || state.isLoading) {
-                return;
-            }
-            state.isLoading = true;
-
             console.log("set Web3");
-            state.isLoaded = true;    
         },
-        connectWallet: async function(context) {
+        connectWallet: async function (context) {
             console.log("connecting");
 
-            context.state.web3 = null;
             const provider = await this._vm.$web3Modal.connect();
             // provider.clearCachedProvider();
 
             const web3 = new Web3(provider);
-            await context.dispatch("setWeb3", web3);
+            await context.dispatch("setWeb3", { web3, connected: true });
             context.commit("setConnected", true)
             context.dispatch("updateSnafu20Balance");
-            context.dispatch("updateSnafu20Supply");
             
-            
+
+
 
 
             // eslint-disable-next-line no-unused-vars
@@ -98,28 +97,29 @@ export default {
                 //TODO: error!
                 // context.dispatch("connectWallet");
             });
-            
+
         },
-        disconnectWallet: async function(context) {
+        disconnectWallet: async function (context) {
             await this._vm.$web3Modal.clearCachedProvider();
             context.commit("disconnectWallet");
             context.commit("setConnected", false)
         },
-        startWeb3: async function(context) {
-  
+        startWeb3: async function (context) {
+            let web3 = new Web3(
+                new Web3.providers.HttpProvider(
+                    xdaiRPC
+                )
+            );
+
+            context.dispatch("setWeb3", { web3, connected: false });
+
             if (this._vm.$web3Modal.cachedProvider) {
                 //This is case where someone already connected
                 context.dispatch("connectWallet")
-            }else{
-                let web3 = new Web3(
-                    new Web3.providers.WebsocketProvider(
-                        xdaiWebSocket
-                    )
-                );
-                context.commit("setWeb3", web3);
             }
+
         },
-        async updateSnafu20Balance(context){
+        async updateSnafu20Balance(context) {
             let contract = context.state.snafu20;
             let account = context.state.account;
             console.log("updatingBalance")
@@ -127,7 +127,7 @@ export default {
             console.log("balance", balance)
             context.commit("setSnafuBalance", balance);
         },
-        async updateSnafu20Supply(context){
+        async updateSnafu20Supply(context) {
             let contract = context.state.snafu20;
             console.log("updatingSupply")
             let supply = await contract.methods.totalSupply().call();
