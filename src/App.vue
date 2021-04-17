@@ -29,8 +29,17 @@ export default {
 
 <style>
 /* On screens that are 992px or less, set the background color to blue */
-@media screen and (max-width: 992px) {
-
+@media screen and (min-width: 600px) {
+  .walletconnect-modal__base{
+    transform: translateY(0%) !important;
+    top: 15px !important;
+  }
+  .walletconnect-qrcode__base {
+    background: rgba(37, 41, 46, 0) !important;
+  }
+  .walletconnect-modal__header > p:nth-child(2) {
+    color: #3b99fc;
+  }
 }
 
 /* On screens that are 600px or less, set the background color to olive */
