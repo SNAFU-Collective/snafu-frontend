@@ -1,20 +1,39 @@
 <template>
   <v-container fluid class="white rounded-lg">
-    <v-row no-gutters class="text-caption">FROM</v-row>
-    <v-row no-gutters align-content="center" class="pt-2">
-      <v-col cols="3"  >
-        <v-text-field outlined hide-details class="whiteBorder" v-model="selectedNft"></v-text-field>
+    <v-row no-gutters class="text-caption">
+      <v-col cols="8"> Quantity </v-col>
+      <v-col cols="4">
+        Balance: {{ selectedNft ? selectedNft.balance : "-" }}
       </v-col>
-      <v-col >
-        <v-row no-gutters justify="center" align-self="center">
-          <v-avatar class="logoBorder mr-2" size="30">
-            <v-img src="logo.png" />
-          </v-avatar>
-          <span class="text-body-2"> SNAFU Collection </span>
-        </v-row>
-        <v-row no-gutters justify="center" class="pl-3">
-          <span class="text-caption"> ERC1155 NFTS </span>
-        </v-row>
+    </v-row>
+    <v-row no-gutters align-content="center" class="pt-1 ml-n3">
+      <v-col cols="4">
+        <v-text-field
+          hide-details="auto"
+          :rules="quantityRules"
+          outlined
+          class="whiteBorder"
+          v-model.number="quantity"
+          type="number"
+          :editable="false"
+          :min="1"
+          :max="selectedNft.balance"
+          validate-on-blur
+        ></v-text-field>
+      </v-col>
+      <v-col cols="4" />
+      <v-col cols="4" @click="openSelectNftModal">
+        <div v-if="selectedNft">
+          <v-row no-gutters>
+            <v-img
+              :src="'/nfts/' + selectedNft.id + '/image'"
+              height="50"
+              width="50"
+            />
+            <v-icon medium> mdi-menu-down </v-icon>
+          </v-row>
+        </div>
+        
       </v-col>
     </v-row>
   </v-container>
@@ -24,14 +43,37 @@
 export default {
   data() {
     return {
-      selectedNft: 1,
+      selectedNft: {
+        id: 1,
+        balance: 3,
+      },
+      quantity: 1,
     };
+  },
+  methods:{
+      openSelectNftModal(){
+          console.log("test")
+      }
+  },
+  computed: {
+    quantityRules() {
+      return [
+        (value) => !!value || "Required",
+        (value) =>
+          (value && value > 0 && value <= this.selectedNft.balance) ||
+          "Invalid Value",
+      ];
+    },
   },
 };
 </script>
 
 <style>
 .v-text-field--outlined.whiteBorder fieldset {
-    color: white !important;
+  color: white !important;
+}
+
+.v-text-field.whiteBorder input {
+  font-size: 1.6em !important;
 }
 </style>

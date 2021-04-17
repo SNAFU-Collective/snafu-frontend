@@ -1,19 +1,30 @@
 <template>
   <v-container fluid class="white rounded-lg">
-    <v-row no-gutters class="text-caption">TO</v-row>
-    <v-row no-gutters align-content="center" class="pt-2">
-      <v-col cols="3"  >
-        <v-text-field outlined hide-details readonly class="whiteBorder" v-model="snafuValue"></v-text-field>
+    <v-row no-gutters class="text-caption">
+      <v-col cols="4"> Value </v-col>
+      <v-col cols="8" > 
+          <v-row no-gutters justify="end">
+          Balance: {{ balance | fromWei }} 
+          </v-row>
       </v-col>
-      <v-col >
-        <v-row no-gutters justify="center" align-self="center">
+    </v-row>
+    <v-row no-gutters align-content="center" class="pt-1 ml-n3">
+      <v-col cols="7" >
+        <v-text-field
+          outlined
+          dense
+          hide-details
+          readonly
+          class="whiteBorder"
+          v-model="snafuValue"
+        ></v-text-field>
+      </v-col>
+      <v-col cols="5">
+        <v-row no-gutters class="pt-2 pl-3">
           <v-avatar class="logoBorder mr-2" size="30">
             <v-img src="logo.png" />
           </v-avatar>
-          <span class="text-body-2"> SNAFU </span>
-        </v-row>
-        <v-row no-gutters justify="center" class="pl-8">
-          <span class="text-caption"> ERC20 </span>
+          <span class="text-body-1"> SNAFU </span>
         </v-row>
       </v-col>
     </v-row>
@@ -21,22 +32,27 @@
 </template>
 
 <script>
+import { mapFields } from "vuex-map-fields";
+
 export default {
   data() {
     return {
-      snafuValue: 100,
+      snafuValue: 100.00001,
     };
+  },
+  computed: {
+    ...mapFields("connectweb3", { balance: "snafuBalance" }),
   },
 };
 </script>
 
-<style>
+<style scoped>
 .v-text-field--outlined.whiteBorder fieldset {
-    color: white !important;
+  color: white !important;
 }
 
 .v-text-field.whiteBorder input {
-    font-size: 1.2em;
-    font-weight: bold;
+  font-size: 1.2em;
+  font-weight: bold;
 }
 </style>
