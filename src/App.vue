@@ -30,6 +30,6 @@ export default {
 <style>
 .walletconnect-modal__base{
   transform: translateY(0%) !important;
-  top: 5% !important;
+  top: 50px !important;
 }
 </style>
