@@ -18,6 +18,7 @@ export default {
         isLoading: false,
         snafuBalance: null,
         snafuSupply: 0,
+        snafuFee: 0,
         chainId: null,
     },
     getters: {
@@ -44,6 +45,8 @@ export default {
         setConnected: (state, payload) => state.isConnected = payload,
         setSnafuBalance: (state, payload) => state.snafuBalance = payload,
         setSnafuSupply: (state, payload) => state.snafuSupply = payload,
+        setSnafuFee: (state, payload) => state.snafuFee = payload,
+
         disconnectWallet: async function (state) {
             let web3 = new Web3(
                 new Web3.providers.WebsocketProvider(
@@ -75,6 +78,7 @@ export default {
             if (!connected) {
                 context.dispatch("nftContract/getNftsFromPool", null, { root: true })
                 context.dispatch("updateSnafu20Supply");
+                context.dispatch("updateSnafu20Fee");
             }
 
 
@@ -149,6 +153,13 @@ export default {
             let supply = await contract.methods.totalSupply().call();
             console.log("supply", supply)
             context.commit("setSnafuSupply", supply);
+        },
+        async updateSnafu20Fee(context) {
+            let contract = context.state.snafu20;
+            console.log("updatingFee")
+            let fee = await contract.methods.fee().call();
+            console.log("fee", fee)
+            context.commit("setSnafuFee", fee);
         },
         async addSnafuToMetamask(context) {
             const tokenAddress = snafu20Address
