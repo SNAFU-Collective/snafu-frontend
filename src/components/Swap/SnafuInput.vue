@@ -9,7 +9,7 @@
       </v-col>
     </v-row>
     <v-row no-gutters align-content="center" class="pt-1 ml-n3">
-      <v-col cols="7" >
+      <v-col cols="9" >
         <v-text-field
           outlined
           dense
@@ -19,8 +19,8 @@
           v-model="snafuValue"
         ></v-text-field>
       </v-col>
-      <v-col cols="5">
-        <v-row no-gutters class="pt-2 pl-3">
+      <v-col cols="3">
+        <v-row no-gutters class="pt-2">
           <v-avatar class="logoBorder mr-2" size="30">
             <v-img src="logo.png" />
           </v-avatar>
