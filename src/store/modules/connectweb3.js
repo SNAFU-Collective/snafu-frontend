@@ -16,9 +16,9 @@ export default {
         isLoaded: false,
         account: null,
         isLoading: false,
-
         snafuBalance: null,
-        snafuSupply: 0
+        snafuSupply: 0,
+        chainId: null,
     },
     getters: {
         getField,
@@ -49,6 +49,8 @@ export default {
             if (connected) {
                 state = context.state.connected;
                 context.state.account = (await web3.eth.getAccounts())[0];
+                context.state.chainId = await web3.eth.getChainId()
+                console.log('Chain ID: ', context.state.chainId)
             }
 
             state.web3 = web3;
@@ -87,8 +89,8 @@ export default {
 
             // Subscribe to chainId change
             provider.on("chainChanged", (chainId) => {
-                //TODO: alert with wrong chain
-                console.log("chainId", chainId)
+                context.state.chainId = chainId
+                console.log('Chain ID: ', context.state.chainId)
             });
 
             // Subscribe to provider disconnection
