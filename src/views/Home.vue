@@ -1,16 +1,14 @@
 <template>
   <v-container>
-    <v-row justify="end">
-    <wallet-status class="mt-5"/>
-    </v-row>
-    <v-row justify="center" class="pt-10">
+    <v-row justify="center" class="pt-10" style="display: grid">
+      <wallet-status class="mt-5"/>
       <swap-card />
     </v-row>
     <v-row justify="center" class="pt-10">
       <collection-info />
     </v-row>
     <v-row justify="center" class="pt-10">
-      <nfts-pool-list /> 
+      <nfts-pool-list />
     </v-row>
   </v-container>
 </template>

@@ -1,36 +1,66 @@
 <template>
-<div v-if="!isConnected">
-  <v-btn @click="connectWallet">
-      Connect wallet
-  </v-btn>
-</div>
-<div v-else>
+    <div v-if="!isConnected">
+      <v-btn @click="connectWallet" style="margin-bottom: 10px">
+          Connect wallet
+      </v-btn>
+    </div>
+    <v-row no-gutters v-else>
+      <v-col cols="11">
+      <v-chip
+          :color="isXdai ? 'rgb(245, 245, 245)' : '#DEC8D3'"
+          text-color="black"
+          style="margin-bottom: 10px; padding-left: 0"
+      >
         <v-chip
-      class="ma-2"
-      color="teal"
-      text-color="white"
-    >
-      <v-avatar left>
-        <v-icon>mdi-checkbox-marked-circle</v-icon>
-      </v-avatar>
-      {{account}}
-    </v-chip>
-    <snafu-balance />
-</div>
+          color="rgb(228 228 228)"
+          text-color="black"
+        >
+          <v-avatar left>
+            <v-icon>mdi-checkbox-marked-circle</v-icon>
+          </v-avatar>
+          {{account | abbreviateAddress}}
+        </v-chip>
+       <span style="padding-left: 5px">{{chainId | networkName}}</span>
+      </v-chip>
+      </v-col>
+      <v-col cols="1"  v-if="isMetamask">
+        <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+              color="grey"
+              dark
+              v-bind="attrs"
+              v-on="on"
+              class="text-h6"
+              icon
+              style="background-color: whitesmoke;margin-bottom: 10px"
+              small
+              @click="addSnafuToMetamask"
+
+          >
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+        </template>
+        <span>Add SNAFU to Metamask</span>
+      </v-tooltip>
+      </v-col>
+    </v-row>
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 import { mapFields } from 'vuex-map-fields';
 import SnafuBalance from './SnafuBalance.vue';
 
 export default {
-  components: { SnafuBalance },
+  // components: { SnafuBalance },
+  components: {  },
     methods:{
-        ...mapActions("connectweb3", ["connectWallet"])
+        ...mapActions("connectweb3", ["connectWallet", "addSnafuToMetamask"])
     },
     computed:{
-        ...mapFields("connectweb3", ["isConnected", "account"])
+        ...mapFields("connectweb3", ["isConnected", "account", 'chainId']),
+        ...mapGetters("connectweb3", ["isMetamask", "isXdai"])
     }
 
 }

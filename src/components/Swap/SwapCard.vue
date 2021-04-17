@@ -1,6 +1,4 @@
 <template>
-  <div>
-    <v-container fluid>
       <v-card
         height="450"
         width="400"
@@ -61,8 +59,6 @@
           </v-btn>
         </v-row>
       </v-card>
-    </v-container>
-  </div>
 </template>
 
 <script>

@@ -42,6 +42,22 @@ Vue.filter('fromWei', function (value) {
   return web3.utils.fromWei(value);
 })
 
+Vue.filter('networkName', function (value) {
+    console.log('networknamevalue', value)
+  if (value === 100 || value === '0x64'){
+      return 'xDai'
+  } else {
+      return 'Wrong network'
+  }
+})
+
+Vue.filter('abbreviateAddress', (value) => {
+    if (!value)
+        return ''
+
+    return value.slice(0, 6) + '...' + value.slice(value.length -4, value.length)
+})
+
 new Vue({
   router,
   store,
