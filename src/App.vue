@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <v-main>
+<!--      TODO: add here header-->
       <router-view />
     </v-main>
   </v-app>
@@ -26,3 +27,15 @@ export default {
   }),
 };
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Barlow+medium');
+
+html, body {
+  font-family: 'Barlow', sans-serif;
+}
+
+#app {
+  font-family: 'Barlow', sans-serif;
+}
+</style>
