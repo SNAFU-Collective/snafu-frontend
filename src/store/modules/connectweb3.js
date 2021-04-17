@@ -30,6 +30,13 @@ export default {
             } else {
                 return true
             }
+        },
+        isXdai: (state) => {
+            if (state.chainId === 100 || state.chainId === '0x64') {
+                return true
+            } else {
+                return false
+            }
         }
     },
     mutations: {

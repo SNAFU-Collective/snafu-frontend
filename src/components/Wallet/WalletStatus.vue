@@ -7,7 +7,7 @@
     <v-row no-gutters v-else>
       <v-col cols="11">
       <v-chip
-          color="rgb(245, 245, 245)"
+          :color="isXdai ? 'rgb(245, 245, 245)' : '#DEC8D3'"
           text-color="black"
           style="margin-bottom: 10px; padding-left: 0"
       >
@@ -60,7 +60,7 @@ export default {
     },
     computed:{
         ...mapFields("connectweb3", ["isConnected", "account", 'chainId']),
-        ...mapGetters("connectweb3", ["isMetamask"])
+        ...mapGetters("connectweb3", ["isMetamask", "isXdai"])
     }
 
 }
