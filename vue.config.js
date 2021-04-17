@@ -1,5 +1,5 @@
 module.exports = {
-  devServer: { https: true },
+  devServer: { https: false },
   transpileDependencies: [
     'vuetify'
   ]
