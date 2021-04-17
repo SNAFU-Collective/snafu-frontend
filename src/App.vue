@@ -26,3 +26,10 @@ export default {
   }),
 };
 </script>
+
+<style>
+.walletconnect-modal__base{
+  transform: translateY(0%) !important;
+  top: 5% !important;
+}
+</style>
