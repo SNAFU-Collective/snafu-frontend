@@ -4,30 +4,51 @@
           Connect wallet
       </v-btn>
     </div>
-    <div v-else>
+    <v-row no-gutters v-else>
+      <v-col cols="11">
       <v-chip
           color="rgb(245, 245, 245)"
           text-color="black"
           style="margin-bottom: 10px; padding-left: 0"
       >
-            <v-chip
-
+        <v-chip
           color="rgb(228 228 228)"
           text-color="black"
         >
           <v-avatar left>
             <v-icon>mdi-checkbox-marked-circle</v-icon>
           </v-avatar>
-              {{account | abbreviateAddress}}
+          {{account | abbreviateAddress}}
         </v-chip>
        <span style="padding-left: 5px">{{chainId | networkName}}</span>
       </v-chip>
-<!--        <snafu-balance />-->
-    </div>
+      </v-col>
+      <v-col cols="1"  v-if="isMetamask">
+        <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+              color="grey"
+              dark
+              v-bind="attrs"
+              v-on="on"
+              class="text-h6"
+              icon
+              style="background-color: whitesmoke;margin-bottom: 10px"
+              small
+              @click="addSnafuToMetamask"
+
+          >
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+        </template>
+        <span>Add SNAFU to Metamask</span>
+      </v-tooltip>
+      </v-col>
+    </v-row>
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 import { mapFields } from 'vuex-map-fields';
 import SnafuBalance from './SnafuBalance.vue';
 
@@ -35,10 +56,11 @@ export default {
   // components: { SnafuBalance },
   components: {  },
     methods:{
-        ...mapActions("connectweb3", ["connectWallet"])
+        ...mapActions("connectweb3", ["connectWallet", "addSnafuToMetamask"])
     },
     computed:{
-        ...mapFields("connectweb3", ["isConnected", "account", 'chainId'])
+        ...mapFields("connectweb3", ["isConnected", "account", 'chainId']),
+        ...mapGetters("connectweb3", ["isMetamask"])
     }
 
 }

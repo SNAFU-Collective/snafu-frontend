@@ -24,6 +24,13 @@ export default {
         getField,
         getSnafu20: (state) => state.snafu20,
         getNftSnafu: (state) => state.snafuNft,
+        isMetamask: async (state) => {
+            if (state.connected.web3 && !state.connected.web3.givenProvider.isMetamask()) {
+                return false
+            } else {
+                return true
+            }
+        }
     },
     mutations: {
         updateField,
@@ -135,6 +142,29 @@ export default {
             let supply = await contract.methods.totalSupply().call();
             console.log("supply", supply)
             context.commit("setSnafuSupply", supply);
+        },
+        async addSnafuToMetamask(context) {
+            const tokenAddress = snafu20Address
+            const tokenSymbol = 'SNAFU';
+            const tokenDecimals = 18;
+            const tokenImage = 'https://gateway.pinata.cloud/ipfs/QmYFnC1RxAvNzWFmtR5CQYWBz8pgzDidqQKg8o1WVqppEq';
+
+            try {
+                await context.state.connected.web3.givenProvider.request({
+                    method: 'wallet_watchAsset',
+                    params: {
+                        type: 'ERC20', // Initially only supports ERC20, but eventually more!
+                        options: {
+                            address: tokenAddress, // The address that the token is at.
+                            symbol: tokenSymbol, // A ticker symbol or shorthand, up to 5 chars.
+                            decimals: tokenDecimals, // The number of decimals in the token
+                            image: tokenImage, // A string url of the token logo
+                        },
+                    },
+                });
+            } catch (error) {
+                console.log(error);
+            }
         }
-    }
+    },
 }
