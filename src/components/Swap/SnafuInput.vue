@@ -36,13 +36,13 @@ import { mapFields } from "vuex-map-fields";
 export default {
   computed: {
     ...mapFields("connectweb3", { balance: "snafuBalance" }),
-    ...mapFields("nftContract", ["selectedNft", "selectedNftMetadata"]),
+    ...mapFields("nftContract", ["selectedNft", "selectedNftMetadata", "selectedQuantity"]),
     snafuValue(){
       if(!this.selectedNft){
         return "-"
       }
       else{
-        return +this.selectedNftMetadata.price + +this.selectedNftMetadata.fee;
+        return (+this.selectedNftMetadata.price + +this.selectedNftMetadata.fee) * this.selectedQuantity;
       }
     }
   },

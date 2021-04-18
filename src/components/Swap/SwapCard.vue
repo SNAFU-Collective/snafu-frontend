@@ -80,12 +80,12 @@ export default {
   components: { NftInput, SnafuInput },
   computed:{
       ...mapFields("connectweb3", ["snafuFee"]),
-      ...mapFields("nftContract", ["selectedNftMetadata"]),
+      ...mapFields("nftContract", ["selectedNftMetadata", "selectedQuantity"]),
       nftFee(){
           if(!this.selectedNftMetadata){
               return "-"
           }else{
-              return this.selectedNftMetadata.fee
+              return this.selectedNftMetadata.fee * this.selectedQuantity
           }
       }
   }
