@@ -110,6 +110,7 @@ export default {
             // Subscribe to chainId change
             provider.on("chainChanged", (chainId) => {
                 context.state.chainId = chainId
+                context.commit("nftContract/resetSelectedNft", null, { root: true })
                 console.log('Chain ID: ', context.state.chainId)
             });
 
