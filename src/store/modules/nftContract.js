@@ -36,6 +36,10 @@ export default {
         async getNftsFromPool(context) {
             context.dispatch("getNftsFromAddress", { address: snafu20Address, pool: true })
         },
+        async transferNftToPool(context){
+            let erc1155 = context.rootGetters["connectweb3/getNftSnafuFromUser"];
+
+        },
         async getNftsFromAddress(context, payload) {
             let erc1155 = context.rootGetters["connectweb3/getNftSnafu"];
             let { address, pool } = payload;
@@ -91,65 +95,26 @@ export default {
                 }
             }
 
-            //Subtract withdrawn NFT
-            events = await erc1155.getPastEvents('TransferSingle', {
-                filter: {
-                    _from: address
-                },
-                fromBlock: minBlock,
-                toBlock: 'latest'
-            });
+            let accounts = Array(nfts.length).fill(address);
+            let ids = nfts.map((n) => n.id)
+            let balances = await erc1155.methods.balanceOfBatch(accounts, ids).call();
+            let results = []
 
-
-            if (Array.isArray(events)) {
-                events = events.reverse();
-                for (let i = 0; i < events.length; i++) {
-                    if (typeof events[i] == 'object') {
-                        let nftIndex = nfts.findIndex(n => n.id === events[i].returnValues._id);
-                        if (nftIndex === -1) {
-                            //Should never happen
-                            nfts.push({ id: events[i].returnValues._id, editions: -events[i].returnValues._value });
-                        } else {
-                            nfts[nftIndex].editions -= events[i].returnValues._value;
-                        }
-                    }
-                }
+            for(let i = 0; i < ids.length; i++){
+                results.push({id: ids[i], editions: balances[i]})
             }
 
-            events = await erc1155.getPastEvents('TransferBatch', {
-                filter: {
-                    _from: address
-                },
-                fromBlock: minBlock,
-                toBlock: 'latest'
-            });
 
-            if (Array.isArray(events)) {
-                events = events.reverse();
-                for (let i = 0; i < events.length; i++) {
-                    if (typeof events[i] == 'object') {
-                        for (let j = 0; j < events[i].returnValues[3].length; j++) {
-                            let nftIndex = nfts.find(n => n.id === events[i].returnValues[3][j])
-                            if (nftIndex === -1) {
-                                nfts.push({ id: events[i].returnValues[3][j], editions: -events[i].returnValues[4][j] });
-                            } else {
-                                nfts[nftIndex].editions -= events[i].returnValues[4][j];
-                            }
-                        }
-                    }
-                }
-            }
+            results = results.filter(n => n.editions > 0);
 
-            nfts = nfts.filter(n => n.editions > 0);
-
-            nfts.sort((a, b) => {
+            results.sort((a, b) => {
                 return +b.id - +a.id
             })
 
             if (pool) {
-                context.commit("setNftPool", nfts)
+                context.commit("setNftPool", results)
             } else {
-                context.commit("setNftUser", nfts)
+                context.commit("setNftUser", results)
             }
 
         }
