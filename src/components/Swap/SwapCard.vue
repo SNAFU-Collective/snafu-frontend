@@ -40,35 +40,21 @@
         <v-row no-gutters justify="center">
           <snafu-input class="mx-3" />
         </v-row>
-        <v-row no-gutters class="mt-3 ml-1">
-            <v-col cols="10" class="text-caption px-3">
-                Fee: 
-            </v-col>
-            <v-col cols="2" class="text-caption pl-7">
-                {{snafuFee}}%
-            </v-col>
-        </v-row>
-        <v-row no-gutters class="mt-n1 ml-1 d-flex">
-            <v-col cols="4" class="text-caption px-3">
-                Fee Value: 
-            </v-col>
-            <v-col cols="8" class="text-caption pr-5">
-                <v-row no-gutters justify="end">
-                {{nftFee}} SNAFU
-                </v-row>
-            </v-col>
-        </v-row>
+        <fee-infos />
+
         <v-spacer />
         <v-row no-gutters justify="center" align="end" class="rounded-0">
           <v-btn
             width="400"
             color="black"
             class="white--text rounded-0 rounded-b-lg"
-            :disabled="disableActions"
+            @click="startSwap"
+            :disabled="disableActions || disableSwap"
           >
             {{buttonText}}
           </v-btn>
         </v-row>
+        <confirm-swap-modal  :show="showConfirmSwap" @updateDialog="() => showConfirmSwap = false"/>
       </v-card>
 </template>
 
@@ -77,22 +63,30 @@ import NftInput from "./NftInput.vue";
 import SnafuInput from "./SnafuInput.vue";
 import {mapFields} from "vuex-map-fields";
 import {mapGetters} from "vuex";
+import ConfirmSwapModal from './ConfirmSwapModal.vue';
+import FeeInfos from './FeeInfos.vue';
 
 export default {
-  components: { NftInput, SnafuInput },
+  components: { NftInput, SnafuInput, ConfirmSwapModal, FeeInfos },
+  data(){
+    return{
+      showConfirmSwap: false
+    }
+  },
+  methods:{
+    startSwap(){
+      this.showConfirmSwap = true;
+    }
+  },
   computed:{
-      ...mapFields("connectweb3", ["snafuFee", "isConnected"]),
-      ...mapFields("nftContract", ["selectedNftMetadata", "selectedQuantity"]),
+      ...mapFields("connectweb3", ["isConnected"]),
+      ...mapFields("nftContract", [ "selectedNft", "selectedNftMetadata", "selectedQuantity"]),
       ...mapGetters("connectweb3", ["isXdai"]),
       disableActions(){
         return !this.isConnected || !this.isXdai;
       },
-      nftFee(){
-          if(!this.selectedNftMetadata){
-              return "-"
-          }else{
-              return this.selectedNftMetadata.fee * this.selectedQuantity
-          }
+      disableSwap(){
+        return !this.selectedNft || this.selectedQuantity <= 0;
       },
       buttonText(){
         if(!this.isConnected){

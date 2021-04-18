@@ -1,6 +1,6 @@
 <template>
   <v-container fluid class="white rounded-lg">
-    <v-row no-gutters class="text-caption">
+    <v-row no-gutters class="text-caption" v-if="!hideBalance">
       <v-col cols="8"> Quantity </v-col>
       <v-col cols="4">
         Balance: {{ selectedNft ? selectedNft.editions : "-" }}
@@ -11,10 +11,11 @@
         <v-numeric
           hide-details="auto"
           outlined
-          v-model.number="selectedQuantity"
+          v-model="selectedQuantity"
           :min="0"
           :max="selectedNft ? +selectedNft.editions : 0"
           :disabled="!selectedNft"
+          :readonly="disableActions"
           :useCalculator="false"
           calcIcon=""
         ></v-numeric>
@@ -28,14 +29,14 @@
               height="50"
               width="50"
             />
-            <v-icon medium> mdi-menu-down </v-icon>
+            <v-icon medium v-if="!hideBalance"> mdi-menu-down </v-icon>
           </v-row>
         </div>
         <div v-else class="mt-2">
           <v-row no-gutters>
             <v-chip :style="pointerStyle">
               Select NFT
-              <v-icon medium> mdi-menu-down </v-icon>
+              <v-icon medium > mdi-menu-down </v-icon>
             </v-chip>
           </v-row>
         </div>
@@ -53,6 +54,10 @@ export default {
   components: { SelectNftModal },
   props:{
     disableActions:{
+      type: Boolean,
+      default: false
+    },
+    hideBalance:{
       type: Boolean,
       default: false
     }
