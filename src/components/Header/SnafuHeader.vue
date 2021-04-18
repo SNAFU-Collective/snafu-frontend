@@ -12,6 +12,16 @@
 
       <a id="backHome" href="https://www.nftsnafu.org">BACK TO HOME</a>
     </div>
+
+    <div id="mobileHeader">
+      <div id="mobileHeaderContainer">
+        <div id="mobileLogoContainer">
+          <img src="logo.png" alt="logo-SNAFU.png" id="logoMobile">
+          <a href="https://www.nftsnafu.org" target="_self" id="snafuTextMobile">SNAFU</a>
+        </div>
+        <p id="subtitleMobile"><a  href="https://www.nftsnafu.org">Artist Collective 2.0</a></p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -20,65 +30,123 @@ export default {}
 </script>
 
 <style>
-#pinnedLeftHeader {
-  position: fixed;
-  top: 110px;
-  display: inline-table;
-  z-index: 11111;
-  left: -15px
+@media screen and (min-width: 600px) {
+  #desktopHeader {
+    display: block;
+  }
+
+  #mobileHeader {
+    display: none;
+  }
+
+  #pinnedLeftHeader {
+    position: fixed;
+    top: 110px;
+    display: inline-table;
+    z-index: 11111;
+    left: -15px
+  }
+
+  #snafuText {
+    text-decoration: unset;
+    font-size: 52px;
+    font-weight: bold;
+    color: #303030;
+    letter-spacing: 0.05em;
+    line-height: 1.2em;
+  }
+
+  #pinnedLeftHeader > #logo {
+    width: 65px;
+    height: 65px;
+    position: absolute;
+    top: 125px;
+    left: 60px;
+    cursor: pointer;
+    /*object-fit:cover;*/
+    /*object-position:50% 50%*/
+  }
+
+  #trasformedText {
+    transform: rotate(
+        270deg
+    );
+  }
+
+  #desktopHeader > #subtitle {
+    position: absolute;
+    top: 48px;
+    left: 148px;
+    font-weight: bold;
+    letter-spacing: 0.23em;
+    font-size: 17px;
+  }
+
+  #desktopHeader > #subtitle > a{
+    text-decoration: unset;
+    color: #303030;
+  }
+
+  #backHome {
+    position: fixed;
+    right: 100px;
+    top: 50px;
+    text-decoration: unset;
+    color: #303030;
+    font-size: 17px;
+  }
+
+  #backHome:hover {
+    color: rgb(219, 219, 219);
+  }
 }
 
-#snafuText {
-  text-decoration: unset;
-  font-size: 52px;
-  font-weight: bold;
-  color: #303030;
-  letter-spacing: 0.05em;
-  line-height: 1.2em;
-}
+@media screen and (max-width: 600px) {
+  #desktopHeader {
+    display: none;
+  }
 
-#pinnedLeftHeader > #logo {
-  width: 65px;
-  height: 65px;
-  position: absolute;
-  top: 125px;
-  left: 60px;
-  cursor: pointer;
-  /*object-fit:cover;*/
-  /*object-position:50% 50%*/
-}
+  #mobileHeader {
+    display: block;
+  }
 
-#trasformedText {
-  transform: rotate(
-      270deg
-  );
-}
+  #logoMobile {
+    width: 33px;
+    height: 33px;
+    /*height: 25px;*/
+    cursor: pointer;
+  }
 
-#desktopHeader > #subtitle {
-  position: absolute;
-  top: 48px;
-  left: 148px;
-  font-weight: bold;
-  letter-spacing: 0.23em;
-  font-size: 17px;
-}
+  #snafuTextMobile {
+    text-decoration: unset;
+    font-size: 30px;
+    font-weight: bold;
+    color: #303030;
+    letter-spacing: 0.05em;
+    line-height: 1.2em;
+  }
 
-#desktopHeader > #subtitle > a{
-  text-decoration: unset;
-  color: #303030;
-}
+  #subtitleMobile {
+    margin-top: 5px;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    font-size: 16px;
+  }
 
-#backHome {
-  position: fixed;
-  right: 100px;
-  top: 50px;
-  text-decoration: unset;
-  color: #303030;
-  font-size: 17px;
-}
+  #subtitleMobile > a{
+    text-decoration: unset;
+    color: #303030;
+  }
 
-#backHome:hover {
-  color: rgb(219, 219, 219);
+  #mobileLogoContainer {
+    display: flex;
+  }
+
+  #mobileHeader {
+    margin-left: 30px;
+    margin-top: 20px;
+    display: flex;
+  }
 }
 
 </style>
