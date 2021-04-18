@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-row>
     <v-card class="mx-auto" max-width="250" >
       <v-card-text style="white-space: pre; background-color: #F5F5F5">
         <v-row justify="center">
@@ -16,7 +16,7 @@
         <v-row class="px-2 subtext">Price: {{ (+metadata.price + +metadata.fee) | truncatePrice}} SNAFU</v-row>
       </v-card-text>
     </v-card>
-  </div>
+  </v-row>
 </template>
 
 <script>
@@ -52,5 +52,9 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 768px) {
+
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row justify="center">
+    <v-row justify="center" class="pt-15">
       <h2>ITEMS IN POOL</h2>
       <v-btn icon color="teal" @click="getNftsFromPool">
         <v-icon>mdi-cached</v-icon>

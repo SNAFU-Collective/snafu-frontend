@@ -1,13 +1,13 @@
 <template>
   <v-container fluid>
     <v-row no-gutters class="mt-3 ml-1">
-      <v-col cols="10" class="text-caption px-3"> Fee: </v-col>
-      <v-col cols="2" class="text-caption pl-7"> {{ snafuFee }}% </v-col>
+      <v-col cols="6" class="text-caption px-3"> Fee: </v-col>
+      <v-col cols="6" class="text-caption pl-7 pr-3" style="text-align: right"> {{ snafuFee }}% </v-col>
     </v-row>
     <v-row no-gutters class="mt-n1 ml-1 d-flex">
-      <v-col cols="4" class="text-caption px-3"> Fee Value: </v-col>
-      <v-col cols="8" class="text-caption pr-5">
-        <v-row no-gutters justify="end"> {{ nftFee }} SNAFU </v-row>
+      <v-col cols="6" class="text-caption px-3"> Fee Value: </v-col>
+      <v-col cols="6" class="text-caption pr-3" >
+        <v-row no-gutters justify="end" style="text-align: right"> {{ nftFee }} SNAFU </v-row>
       </v-col>
     </v-row>
   </v-container>

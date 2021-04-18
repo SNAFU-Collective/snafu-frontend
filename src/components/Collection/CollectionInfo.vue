@@ -1,8 +1,8 @@
 <template>
-    <v-container fluid>
+    <v-container fluid class="pt-15">
       <v-card flat>
           <v-card-title>
-              <v-avatar class="logoBorder mr-2">
+              <v-avatar class="mr-2">
                 <v-img src="logo.png" />
               </v-avatar>
               SNAFU Collection
@@ -10,11 +10,11 @@
               <v-card-text class="pt-3 pl-8">
                   <v-row>
                       <v-col col="4" align-self="start" class="oneLineOnMobile">
-                       <v-row><span> <strong>SNAFU Price: </strong> - </span></v-row>
+                       <v-row><span> <strong>$SNAFU Price: </strong> - </span></v-row>
                       </v-col>
                       <v-col col="4" align-self="center" class="oneLineOnMobile">
                         <v-row><span> <strong>NFTs in pool: </strong> {{poolNFTs.length}}</span></v-row>
-                        <v-row><span> <strong>SNAFU Supply: </strong> {{snafuSupply | fromWei | truncatePrice}}</span></v-row>
+                        <v-row><span> <strong>$SNAFU Supply: </strong> {{snafuSupply | fromWei | truncatePrice}}</span></v-row>
                       </v-col>
                      <v-col col="4" align-self="end" class="oneLineOnMobile">
                        <v-row><strong>Liquidity:</strong> -</v-row>
