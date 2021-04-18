@@ -37,7 +37,13 @@ export default {
             context.dispatch("getNftsFromAddress", { address: snafu20Address, pool: true })
         },
         async transferNftToPool(context){
-            let erc1155 = context.rootGetters["connectweb3/getNftSnafuFromUser"];
+            let erc1155 = context.rootGetters["connectweb3/getUserNftSnafu"];
+            let userAddress = context.rootGetters["connectweb3/getUserAccount"];
+            let nftId = context.state.selectedNft.id;
+            let selectedQuantity = context.state.selectedQuantity;
+
+            //TODO: 
+            return erc1155.methods.safeTransferFrom(userAddress, snafu20Address, nftId, selectedQuantity, "0x0").send({from: userAddress});
 
         },
         async getNftsFromAddress(context, payload) {
