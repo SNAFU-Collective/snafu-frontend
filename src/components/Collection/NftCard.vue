@@ -13,7 +13,7 @@
           <span  style="width: 40%; text-align: right"><strong>{{ nft.editions }} of {{metadata.editions}}</strong></span>
         </v-row>
         <v-row class="px-2 subtext">ID: {{ nft.id }} </v-row>
-        <v-row class="px-2 subtext">{{ (+metadata.price + +metadata.fee) | truncatePrice}} SNAFU</v-row>
+        <v-row class="px-2 subtext">Price: {{ (+metadata.price + +metadata.fee) | truncatePrice}} SNAFU</v-row>
       </v-card-text>
     </v-card>
   </div>
