@@ -3,23 +3,21 @@
     <v-row no-gutters class="text-caption">
       <v-col cols="8"> Quantity </v-col>
       <v-col cols="4">
-        Balance: {{ selectedNft ? selectedNft.balance : "-" }}
+        Balance: {{ selectedNft ? selectedNft.editions : "-" }}
       </v-col>
     </v-row>
     <v-row no-gutters align-content="center" class="pt-1 ml-n3">
-      <v-col cols="4">
-        <v-text-field
+      <v-col cols="4" class="whiteBorder pl-1">
+        <v-numeric
           hide-details="auto"
-          :rules="quantityRules"
           outlined
-          class="whiteBorder"
-          v-model.number="quantity"
-          type="number"
-          :editable="false"
-          :min="1"
-          :max="selectedNft.balance"
-          validate-on-blur
-        ></v-text-field>
+          v-model.number="selectedQuantity"
+          :min="0"
+          :max="selectedNft ? +selectedNft.editions : 0"
+          :disabled="!selectedNft"
+          :useCalculator="false"
+          calcIcon=""
+        ></v-numeric>
       </v-col>
       <v-col cols="4" />
       <v-col cols="4" @click="openSelectNftModal">
@@ -33,47 +31,55 @@
             <v-icon medium> mdi-menu-down </v-icon>
           </v-row>
         </div>
-        
+        <div v-else class="mt-2">
+          <v-row no-gutters>
+            <v-chip style="cursor: pointer;">
+              Select NFT
+              <v-icon medium> mdi-menu-down </v-icon>
+            </v-chip>
+          </v-row>
+        </div>
       </v-col>
     </v-row>
+    <select-nft-modal :show="showModal" @updateDialog="() => showModal = false" />
   </v-container>
 </template>
 
 <script>
+import { mapFields } from "vuex-map-fields";
+import SelectNftModal from './SelectNftModal.vue';
+
 export default {
+  components: { SelectNftModal },
   data() {
     return {
-      selectedNft: {
-        id: 1,
-        balance: 3,
-      },
-      quantity: 1,
+      showModal: false
     };
   },
-  methods:{
-      openSelectNftModal(){
-          console.log("test")
-      }
+  methods: {
+    openSelectNftModal() {
+      console.log("test");
+      this.showModal = true;
+    },
   },
   computed: {
+    ...mapFields("nftContract", ["selectedNft", "selectedQuantity"]),
     quantityRules() {
-      return [
-        (value) => !!value || "Required",
-        (value) =>
-          (value && value > 0 && value <= this.selectedNft.balance) ||
-          "Invalid Value",
-      ];
+      return [(value) => !!value || "Required"];
     },
   },
 };
 </script>
 
 <style>
-.v-text-field--outlined.whiteBorder fieldset {
+.whiteBorder .v-text-field--outlined input {
+  text-align: left!important;;
+}
+.whiteBorder .v-text-field--outlined fieldset {
   color: white !important;
 }
 
-.v-text-field.whiteBorder input {
+.whiteBorder .v-text-field input {
   font-size: 1.6em !important;
 }
 </style>

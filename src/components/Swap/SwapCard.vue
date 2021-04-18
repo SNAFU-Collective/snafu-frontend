@@ -48,6 +48,16 @@
                 {{snafuFee}}%
             </v-col>
         </v-row>
+        <v-row no-gutters class="mt-n1 ml-1 d-flex">
+            <v-col cols="4" class="text-caption px-3">
+                Fee Value: 
+            </v-col>
+            <v-col cols="8" class="text-caption pr-5">
+                <v-row no-gutters justify="end">
+                {{nftFee}} SNAFU
+                </v-row>
+            </v-col>
+        </v-row>
         <v-spacer />
         <v-row no-gutters justify="center" align="end" class="rounded-0">
           <v-btn
@@ -69,7 +79,15 @@ import {mapFields} from "vuex-map-fields";
 export default {
   components: { NftInput, SnafuInput },
   computed:{
-      ...mapFields("connectweb3", ["snafuFee"])
+      ...mapFields("connectweb3", ["snafuFee"]),
+      ...mapFields("nftContract", ["selectedNftMetadata"]),
+      nftFee(){
+          if(!this.selectedNftMetadata){
+              return "-"
+          }else{
+              return this.selectedNftMetadata.fee
+          }
+      }
   }
 };
 </script>

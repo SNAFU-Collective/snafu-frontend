@@ -6,21 +6,39 @@ export default {
     namespaced: true,
     state: {
         poolNFTs: [],
-        poolSync: false
+        userNFTs: [],
+
+        poolSync: false,
+        userSync: false,
+
+        selectedNft: null,
+        selectedNftMetadata: null,
+        selectedQuantity: 0
     },
     getters: {
         getField
     },
     mutations: {
         updateField,
-        setNftPool: (state, payload) => { state.poolNFTs = payload; state.poolSync = true }
+        setNftPool: (state, payload) => { state.poolNFTs = payload; state.poolSync = true },
+        setNftUser: (state, payload) => { state.userNFTs = payload; state.userSync = true },
+        resetSelectedNft: (state) => {
+            state.selectedNft = null;
+            state.selectedNftMetadata = null;
+            state.selectedQuantity = 0;
+        }
     },
     actions: {
-        async getNftsFromPool(context) {
-            context.dispatch("getNftsFromAddress", snafu20Address)
+        async getNftsFromUser(context) {
+            let userAddress = context.rootGetters["connectweb3/getUserAccount"];
+            context.dispatch("getNftsFromAddress", {address: userAddress, pool:false})
         },
-        async getNftsFromAddress(context, address) {
+        async getNftsFromPool(context) {
+            context.dispatch("getNftsFromAddress", {address: snafu20Address, pool:true})
+        },
+        async getNftsFromAddress(context, payload) {
             let erc1155 = context.rootGetters["connectweb3/getNftSnafu"];
+            let {address, pool} = payload;
             //console.log(erc1155)
             //let events = await erc1155.getPastEvents("TransferSingle", { fromBlock: minBlock, toBlock: 'latest' });
             //console.log(events)
@@ -88,7 +106,12 @@ export default {
             nfts.sort((a,b) => {
                 return +b.id - +a.id
             })
-            context.commit("setNftPool", nfts)
+            
+            if(pool){
+                context.commit("setNftPool", nfts)
+            }else{
+                context.commit("setNftUser", nfts)
+            }
 
         }
     }
