@@ -30,7 +30,7 @@ export default {}
 </script>
 
 <style>
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 769px) {
   #desktopHeader {
     display: block;
   }
@@ -99,7 +99,7 @@ export default {}
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   #desktopHeader {
     display: none;
   }

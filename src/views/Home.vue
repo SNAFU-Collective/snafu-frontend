@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row justify="center" style="display: grid; padding-top: 100px">
+    <v-row id="mainRow" justify="center" style="display: grid; padding-top: 100px">
       <wallet-status class="mt-5"/>
       <swap-card />
     </v-row>
@@ -29,3 +29,11 @@ export default {
   }
 }
 </script>
+
+<style>
+@media screen and (max-width: 768px) {
+  #mainRow {
+    padding-top: 0 !important;
+  }
+}
+</style>
