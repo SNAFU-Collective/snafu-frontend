@@ -4,22 +4,21 @@
           <v-card-title>
               <v-avatar class="logoBorder mr-2">
                 <v-img src="logo.png" />
-              </v-avatar> 
+              </v-avatar>
               SNAFU Collection
               </v-card-title>
               <v-card-text class="pt-3 pl-8">
                   <v-row>
-                       <v-col>
-                     <span> <strong>SNAFU Price: </strong> - </span>
+                      <v-col col="4" align-self="start" class="oneLineOnMobile">
+                       <v-row><span> <strong>SNAFU Price: </strong> - </span></v-row>
                       </v-col>
-                      <v-col>
-                     <span> <strong>SNAFU Supply: </strong> {{snafuSupply | fromWei}}</span>
+                      <v-col col="4" align-self="center" class="oneLineOnMobile">
+                        <v-row><span> <strong>NFTs in pool: </strong> {{poolNFTs.length}}</span></v-row>
+                        <v-row><span> <strong>SNAFU Supply: </strong> {{snafuSupply | fromWei | truncatePrice}}</span></v-row>
                       </v-col>
-                      <v-col>
-                     <span> <strong>NFTs in pool: </strong> {{poolNFTs.length}}</span>
-                      </v-col>
-                     <v-col>
-                     <span> <strong>NFTs editions in pool: </strong> {{nftEditionsInPool}}</span>
+                     <v-col col="4" align-self="end" class="oneLineOnMobile">
+                       <v-row><strong>Liquidity:</strong> -</v-row>
+                       <v-row><strong>Trade $SNAFU:</strong> -</v-row>
                       </v-col>
                   </v-row>
               </v-card-text>
@@ -51,6 +50,17 @@ export default {
     border-color: black;
 border-style: solid;
 border-width: thin;
+}
+
+@media screen and (max-width: 768px) {
+  .oneLineOnMobile {
+    width: 100% !important;
+    flex-basis: unset !important;
+  }
+
+  .oneLineOnMobile > .row{
+
+  }
 }
 
 </style>
