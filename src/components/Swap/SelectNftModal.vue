@@ -2,7 +2,10 @@
   <v-dialog v-model="showModal" scrollable max-width="500px">
     <v-card color="#F5F5F5">
       <v-card-title>
-        <v-row no-gutters> Select the SNAFU Collective’s NFT </v-row>
+        <v-row no-gutters
+          ><v-col cols="11"> Select the SNAFU Collective’s NFT </v-col>
+          <v-col cols="1"> <v-icon small class="pl-3" @click="closeModal"> mdi-close </v-icon> </v-col>
+        </v-row>
         <v-row no-gutters class="pt-5">
           <v-text-field
             outlined
@@ -12,7 +15,7 @@
           />
         </v-row>
       </v-card-title>
-      <v-card-text class="mt-n4 ">
+      <v-card-text class="mt-n4">
         <nft-select-card
           :nft="nft"
           v-for="nft in nftsToSelect"
@@ -27,7 +30,7 @@
 
 <script>
 import { mapFields } from "vuex-map-fields";
-import NftSelectCard from '../Collection/NftSelectCard.vue';
+import NftSelectCard from "../Collection/NftSelectCard.vue";
 export default {
   components: { NftSelectCard },
   props: {
@@ -39,17 +42,23 @@ export default {
       type: Boolean,
       default: false,
     },
-    
   },
   computed: {
-    ...mapFields("nftContract", ["poolNFTs", "userNFTs", "poolSync", "selectedNft", "selectedQuantity", "selectedNftMetadata"]),
-        nftsToSelect(){
-            if(this.pool){
-                return this.poolNFTs;
-            }else{
-                return this.userNFTs;
-            }
-        },
+    ...mapFields("nftContract", [
+      "poolNFTs",
+      "userNFTs",
+      "poolSync",
+      "selectedNft",
+      "selectedQuantity",
+      "selectedNftMetadata",
+    ]),
+    nftsToSelect() {
+      if (this.pool) {
+        return this.poolNFTs;
+      } else {
+        return this.userNFTs;
+      }
+    },
     showModal: {
       get() {
         return this.show;
@@ -59,16 +68,19 @@ export default {
       },
     },
   },
-  methods:{
-      handleSelect(payload){
-          let {nft, metadata} = payload;
-          this.selectedNft = nft;
-          this.selectedNftMetadata = metadata;
-          this.selectedQuantity = 1;
+  methods: {
+    closeModal(){
+      this.$emit("updateDialog", false);
+    },
+    handleSelect(payload) {
+      let { nft, metadata } = payload;
+      this.selectedNft = nft;
+      this.selectedNftMetadata = metadata;
+      this.selectedQuantity = 1;
 
-          this.$emit("updateDialog", false);
-      }
-  }
+      this.$emit("updateDialog", false);
+    },
+  },
 };
 </script>
 
