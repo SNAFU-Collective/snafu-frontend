@@ -1,14 +1,19 @@
 <template>
   <div>
-    <v-card width="300" height="400" :href="metadata.external_url" target="_blank">
-      <v-card-text style="white-space: pre;">
-          <v-row justify="center">
-              <v-img :src="'/nfts/'+nft.id+'/image'"  height="300" width="300"/>
-          </v-row>
-          <v-row justify="center" class="pt-2 px-2" style="white-space: pre;"> <strong>{{metadata.name}}</strong></v-row>
-        <v-row justify="center"> <strong>Token ID: </strong> {{ nft.id }} </v-row>
-        <v-row justify="center"> <strong>Editions: </strong> {{ nft.editions }} / {{metadata.editions}} </v-row>
-        <v-row justify="center"> <strong>Value:</strong> {{+metadata.price + +metadata.fee}} <strong>SNAFU</strong></v-row>
+    <v-card class="mx-auto" max-width="250" >
+      <v-card-text style="white-space: pre; background-color: #F5F5F5">
+        <v-row justify="center">
+          <a :href="metadata.external_url" target="_blank">
+            <v-img :src="'/nfts/'+nft.id+'/image'"  height="250" width="250"/>
+          </a>
+        </v-row>
+
+        <v-row style="display: flex; padding-top: 10px; padding-bottom: 5px" class="px-2">
+          <span  style="width: 60%; text-align: left" class="truncate"><strong>{{metadata.name}}</strong></span>
+          <span  style="width: 40%; text-align: right"><strong>{{ nft.editions }} of {{metadata.editions}}</strong></span>
+        </v-row>
+        <v-row class="px-2 subtext">ID: {{ nft.id }} </v-row>
+        <v-row class="px-2 subtext">{{ (+metadata.price + +metadata.fee) | truncatePrice}} SNAFU</v-row>
       </v-card-text>
     </v-card>
   </div>
@@ -37,4 +42,15 @@ export default {
 </script>
 
 <style>
+.subtext {
+  color: #A7A7A7;
+  font-weight: bold;
+}
+
+.truncate {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 </style>

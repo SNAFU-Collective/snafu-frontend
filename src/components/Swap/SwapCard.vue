@@ -8,7 +8,7 @@
         <v-row no-gutters class="text-caption pa-3">
           <v-col cols="11" class="text-caption"> FROM </v-col>
           <v-col cols="1" align-self="start">
-            <v-tooltip right>
+            <v-tooltip bottom>
               <template v-slot:activator="{ on, attrs }">
                 <v-icon
                   color="grey"
@@ -20,7 +20,7 @@
                   mdi-help-circle-outline
                 </v-icon>
               </template>
-              <span>Tooltip</span>
+              <span>Swap NFTs of SNAFU ERC1155 Collection <br> for $SNAFU and vice versa. <br><br> <strong>Price = 1000 $SNAFU / NFT rarity</strong><br> Rarity is the number of editions of an NFT</span>
             </v-tooltip>
           </v-col>
         </v-row>

@@ -2,7 +2,7 @@
   <div>
     <div id="desktopHeader">
       <div id="pinnedLeftHeader">
-        <div id="trasformedText">
+        <div id="transformedText">
           <a href="https://www.nftsnafu.org" target="_self" id="snafuText">SNAFU</a>
         </div>
         <img src="logo.png" alt="logo-SNAFU.png" id="logo">
@@ -30,7 +30,7 @@ export default {}
 </script>
 
 <style>
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 601px) {
   #desktopHeader {
     display: block;
   }
@@ -63,11 +63,9 @@ export default {}
     top: 125px;
     left: 60px;
     cursor: pointer;
-    /*object-fit:cover;*/
-    /*object-position:50% 50%*/
   }
 
-  #trasformedText {
+  #transformedText {
     transform: rotate(
         270deg
     );
