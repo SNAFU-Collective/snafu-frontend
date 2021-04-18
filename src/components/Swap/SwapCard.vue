@@ -46,6 +46,7 @@
         <v-row no-gutters justify="center" align="end" class="rounded-0">
           <v-btn
             width="400"
+            height="60"
             color="black"
             class="white--text rounded-0 rounded-b-lg"
             @click="startSwap"
