@@ -9,6 +9,7 @@
         <v-row no-gutters class="pt-5">
           <v-text-field
             outlined
+            v-model.trim="filterById"
             dense
             placeholder="Filter by token ID"
             background-color="white"
@@ -43,6 +44,11 @@ export default {
       default: false,
     },
   },
+  data(){
+    return {
+      filterById: ""
+    }
+  },
   computed: {
     ...mapFields("nftContract", [
       "poolNFTs",
@@ -53,11 +59,11 @@ export default {
       "selectedNftMetadata",
     ]),
     nftsToSelect() {
-      if (this.pool) {
-        return this.poolNFTs;
-      } else {
-        return this.userNFTs;
+      let nft = this.pool ? this.poolNFTs : this.userNFTs;
+      if(this.filterById){
+        nft = nft.filter((n) => n.id === this.filterById)
       }
+      return nft;
     },
     showModal: {
       get() {
