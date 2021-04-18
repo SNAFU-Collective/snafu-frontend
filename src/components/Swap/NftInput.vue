@@ -20,7 +20,7 @@
         ></v-numeric>
       </v-col>
       <v-col cols="4" />
-      <v-col cols="4" @click="openSelectNftModal">
+      <v-col cols="4" @click="openSelectNftModal" :style="pointerStyle">
         <div v-if="selectedNft">
           <v-row no-gutters>
             <v-img
@@ -33,7 +33,7 @@
         </div>
         <div v-else class="mt-2">
           <v-row no-gutters>
-            <v-chip style="cursor: pointer;">
+            <v-chip :style="pointerStyle">
               Select NFT
               <v-icon medium> mdi-menu-down </v-icon>
             </v-chip>
@@ -51,6 +51,12 @@ import SelectNftModal from './SelectNftModal.vue';
 
 export default {
   components: { SelectNftModal },
+  props:{
+    disableActions:{
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       showModal: false
@@ -58,15 +64,20 @@ export default {
   },
   methods: {
     openSelectNftModal() {
-      console.log("test");
-      this.showModal = true;
+      if(!this.disableActions){
+        this.showModal = true;
+      }
     },
   },
   computed: {
     ...mapFields("nftContract", ["selectedNft", "selectedQuantity"]),
-    quantityRules() {
-      return [(value) => !!value || "Required"];
-    },
+    pointerStyle(){
+      if(this.disableActions){
+        return "cursor: not-allowed;"
+      }else{
+        return "cursor: pointer;"
+      }
+    }
   },
 };
 </script>
