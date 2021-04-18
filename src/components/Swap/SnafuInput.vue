@@ -1,6 +1,6 @@
 <template>
   <v-container fluid class="white rounded-lg">
-    <v-row no-gutters class="text-caption">
+    <v-row no-gutters class="text-caption" v-if="!hideBalance">
       <v-col cols="4"> Value </v-col>
       <v-col cols="8" > 
           <v-row no-gutters justify="end">
@@ -34,6 +34,12 @@
 import { mapFields } from "vuex-map-fields";
 
 export default {
+  props:{
+        hideBalance:{
+      type: Boolean,
+      default: false
+    }
+  },
   computed: {
     ...mapFields("connectweb3", { balance: "snafuBalance" }),
     ...mapFields("nftContract", ["selectedNft", "selectedNftMetadata", "selectedQuantity"]),
