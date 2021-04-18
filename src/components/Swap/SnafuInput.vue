@@ -9,19 +9,18 @@
       </v-col>
     </v-row>
     <v-row no-gutters align-content="center" class="pt-1 ml-n3">
-      <v-col cols="9" >
+      <v-col cols="9"  class="whiteBorder">
         <v-text-field
           outlined
           dense
           hide-details
           readonly
-          class="whiteBorder"
           v-model="snafuValue"
         ></v-text-field>
       </v-col>
       <v-col cols="3">
         <v-row no-gutters class="pt-2">
-          <v-avatar class="logoBorder mr-2" size="30">
+          <v-avatar class="logoBorder mr-2" size="25">
             <v-img src="logo.png" />
           </v-avatar>
           <span class="text-body-1"> SNAFU </span>
@@ -35,24 +34,22 @@
 import { mapFields } from "vuex-map-fields";
 
 export default {
-  data() {
-    return {
-      snafuValue: 100.00001,
-    };
-  },
   computed: {
     ...mapFields("connectweb3", { balance: "snafuBalance" }),
+    ...mapFields("nftContract", ["selectedNft", "selectedNftMetadata", "selectedQuantity"]),
+    snafuValue(){
+      if(!this.selectedNft){
+        return "-"
+      }
+      else{
+        return (+this.selectedNftMetadata.price + +this.selectedNftMetadata.fee) * this.selectedQuantity;
+      }
+    }
   },
+
 };
 </script>
 
-<style scoped>
-.v-text-field--outlined.whiteBorder fieldset {
-  color: white !important;
-}
+<style>
 
-.v-text-field.whiteBorder input {
-  font-size: 1.2em;
-  font-weight: bold;
-}
 </style>

@@ -9,7 +9,7 @@
               </v-card-title>
               <v-card-text class="pt-3 pl-8">
                   <v-row>
-                       <v-col v-if="false">
+                       <v-col>
                      <span> <strong>SNAFU Price: </strong> - </span>
                       </v-col>
                       <v-col>

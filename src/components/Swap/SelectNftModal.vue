@@ -1,0 +1,94 @@
+<template>
+  <v-dialog v-model="showModal" scrollable max-width="500px">
+    <v-card color="#F5F5F5">
+      <v-card-title>
+        <v-row no-gutters
+          ><v-col cols="11"> Select the SNAFU Collective’s NFT </v-col>
+          <v-col cols="1"> <v-icon small class="pl-3" @click="closeModal"> mdi-close </v-icon> </v-col>
+        </v-row>
+        <v-row no-gutters class="pt-5">
+          <v-text-field
+            outlined
+            v-model.trim="filterById"
+            dense
+            placeholder="Filter by token ID"
+            background-color="white"
+          />
+        </v-row>
+      </v-card-title>
+      <v-card-text class="mt-n4">
+        <nft-select-card
+          :nft="nft"
+          v-for="nft in nftsToSelect"
+          :key="nft.id"
+          class="my-5"
+          @selectNft="handleSelect"
+        />
+      </v-card-text>
+    </v-card>
+  </v-dialog>
+</template>
+
+<script>
+import { mapFields } from "vuex-map-fields";
+import NftSelectCard from "../Collection/NftSelectCard.vue";
+export default {
+  components: { NftSelectCard },
+  props: {
+    show: {
+      type: Boolean,
+      default: false,
+    },
+    pool: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data(){
+    return {
+      filterById: ""
+    }
+  },
+  computed: {
+    ...mapFields("nftContract", [
+      "poolNFTs",
+      "userNFTs",
+      "poolSync",
+      "selectedNft",
+      "selectedQuantity",
+      "selectedNftMetadata",
+    ]),
+    nftsToSelect() {
+      let nft = this.pool ? this.poolNFTs : this.userNFTs;
+      if(this.filterById){
+        nft = nft.filter((n) => n.id === this.filterById)
+      }
+      return nft;
+    },
+    showModal: {
+      get() {
+        return this.show;
+      },
+      set(val) {
+        this.$emit("updateDialog", false);
+      },
+    },
+  },
+  methods: {
+    closeModal(){
+      this.$emit("updateDialog", false);
+    },
+    handleSelect(payload) {
+      let { nft, metadata } = payload;
+      this.selectedNft = nft;
+      this.selectedNftMetadata = metadata;
+      this.selectedQuantity = 1;
+
+      this.$emit("updateDialog", false);
+    },
+  },
+};
+</script>
+
+<style>
+</style>

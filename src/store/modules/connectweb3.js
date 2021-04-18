@@ -25,8 +25,9 @@ export default {
         getField,
         getSnafu20: (state) => state.snafu20,
         getNftSnafu: (state) => state.snafuNft,
+        getUserAccount: (state) => state.account,
         isMetamask: async (state) => {
-            if (state.connected.web3 && !state.connected.web3.givenProvider.isMetamask()) {
+            if (state.connected.web3 && state.connected.web3.givenProvider.isMetamask && !state.connected.web3.givenProvider.isMetamask()) {
                 return false
             } else {
                 return true
@@ -67,7 +68,9 @@ export default {
                 state = context.state.connected;
                 context.state.account = (await web3.eth.getAccounts())[0];
                 context.state.chainId = await web3.eth.getChainId()
-                console.log('Chain ID: ', context.state.chainId)
+                //console.log('Chain ID: ', context.state.chainId)
+                context.dispatch("nftContract/getNftsFromUser", null, { root: true })
+
             }
 
             state.web3 = web3;
@@ -97,12 +100,11 @@ export default {
             context.dispatch("updateSnafu20Balance");
             
 
-
-
-
             // eslint-disable-next-line no-unused-vars
             provider.on("accountsChanged", (accounts) => {
                 context.dispatch("connectWallet");
+                //Reset Selected NFT
+                context.commit("nftContract/resetSelectedNft", null, { root: true })
             });
 
             // Subscribe to chainId change

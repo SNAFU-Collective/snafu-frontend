@@ -25,11 +25,11 @@
           </v-col>
         </v-row>
         <v-row no-gutters justify="center">
-          <nft-input class="mx-3" />
+          <nft-input class="mx-3" :disableActions="disableActions" />
         </v-row>
         <v-row no-gutter />
         <v-row no-gutters justify="center">
-          <v-btn large icon>
+          <v-btn large icon :disabled="disableActions">
             <v-icon>mdi-swap-vertical</v-icon>
           </v-btn>
         </v-row>
@@ -48,14 +48,25 @@
                 {{snafuFee}}%
             </v-col>
         </v-row>
+        <v-row no-gutters class="mt-n1 ml-1 d-flex">
+            <v-col cols="4" class="text-caption px-3">
+                Fee Value: 
+            </v-col>
+            <v-col cols="8" class="text-caption pr-5">
+                <v-row no-gutters justify="end">
+                {{nftFee}} SNAFU
+                </v-row>
+            </v-col>
+        </v-row>
         <v-spacer />
         <v-row no-gutters justify="center" align="end" class="rounded-0">
           <v-btn
             width="400"
             color="black"
             class="white--text rounded-0 rounded-b-lg"
+            :disabled="disableActions"
           >
-            Swap
+            {{buttonText}}
           </v-btn>
         </v-row>
       </v-card>
@@ -65,11 +76,35 @@
 import NftInput from "./NftInput.vue";
 import SnafuInput from "./SnafuInput.vue";
 import {mapFields} from "vuex-map-fields";
+import {mapGetters} from "vuex";
 
 export default {
   components: { NftInput, SnafuInput },
   computed:{
-      ...mapFields("connectweb3", ["snafuFee"])
+      ...mapFields("connectweb3", ["snafuFee", "isConnected"]),
+      ...mapFields("nftContract", ["selectedNftMetadata", "selectedQuantity"]),
+      ...mapGetters("connectweb3", ["isXdai"]),
+      disableActions(){
+        return !this.isConnected || !this.isXdai;
+      },
+      nftFee(){
+          if(!this.selectedNftMetadata){
+              return "-"
+          }else{
+              return this.selectedNftMetadata.fee * this.selectedQuantity
+          }
+      },
+      buttonText(){
+        if(!this.isConnected){
+          return "Connect wallet"
+        }
+
+        if(!this.isXdai){
+          return "Wrong network. Switch to xDai"
+        }
+
+        return "Swap"
+      }
   }
 };
 </script>
