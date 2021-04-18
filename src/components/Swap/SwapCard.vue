@@ -1,9 +1,10 @@
 <template>
       <v-card
         height="450"
-        width="400"
+        width="350"
         color="#F5F5F5"
         class="d-flex flex-column rounded-lg"
+        style="max-width: 350px"
       >
         <v-row no-gutters class="text-caption pa-3">
           <v-col cols="11" class="text-caption"> FROM </v-col>
@@ -45,8 +46,8 @@
         <v-spacer />
         <v-row no-gutters justify="center" align="end" class="rounded-0">
           <v-btn
-            width="400"
-            height="60"
+            width="350"
+            height="50"
             color="black"
             class="white--text rounded-0 rounded-b-lg"
             @click="startSwap"
