@@ -58,6 +58,13 @@ Vue.filter('abbreviateAddress', (value) => {
     return value.slice(0, 6) + '...' + value.slice(value.length -4, value.length)
 })
 
+Vue.filter('truncatePrice', (value) => {
+    if (!value)
+        return ''
+
+    return Number(Number(value).toFixed(6))
+})
+
 new Vue({
   router,
   store,

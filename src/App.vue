@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <v-main>
+      <SnafuHeader />
       <router-view />
     </v-main>
   </v-app>
@@ -8,11 +9,13 @@
 
 <script>
 import {mapActions} from "vuex"
+import SnafuHeader from "./components/Header/SnafuHeader"
 
 export default {
   name: "App",
 
   components: {
+    SnafuHeader
   },
 
   methods: {
@@ -26,3 +29,15 @@ export default {
   }),
 };
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Barlow+medium');
+
+html, body {
+  font-family: 'Barlow', sans-serif;
+}
+
+#app {
+  font-family: 'Barlow', sans-serif;
+}
+</style>

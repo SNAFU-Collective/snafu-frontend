@@ -2,7 +2,7 @@
   <v-container fluid class="white rounded-lg">
     <v-row no-gutters class="text-caption" v-if="!hideBalance">
       <v-col cols="8"> Quantity </v-col>
-      <v-col cols="4">
+      <v-col cols="4" style="text-align: right">
         Balance: {{ selectedNft ? selectedNft.editions : "-" }}
       </v-col>
     </v-row>

@@ -11,7 +11,7 @@
             />
           </v-col>
           <v-col cols="4">
-            <v-row no-gutters class="text-subtitle-2">
+            <v-row no-gutters class="text-subtitle-2 truncate">
               {{ metadata.name }}
             </v-row>
             <div class="text-caption">
@@ -76,4 +76,10 @@ export default {
 </script>
 
 <style>
+.truncate {
+  width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 </style>

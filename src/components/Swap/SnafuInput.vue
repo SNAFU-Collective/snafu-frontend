@@ -4,12 +4,12 @@
       <v-col cols="4"> Value </v-col>
       <v-col cols="8" > 
           <v-row no-gutters justify="end">
-          Balance: {{ balance | fromWei }} 
+          Balance: {{ balance | fromWei | truncatePrice }}
           </v-row>
       </v-col>
     </v-row>
     <v-row no-gutters align-content="center" class="pt-1 ml-n3">
-      <v-col cols="9"  class="whiteBorder">
+      <v-col cols="8"  class="whiteBorder">
         <v-text-field
           outlined
           dense
@@ -18,9 +18,9 @@
           v-model="snafuValue"
         ></v-text-field>
       </v-col>
-      <v-col cols="3">
-        <v-row no-gutters class="pt-2">
-          <v-avatar class="logoBorder mr-2" size="25">
+      <v-col cols="4" >
+        <v-row no-gutters class="pt-2" justify="end">
+          <v-avatar class="mr-2" size="25">
             <v-img src="logo.png" />
           </v-avatar>
           <span class="text-body-1"> SNAFU </span>
@@ -55,7 +55,3 @@ export default {
 
 };
 </script>
-
-<style>
-
-</style>
