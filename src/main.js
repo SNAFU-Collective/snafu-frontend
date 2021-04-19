@@ -10,12 +10,10 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import axios from "axios";
 import VueAxios from "vue-axios";
 import {xdaiRPC} from "./utils/constants"
-import VNumeric from 'vuetify-numeric/vuetify-numeric.umd.min'
 
 Vue.config.productionTip = false
 
 Vue.use(VueAxios, axios);
-Vue.use(VNumeric);
 
 const providerOptions = {
   walletconnect: {

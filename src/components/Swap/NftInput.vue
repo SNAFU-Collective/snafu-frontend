@@ -8,17 +8,25 @@
     </v-row>
     <v-row no-gutters align-content="center" class="pt-1 ml-n3">
       <v-col cols="4" class="whiteBorder pl-1">
+        <div v-if="selectedNft && selectedNft.editions">
         <v-numeric
           hide-details="auto"
           outlined
           v-model="selectedQuantity"
-          :min="0"
-          :max="selectedNft ? +selectedNft.editions : 0"
+          :maxValue="selectedNft.editions"
           :disabled="!selectedNft"
           :readonly="disableActions"
-          :useCalculator="false"
-          calcIcon=""
         ></v-numeric>
+        </div>
+        <div v-else>
+        <v-text-field
+          hide-details="auto"
+          outlined
+          v-model="defaultQuantity"
+          :disabled="true"
+          :readonly="true"
+        ></v-text-field>
+        </div>
       </v-col>
       <v-col cols="4" />
       <v-col cols="4" @click="openSelectNftModal" :style="pointerStyle">
@@ -48,10 +56,11 @@
 
 <script>
 import { mapFields } from "vuex-map-fields";
+import VNumeric from '../Input/vNumeric.vue';
 import SelectNftModal from './SelectNftModal.vue';
 
 export default {
-  components: { SelectNftModal },
+  components: { SelectNftModal, VNumeric },
   props:{
     disableActions:{
       type: Boolean,
@@ -68,7 +77,8 @@ export default {
   },
   data() {
     return {
-      showModal: false
+      showModal: false,
+      defaultQuantity: 0
     };
   },
   methods: {
