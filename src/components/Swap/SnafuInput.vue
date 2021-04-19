@@ -51,8 +51,10 @@ export default {
       if(!this.selectedNft){
         return "-"
       }
-      else{
+      else if(this.withdrawFromPool){
         return (+this.selectedNftMetadata.price + +this.selectedNftMetadata.fee) * this.selectedQuantity;
+      }else{
+        return +this.selectedNftMetadata.price;
       }
     }
   },

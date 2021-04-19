@@ -22,6 +22,7 @@
           v-for="nft in nftsToSelect"
           :key="nft.id"
           class="my-5"
+          :withdrawFromPool="pool"
           @selectNft="handleSelect"
         />
         <div v-if="nftsToSelect.length === 0" class="text-body-2 my-3">
