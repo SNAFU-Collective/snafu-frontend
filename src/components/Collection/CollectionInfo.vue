@@ -1,13 +1,13 @@
 <template>
-    <v-container fluid class="pt-15">
+    <v-container id="collectionInfoContainer" fluid class="pt-15" >
       <v-card flat>
-          <v-card-title>
-              <v-avatar class="mr-2">
-                <v-img src="logo.png" />
-              </v-avatar>
-              SNAFU Collection
+              <v-card-title class="pl-10">
+                <v-avatar class="mr-2">
+                  <v-img src="logo.png" />
+                </v-avatar>
+                SNAFU Collection
               </v-card-title>
-              <v-card-text class="pt-3 pl-8">
+              <v-card-text class="pt-3 pl-15">
                   <v-row>
                       <v-col col="4" align-self="start" class="oneLineOnMobile">
                        <v-row><span> <strong>$SNAFU Price: </strong> - </span></v-row>
@@ -58,9 +58,9 @@ border-width: thin;
     flex-basis: unset !important;
   }
 
-  .oneLineOnMobile > .row{
-
-  }
+  /*#collectionInfoContainer {*/
+  /*  just*/
+  /*}*/
 }
 
 </style>

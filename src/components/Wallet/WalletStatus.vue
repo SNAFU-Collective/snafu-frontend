@@ -7,18 +7,19 @@
     <v-row no-gutters v-else>
       <v-col cols="11">
       <v-chip
-          :color="isXdai ? 'rgb(245, 245, 245)' : '#DEC8D3'"
-          text-color="black"
+          :color="isXdai ? '#3EBD6A' : '#bc423e'"
+          :text-color="isXdai ? '#fff' : '#fff'"
           style="margin-bottom: 10px; padding-left: 0"
       >
         <v-chip
-          color="rgb(228 228 228)"
+          color="#e4e4e499"
           text-color="black"
+          style="border: #A7A7A7"
         >
-          <v-avatar left>
-            <v-icon>mdi-checkbox-marked-circle</v-icon>
+          <v-avatar left >
+            <v-icon color="#303030">mdi-checkbox-marked-circle</v-icon>
           </v-avatar>
-          {{account | abbreviateAddress}}
+          <span style="color: #303030;">{{account | abbreviateAddress}}</span>
         </v-chip>
        <span style="padding-left: 5px">{{chainId | networkName}}</span>
       </v-chip>

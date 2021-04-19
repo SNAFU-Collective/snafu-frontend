@@ -3,7 +3,7 @@
     <v-card color="#F5F5F5">
       <v-card-title>
         <v-row no-gutters
-          ><v-col cols="11"> Select the SNAFU Collective’s NFT </v-col>
+          ><v-col cols="11" style="word-break: break-word"> Select the SNAFU Collective’s NFT </v-col>
           <v-col cols="1"> <v-icon small class="pl-3" @click="closeModal"> mdi-close </v-icon> </v-col>
         </v-row>
         <v-row no-gutters class="pt-5">

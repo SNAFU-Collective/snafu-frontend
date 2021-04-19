@@ -33,7 +33,7 @@ export default {
 <style>
 @media screen and (max-width: 768px) {
   #mainRow {
-    padding-top: 0 !important;
+    padding-top: 20px !important;
   }
 }
 </style>
