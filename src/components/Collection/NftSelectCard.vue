@@ -18,7 +18,7 @@
               <v-row no-gutters> Token ID: {{ nft.id }} </v-row>
               <v-row no-gutters> Editions: {{ metadata.editions }} </v-row>
               <v-row no-gutters>
-                Value: {{ +metadata.price + +metadata.fee }} SNAFU</v-row
+                Value: {{ nftValue }} SNAFU</v-row
               >
               <v-row no-gutters>
                 <a
@@ -57,6 +57,19 @@ export default {
       type: Object,
       required: true,
     },
+    withdrawFromPool:{
+      type: Boolean,
+      default: false
+    }
+  },
+  computed:{
+    nftValue(){
+      if(this.withdrawFromPool){
+        return +this.metadata.price + +this.metadata.fee;
+      }else{
+        return +this.metadata.price
+      }
+    }
   },
   methods:{
     selectNft(){
