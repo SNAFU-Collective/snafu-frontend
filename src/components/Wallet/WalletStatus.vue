@@ -5,7 +5,7 @@
       </v-btn>
     </div>
     <v-row no-gutters v-else>
-      <v-col cols="11">
+      <v-col cols="10">
       <v-chip
           :color="isXdai ? '#3EBD6A' : '#bc423e'"
           :text-color="isXdai ? '#fff' : '#fff'"
@@ -24,6 +24,7 @@
        <span style="padding-left: 5px">{{chainId | networkName}}</span>
       </v-chip>
       </v-col>
+
       <v-col cols="1"  v-if="isMetamask">
         <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
@@ -45,6 +46,27 @@
         <span>Add SNAFU to Metamask</span>
       </v-tooltip>
       </v-col>
+      <v-col cols="1"  v-if="isConnected">
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+                color="grey"
+                dark
+                v-bind="attrs"
+                v-on="on"
+                class="text-h6"
+                icon
+                style="background-color: whitesmoke;margin-bottom: 10px;"
+                small
+                @click="disconnectWallet"
+
+            >
+              <v-icon size="22px">mdi-exit-to-app</v-icon>
+            </v-btn>
+          </template>
+          <span>Disconnect</span>
+        </v-tooltip>
+      </v-col>
     </v-row>
 </template>
 
@@ -57,7 +79,7 @@ export default {
   // components: { SnafuBalance },
   components: {  },
     methods:{
-        ...mapActions("connectweb3", ["connectWallet", "addSnafuToMetamask"])
+        ...mapActions("connectweb3", ["connectWallet", "addSnafuToMetamask", "disconnectWallet"])
     },
     computed:{
         ...mapFields("connectweb3", ["isConnected", "account", 'chainId']),

@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row id="mainRow" justify="center" style="display: grid; padding-top: 100px">
-      <wallet-status class="mt-5"/>
+      <wallet-status class="mt-5 pb-2"/>
       <swap-card />
     </v-row>
     <v-row justify="center" class="pt-10">
