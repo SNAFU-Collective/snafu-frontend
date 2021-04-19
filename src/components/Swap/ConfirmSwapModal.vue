@@ -111,9 +111,12 @@
             <v-icon size="100" color="error">mdi-alert</v-icon>
           </v-row>
           <v-row no-gutters justify="center" class="py-4 text-body-1">
-            Transaction failed:
+            Transaction failed
           </v-row>
-          <v-row no-gutters justify="center" class="mt-n3">
+          <v-row no-gutters justify="center" class="mt-n3 red--text" v-if="errorMessage">
+            {{errorMessage}}
+          </v-row>
+          <v-row no-gutters justify="center" class="mt-n3" v-if="txHash">
             <a :href="txUrl" target="_blank" style="color: black">
               View Details on Blockscout
             </a>
@@ -136,7 +139,8 @@ export default {
       loading: false,
       confirmed: false,
       error: false,
-      txHash: "",
+      errorMessage: null,
+      txHash: null,
     };
   },
   props: {
@@ -179,7 +183,12 @@ export default {
           .catch((err) => {
             console.log(err);
             this.error = true;
-            this.txHash = err.transactionHash;
+            if (err.transactionHash) {
+              this.txHash = err.transactionHash;
+            }
+            if (err.message) {
+              this.errorMessage = err.message;
+            }
           })
           .finally(() => {
             this.loading = false;
@@ -194,7 +203,12 @@ export default {
           .catch((err) => {
             console.log(err);
             this.error = true;
-            this.txHash = err.transactionHash;
+            if (err.transactionHash) {
+              this.txHash = err.transactionHash;
+            }
+            if (err.message) {
+              this.errorMessage = err.message;
+            }
           })
           .finally(() => {
             this.loading = false;

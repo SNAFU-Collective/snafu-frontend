@@ -77,6 +77,7 @@
       :show="showConfirmSwap"
       :withdrawFromPool="withdrawFromPool"
       @updateDialog="() => (showConfirmSwap = false)"
+      v-if="showConfirmSwap"
     />
   </v-card>
 </template>
