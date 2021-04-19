@@ -51,7 +51,7 @@
 <script>
 import {mapActions, mapGetters} from "vuex";
 import { mapFields } from 'vuex-map-fields';
-import SnafuBalance from './SnafuBalance.vue';
+//import SnafuBalance from './SnafuBalance.vue';
 
 export default {
   // components: { SnafuBalance },

@@ -18,11 +18,24 @@
           >
             You will send:
           </v-row>
-          <v-row no-gutters justify="center" class="pt-3">
+          <v-row
+            no-gutters
+            justify="center"
+            class="pt-3"
+            v-if="!withdrawFromPool"
+          >
             <nft-input
               class="mx-3"
               :disableActions="true"
               :hideBalance="true"
+              :withdrawFromPool="withdrawFromPool"
+            />
+          </v-row>
+          <v-row no-gutters justify="center" class="pt-3" v-else>
+            <snafu-input
+              class="mx-3"
+              :hideBalance="true"
+              :withdrawFromPool="withdrawFromPool"
             />
           </v-row>
           <v-row
@@ -32,10 +45,27 @@
           >
             You will receive:
           </v-row>
-          <v-row no-gutters justify="center" class="pt-3">
-            <snafu-input class="mx-3" :hideBalance="true" />
+          <v-row
+            no-gutters
+            justify="center"
+            class="pt-3"
+            v-if="!withdrawFromPool"
+          >
+            <snafu-input
+              class="mx-3"
+              :hideBalance="true"
+              :withdrawFromPool="withdrawFromPool"
+            />
           </v-row>
-          <fee-infos />
+          <v-row no-gutters justify="center" class="pt-3" v-else>
+            <nft-input
+              class="mx-3"
+              :disableActions="true"
+              :hideBalance="true"
+              :withdrawFromPool="withdrawFromPool"
+            />
+          </v-row>
+          <fee-infos v-if="!withdrawFromPool" />
         </v-card-text>
         <v-card-actions>
           <v-row no-gutters justify="center" class="mb-2" @click="confirmSwap">
@@ -45,13 +75,13 @@
       </div>
 
       <div v-if="loading">
-        <v-card-text class="pt-3"> 
+        <v-card-text class="pt-3">
           <v-row no-gutters justify="center" class="py-4">
-              <v-progress-circular
-      :size="80"
-      color="black"
-      indeterminate
-    ></v-progress-circular>
+            <v-progress-circular
+              :size="80"
+              color="black"
+              indeterminate
+            ></v-progress-circular>
           </v-row>
           <v-row no-gutters justify="center" class="py-4 text-body-1">
             Transaction in progress
@@ -59,44 +89,35 @@
         </v-card-text>
       </div>
 
-      
       <div v-if="confirmed">
-        <v-card-text class="pt-3"> 
+        <v-card-text class="pt-3">
           <v-row no-gutters justify="center" class="py-4">
             <v-icon size="100" color="success">mdi-check-circle</v-icon>
           </v-row>
           <v-row no-gutters justify="center" class="py-4 text-body-1">
             Transaction completed
           </v-row>
-              <v-row no-gutters justify="center" class="mt-n3">
-                <a
-                  :href="txUrl"
-                  target="_blank"
-                  style="color: black"
-                >
-                  View Details on Blockscout
-                </a>
-              </v-row>
+          <v-row no-gutters justify="center" class="mt-n3">
+            <a :href="txUrl" target="_blank" style="color: black">
+              View Details on Blockscout
+            </a>
+          </v-row>
         </v-card-text>
       </div>
 
-            <div v-if="error">
-        <v-card-text class="pt-3"> 
+      <div v-if="error">
+        <v-card-text class="pt-3">
           <v-row no-gutters justify="center" class="py-4">
             <v-icon size="100" color="error">mdi-alert</v-icon>
           </v-row>
           <v-row no-gutters justify="center" class="py-4 text-body-1">
-            Transaction failed: 
+            Transaction failed:
           </v-row>
-              <v-row no-gutters justify="center" class="mt-n3">
-                <a
-                  :href="txUrl"
-                  target="_blank"
-                  style="color: black"
-                >
-                  View Details on Blockscout
-                </a>
-              </v-row>
+          <v-row no-gutters justify="center" class="mt-n3">
+            <a :href="txUrl" target="_blank" style="color: black">
+              View Details on Blockscout
+            </a>
+          </v-row>
         </v-card-text>
       </div>
     </v-card>
@@ -107,26 +128,26 @@
 import FeeInfos from "./FeeInfos.vue";
 import NftInput from "./NftInput.vue";
 import SnafuInput from "./SnafuInput.vue";
-import {mapActions} from "vuex";
+import { mapActions } from "vuex";
 export default {
   components: { NftInput, SnafuInput, FeeInfos },
-  data(){
+  data() {
     return {
       loading: false,
       confirmed: false,
       error: false,
-      txHash: ""
-    }
+      txHash: "",
+    };
   },
   props: {
     show: {
       type: Boolean,
       default: false,
     },
-    withdrawFromPool:{
+    withdrawFromPool: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     showModal: {
@@ -137,30 +158,49 @@ export default {
         this.$emit("updateDialog", false);
       },
     },
-   txUrl(){
-     return "https://blockscout.com/xdai/mainnet/tx/" + this.txHash;
-   } 
+    txUrl() {
+      return "https://blockscout.com/xdai/mainnet/tx/" + this.txHash;
+    },
   },
   methods: {
-    ...mapActions("nftContract",["transferNftToPool"]),
+    ...mapActions("nftContract", ["transferNftToPool", "withdrawNftFromPool"]),
     closeModal() {
       this.$emit("updateDialog", false);
     },
-    confirmSwap(){
+    confirmSwap() {
       this.loading = true;
-      this.transferNftToPool().then((res) => {
-        console.log(res)
-        this.confirmed = true
-        this.txHash = res.transactionHash;
-      }).catch((err) =>{
-        console.log(err)
-        this.error = true
-        this.txHash = err.transactionHash;
-      }).finally(() => {
-        this.loading = false
-      })
-
-    }
+      if (!this.withdrawFromPool) {
+        this.transferNftToPool()
+          .then((res) => {
+            console.log(res);
+            this.confirmed = true;
+            this.txHash = res.transactionHash;
+          })
+          .catch((err) => {
+            console.log(err);
+            this.error = true;
+            this.txHash = err.transactionHash;
+          })
+          .finally(() => {
+            this.loading = false;
+          });
+      } else {
+        this.withdrawNftFromPool()
+          .then((res) => {
+            console.log(res);
+            this.confirmed = true;
+            this.txHash = res.transactionHash;
+          })
+          .catch((err) => {
+            console.log(err);
+            this.error = true;
+            this.txHash = err.transactionHash;
+          })
+          .finally(() => {
+            this.loading = false;
+          });
+      }
+    },
   },
 };
 </script>

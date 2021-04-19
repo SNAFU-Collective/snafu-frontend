@@ -26,6 +26,8 @@ export default {
         getSnafu20: (state) => state.snafu20,
         getNftSnafu: (state) => state.snafuNft,
         getUserNftSnafu: (state) => state.connected.snafuNft,
+        getUserSnafu20: (state) => state.connected.snafu20,
+
         getUserAccount: (state) => state.account,
         isMetamask: async (state) => {
             if (state.connected.web3 && state.connected.web3.givenProvider.isMetamask && !state.connected.web3.givenProvider.isMetamask()) {
