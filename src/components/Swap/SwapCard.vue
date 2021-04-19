@@ -1,6 +1,6 @@
 <template>
   <v-card
-    height="450"
+    height="465"
     width="350"
     color="#F5F5F5"
     class="d-flex flex-column rounded-lg"
@@ -38,7 +38,7 @@
       <snafu-input class="mx-3" :withdrawFromPool="withdrawFromPool" />
     </v-row>
     <v-row no-gutter />
-    <v-row no-gutters justify="center">
+    <v-row no-gutters justify="center" class="pt-5">
       <v-btn large icon :disabled="disableActions" @click="switchCard">
         <v-icon>mdi-swap-vertical</v-icon>
       </v-btn>
