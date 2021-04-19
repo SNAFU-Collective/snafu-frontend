@@ -24,6 +24,9 @@
           class="my-5"
           @selectNft="handleSelect"
         />
+        <div v-if="nftsToSelect.length === 0" class="text-body-2 my-3">
+          No SNAFU NFTs found in your wallet.
+        </div>
       </v-card-text>
     </v-card>
   </v-dialog>
