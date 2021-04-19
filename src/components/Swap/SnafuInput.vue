@@ -38,6 +38,10 @@ export default {
         hideBalance:{
       type: Boolean,
       default: false
+    },
+    withdrawFromPool:{
+      type: Boolean,
+      default: false
     }
   },
   computed: {

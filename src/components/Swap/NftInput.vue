@@ -42,7 +42,7 @@
         </div>
       </v-col>
     </v-row>
-    <select-nft-modal :show="showModal" @updateDialog="() => showModal = false" />
+    <select-nft-modal :show="showModal" @updateDialog="() => showModal = false" :pool="withdrawFromPool" />
   </v-container>
 </template>
 
@@ -58,6 +58,10 @@ export default {
       default: false
     },
     hideBalance:{
+      type: Boolean,
+      default: false
+    },
+    withdrawFromPool:{
       type: Boolean,
       default: false
     }
