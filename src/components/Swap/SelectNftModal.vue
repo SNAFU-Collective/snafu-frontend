@@ -99,11 +99,17 @@ export default {
     },
     handleSelect(payload) {
       let { nft, metadata } = payload;
-      this.selectedNft = nft;
-      this.selectedNftMetadata = metadata;
-      this.selectedQuantity = 1;
+      //Fix bug in selected editions
+      this.selectedNft = null;
+      this.selectedNftMetadata = null;
 
-      this.$emit("updateDialog", false);
+      this.$nextTick(() => {
+        this.selectedNft = nft;
+        this.selectedNftMetadata = metadata;
+        this.selectedQuantity = 1;
+
+        this.$emit("updateDialog", false);
+      });
     },
   },
 };
