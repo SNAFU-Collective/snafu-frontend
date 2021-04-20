@@ -33,10 +33,12 @@ export default {
     },
     actions: {
         async getNftsFromUser(context) {
+            console.log("updating nfts for user")
             let userAddress = context.rootGetters["connectweb3/getUserAccount"];
             context.dispatch("getNftsFromAddress", { address: userAddress, pool: false })
         },
         async getNftsFromPool(context) {
+            console.log("updating nfts for pool")
             context.dispatch("getNftsFromAddress", { address: snafu20Address, pool: true })
         },
         async transferNftToPool(context){
@@ -44,8 +46,6 @@ export default {
             let userAddress = context.rootGetters["connectweb3/getUserAccount"];
             let nftId = context.state.selectedNft.id;
             let selectedQuantity = context.state.selectedQuantity;
-
-            //TODO: update status / balance etc9
             return erc1155.safeTransferFrom(userAddress, snafu20Address, nftId, selectedQuantity, ethers.utils.hexlify("0x00"),  {gasPrice: "1000000000"});
         },
         async withdrawNftFromPool(context){
@@ -53,8 +53,6 @@ export default {
             let userAddress = context.rootGetters["connectweb3/getUserAccount"];
             let nftId = context.state.selectedNft.id;
             let selectedQuantity = context.state.selectedQuantity;
-
-            //TODO: update status / balance etc
             return snafuContract.withdraw([nftId], [selectedQuantity], userAddress,  {gasPrice: "1000000000"});
         },
 

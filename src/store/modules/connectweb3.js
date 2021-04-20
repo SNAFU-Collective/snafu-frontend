@@ -82,7 +82,7 @@ export default {
                 context.dispatch("updateSnafu20Fee");
             }
 
-            console.log("set Web3");
+            console.log("setting Web3");
         },
         connectWallet: async function (context) {
             console.log("connecting");
@@ -148,21 +148,18 @@ export default {
             let account = context.state.account;
             console.log("updatingBalance")
             let balance = await contract.balanceOf(account);
-            console.log("balance", balance)
             context.commit("setSnafuBalance", balance.toString());
         },
         async updateSnafu20Supply(context) {
             let contract = context.state.snafu20;
             console.log("updatingSupply")
             let supply = await contract.totalSupply();
-            console.log("supply", supply)
             context.commit("setSnafuSupply", supply.toString());
         },
         async updateSnafu20Fee(context) {
             let contract = context.state.snafu20;
             console.log("updatingFee")
             let fee = await contract.fee();
-            console.log("fee", fee)
             context.commit("setSnafuFee", fee.toString());
         },
         async addSnafuToMetamask(context) {
@@ -172,7 +169,6 @@ export default {
             const tokenImage = 'https://gateway.pinata.cloud/ipfs/QmYFnC1RxAvNzWFmtR5CQYWBz8pgzDidqQKg8o1WVqppEq';
 
             try {
-                console.log("add", context.state.connected.web3)
                 await context.state.connected.web3.provider.request({
                     method: 'wallet_watchAsset',
                     params: {
