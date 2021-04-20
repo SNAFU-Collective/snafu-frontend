@@ -46,7 +46,7 @@ export default {
             let selectedQuantity = context.state.selectedQuantity;
 
             //TODO: update status / balance etc9
-            return erc1155.safeTransferFrom(userAddress, snafu20Address, nftId, selectedQuantity, ethers.utils.hexlify("0x00"));
+            return erc1155.safeTransferFrom(userAddress, snafu20Address, nftId, selectedQuantity, ethers.utils.hexlify("0x00"),  {gasPrice: "1000000000"});
         },
         async withdrawNftFromPool(context){
             let snafuContract = context.rootGetters["connectweb3/getUserSnafu20"];
@@ -55,7 +55,7 @@ export default {
             let selectedQuantity = context.state.selectedQuantity;
 
             //TODO: update status / balance etc
-            return snafuContract.withdraw([nftId], [selectedQuantity], userAddress);
+            return snafuContract.withdraw([nftId], [selectedQuantity], userAddress,  {gasPrice: "1000000000"});
         },
 
         //event TransferSingle(address indexed _operator, address indexed _from, address indexed _to, uint256 _id, uint256 _value);
