@@ -2,7 +2,7 @@
   <div>
     <v-row justify="center" class="pt-15">
       <h2>ITEMS IN POOL</h2>
-      <v-btn icon color="teal" @click="getNftsFromPool">
+      <v-btn icon color="black" @click="getNftsFromPool">
         <v-icon>mdi-cached</v-icon>
       </v-btn>
     </v-row>
@@ -13,7 +13,7 @@
       <v-progress-circular
         size="60"
         indeterminate
-        color="teal"
+        color="black"
       ></v-progress-circular>
     </v-row>
   </div>

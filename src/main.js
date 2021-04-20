@@ -5,7 +5,7 @@ import store from './store'
 import vuetify from './plugins/vuetify';
 
 import Web3Modal from "web3modal";
-import web3 from "web3";
+import { ethers } from "ethers";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import axios from "axios";
 import VueAxios from "vue-axios";
@@ -28,7 +28,8 @@ const providerOptions = {
 
 const web3Modal = new Web3Modal({
   network: "xdai", // optional
-  cacheProvider: false, // optional
+  cacheProvider: true, // optional
+  disableInjectedProvider: false,
   providerOptions, // required
 });
 
@@ -37,7 +38,7 @@ Vue.prototype.$web3Modal = web3Modal;
 
 Vue.filter('fromWei', function (value) {
   if (!value) return '0'
-  return web3.utils.fromWei(value);
+  return ethers.utils.formatEther(value);
 })
 
 Vue.filter('networkName', function (value) {
@@ -59,8 +60,8 @@ Vue.filter('abbreviateAddress', (value) => {
 Vue.filter('truncatePrice', (value) => {
     if (!value)
         return ''
-
-    return Number(Number(value).toFixed(6))
+    let price = Number(value).toFixed(4)
+    return parseFloat(price.slice(0, -1))
 })
 
 new Vue({

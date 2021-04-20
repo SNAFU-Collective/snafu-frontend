@@ -1,8 +1,9 @@
 <template>
   <v-container>
     <v-row id="mainRow" justify="center" style="display: grid; padding-top: 100px">
-      <wallet-status class="mt-5"/>
+      <wallet-status class="mt-5 pb-2"/>
       <swap-card />
+      <v-row class="ml-5 mr-5 mt-5 warningDiv" justify="center"><v-icon size="15" class="pr-2">mdi-alert-outline</v-icon> <span class="warningText">This product is in beta, use at your own risk.</span></v-row>
     </v-row>
     <v-row justify="center" class="pt-10">
       <collection-info />
@@ -35,5 +36,15 @@ export default {
   #mainRow {
     padding-top: 20px !important;
   }
+}
+
+.warningText {
+  font-size: 14px;
+  text-align: center;
+}
+
+.warningDiv {
+  background-color: #3030300d;
+  border-radius: 5px;
 }
 </style>

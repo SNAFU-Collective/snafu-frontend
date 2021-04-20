@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Barlow+medium');
+@import url('https://fonts.googleapis.com/css?family=Barlow:200,400,600,800');
 
 html, body {
   font-family: 'Barlow', sans-serif;
