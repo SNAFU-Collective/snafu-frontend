@@ -73,7 +73,7 @@ export default {}
 
   #desktopHeader > #subtitle {
     position: absolute;
-    top: 48px;
+    top: 50px;
     left: 148px;
     font-weight: bold;
     letter-spacing: 0.23em;
@@ -113,6 +113,7 @@ export default {}
     height: 33px;
     /*height: 25px;*/
     cursor: pointer;
+    margin-top: 2px;
   }
 
   #snafuTextMobile {
