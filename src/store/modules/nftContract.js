@@ -108,6 +108,7 @@ export default {
                 return +b.id - +a.id
             })
 
+
             if (pool) {
                 context.commit("setNftPool", results)
             } else {

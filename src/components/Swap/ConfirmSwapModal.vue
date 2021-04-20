@@ -138,7 +138,7 @@
 import FeeInfos from "./FeeInfos.vue";
 import NftInput from "./NftInput.vue";
 import SnafuInput from "./SnafuInput.vue";
-import { mapActions } from "vuex";
+import { mapActions, mapMutations } from "vuex";
 export default {
   components: { NftInput, SnafuInput, FeeInfos },
   data() {
@@ -175,6 +175,7 @@ export default {
   },
   methods: {
     ...mapActions("nftContract", ["transferNftToPool", "withdrawNftFromPool"]),
+    ...mapMutations("nftContract", ["resetSelectedNft"]),
     ...mapActions("connectweb3", ["updateData"]),
     closeModal() {
       this.$emit("updateDialog", false);
@@ -203,6 +204,7 @@ export default {
             }
           })
           .finally(() => {
+            this.resetSelectedNft();
             this.loading = false;
           });
       } catch (err) {
@@ -214,6 +216,7 @@ export default {
         if (err.message) {
           this.errorMessage = err.message;
         }
+        this.resetSelectedNft();
         this.loading = false;
       }
     },
