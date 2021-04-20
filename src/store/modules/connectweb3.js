@@ -103,7 +103,7 @@ export default {
             }
 
             if (hasProvider) {
-                const web3 = new Web3(provider);
+                const web3 = new ethers.providers.Web3Provider(provider);
                 await context.dispatch("setWeb3", { web3, connected: true });
                 context.commit("setConnected", true)
                 context.dispatch("updateSnafu20Balance");
