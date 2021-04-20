@@ -7,7 +7,7 @@
     <v-row no-gutters class="mt-n1 d-flex">
       <v-col cols="6" class="text-caption px-2"> Fee Value: </v-col>
       <v-col cols="6" class="text-caption pr-2" >
-        <v-row no-gutters justify="end" style="text-align: right"> {{ nftFee }} SNAFU </v-row>
+        <v-row no-gutters justify="end" style="text-align: right"> {{ nftFee | truncatePrice }} SNAFU </v-row>
       </v-col>
     </v-row>
   </v-container>
