@@ -175,6 +175,7 @@ export default {
   },
   methods: {
     ...mapActions("nftContract", ["transferNftToPool", "withdrawNftFromPool"]),
+    ...mapActions("connectweb3", ["updateData"]),
     closeModal() {
       this.$emit("updateDialog", false);
     },
@@ -189,6 +190,7 @@ export default {
             //console.log(res);
             this.confirmed = true;
             this.txHash = res.transactionHash;
+            this.updateData();
           })
           .catch((err) => {
             //console.log(err);
