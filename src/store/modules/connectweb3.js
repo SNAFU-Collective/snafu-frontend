@@ -1,5 +1,4 @@
 
-import Web3 from "web3";
 import { ethers } from "ethers";
 import ERC1155ABI from "../../assets/abis/ERC1155.json";
 import SNAFU20 from "@/assets/abis/SNAFU20Pair.json";
