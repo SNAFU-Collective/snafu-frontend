@@ -17,8 +17,8 @@
           </template>
           <span
             >Swap NFTs of SNAFU ERC1155 Collection <br />
-            for $SNAFU and vice versa. <br /><br />
-            <strong>NFT Price = 1000 $SNAFU / NFT rarity</strong><br />
+            for $SNAFU ERC20 tokens and vice versa. <br /><br />
+            <strong>NFT Value = 1000 $SNAFU / NFT rarity</strong><br />
             Rarity is the number of editions of an NFT. <br /><br />
             $SNAFU tokens are automatically <strong>minted</strong> when <br />
             someone sells NFTs and <strong>burned</strong> when <br />someone
