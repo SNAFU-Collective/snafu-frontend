@@ -53,12 +53,7 @@ export default {
         setSnafuFee: (state, payload) => state.snafuFee = payload,
 
         disconnectWallet: async function (state) {
-            let web3 = new Web3(
-                new Web3.providers.WebsocketProvider(
-                    xdaiWebSocket
-                )
-            );
-            state.web3 = web3;
+            state.connected = {};
             state.account = null;
         }
     },
@@ -78,11 +73,11 @@ export default {
                 context.dispatch("nftContract/getNftsFromUser", null, { root: true })
 
                 state.snafuNft = await new ethers.Contract(snafuNftAddress, ERC1155ABI, signer);
-                state.snafu20 = await new  ethers.Contract(snafu20Address, SNAFU20, signer);    
-            }else{
+                state.snafu20 = await new ethers.Contract(snafu20Address, SNAFU20, signer);
+            } else {
                 state.web3 = web3;
                 state.snafuNft = await new ethers.Contract(snafuNftAddress, ERC1155ABI, web3);
-                state.snafu20 = await new ethers.Contract(snafu20Address, SNAFU20, web3);    
+                state.snafu20 = await new ethers.Contract(snafu20Address, SNAFU20, web3);
                 context.dispatch("nftContract/getNftsFromPool", null, { root: true })
                 context.dispatch("updateSnafu20Supply");
                 context.dispatch("updateSnafu20Fee");
@@ -97,7 +92,7 @@ export default {
             try {
                 provider = await this._vm.$web3Modal.connect();
                 hasProvider = true;
-            } catch ( err ) {
+            } catch (err) {
                 await context.dispatch("disconnectWallet");
                 hasProvider = false;
             }
@@ -127,7 +122,7 @@ export default {
                 // eslint-disable-next-line no-unused-vars
                 provider.on("disconnect", (error) => {
                     console.log('provider disconnect', error)
-
+                    context.commit("nftContract/resetSelectedNft", null, { root: true })
                     context.dispatch("disconnectWallet");
                 });
             }
@@ -135,6 +130,7 @@ export default {
         disconnectWallet: async function (context) {
             await this._vm.$web3Modal.clearCachedProvider();
             context.commit("disconnectWallet");
+            context.commit("nftContract/resetSelectedNft", null, { root: true })
             context.commit("setConnected", false)
         },
         startWeb3: async function (context) {
