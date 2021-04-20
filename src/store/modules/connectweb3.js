@@ -1,5 +1,6 @@
 
 import Web3 from "web3";
+import { ethers } from "ethers";
 import ERC1155ABI from "../../assets/abis/ERC1155.json";
 import SNAFU20 from "@/assets/abis/SNAFU20Pair.json";
 
@@ -30,7 +31,7 @@ export default {
 
         getUserAccount: (state) => state.account,
         isMetamask: async (state) => {
-            if (state.connected.web3 && state.connected.web3.givenProvider.isMetamask && !state.connected.web3.givenProvider.isMetamask()) {
+            if (state.connected.web3 && state.connected.web3.provider.isMetamask && !state.connected.web3.provider.isMetamask()) {
                 return false
             } else {
                 return true
@@ -69,26 +70,24 @@ export default {
 
             if (connected) {
                 state = context.state.connected;
-                context.state.account = (await web3.eth.getAccounts())[0];
-                context.state.chainId = await web3.eth.getChainId()
+                state.web3 = web3;
+                let signer = web3.getSigner();
+                context.state.account = (await signer.getAddress());
+                context.state.chainId = (await web3.getNetwork()).chainId
                 //console.log('Chain ID: ', context.state.chainId)
                 context.dispatch("nftContract/getNftsFromUser", null, { root: true })
 
-            }
-
-            state.web3 = web3;
-
-            state.snafuNft = await new web3.eth.Contract(ERC1155ABI, snafuNftAddress);
-            state.snafu20 = await new web3.eth.Contract(SNAFU20, snafu20Address);
-
-            if (!connected) {
-                context.dispatch("nftContract/getNftsFromPool", null, {root: true})
+                state.snafuNft = await new ethers.Contract(snafuNftAddress, ERC1155ABI, signer);
+                state.snafu20 = await new  ethers.Contract(snafu20Address, SNAFU20, signer);    
+            }else{
+                state.web3 = web3;
+                state.snafuNft = await new ethers.Contract(snafuNftAddress, ERC1155ABI, web3);
+                state.snafu20 = await new ethers.Contract(snafu20Address, SNAFU20, web3);    
+                context.dispatch("nftContract/getNftsFromPool", null, { root: true })
                 context.dispatch("updateSnafu20Supply");
                 context.dispatch("updateSnafu20Fee");
             }
 
-
-            console.log("NEW ACCOUNT", state.account);
             console.log("set Web3");
         },
         connectWallet: async function (context) {
@@ -139,11 +138,7 @@ export default {
             context.commit("setConnected", false)
         },
         startWeb3: async function (context) {
-            let web3 = new Web3(
-                new Web3.providers.HttpProvider(
-                    xdaiRPC
-                )
-            );
+            let web3 = new ethers.providers.JsonRpcProvider(xdaiRPC);
 
             context.dispatch("setWeb3", { web3, connected: false });
 
@@ -157,23 +152,23 @@ export default {
             let contract = context.state.snafu20;
             let account = context.state.account;
             console.log("updatingBalance")
-            let balance = await contract.methods.balanceOf(account).call();
+            let balance = await contract.balanceOf(account);
             console.log("balance", balance)
-            context.commit("setSnafuBalance", balance);
+            context.commit("setSnafuBalance", balance.toString());
         },
         async updateSnafu20Supply(context) {
             let contract = context.state.snafu20;
             console.log("updatingSupply")
-            let supply = await contract.methods.totalSupply().call();
+            let supply = await contract.totalSupply();
             console.log("supply", supply)
-            context.commit("setSnafuSupply", supply);
+            context.commit("setSnafuSupply", supply.toString());
         },
         async updateSnafu20Fee(context) {
             let contract = context.state.snafu20;
             console.log("updatingFee")
-            let fee = await contract.methods.fee().call();
+            let fee = await contract.fee();
             console.log("fee", fee)
-            context.commit("setSnafuFee", fee);
+            context.commit("setSnafuFee", fee.toString());
         },
         async addSnafuToMetamask(context) {
             const tokenAddress = snafu20Address
@@ -182,7 +177,8 @@ export default {
             const tokenImage = 'https://gateway.pinata.cloud/ipfs/QmYFnC1RxAvNzWFmtR5CQYWBz8pgzDidqQKg8o1WVqppEq';
 
             try {
-                await context.state.connected.web3.givenProvider.request({
+                console.log("add", context.state.connected.web3)
+                await context.state.connected.web3.provider.request({
                     method: 'wallet_watchAsset',
                     params: {
                         type: 'ERC20', // Initially only supports ERC20, but eventually more!

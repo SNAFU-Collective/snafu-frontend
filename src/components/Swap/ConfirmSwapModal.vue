@@ -171,11 +171,11 @@ export default {
     closeModal() {
       this.$emit("updateDialog", false);
     },
-    confirmSwap() {
+    async confirmSwap() {
       this.loading = true;
       if (!this.withdrawFromPool) {
-        this.transferNftToPool()
-          .then((res) => {
+        let tx = this.transferNftToPool();
+          tx.wait().then((res) => {
             console.log(res);
             this.confirmed = true;
             this.txHash = res.transactionHash;
@@ -194,8 +194,8 @@ export default {
             this.loading = false;
           });
       } else {
-        this.withdrawNftFromPool()
-          .then((res) => {
+        let tx = await this.withdrawNftFromPool();
+          tx.wait().then((res) => {
             console.log(res);
             this.confirmed = true;
             this.txHash = res.transactionHash;
