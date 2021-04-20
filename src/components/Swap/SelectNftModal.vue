@@ -25,7 +25,14 @@
           :withdrawFromPool="pool"
           @selectNft="handleSelect"
         />
-        <div v-if="nftsToSelect.length === 0" class="text-body-2 my-3">
+        <v-row v-if="nftToFetch" justify="center" class="my-3">
+          <v-progress-circular
+            size="40"
+            indeterminate
+            color="black"
+          ></v-progress-circular>
+        </v-row>
+        <div v-else-if="nftsToSelect.length === 0" class="text-body-2 my-3">
           No SNAFU NFTs found in your wallet.
         </div>
       </v-card-text>
@@ -58,6 +65,7 @@ export default {
       "poolNFTs",
       "userNFTs",
       "poolSync",
+      "userSync",
       "selectedNft",
       "selectedQuantity",
       "selectedNftMetadata",
@@ -68,6 +76,13 @@ export default {
         nft = nft.filter((n) => n.id === this.filterById)
       }
       return nft;
+    },
+    nftToFetch(){
+      if(this.pool){
+        return !this.poolSync;
+      }else{
+        return !this.userSync
+      }
     },
     showModal: {
       get() {
