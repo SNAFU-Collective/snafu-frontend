@@ -28,7 +28,8 @@ const providerOptions = {
 
 const web3Modal = new Web3Modal({
   network: "xdai", // optional
-  cacheProvider: false, // optional
+  cacheProvider: true, // optional
+  disableInjectedProvider: false,
   providerOptions, // required
 });
 

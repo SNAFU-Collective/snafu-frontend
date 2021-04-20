@@ -82,9 +82,9 @@ export default {
             state.snafu20 = await new web3.eth.Contract(SNAFU20, snafu20Address);
 
             if (!connected) {
-                context.dispatch("nftContract/getNftsFromPool", null, { root: true })
-                context.dispatch("updateSnafu20Supply");
-                context.dispatch("updateSnafu20Fee");
+                await context.dispatch("nftContract/getNftsFromPool", null, {root: true})
+                await context.dispatch("updateSnafu20Supply");
+                await context.dispatch("updateSnafu20Fee");
             }
 
 
@@ -94,38 +94,47 @@ export default {
         connectWallet: async function (context) {
             console.log("connecting");
 
-            const provider = await this._vm.$web3Modal.connect();
-            // provider.clearCachedProvider();
+            let provider, hasProvider
+            try {
+                provider = await this._vm.$web3Modal.connect();
+                hasProvider = true;
+            } catch ( err ) {
+                await context.dispatch("disconnectWallet");
+                hasProvider = false;
+            }
 
-            const web3 = new Web3(provider);
-            await context.dispatch("setWeb3", { web3, connected: true });
-            context.commit("setConnected", true)
-            context.dispatch("updateSnafu20Balance");
-            
+            if (hasProvider) {
+                const web3 = new Web3(provider);
+                await context.dispatch("setWeb3", { web3, connected: true });
+                context.commit("setConnected", true)
+                await context.dispatch("updateSnafu20Balance");
 
-            // eslint-disable-next-line no-unused-vars
-            provider.on("accountsChanged", (accounts) => {
-                context.dispatch("connectWallet");
-                //Reset Selected NFT
-                context.commit("nftContract/resetSelectedNft", null, { root: true })
-            });
 
-            // Subscribe to chainId change
-            provider.on("chainChanged", (chainId) => {
-                context.state.chainId = chainId
-                context.commit("nftContract/resetSelectedNft", null, { root: true })
-                console.log('Chain ID: ', context.state.chainId)
-            });
+                // eslint-disable-next-line no-unused-vars
+                provider.on("accountsChanged", (accounts) => {
+                    context.dispatch("connectWallet");
+                    //Reset Selected NFT
+                    context.commit("nftContract/resetSelectedNft", null, { root: true })
+                });
 
-            // Subscribe to provider disconnection
-            // eslint-disable-next-line no-unused-vars
-            provider.on("disconnect", (error) => {
-                //TODO: error!
-                // context.dispatch("connectWallet");
-            });
+                // Subscribe to chainId change
+                provider.on("chainChanged", (chainId) => {
+                    context.state.chainId = chainId
+                    context.commit("nftContract/resetSelectedNft", null, { root: true })
+                    console.log('Chain ID: ', context.state.chainId)
+                });
 
+                // Subscribe to provider disconnection
+                // eslint-disable-next-line no-unused-vars
+                provider.on("disconnect", (error) => {
+                    console.log('provider disconnect', error)
+
+                    context.dispatch("disconnectWallet");
+                });
+            }
         },
         disconnectWallet: async function (context) {
+            console.log("USER DECIDED TO disconnectWallet FROM dapp");
             await this._vm.$web3Modal.clearCachedProvider();
             context.commit("disconnectWallet");
             context.commit("setConnected", false)
@@ -137,11 +146,11 @@ export default {
                 )
             );
 
-            context.dispatch("setWeb3", { web3, connected: false });
+            await context.dispatch("setWeb3", { web3, connected: false });
 
             if (this._vm.$web3Modal.cachedProvider) {
                 //This is case where someone already connected
-                context.dispatch("connectWallet")
+                await context.dispatch("connectWallet")
             }
 
         },
