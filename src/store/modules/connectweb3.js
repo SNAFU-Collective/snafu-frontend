@@ -188,6 +188,14 @@ export default {
             } catch (error) {
                 console.log(error);
             }
+        },
+        //Updates fees, balance, nfts ... to use after transactions!
+        updateData(context){
+            context.dispatch("updateSnafu20Fee")
+            context.dispatch("updateSnafu20Supply")
+            context.dispatch("updateSnafu20Balance")
+            context.dispatch("nftContract/getNftsFromPool", null, { root: true })
+            context.dispatch("nftContract/getNftsFromUser", null, { root: true })
         }
     },
 }
