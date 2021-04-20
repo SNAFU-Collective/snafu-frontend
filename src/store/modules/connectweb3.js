@@ -82,9 +82,9 @@ export default {
             state.snafu20 = await new web3.eth.Contract(SNAFU20, snafu20Address);
 
             if (!connected) {
-                await context.dispatch("nftContract/getNftsFromPool", null, {root: true})
-                await context.dispatch("updateSnafu20Supply");
-                await context.dispatch("updateSnafu20Fee");
+                context.dispatch("nftContract/getNftsFromPool", null, {root: true})
+                context.dispatch("updateSnafu20Supply");
+                context.dispatch("updateSnafu20Fee");
             }
 
 
@@ -107,7 +107,7 @@ export default {
                 const web3 = new Web3(provider);
                 await context.dispatch("setWeb3", { web3, connected: true });
                 context.commit("setConnected", true)
-                await context.dispatch("updateSnafu20Balance");
+                context.dispatch("updateSnafu20Balance");
 
 
                 // eslint-disable-next-line no-unused-vars
@@ -134,7 +134,6 @@ export default {
             }
         },
         disconnectWallet: async function (context) {
-            console.log("USER DECIDED TO disconnectWallet FROM dapp");
             await this._vm.$web3Modal.clearCachedProvider();
             context.commit("disconnectWallet");
             context.commit("setConnected", false)
@@ -146,11 +145,11 @@ export default {
                 )
             );
 
-            await context.dispatch("setWeb3", { web3, connected: false });
+            context.dispatch("setWeb3", { web3, connected: false });
 
             if (this._vm.$web3Modal.cachedProvider) {
                 //This is case where someone already connected
-                await context.dispatch("connectWallet")
+                context.dispatch("connectWallet")
             }
 
         },
