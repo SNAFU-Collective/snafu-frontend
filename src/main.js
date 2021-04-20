@@ -58,8 +58,14 @@ Vue.filter('abbreviateAddress', (value) => {
 })
 
 Vue.filter('truncatePrice', (value) => {
-    if (!value)
-        return ''
+    if (!value){
+      return ''
+    }
+
+    if(value === "-"){
+      return value
+    }
+
     let price = Number(value).toFixed(4)
     return parseFloat(price.slice(0, -1))
 })
