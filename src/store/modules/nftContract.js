@@ -63,11 +63,9 @@ export default {
         async getNftsFromAddress(context, payload) {
             let erc1155 = context.rootGetters["connectweb3/getNftSnafu"];
             let { address, pool } = payload;
-            console.log("erc1155", erc1155)
             let filterSingleTo = erc1155.filters.TransferSingle(null, null, address);
             let events = await erc1155.queryFilter(filterSingleTo, minBlock)
 
-            console.log("events", pool, events);
 
             let nfts = [];
 
@@ -81,7 +79,6 @@ export default {
                 }
             
 
-            console.log("nfts", nfts);
             let filterBatchTo = erc1155.filters.TransferBatch(null, null, address)
             events = await erc1155.queryFilter(filterBatchTo, minBlock)
 
