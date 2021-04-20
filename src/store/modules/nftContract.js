@@ -1,5 +1,7 @@
 import { getField, updateField } from 'vuex-map-fields';
 import { snafuNftAddress, snafu20Address } from "../../utils/constants";
+import { ethers } from "ethers";
+
 //Block when the collection was deployed
 const minBlock = 14958798;
 
@@ -43,8 +45,8 @@ export default {
             let nftId = context.state.selectedNft.id;
             let selectedQuantity = context.state.selectedQuantity;
 
-            //TODO: update status / balance etc
-            return erc1155.safeTransferFrom(userAddress, snafu20Address, nftId, selectedQuantity, "0x0");
+            //TODO: update status / balance etc9
+            return erc1155.safeTransferFrom(userAddress, snafu20Address, nftId, selectedQuantity, ethers.utils.hexlify("0x00"));
         },
         async withdrawNftFromPool(context){
             let snafuContract = context.rootGetters["connectweb3/getUserSnafu20"];
