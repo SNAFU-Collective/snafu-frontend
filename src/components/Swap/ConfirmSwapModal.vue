@@ -1,9 +1,9 @@
 <template>
-  <v-dialog v-model="showModal" max-width="600px" persistent>
+  <v-dialog v-model="showModal" max-width="450px" persistent>
     <v-card color="#F5F5F5">
       <v-card-title>
         <v-row no-gutters
-          ><v-col cols="11" class="text-center"> Confirm Swap </v-col>
+          ><v-col offset="1" cols="10" class="text-center"> Confirm Swap </v-col>
           <v-col cols="1">
             <v-icon class="pl-3 pb-2" @click="closeModal"> mdi-close </v-icon>
           </v-col>

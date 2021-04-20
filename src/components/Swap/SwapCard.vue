@@ -1,6 +1,6 @@
 <template>
   <v-card
-    height="450"
+    height="465"
     width="350"
     color="#F5F5F5"
     class="d-flex flex-column rounded-lg"
@@ -17,8 +17,8 @@
           </template>
           <span
             >Swap NFTs of SNAFU ERC1155 Collection <br />
-            for $SNAFU and vice versa. <br /><br />
-            <strong>NFT Price = 1000 $SNAFU / NFT rarity</strong><br />
+            for $SNAFU ERC20 tokens and vice versa. <br /><br />
+            <strong>NFT Value = 1000 $SNAFU / NFT rarity</strong><br />
             Rarity is the number of editions of an NFT. <br /><br />
             $SNAFU tokens are automatically <strong>minted</strong> when <br />
             someone sells NFTs and <strong>burned</strong> when <br />someone
@@ -38,7 +38,7 @@
       <snafu-input class="mx-3" :withdrawFromPool="withdrawFromPool" />
     </v-row>
     <v-row no-gutter />
-    <v-row no-gutters justify="center">
+    <v-row no-gutters justify="center" class="pt-5">
       <v-btn large icon :disabled="disableActions" @click="switchCard">
         <v-icon>mdi-swap-vertical</v-icon>
       </v-btn>

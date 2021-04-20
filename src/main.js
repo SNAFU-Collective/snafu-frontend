@@ -28,7 +28,8 @@ const providerOptions = {
 
 const web3Modal = new Web3Modal({
   network: "xdai", // optional
-  cacheProvider: false, // optional
+  cacheProvider: true, // optional
+  disableInjectedProvider: false,
   providerOptions, // required
 });
 
@@ -59,8 +60,8 @@ Vue.filter('abbreviateAddress', (value) => {
 Vue.filter('truncatePrice', (value) => {
     if (!value)
         return ''
-
-    return Number(Number(value).toFixed(6))
+    let price = Number(value).toFixed(4)
+    return parseFloat(price.slice(0, -1))
 })
 
 new Vue({

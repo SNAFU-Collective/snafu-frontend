@@ -18,7 +18,7 @@
               <v-row no-gutters> Token ID: {{ nft.id }} </v-row>
               <v-row no-gutters> Editions: {{ metadata.editions }} </v-row>
               <v-row no-gutters>
-                Value: {{ nftValue }} SNAFU</v-row
+                Value: {{ nftValue | truncatePrice}} SNAFU</v-row
               >
               <v-row no-gutters>
                 <a
