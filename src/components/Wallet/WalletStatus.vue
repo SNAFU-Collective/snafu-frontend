@@ -17,11 +17,11 @@
           style="border: #A7A7A7"
         >
           <v-avatar left >
-            <v-icon color="#303030">mdi-checkbox-marked-circle</v-icon>
+            <v-icon color="#fff">mdi-checkbox-marked-circle</v-icon>
           </v-avatar>
-          <span style="color: #303030;">{{account | abbreviateAddress}}</span>
+          <span style="color: rgba(0, 0, 0, 0.6); font-weight: 500">{{account | abbreviateAddress}}</span>
         </v-chip>
-       <span style="padding-left: 5px">{{chainId | networkName}}</span>
+       <span style="padding-left: 5px; font-weight: 500">{{chainId | networkName}}</span>
       </v-chip>
       </v-col>
 
