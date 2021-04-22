@@ -8,7 +8,7 @@
         <img src="logo.png" alt="logo-SNAFU.png" id="logo">
       </div>
 
-      <p id="subtitle"><a  href="https://www.nftsnafu.org">Community</a></p>
+      <p id="subtitle"><a  href="https://www.nftsnafu.org">Community Pool</a></p>
 
       <a id="backHome" href="https://www.nftsnafu.org">BACK TO HOME</a>
     </div>
@@ -19,7 +19,7 @@
           <img src="logo.png" alt="logo-SNAFU.png" id="logoMobile">
           <a href="https://www.nftsnafu.org" target="_self" id="snafuTextMobile">SNAFU</a>
         </div>
-        <p id="subtitleMobile"><a  href="https://www.nftsnafu.org">Community</a></p>
+        <p id="subtitleMobile"><a  href="https://www.nftsnafu.org">Community Pool</a></p>
       </div>
     </div>
   </div>
