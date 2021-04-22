@@ -19,7 +19,7 @@
           <img src="logo.png" alt="logo-SNAFU.png" id="logoMobile">
           <a href="https://www.nftsnafu.org" target="_self" id="snafuTextMobile">SNAFU</a>
         </div>
-        <p id="subtitleMobile"><a  href="https://www.nftsnafu.org">Artist Collective 2.0</a></p>
+        <p id="subtitleMobile"><a  href="https://www.nftsnafu.org">Community</a></p>
       </div>
     </div>
   </div>
