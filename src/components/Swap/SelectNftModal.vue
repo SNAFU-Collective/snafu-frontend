@@ -116,4 +116,8 @@ export default {
 </script>
 
 <style>
+.row.text-subtitle-2.truncate.no-gutters {
+  font-weight: 600;
+  font-size: .75rem!important;
+}
 </style>
