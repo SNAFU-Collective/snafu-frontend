@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <SnafuHeader />
+      <Header />
       <router-view />
     </v-main>
   </v-app>
@@ -9,13 +9,13 @@
 
 <script>
 import {mapActions} from "vuex"
-import SnafuHeader from "./components/Header/SnafuHeader"
+import Header from "./components/Header/Header"
 
 export default {
   name: "App",
 
   components: {
-    SnafuHeader
+    Header
   },
 
   methods: {
