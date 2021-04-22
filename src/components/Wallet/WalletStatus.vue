@@ -26,7 +26,7 @@
       </v-col>
 
       <v-col cols="1"  v-if="isMetamask">
-        <v-tooltip bottom>
+        <v-tooltip bottom color="rgb(0 0 0 / 89%)">
         <template v-slot:activator="{ on, attrs }">
           <v-btn
               color="grey"
@@ -47,7 +47,7 @@
       </v-tooltip>
       </v-col>
       <v-col cols="1"  v-if="isConnected">
-        <v-tooltip bottom>
+        <v-tooltip bottom color="rgb(0 0 0 / 89%)">
           <template v-slot:activator="{ on, attrs }">
             <v-btn
                 color="grey"
