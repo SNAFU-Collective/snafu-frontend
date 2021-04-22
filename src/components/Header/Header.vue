@@ -8,7 +8,7 @@
         <img src="logo.png" alt="logo-SNAFU.png" id="logo">
       </div>
 
-      <p id="subtitle"><a  href="https://www.nftsnafu.org">Artist Collective 2.0</a></p>
+      <p id="subtitle"><a  href="https://www.nftsnafu.org">Community</a></p>
 
       <a id="backHome" href="https://www.nftsnafu.org">BACK TO HOME</a>
     </div>
