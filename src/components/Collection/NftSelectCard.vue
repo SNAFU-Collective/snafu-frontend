@@ -39,7 +39,7 @@
             >
               {{ nft.editions }} Available
             </v-row>
-            <v-row no-gutters align="end" justify="center">
+            <v-row no-gutters align="end" justify="center" v-if="!hideSelect">
               <v-btn small dark @click="selectNft"> SELECT </v-btn>
             </v-row>
           </v-col>
@@ -58,6 +58,10 @@ export default {
       required: true,
     },
     withdrawFromPool:{
+      type: Boolean,
+      default: false
+    },
+    hideSelect:{
       type: Boolean,
       default: false
     }
