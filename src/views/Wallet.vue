@@ -20,14 +20,23 @@
             :withdrawFromPool="true"
             :hideSelect="true"
         />
+        <v-row v-if="nftToFetch" justify="center" class="my-3">
+          <v-progress-circular
+            size="40"
+            indeterminate
+            color="black"
+          ></v-progress-circular>
+        </v-row>
+        <div v-else-if="nftsToSelect.length === 0" class="text-body-2 my-5">
+          No SNAFU NFTs found in your wallet.
+        </div>
       </v-row>
     </v-container>
   </div>
 </template>
 
 <script>
-import {ethers} from "ethers"
-import {mapActions, mapState} from "vuex"
+import {mapState} from "vuex"
 import NftSelectCard from '../components/Collection/NftSelectCard.vue'
 import WalletStatus from "../components/Wallet/WalletStatus"
 import SnafuBalance from '../components/Wallet/SnafuBalance.vue';
@@ -35,41 +44,21 @@ import {mapFields} from "vuex-map-fields"
 
 export default {
   components: {NftSelectCard, WalletStatus, SnafuBalance},
-  data() {
-    return {
-      addressToSearch: null,
-    }
-  },
-  methods: {
-    ...mapActions("nftContract", ["getNftsByAddress"]),
-  },
   computed: {
-    isValidAddress() {
-      return ethers.utils.isAddress()
-    },
+    ...mapFields("connectweb3", ["account"]),
     ...mapState("nftContract", {
       nfts(state) {
-        if (!this.isValidAddress) {
-          return []
-        }
-        return state[this.addressToSearch]
+        console.log(state[this.account])
+        return state[this.account];
       },
       nftToFetch(state) {
-        if (!this.isValidAddress) {
-          return true
-        }
-
-        return state[this.addressToSearch] == undefined
+        return state[this.account] == undefined
       },
     }),
     nftsToSelect() {
       return this.nfts
     },
-    ...mapFields("connectweb3", ["account"]),
-  },
-  created(){
-    this.getNftsByAddress(this.account)
-  },
+  }
 }
 </script>
 
