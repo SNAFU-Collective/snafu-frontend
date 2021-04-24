@@ -1,7 +1,5 @@
 <template>
   <v-chip
-  color="teal"
-  outlined
   pill
 >
 {{balance | fromWei}}
