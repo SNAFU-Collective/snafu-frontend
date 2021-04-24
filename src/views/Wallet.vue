@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container>
-      <v-row class="ma-5" style="padding-top: 100px; display: grid;">
+      <v-row class="ma-5" style="padding-top: 70px; display: grid;">
         <v-row justify="left" style="width: 350px">
           <v-col cols="12" justify="center" >
             <wallet-status class="mt-5"/>
