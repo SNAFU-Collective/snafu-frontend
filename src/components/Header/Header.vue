@@ -8,18 +8,18 @@
         <img src="logo.png" alt="logo-SNAFU.png" id="logo">
       </div>
 
-      <p id="subtitle"><a  href="https://www.nftsnafu.org">Artist Collective 2.0</a></p>
+      <p id="subtitle"><a  href="https://swap.nftsnafu.org">Community Pool</a></p>
 
       <a id="backHome" href="https://www.nftsnafu.org">BACK TO HOME</a>
     </div>
 
     <div id="mobileHeader">
       <div id="mobileHeaderContainer">
-        <div id="mobileLogoContainer">
+        <div id="mobileLogoContainer" style="margin-left: -5px">
           <img src="logo.png" alt="logo-SNAFU.png" id="logoMobile">
           <a href="https://www.nftsnafu.org" target="_self" id="snafuTextMobile">SNAFU</a>
         </div>
-        <p id="subtitleMobile"><a  href="https://www.nftsnafu.org">Artist Collective 2.0</a></p>
+        <p id="subtitleMobile"><a  href="https://swap.nftsnafu.org">Community Pool</a></p>
       </div>
     </div>
   </div>

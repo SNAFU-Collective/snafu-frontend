@@ -9,7 +9,7 @@
     <v-row no-gutters class="text-caption pa-3">
       <v-col cols="11" class="text-caption greyColor px-2"> FROM </v-col>
       <v-col cols="1" align-self="start">
-        <v-tooltip bottom color="#616161ed">
+        <v-tooltip bottom color="rgb(0 0 0 / 89%)">
           <template v-slot:activator="{ on, attrs }">
             <v-icon color="grey" dark v-bind="attrs" v-on="on" class="text-h6">
               mdi-help-circle-outline
