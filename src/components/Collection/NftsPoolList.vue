@@ -20,16 +20,20 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-import { mapFields } from "vuex-map-fields";
+import { mapActions, mapState } from "vuex";
 import NftCard from "./NftCard.vue";
+import { snafu20Address } from "../../utils/constants";
+
 export default {
   components: { NftCard },
   methods: {
     ...mapActions("nftContract", ["getNftsFromPool"]),
   },
   computed: {
-    ...mapFields("nftContract", ["poolNFTs", "poolSync"]),
+    ...mapState("nftContract", {
+      poolNFTs: state => state[snafu20Address],
+      poolSync: state => state[snafu20Address] !== undefined
+    })
   },
 };
 </script>

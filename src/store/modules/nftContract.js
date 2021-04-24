@@ -1,7 +1,7 @@
 import { getField, updateField } from 'vuex-map-fields';
 import { snafuNftAddress, snafu20Address } from "../../utils/constants";
 import { ethers } from "ethers";
-
+import Vue from "vue"
 //Block when the collection was deployed
 const minBlock = 14958798;
 
@@ -10,6 +10,8 @@ export default {
     state: {
         poolNFTs: [],
         userNFTs: [],
+
+
 
         poolSync: false,
         userSync: false,
@@ -23,6 +25,9 @@ export default {
     },
     mutations: {
         updateField,
+        setNfts: (state, payload) => {
+            Vue.set(state, payload.address, payload.results)
+        },
         setNftPool: (state, payload) => { state.poolNFTs = payload; state.poolSync = true },
         setNftUser: (state, payload) => { state.userNFTs = payload; state.userSync = true },
         resetSelectedNft: (state) => {
@@ -108,12 +113,7 @@ export default {
                 return +b.id - +a.id
             })
 
-
-            if (pool) {
-                context.commit("setNftPool", results)
-            } else {
-                context.commit("setNftUser", results)
-            }
+            context.commit("setNfts", {address, results});
 
         }
     }
