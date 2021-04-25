@@ -26,7 +26,7 @@
       </div>
 
       <div id="menuMobile">
-        <Slide right :closeOnNavigation="true" >
+        <Slide right :closeOnNavigation="true"  @openMenu="handleOpenMenu" @closeMenu="handleCloseMenu" :width=windowWidth>
           <router-link class="backHome" :to="{ name: 'Home'}">SWAP</router-link>
           <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
         </Slide>
@@ -40,7 +40,20 @@
 import { Slide } from 'vue-burger-menu'
 
 export default {
-  components: {Slide}
+  components: {Slide},
+  methods: {
+    handleOpenMenu() {
+      document.querySelector(".bm-burger-button").style.display = 'none'
+    },
+    handleCloseMenu() {
+      document.querySelector(".bm-burger-button").style.display = 'block'
+    }
+  },
+  data() {
+    return {
+      windowWidth: window.innerWidth.toString(),
+    }
+  },
 }
 </script>
 
@@ -188,7 +201,7 @@ export default {
   }
 
   .line-style {
-    height: 8%;
+    height: 8% !important;
     left: 0;
     position: absolute;
     right: 0;
@@ -200,16 +213,16 @@ export default {
   }
 
   span.bm-cross-button.cross-style {
-    right: 15px !important;
+    right: 30px !important;
     margin-top: 15px;
   }
 
   span.bm-cross {
-    height: 25px !important;
+    height: 30px !important;
   }
 
   .bm-menu {
-    background-color: rgb(48 48 48);
+    background-color: #303030e3;
     height: 100%;
     left: 0;
     overflow-x: hidden;
@@ -222,9 +235,9 @@ export default {
 
   .bm-item-list>* {
     display: flex;
-    padding: 0.7em 1.5em;
+    padding: .7em 1.5em !important;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 27px;
     justify-content: flex-end;
     font-weight: 500;
     letter-spacing: 2px;

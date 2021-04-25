@@ -2,13 +2,13 @@
   <div>
     <v-container>
       <v-row class="ma-5 justify-center" id="mainRowStatus" style="padding-top: 70px; display: grid;">
-        <v-row justify="left" style="width: 350px">
-          <v-col cols="12">
+        <v-row  style="width: 350px">
+          <v-col cols="12" justify="center" >
             <wallet-status class="mt-5"/>
           </v-col>
         </v-row>
-        <v-row justify="left" style="margin-top: -15px; width: 350px">
-          <v-col cols="12">
+        <v-row style="margin-top: -15px; width: 350px">
+          <v-col cols="12" justify="center" >
             <SnafuBalance />
           </v-col>
         </v-row>
