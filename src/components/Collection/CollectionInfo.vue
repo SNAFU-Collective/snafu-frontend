@@ -29,18 +29,15 @@
 
 <script>
 import {mapFields} from "vuex-map-fields"
+import { snafu20Address } from "../../utils/constants";
+import { mapState } from "vuex";
+
 export default {
     computed:{
         ...mapFields("connectweb3", ["snafuSupply"]),
-        ...mapFields("nftContract", ["poolNFTs", "poolSync"]),
-        nftEditionsInPool(){
-            let poolNFTs = this.poolNFTs;
-            if(poolNFTs && poolNFTs.length > 0){
-               return poolNFTs.reduce((a, b) => +a + +b.editions, 0);
-            }else{
-                return 0;
-            }
-        }
+    ...mapState("nftContract", {
+      poolNFTs: state => state[snafu20Address] || [],
+    })
     }
 
 }
