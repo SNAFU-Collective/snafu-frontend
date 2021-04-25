@@ -90,7 +90,7 @@ export default {}
 
   #menuDesktop {
     position: fixed;
-    right: 100px;
+    right: 200px;
     top: 50px;
     display: grid;
   }
@@ -99,6 +99,7 @@ export default {}
     text-decoration: unset;
     color: #303030;
     font-size: 17px;
+    font-weight: 500;
   }
 
   .backHome:hover {
