@@ -200,7 +200,7 @@ export default {
   }
 
   span.bm-cross-button.cross-style {
-    right: 15px !important;
+    right: 30px !important;
     margin-top: 15px;
   }
 
@@ -222,7 +222,7 @@ export default {
 
   .bm-item-list>* {
     display: flex;
-    padding: 0.7em 1.5em;
+    padding: .7em 1.5em !important;
     text-decoration: none;
     font-size: 25px;
     justify-content: flex-end;
