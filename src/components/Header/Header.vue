@@ -188,7 +188,7 @@ export default {
   }
 
   .line-style {
-    height: 8%;
+    height: 8% !important;
     left: 0;
     position: absolute;
     right: 0;
