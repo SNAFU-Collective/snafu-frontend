@@ -9,8 +9,11 @@
       </div>
 
       <p id="subtitle"><a  href="https://swap.nftsnafu.org">Community Pool</a></p>
+      <div id="menuDesktop">
+        <router-link class="backHome" :to="{ name: 'Home'}">SWAP</router-link>
+        <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
+      </div>
 
-      <a id="backHome" href="https://www.nftsnafu.org">BACK TO HOME</a>
     </div>
 
     <div id="mobileHeader">
@@ -85,17 +88,25 @@ export default {}
     color: #303030;
   }
 
-  #backHome {
+  #menuDesktop {
     position: fixed;
     right: 100px;
     top: 50px;
+    display: grid;
+  }
+
+  .backHome {
     text-decoration: unset;
     color: #303030;
     font-size: 17px;
   }
 
-  #backHome:hover {
-    color: rgb(219, 219, 219);
+  .backHome:hover {
+    color: rgb(219, 219, 219) !important;
+  }
+
+  .v-application a {
+    color: #303030 !important;
   }
 }
 
