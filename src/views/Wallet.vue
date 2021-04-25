@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container>
-      <v-row class="ma-5 justify-center" style="padding-top: 70px; display: grid;">
+      <v-row class="ma-5 justify-center" id="mainRowStatus" style="padding-top: 70px; display: grid;">
         <v-row justify="left" style="width: 350px">
           <v-col cols="12" justify="center" >
             <wallet-status class="mt-5"/>
@@ -66,4 +66,9 @@ export default {
 </script>
 
 <style>
+@media screen and (max-width: 768px) {
+  #mainRowStatus {
+    padding-top: 0px !important;
+  }
+}
 </style>
