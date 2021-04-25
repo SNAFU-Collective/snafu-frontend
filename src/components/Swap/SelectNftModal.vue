@@ -42,6 +42,9 @@
 
 <script>
 import { mapFields } from "vuex-map-fields";
+import { mapState } from "vuex";
+import { snafu20Address } from "../../utils/constants";
+
 import NftSelectCard from "../Collection/NftSelectCard.vue";
 export default {
   components: { NftSelectCard },
@@ -61,28 +64,33 @@ export default {
     }
   },
   computed: {
+    ...mapFields("connectweb3", ["account"]),
     ...mapFields("nftContract", [
-      "poolNFTs",
-      "userNFTs",
-      "poolSync",
-      "userSync",
+      //"poolNFTs",
+      //"userNFTs",
+      //"poolSync",
+      //"userSync",
       "selectedNft",
       "selectedQuantity",
       "selectedNftMetadata",
     ]),
+    ...mapState("nftContract", {
+      nfts(state){
+        return this.pool ? state[snafu20Address] : state[this.account];
+      },
+      nftToFetch(state){
+        return this.pool ? state[snafu20Address] == undefined : state[this.account] == undefined;
+      }
+    }),
     nftsToSelect() {
-      let nft = this.pool ? this.poolNFTs : this.userNFTs;
+      if(!this.nfts){
+        return [];
+      }
+      let nft = this.nfts;
       if(this.filterById){
         nft = nft.filter((n) => n.id === this.filterById)
       }
       return nft;
-    },
-    nftToFetch(){
-      if(this.pool){
-        return !this.poolSync;
-      }else{
-        return !this.userSync
-      }
     },
     showModal: {
       get() {

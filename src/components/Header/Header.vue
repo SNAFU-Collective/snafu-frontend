@@ -9,8 +9,11 @@
       </div>
 
       <p id="subtitle"><a  href="https://swap.nftsnafu.org">Community Pool</a></p>
+      <div id="menuDesktop">
+        <router-link class="backHome" :to="{ name: 'Home'}">SWAP</router-link>
+        <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
+      </div>
 
-      <a id="backHome" href="https://www.nftsnafu.org">BACK TO HOME</a>
     </div>
 
     <div id="mobileHeader">
@@ -21,18 +24,46 @@
         </div>
         <p id="subtitleMobile"><a  href="https://swap.nftsnafu.org">Community Pool</a></p>
       </div>
+
+      <div id="menuMobile">
+        <Slide right :closeOnNavigation="true"  @openMenu="handleOpenMenu" @closeMenu="handleCloseMenu" :width=windowWidth>
+          <router-link class="backHome" :to="{ name: 'Home'}">SWAP</router-link>
+          <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
+        </Slide>
+      </div>
+
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import { Slide } from 'vue-burger-menu'
+
+export default {
+  components: {Slide},
+  methods: {
+    handleOpenMenu() {
+      document.querySelector(".bm-burger-button").style.display = 'none'
+    },
+    handleCloseMenu() {
+      document.querySelector(".bm-burger-button").style.display = 'block'
+    }
+  },
+  data() {
+    return {
+      windowWidth: window.innerWidth.toString(),
+    }
+  },
+}
 </script>
 
 <style>
 @media screen and (min-width: 769px) {
   #desktopHeader {
     display: block;
+  }
+  #menuMobile {
+    display: none;
   }
 
   #mobileHeader {
@@ -85,17 +116,30 @@ export default {}
     color: #303030;
   }
 
-  #backHome {
+  #menuDesktop {
     position: fixed;
-    right: 100px;
+    right: 200px;
     top: 50px;
+    display: grid;
+  }
+
+  .backHome {
     text-decoration: unset;
     color: #303030;
     font-size: 17px;
+    font-weight: 500;
   }
 
-  #backHome:hover {
-    color: rgb(219, 219, 219);
+  .backHome:hover {
+    color: rgb(219, 219, 219) !important;
+  }
+
+  .v-application a {
+    color: #303030 !important;
+  }
+
+  a.backHome.router-link-exact-active.router-link-active {
+    color: rgb(219, 219, 219) !important;
   }
 }
 
@@ -145,6 +189,69 @@ export default {}
     margin-left: 30px;
     margin-top: 20px;
     display: flex;
+  }
+
+  .bm-burger-button {
+    cursor: pointer;
+    height: 30px;
+    left: 36px;
+    position: absolute;
+    top: 30px;
+    width: 30px;
+  }
+
+  .line-style {
+    height: 8% !important;
+    left: 0;
+    position: absolute;
+    right: 0;
+  }
+
+  .bm-cross-button {
+    height: 40px;
+    width: 40px;
+  }
+
+  span.bm-cross-button.cross-style {
+    right: 30px !important;
+    margin-top: 15px;
+  }
+
+  span.bm-cross {
+    height: 30px !important;
+  }
+
+  .bm-menu {
+    background-color: #3f3f41ed;
+    height: 100%;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 60px;
+    position: fixed;
+    top: 0;
+    transition: .5s;
+    z-index: 1000;
+  }
+
+  .bm-item-list>* {
+    display: flex;
+    padding: .7em 1.5em !important;
+    text-decoration: none;
+    font-size: 27px;
+    justify-content: flex-end;
+    font-weight: 500;
+    letter-spacing: 2px;
+  }
+
+  .bm-item-list {
+    margin-top: 25px;
+  }
+
+  #menuMobile > div > div > div.bm-menu > nav > a.backHome.router-link-exact-active.router-link-active {
+    color: rgb(143, 143, 143) !important;
+  }
+  #menuMobile > div > div > div.bm-menu > nav > a {
+    color: white;
   }
 }
 
