@@ -13,6 +13,7 @@
           </v-col>
         </v-row>
       </v-row>
+      <v-row justify="center" class="pt-10"><strong>Your NFTs</strong></v-row>
       <v-row justify="center">
         <nft-select-card
             :nft="nft"
