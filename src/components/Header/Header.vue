@@ -222,7 +222,7 @@ export default {
   }
 
   .bm-menu {
-    background-color: rgba(48, 48, 48, 0.75);
+    background-color: #3f3f41ed;
     height: 100%;
     left: 0;
     overflow-x: hidden;
