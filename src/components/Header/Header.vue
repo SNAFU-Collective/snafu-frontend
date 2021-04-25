@@ -124,6 +124,10 @@ export default {
   .v-application a {
     color: #303030 !important;
   }
+
+  a.backHome.router-link-exact-active.router-link-active {
+    color: rgb(219, 219, 219) !important;
+  }
 }
 
 @media screen and (max-width: 768px) {
