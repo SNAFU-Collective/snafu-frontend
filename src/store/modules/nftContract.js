@@ -47,7 +47,6 @@ export default {
             context.dispatch("getNftsFromAddress", { address: snafu20Address })
         },
         async getNftsByAddress(context, address) {
-            console.log('dadadadadada',context, address)
             console.log("updating nfts for: " + address)
             context.dispatch("getNftsFromAddress", { address: address })
         },
