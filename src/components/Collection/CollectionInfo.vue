@@ -18,7 +18,7 @@
                         <v-row><span> <strong>NFTs in pool: </strong> {{poolNFTs.length}}</span></v-row>
                       </v-col>
                      <v-col col="4" align-self="end" class="oneLineOnMobile">
-                       <v-row><strong>Trade $SNAFU:</strong> -</v-row>
+                       <v-row><span><strong>Trade $SNAFU: <a href="https://info.honeyswap.org/token/0x27b9c2bd4baea18abdf49169054c1c1c12af9862" target="_blank" style="color: rgba(0, 0, 0, 0.6)">Honeyswap</a></strong> </span></v-row>
                        <v-row><strong>Liquidity:</strong> -</v-row>
                       </v-col>
                   </v-row>
