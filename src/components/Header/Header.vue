@@ -3,12 +3,12 @@
     <div id="desktopHeader">
       <div id="pinnedLeftHeader">
         <div id="transformedText">
-          <a href="#" target="_self" id="snafuText">SNAFU</a>
+          <router-link :to="{ name: 'Home'}" id="snafuText">SNAFU</router-link>
         </div>
         <img src="logo.png" alt="logo-SNAFU.png" id="logo">
       </div>
 
-      <p id="subtitle"><a  href="#">Community Pool</a></p>
+      <p id="subtitle"><router-link :to="{ name: 'Home'}">Community Pool</router-link></p>
       <div id="menuDesktop">
         <router-link class="backHome" :to="{ name: 'Home'}">SWAP</router-link>
         <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
@@ -21,9 +21,9 @@
       <div id="mobileHeaderContainer">
         <div id="mobileLogoContainer" style="margin-left: -5px">
           <img src="logo.png" alt="logo-SNAFU.png" id="logoMobile">
-          <a href="#" target="_self" id="snafuTextMobile">SNAFU</a>
+          <router-link :to="{ name: 'Home'}" id="snafuTextMobile">SNAFU</router-link>
         </div>
-        <p id="subtitleMobile"><a  href="#">Community Pool</a></p>
+        <p id="subtitleMobile"><router-link :to="{ name: 'Home'}">Community Pool</router-link></p>
       </div>
 
       <div id="menuMobile">
