@@ -3,15 +3,16 @@
     <div id="desktopHeader">
       <div id="pinnedLeftHeader">
         <div id="transformedText">
-          <a href="https://www.nftsnafu.org" target="_self" id="snafuText">SNAFU</a>
+          <a href="#" target="_self" id="snafuText">SNAFU</a>
         </div>
         <img src="logo.png" alt="logo-SNAFU.png" id="logo">
       </div>
 
-      <p id="subtitle"><a  href="https://swap.nftsnafu.org">Community Pool</a></p>
+      <p id="subtitle"><a  href="#">Community Pool</a></p>
       <div id="menuDesktop">
         <router-link class="backHome" :to="{ name: 'Home'}">SWAP</router-link>
         <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
+        <a class="backHome" href="https://nftsnafu.org" target="_blank">MORE</a>
       </div>
 
     </div>
@@ -20,15 +21,16 @@
       <div id="mobileHeaderContainer">
         <div id="mobileLogoContainer" style="margin-left: -5px">
           <img src="logo.png" alt="logo-SNAFU.png" id="logoMobile">
-          <a href="https://www.nftsnafu.org" target="_self" id="snafuTextMobile">SNAFU</a>
+          <a href="#" target="_self" id="snafuTextMobile">SNAFU</a>
         </div>
-        <p id="subtitleMobile"><a  href="https://swap.nftsnafu.org">Community Pool</a></p>
+        <p id="subtitleMobile"><a  href="#">Community Pool</a></p>
       </div>
 
       <div id="menuMobile">
         <Slide right :closeOnNavigation="true"  @openMenu="handleOpenMenu" @closeMenu="handleCloseMenu" :width=windowWidth>
           <router-link class="backHome" :to="{ name: 'Home'}">SWAP</router-link>
           <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
+          <a class="backHome" href="https://nftsnafu.org" target="_blank">MORE</a>
         </Slide>
       </div>
 
@@ -222,7 +224,7 @@ export default {
   }
 
   .bm-menu {
-    background-color: #3f3f41ed;
+    background-color: #303030;
     height: 100%;
     left: 0;
     overflow-x: hidden;
@@ -231,6 +233,7 @@ export default {
     top: 0;
     transition: .5s;
     z-index: 1000;
+    opacity: 0.9;
   }
 
   .bm-item-list>* {
