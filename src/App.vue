@@ -22,11 +22,8 @@ export default {
     ...mapActions("connectweb3", ["startWeb3"]),
   },
   beforeMount(){
-    this.startWeb3()
+    this.startWeb3();
   },
-  data: () => ({
-    //
-  }),
 };
 </script>
 
