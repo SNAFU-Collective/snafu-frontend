@@ -3,7 +3,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
-
+import ApolloClient from 'apollo-boost'
+import VueApollo from 'vue-apollo'
 import Web3Modal from "web3modal";
 import { ethers } from "ethers";
 import WalletConnectProvider from "@walletconnect/web3-provider";
@@ -70,10 +71,24 @@ Vue.filter('truncatePrice', (value) => {
     return parseFloat(price.slice(0, -1))
 })
 
+
+Vue.use(VueApollo)
+
+const apolloClient = new ApolloClient({
+  // You should use an absolute URL here
+  uri: 'https://api.thegraph.com/subgraphs/name/1hive/uniswap-v2'
+})
+
+const apolloProvider = new VueApollo({
+  defaultClient: apolloClient,
+})
+
+
 new Vue({
   router,
   store,
   vuetify,
+  apolloProvider,
   render: h => h(App)
 }).$mount('#app')
 
