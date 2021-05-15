@@ -4,7 +4,7 @@
       <v-col cols="4"> Value </v-col>
       <v-col cols="8" > 
           <v-row no-gutters justify="end">
-          Balance: {{ balance | fromWei | truncatePrice }}
+          Balance: {{ balance | fromWei | truncatePrice | numberWithCommas }}
           </v-row>
       </v-col>
     </v-row>

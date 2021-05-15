@@ -13,7 +13,7 @@
             <v-row
               ><span>
                 <strong>$SNAFU Price: </strong>
-                {{ pair ? pair.token1Price : "-" | truncatePrice }}$
+                {{ pair ? pair.token1Price : "-" | truncatePrice | numberWithCommas }}$
               </span></v-row
             >
             <v-row
@@ -34,7 +34,7 @@
             <v-row
               ><span>
                 <strong>$SNAFU Supply: </strong>
-                {{ snafuSupply | fromWei | truncatePrice }}</span
+                {{ snafuSupply | fromWei | truncatePrice | numberWithCommas }}</span
               ></v-row
             >
             <v-row
@@ -57,10 +57,7 @@
                 >
               </span></v-row
             >
-            <v-row
-              ><strong>Liquidity:</strong>
-              {{ pair ? pair.reserveUSD : "-" | truncatePrice }}$
-            </v-row>
+            <v-row><strong>Liquidity: </strong>{{ pair ? pair.reserveUSD : " - " | truncatePrice | numberWithCommas}}$</v-row>
           </v-col>
         </v-row>
       </v-card-text>

@@ -71,6 +71,12 @@ Vue.filter('truncatePrice', (value) => {
     return parseFloat(price.slice(0, -1))
 })
 
+Vue.filter('numberWithCommas', (value) => {
+    let parts = value.toString().split(",");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+})
+
 
 Vue.use(VueApollo)
 
