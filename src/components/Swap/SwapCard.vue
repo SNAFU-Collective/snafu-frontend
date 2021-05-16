@@ -77,7 +77,7 @@ export default {
   data() {
     return {
       showConfirmSwap: false,
-      withdrawFromPool: false,
+      withdrawFromPool: true,
     };
   },
   methods: {
