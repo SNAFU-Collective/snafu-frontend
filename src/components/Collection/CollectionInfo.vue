@@ -39,7 +39,7 @@
             >
             <v-row
               ><span>
-                <strong>NFTs in pool: </strong> {{ poolNFTs.length }}</span
+                <strong>NFTs in pool: </strong> {{ poolNFTs.length }} of 72</span
               ></v-row
             >
           </v-col>
