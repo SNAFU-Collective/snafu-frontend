@@ -13,6 +13,7 @@ import path from 'path';
 import axios from 'axios';
 
 const minBlock = 14958798;
+const minNftId = 67;
 
 async function getMintedNFTS(erc1155){
     let events = await erc1155.getPastEvents('TransferSingle', {
@@ -105,6 +106,10 @@ async function generateAssets(){
     let __dirname = path.resolve(path.dirname(''));
 
     for(let nft of nfts){
+        if(nft.id < minNftId){
+            console.log("Skipping token: ", nft.id);
+            continue;
+        }
         console.log("Fetching tokenInfo for token: ", nft.id)
         let tokenInfo = await snafu20.methods.getTokenInfo(nft.id, 1).call();
         if(tokenInfo['1'] !== nft.editions){
