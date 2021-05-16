@@ -68,17 +68,17 @@
           <v-card-text class="mt-10">
             <v-row style="margin-bottom: 30px">
               <v-col cols="2" offset="1" style="text-align: center">
-                <a class="modalSocials">
+                <a class="modalSocials" href="https://nftsnafu.org" target="_blank">
                   <v-tooltip bottom color="rgb(0 0 0 / 89%)">
                     <template v-slot:activator="{ on, attrs }">
-                      <img src="../../assets/logo-snafu-black.png" width="42px" v-bind="attrs" v-on="on">
+                      <img src="../../assets/logo-snafu-black.png" width="42px" v-bind="attrs" v-on="on" style="margin-top:2px">
                     </template>
                     <span>Website</span>
                   </v-tooltip>
                 </a>
               </v-col>
               <v-col cols="2" style="text-align: center">
-                <a>
+                <a  class="modalSocials" href="https://twitter.com/nftsnafu" target="_blank">
                   <v-tooltip bottom color="rgb(0 0 0 / 89%)">
                     <template v-slot:activator="{ on, attrs }">
                       <v-icon size="45" color="#303030" v-bind="attrs" v-on="on">mdi-twitter</v-icon>
@@ -88,7 +88,7 @@
                 </a>
               </v-col>
               <v-col cols="2" style="text-align: center">
-                <a>
+                <a class="modalSocials" href="https://t.me/nftsnafu" target="_blank">
                   <v-tooltip bottom color="rgb(0 0 0 / 89%)">
                     <template v-slot:activator="{ on, attrs }">
                       <v-icon size="45" color="#303030" v-bind="attrs" v-on="on">mdi-telegram</v-icon>
@@ -98,7 +98,7 @@
                 </a>
               </v-col>
               <v-col cols="2" style="text-align: center">
-                <a>
+                <a class="modalSocials" href="https://github.com/SNAFU-Collective" target="_blank">
                   <v-tooltip bottom color="rgb(0 0 0 / 89%)">
                     <template v-slot:activator="{ on, attrs }">
                       <v-icon size="45" color="#303030" v-bind="attrs" v-on="on">mdi-github</v-icon>
@@ -108,7 +108,7 @@
                 </a>
               </v-col>
               <v-col cols="2" style="text-align: center">
-                <a class="modalSocials">
+                <a class="modalSocials" href="https://blockscout.com/xdai/mainnet/address/0x27B9C2Bd4BaEa18ABdF49169054c1C1c12af9862/transactions" target="_blank">
                   <v-tooltip bottom color="rgb(0 0 0 / 89%)">
                     <template v-slot:activator="{ on, attrs }">
                       <img src="../../assets/xdai-logo-black.png" width="42px" v-bind="attrs" v-on="on">
@@ -119,7 +119,7 @@
               </v-col>
             </v-row>
             <div class="modalBody">
-              <v-row v-if="isConnected">
+              <v-row v-if="isConnected && isMetamask">
                 <v-col cols="7">
                   <p>Add SNAFU to Metamask:</p>
                 </v-col>
@@ -140,7 +140,7 @@
                   <p>FAQs:</p>
                 </v-col>
                 <v-col cols="5" style="text-align: right">
-                  <a class="bodyLink">READ</a>
+                  <a href="https://www.nftsnafu.org/faq" target="_blank" class="bodyLink" style="text-decoration: unset">READ</a>
                 </v-col>
               </v-row>
               <v-row>
@@ -148,7 +148,7 @@
                   <p>Support:</p>
                 </v-col>
                 <v-col cols="5" style="text-align: right">
-                  <a class="bodyLink">CONTACT US</a>
+                  <a class="bodyLink" href="https://www.nftsnafu.org/contact-us" target="_blank" style="text-decoration: unset">CONTACT US</a>
                 </v-col>
               </v-row>
             </div>
@@ -213,7 +213,8 @@ export default {
 
 .modalSocials {
   font-weight: bold;
-  font-size: 17px
+  font-size: 17px;
+  text-decoration: unset;
 }
 
 a.modalSocials:hover {
@@ -242,7 +243,7 @@ a.modalSocials:hover {
 }
 
 .bodyLink:hover {
-  text-decoration: underline;
+  text-decoration: underline !important;
   text-underline-offset: 2px;
 }
 
