@@ -37,6 +37,7 @@
               class="text-h6"
               icon
               style="background-color: whitesmoke;margin-bottom: 10px"
+              :style="!isConnected ? 'margin-top:2px;' : 'margin-top: 0px; ' "
               small
               @click="askHelp"
               color="grey"
@@ -155,6 +156,21 @@
                      style="text-decoration: unset">CONTACT US</a>
                 </v-col>
               </v-row>
+              <v-row>
+                <v-col cols="12">
+                  <p style="text-align: justify;"
+                  >Swap NFTs of SNAFU ERC1155 Collection
+                    for $SNAFU ERC20 tokens and vice versa.
+                    <strong>NFT Value = 1000 $SNAFU / NFT rarity</strong>
+                    Rarity is the number of editions of an NFT.
+                    $SNAFU tokens are automatically <strong>minted</strong> when
+                    someone sells NFTs and <strong>burned</strong> when someone
+                    buys NFTs.
+                  </p>
+                  <a class="bodyLink" href="https://www.nftsnafu.org/swap-protocol" target="_blank"
+                     style="text-decoration: unset">Read more</a>
+                </v-col>
+              </v-row>
             </div>
           </v-card-text>
         </v-card>
@@ -226,7 +242,6 @@ a.modalSocials:hover {
 }
 
 .modalBody {
-  height: 300px;
   margin: 30px 30px;
   border: #00000045;
   border-style: solid;
