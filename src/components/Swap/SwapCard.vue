@@ -8,24 +8,6 @@
   >
     <v-row no-gutters class="text-caption pa-3">
       <v-col cols="11" class="text-caption greyColor px-2"> FROM </v-col>
-      <v-col cols="1" align-self="start">
-        <v-tooltip bottom color="rgb(0 0 0 / 89%)">
-          <template v-slot:activator="{ on, attrs }">
-            <v-icon color="grey" dark v-bind="attrs" v-on="on" class="text-h6">
-              mdi-help-circle-outline
-            </v-icon>
-          </template>
-          <span
-            >Swap NFTs of SNAFU ERC1155 Collection <br />
-            for $SNAFU ERC20 tokens and vice versa. <br /><br />
-            <strong>NFT Value = 1000 $SNAFU / NFT rarity</strong><br />
-            Rarity is the number of editions of an NFT. <br /><br />
-            $SNAFU tokens are automatically <strong>minted</strong> when <br />
-            someone sells NFTs and <strong>burned</strong> when <br />someone
-            buys NFTs.
-          </span>
-        </v-tooltip>
-      </v-col>
     </v-row>
     <v-row no-gutters justify="center" v-if="!withdrawFromPool">
       <nft-input
@@ -95,7 +77,7 @@ export default {
   data() {
     return {
       showConfirmSwap: false,
-      withdrawFromPool: false,
+      withdrawFromPool: true,
     };
   },
   methods: {
