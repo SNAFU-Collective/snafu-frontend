@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-card class="mx-auto" max-width="250" >
+    <v-card class="mx-auto" max-width="250">
       <v-card-text style="white-space: pre; background-color: #F5F5F5">
         <v-row justify="center">
           <v-dialog
@@ -11,7 +11,7 @@
               <v-row>
                 <v-col cols="10">
                   <v-card-title>
-                    <span class="headline truncateLong">{{metadata.name}}</span>
+                    <span class="headline truncateLong">{{ metadata.name }}</span>
                   </v-card-title>
                 </v-col>
                 <v-col cols="2" style="margin-top: 15px; text-align: right; padding-right: 25px;">
@@ -32,13 +32,19 @@
         </v-row>
 
         <v-row style="display: flex; padding-top: 10px; padding-bottom: 5px" class="px-2">
-          <span  style="width: 60%; text-align: left" class="truncate"><strong>{{metadata.name}}</strong></span>
-          <span  style="width: 40%; text-align: right"><strong>{{ nft.editions }} of {{metadata.editions}}</strong></span>
+          <span style="width: 60%; text-align: left" class="truncate"><strong>{{ metadata.name }}</strong></span>
+          <span style="width: 40%; text-align: right"><strong>{{
+              nft.editions
+            }} of {{ metadata.editions }}</strong></span>
         </v-row>
-        <v-row class="px-2 subtext">ID: {{ nft.id }} </v-row>
+        <v-row class="px-2 subtext">ID: {{ nft.id }}</v-row>
         <v-row class="px-2 subtext">
-          <v-col cols="10" style="text-align: left; padding: 0;">Value: {{ (+metadata.price + +metadata.fee) | truncatePrice}} SNAFU</v-col>
-          <v-col cols="2" style="text-align: right; padding: 0;"><a :href="metadata.external_url" target="_blank" style="color: rgba(0, 0, 0, 0.6) !important;">More</a></v-col>
+          <v-col cols="10" style="text-align: left; padding: 0;">Value:
+            {{ (+metadata.price + +metadata.fee) | truncatePrice }} SNAFU
+          </v-col>
+          <v-col cols="2" style="text-align: right; padding: 0;"><a :href="metadata.external_url" target="_blank"
+                                                                    style="color: rgba(0, 0, 0, 0.6) !important;">More</a>
+          </v-col>
 
         </v-row>
       </v-card-text>
@@ -48,31 +54,31 @@
 
 <script>
 
-import axios from "axios";
+import axios from "axios"
 
 export default {
-    props:{
-        nft:{
-            type: Object,
-            required: true
-        }
+  props: {
+    nft: {
+      type: Object,
+      required: true,
     },
+  },
   methods: {
-    toggle () {
+    toggle() {
       this.fullscreen = !this.fullscreen
+    },
+  },
+  data() {
+    return {
+      metadata: {},
+      fullscreen: false,
     }
   },
-    data(){
-        return{
-            metadata: {},
-          fullscreen: false
-        }
-    },
-    async beforeMount(){
-        let res = await axios.get("./nfts/" + this.nft.id + "/metadata.json")
-        this.metadata = res.data;
-    }
-};
+  async beforeMount() {
+    let res = await axios.get("./nfts/" + this.nft.id + "/metadata.json")
+    this.metadata = res.data
+  },
+}
 </script>
 
 <style>
