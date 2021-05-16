@@ -39,7 +39,6 @@
               style="background-color: whitesmoke;margin-bottom: 10px"
               :style="!isConnected ? 'margin-top:2px;' : 'margin-top: 0px; ' "
               small
-              @click="askHelp"
               color="grey"
           >
             ?
@@ -213,9 +212,6 @@ export default {
   },
   methods: {
     ...mapActions("connectweb3", ["connectWallet", "addSnafuToMetamask", "disconnectWallet"]),
-    askHelp() {
-      this.showConfirmSwap = true
-    },
   },
   computed: {
     ...mapFields("connectweb3", ["isConnected", "account", 'chainId']),

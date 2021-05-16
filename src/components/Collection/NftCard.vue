@@ -3,8 +3,31 @@
     <v-card class="mx-auto" max-width="250" >
       <v-card-text style="white-space: pre; background-color: #F5F5F5">
         <v-row justify="center">
-          <a>
-            <v-img :src="'/nfts/'+nft.id+'/image'"  height="250" width="250"/>
+          <v-dialog
+              v-model="fullscreen"
+              width="600px"
+          >
+            <v-card>
+              <v-row>
+                <v-col cols="10">
+                  <v-card-title>
+                    <span class="headline truncateLong">{{metadata.name}}</span>
+                  </v-card-title>
+                </v-col>
+                <v-col cols="2" style="margin-top: 15px; text-align: right; padding-right: 25px;">
+                  <v-btn
+                      icon
+                      @click="fullscreen = false"
+                  >
+                    <v-icon>mdi-close</v-icon>
+                  </v-btn>
+                </v-col>
+              </v-row>
+              <v-img :src="'/nfts/'+nft.id+'/image'" width="100%"/>
+            </v-card>
+          </v-dialog>
+          <a @click="toggle">
+            <v-img :src="'/nfts/'+nft.id+'/image'" height="250" width="250"/>
           </a>
         </v-row>
 
@@ -28,16 +51,21 @@
 import axios from "axios";
 
 export default {
-  components: {},
     props:{
         nft:{
             type: Object,
             required: true
         }
     },
+  methods: {
+    toggle () {
+      this.fullscreen = !this.fullscreen
+    }
+  },
     data(){
         return{
-            metadata: {}
+            metadata: {},
+          fullscreen: false
         }
     },
     async beforeMount(){
@@ -58,6 +86,18 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.truncateLong {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.v-dialog.v-dialog--active {
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 @media screen and (max-width: 768px) {
