@@ -71,14 +71,15 @@
                 <a class="modalSocials" href="https://nftsnafu.org" target="_blank">
                   <v-tooltip bottom color="rgb(0 0 0 / 89%)">
                     <template v-slot:activator="{ on, attrs }">
-                      <img src="../../assets/logo-snafu-black.png" width="42px" v-bind="attrs" v-on="on" style="margin-top:2px">
+                      <img src="../../assets/logo-snafu-black.png" width="42px" v-bind="attrs" v-on="on"
+                           style="margin-top:2px">
                     </template>
                     <span>Website</span>
                   </v-tooltip>
                 </a>
               </v-col>
               <v-col cols="2" style="text-align: center">
-                <a  class="modalSocials" href="https://twitter.com/nftsnafu" target="_blank">
+                <a class="modalSocials" href="https://twitter.com/nftsnafu" target="_blank">
                   <v-tooltip bottom color="rgb(0 0 0 / 89%)">
                     <template v-slot:activator="{ on, attrs }">
                       <v-icon size="45" color="#303030" v-bind="attrs" v-on="on">mdi-twitter</v-icon>
@@ -108,7 +109,9 @@
                 </a>
               </v-col>
               <v-col cols="2" style="text-align: center">
-                <a class="modalSocials" href="https://blockscout.com/xdai/mainnet/address/0x27B9C2Bd4BaEa18ABdF49169054c1C1c12af9862/transactions" target="_blank">
+                <a class="modalSocials"
+                   href="https://blockscout.com/xdai/mainnet/address/0x27B9C2Bd4BaEa18ABdF49169054c1C1c12af9862/transactions"
+                   target="_blank">
                   <v-tooltip bottom color="rgb(0 0 0 / 89%)">
                     <template v-slot:activator="{ on, attrs }">
                       <img src="../../assets/xdai-logo-black.png" width="42px" v-bind="attrs" v-on="on">
@@ -128,7 +131,7 @@
                 </v-col>
               </v-row>
               <v-row v-if="isConnected">
-                <v-col cols="7" >
+                <v-col cols="7">
                   <p>Disconnect wallet:</p>
                 </v-col>
                 <v-col cols="5" style="text-align: right">
@@ -140,7 +143,8 @@
                   <p>FAQs:</p>
                 </v-col>
                 <v-col cols="5" style="text-align: right">
-                  <a href="https://www.nftsnafu.org/faq" target="_blank" class="bodyLink" style="text-decoration: unset">READ</a>
+                  <a href="https://www.nftsnafu.org/faq" target="_blank" class="bodyLink"
+                     style="text-decoration: unset">READ</a>
                 </v-col>
               </v-row>
               <v-row>
@@ -148,7 +152,8 @@
                   <p>Support:</p>
                 </v-col>
                 <v-col cols="5" style="text-align: right">
-                  <a class="bodyLink" href="https://www.nftsnafu.org/contact-us" target="_blank" style="text-decoration: unset">CONTACT US</a>
+                  <a class="bodyLink" href="https://www.nftsnafu.org/contact-us" target="_blank"
+                     style="text-decoration: unset">CONTACT US</a>
                 </v-col>
               </v-row>
             </div>
