@@ -3,7 +3,7 @@
     <v-card class="mx-auto" max-width="250" >
       <v-card-text style="white-space: pre; background-color: #F5F5F5">
         <v-row justify="center">
-          <a :href="metadata.external_url" target="_blank">
+          <a>
             <v-img :src="'/nfts/'+nft.id+'/image'"  height="250" width="250"/>
           </a>
         </v-row>
@@ -13,7 +13,11 @@
           <span  style="width: 40%; text-align: right"><strong>{{ nft.editions }} of {{metadata.editions}}</strong></span>
         </v-row>
         <v-row class="px-2 subtext">ID: {{ nft.id }} </v-row>
-        <v-row class="px-2 subtext">Value: {{ (+metadata.price + +metadata.fee) | truncatePrice}} SNAFU</v-row>
+        <v-row class="px-2 subtext">
+          <v-col cols="10" style="text-align: left; padding: 0;">Value: {{ (+metadata.price + +metadata.fee) | truncatePrice}} SNAFU</v-col>
+          <v-col cols="2" style="text-align: right; padding: 0;"><a :href="metadata.external_url" target="_blank" style="color: rgba(0, 0, 0, 0.6) !important;">More</a></v-col>
+
+        </v-row>
       </v-card-text>
     </v-card>
   </v-row>
@@ -22,7 +26,9 @@
 <script>
 
 import axios from "axios";
+
 export default {
+  components: {},
     props:{
         nft:{
             type: Object,
