@@ -1,11 +1,11 @@
 <template>
-  <div v-if="!isConnected">
-    <v-btn @click="connectWallet" style="margin-bottom: 10px">
-      Connect wallet
-    </v-btn>
-  </div>
-  <v-row no-gutters v-else>
-    <v-col cols="10">
+  <v-row>
+    <v-col cols="10" v-if="!isConnected">
+      <v-btn @click="connectWallet" style="margin-bottom: 10px">
+        Connect wallet
+      </v-btn>
+    </v-col>
+    <v-col cols="9" no-gutters v-else>
       <v-chip
           :color="isXdai ? '#3EBD6A' : '#bc423e'"
           :text-color="isXdai ? '#fff' : '#fff'"
@@ -24,8 +24,7 @@
         <span style="padding-left: 5px; font-weight: 500">{{ chainId | networkName }}</span>
       </v-chip>
     </v-col>
-
-    <v-col cols="1" v-if="isMetamask">
+    <v-col cols="1">
       <v-dialog
           v-model="dialog"
           width="600px"
