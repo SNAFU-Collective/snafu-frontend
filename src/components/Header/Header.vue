@@ -14,6 +14,7 @@
         <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
         <a class="backHome" href="https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862" target="_blank">BUY SNAFU</a>
         <a class="backHome" href="https://vote.nftsnafu.org" target="_blank">VOTE</a>
+        <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM</a>
         <a class="backHome" href="https://nftsnafu.org" target="_blank">LEARN MORE</a>
       </div>
 
@@ -34,6 +35,7 @@
           <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
           <a class="backHome" href="https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862" target="_blank">BUY SNAFU</a>
           <a class="backHome" href="https://vote.nftsnafu.org" target="_blank">VOTE</a>
+          <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM</a>
           <a class="backHome" href="https://nftsnafu.org" target="_blank">LEARN MORE</a>
         </Slide>
       </div>
