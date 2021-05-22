@@ -12,12 +12,12 @@
       </v-col>
     </v-row>
     <v-row justify="center" >
-              <nft-select-card
+        <nft-select-card
           :nft="nft"
           v-for="nft in nftsToSelect"
           :key="nft.id"
           class="ma-5"
-          :withdrawFromPool="true"
+          :withdrawFromPool="false"
           :hideSelect="true"
         />
     </v-row>

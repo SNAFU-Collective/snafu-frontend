@@ -29,6 +29,9 @@
                   View Details
                 </a>
               </v-row>
+              <v-row no-gutters v-if="withdrawFromPool"  class="text-caption font-weight-bold"> 
+                Owned: {{ownedEditions}}
+              </v-row>
             </div>
           </v-col>
           <v-col cols="4" class="d-flex flex-column mb-5">
@@ -51,6 +54,8 @@
 
 <script>
 import axios from "axios";
+import {mapGetters} from "vuex";
+
 export default {
   props: {
     nft: {
@@ -67,12 +72,20 @@ export default {
     }
   },
   computed:{
+    ...mapGetters("nftContract", ["getUserBalance"]),
     nftValue(){
       if(this.withdrawFromPool){
         return +this.metadata.price + +this.metadata.fee;
       }else{
         return +this.metadata.price
       }
+    },
+    ownedEditions(){
+            if(this.withdrawFromPool){
+              return this.getUserBalance(this.nft.id);
+            }else{
+              return 0;
+            }
     }
   },
   methods:{

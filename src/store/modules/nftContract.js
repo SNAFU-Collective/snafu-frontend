@@ -8,8 +8,8 @@ const minBlock = 14958798;
 export default {
     namespaced: true,
     state: {
-        poolNFTs: [],
-        userNFTs: [],
+        //poolNFTs: [],
+        //userNFTs: [],
 
 
 
@@ -21,15 +21,20 @@ export default {
         selectedQuantity: 0
     },
     getters: {
-        getField
+        getField,
+        getUserBalance: (state, getters, rootState, rootGetters) => (id) => {
+            let userAddress = rootGetters["connectweb3/getUserAccount"];
+            let nft = state[userAddress].find(nft => nft.id === id)
+            return nft ? nft.editions : 0;
+        }
     },
     mutations: {
         updateField,
         setNfts: (state, payload) => {
             Vue.set(state, payload.address, payload.results)
         },
-        setNftPool: (state, payload) => { state.poolNFTs = payload; state.poolSync = true },
-        setNftUser: (state, payload) => { state.userNFTs = payload; state.userSync = true },
+        //setNftPool: (state, payload) => { state.poolNFTs = payload; state.poolSync = true },
+        //setNftUser: (state, payload) => { state.userNFTs = payload; state.userSync = true },
         resetSelectedNft: (state) => {
             state.selectedNft = null;
             state.selectedNftMetadata = null;
