@@ -37,27 +37,9 @@
               </span></v-row
             >
             <v-row
-              ><span>
-                <strong>Total Supply: </strong>
-                {{ snafuSupply | fromWei | truncatePrice | numberWithCommas }} SNAFU</span
-              ></v-row
-            >
-
-          </v-col>
-          <v-col col="3" align-self="end" class="oneLineOnMobile">
-            <v-row
-              ><span
-                ><strong
-                  >Locked:
-                  </strong
-                >
-               500,000.00 SNAFU
-              </span></v-row
-            >
-            <v-row
             ><span>
-                <strong>Circulating Supply: </strong>
-                {{ snafuSupply | fromWei | truncatePrice | numberWithCommas }} SNAFU</span
+                <strong>Liquidity: </strong>
+                {{ pair ? pair.reserveUSD : " - " | truncatePrice | numberWithCommas}}$</span
             ></v-row
             >
           </v-col>
@@ -77,8 +59,25 @@
             >
             <v-row
             ><span>
-                <strong>Liquidity: </strong>
-                {{ pair ? pair.reserveUSD : " - " | truncatePrice | numberWithCommas}}$</span
+                <strong>Total Supply: </strong>
+                {{ snafuSupply | fromWei | truncatePrice | numberWithCommas }} SNAFU</span
+            ></v-row
+            >
+          </v-col>
+          <v-col col="3" align-self="end" class="oneLineOnMobile">
+            <v-row
+            ><span
+            ><strong
+            >Locked Supply:
+                  </strong
+                  >
+               {{snafuLockedSupply | fromWei | truncatePrice | numberWithCommas }} SNAFU
+              </span></v-row
+            >
+            <v-row
+            ><span>
+                <strong>Circulating Supply: </strong>
+                {{snafuCirculatingSupply | fromWei | truncatePrice | numberWithCommas }} SNAFU</span
             ></v-row
             >
           </v-col>
@@ -96,7 +95,7 @@ import gql from "graphql-tag";
 
 export default {
   computed: {
-    ...mapFields("connectweb3", ["snafuSupply", "lockedSupply", "circulatingSupply"]),
+    ...mapFields("connectweb3", ["snafuSupply", "snafuLockedSupply", "snafuCirculatingSupply"]),
     ...mapState("nftContract", {
       poolNFTs: (state) => state[snafu20Address] || [],
     }),

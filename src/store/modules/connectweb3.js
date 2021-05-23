@@ -19,6 +19,7 @@ export default {
         snafuBalance: null,
         snafuSupply: 0,
         snafuLockedSupply: 0,
+        snafuCirculatingSupply: 0,
         snafuFee: 0,
         chainId: null,
     },
@@ -51,6 +52,7 @@ export default {
         setSnafuBalance: (state, payload) => state.snafuBalance = payload,
         setSnafuSupply: (state, payload) => state.snafuSupply = payload,
         setSnafuLockedSupply: (state, payload) => state.snafuLockedSupply = payload,
+        setSnafuCirculatingSupply: (state, payload) => state.snafuCirculatingSupply = payload,
         setSnafuFee: (state, payload) => state.snafuFee = payload,
 
         disconnectWallet: async function (state) {
@@ -157,13 +159,17 @@ export default {
             console.log("updatingSupply")
             let supply = await contract.totalSupply();
             context.commit("setSnafuSupply", supply.toString());
+            context.dispatch("updateSnafu20LockedSupply");
         },
         async updateSnafu20LockedSupply(context) {
             const stakingPoolAddress = '0x09aAB5cE8e2F5f7De524FC000971c57f9E5E2B55'
-            const contract = new ethers.Contract(stakingPoolAddress, null, context.state.web3);
-            await contract.get
-            //prendere supply snafuVault + supply lockata nelle farm + supply locakata in LP farm
-           // context.commit("setSnafuLockedSupply", supply.toString());
+            let contract = context.state.snafu20;
+
+            let vestedBalance = await contract.balanceOf(stakingPoolAddress);
+            context.commit("setSnafuLockedSupply", vestedBalance.toString());
+
+            let circulatingSupply = ethers.utils.formatEther(context.state.snafuSupply) - ethers.utils.formatEther(vestedBalance)
+            context.commit("setSnafuCirculatingSupply", (ethers.utils.parseUnits(circulatingSupply.toString())).toString());
         },
         async updateSnafu20Fee(context) {
             let contract = context.state.snafu20;
