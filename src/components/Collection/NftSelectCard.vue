@@ -17,9 +17,12 @@
             <div class="text-caption">
               <v-row no-gutters> Token ID: {{ nft.id }} </v-row>
               <v-row no-gutters> Editions: {{ metadata.editions }} </v-row>
-              <v-row no-gutters>
+              <v-row no-gutters style="white-space: nowrap;">
                 Value: {{ nftValue | truncatePrice}} SNAFU</v-row
               >
+              <v-row no-gutters v-if="withdrawFromPool"  class="text-caption">
+                Owned: {{ownedEditions}}
+              </v-row>
               <v-row no-gutters>
                 <a
                   :href="metadata.external_url"
@@ -29,12 +32,9 @@
                   View Details
                 </a>
               </v-row>
-              <v-row no-gutters v-if="withdrawFromPool"  class="text-caption font-weight-bold"> 
-                Owned: {{ownedEditions}}
-              </v-row>
             </div>
           </v-col>
-          <v-col cols="4" class="d-flex flex-column mb-5">
+          <v-col cols="4" class="d-flex flex-column" :style="withdrawFromPool ? '' : 'margin-bottom: 20px;'">
             <v-row
               no-gutters
               class="text-caption font-weight-bold"
