@@ -78,6 +78,7 @@ export default {
                 state.snafuNft = await new ethers.Contract(snafuNftAddress, ERC1155ABI, web3);
                 state.snafu20 = await new ethers.Contract(snafu20Address, SNAFU20, web3);
                 context.dispatch("nftContract/getNftsFromPool", null, { root: true })
+                context.dispatch("nftContract/getAllNfts", null, { root: true })
                 context.dispatch("updateSnafu20Supply");
                 context.dispatch("updateSnafu20Fee");
             }
@@ -191,6 +192,7 @@ export default {
             context.dispatch("updateSnafu20Supply")
             context.dispatch("updateSnafu20Balance")
             context.dispatch("nftContract/getNftsFromPool", null, { root: true })
+            context.dispatch("nftContract/getAllNfts", null, { root: true })
             context.dispatch("nftContract/getNftsFromUser", null, { root: true })
         }
     },

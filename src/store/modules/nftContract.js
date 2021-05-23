@@ -28,15 +28,7 @@ export default {
         setNfts: (state, payload) => {
             Vue.set(state, payload.address, payload.results)
         },
-        setAllNfts: (state, payload) => {
-            payload.forEach((item) => {
-                item.id = parseInt(item.id)
-            })
-
-            state.allNFTs = payload.sort(function (a, b) {
-                return b.id - a.id;
-            })
-        },
+        setAllNfts: (state, payload) =>  state.allNFTs = payload,
         setNftPool: (state, payload) => { state.poolNFTs = payload; state.poolSync = true },
         setNftUser: (state, payload) => { state.userNFTs = payload; state.userSync = true },
         resetSelectedNft: (state) => {
@@ -54,7 +46,6 @@ export default {
         async getNftsFromPool(context) {
             console.log("updating nfts for pool")
             context.dispatch("getNftsFromAddress", { address: snafu20Address })
-            context.dispatch("getAllNfts")
         },
         async getNftsByAddress(context, address) {
             console.log("updating nfts for: " + address)
@@ -132,7 +123,7 @@ export default {
             let erc1155 = context.rootGetters["connectweb3/getNftSnafu"];
             const address = erc1155OwnerAddress
 
-            let filterSingleTo = erc1155.filters.TransferSingle(null, null, address);
+            let filterSingleTo = erc1155.filters.TransferSingle(null, '0x0000000000000000000000000000000000000000', null);
             let events = await erc1155.queryFilter(filterSingleTo, minBlock)
 
             let nfts = [];
@@ -144,6 +135,10 @@ export default {
                     }
                 }
             }
+
+            nfts.sort(function (a, b) {
+                return +b.id - +a.id;
+            })
 
             context.commit("setAllNfts", nfts);
         }
