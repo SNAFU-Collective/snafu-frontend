@@ -20,7 +20,7 @@
             v-for="nft in nftsToSelect"
             :key="nft.id"
             class="ma-5"
-            :withdrawFromPool="true"
+            :withdrawFromPool="false"
             :hideSelect="true"
         />
         <v-row v-if="nftToFetch" justify="center" class="my-3">
