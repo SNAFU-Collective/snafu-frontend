@@ -28,6 +28,7 @@
                   :href="metadata.external_url"
                   target="_blank"
                   style="color: black"
+                  :style="!hideSelect ? '' : ' margin-top:20px'"
                 >
                   View Details
                 </a>
@@ -37,12 +38,21 @@
           <v-col cols="4" class="d-flex flex-column" :style="withdrawFromPool ? '' : 'margin-bottom: 20px;'">
             <v-row
               no-gutters
-              class="text-caption font-weight-bold"
-              justify="center"
+              class="text-caption font-weight-bold mr-2"
+              justify="end"
+              v-if="withdrawFromPool"
             >
               {{ nft.editions }} Available
             </v-row>
-            <v-row no-gutters align="end" justify="center" v-if="!hideSelect">
+            <v-row
+                no-gutters
+                class="text-caption font-weight-bold mr-2"
+                justify="end"
+                v-if="!withdrawFromPool"
+            >
+              Amount: {{ nft.editions }}
+            </v-row>
+            <v-row no-gutters align="end" justify="end" v-if="!hideSelect" class="mr-2">
               <v-btn small dark @click="selectNft"> SELECT </v-btn>
             </v-row>
           </v-col>
