@@ -10,9 +10,6 @@ export default {
     state: {
         allNFTs: [],
 
-        poolSync: false,
-        userSync: false,
-
         selectedNft: null,
         selectedNftMetadata: null,
         selectedQuantity: 0
