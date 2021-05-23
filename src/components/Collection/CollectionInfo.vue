@@ -9,12 +9,11 @@
       </v-card-title>
       <v-card-text class="pt-3 pl-15">
         <v-row>
-          <v-col col="4" align-self="start" class="oneLineOnMobile">
+          <v-col col="3" align-self="start" class="oneLineOnMobile">
             <v-row
-              ><span>
-                <strong>$SNAFU Price: </strong>
-                {{ pair ? pair.token1Price : "-" | truncatePrice | numberWithCommas }}$
-              </span></v-row
+            ><span>
+                <strong>NFTs in pool: </strong> {{ poolNFTs.length }} of {{allNFTs.length}}</span
+            ></v-row
             >
             <v-row
               ><span>
@@ -30,34 +29,57 @@
               </span></v-row
             >
           </v-col>
-          <v-col col="4" align-self="center" class="oneLineOnMobile">
+          <v-col col="3" align-self="center" class="oneLineOnMobile">
             <v-row
-              ><span>
-                <strong>$SNAFU Supply: </strong>
-                {{ snafuSupply | fromWei | truncatePrice | numberWithCommas }}</span
-              ></v-row
-            >
-            <v-row
-              ><span>
-                <strong>NFTs in pool: </strong> {{ poolNFTs.length }} of {{allNFTs.length}}</span
-              ></v-row
-            >
-          </v-col>
-          <v-col col="4" align-self="end" class="oneLineOnMobile">
-            <v-row
-              ><span
-                ><strong
-                  >Trade $SNAFU:
-                  <a
-                    href="https://info.honeyswap.org/token/0x27b9c2bd4baea18abdf49169054c1c1c12af9862"
-                    target="_blank"
-                    style="color: rgba(0, 0, 0, 0.6)"
-                    >Honeyswap</a
-                  ></strong
-                >
+            ><span>
+                <strong>$SNAFU Price: </strong>
+                {{ pair ? pair.token1Price : "-" | truncatePrice | numberWithCommas }}$
               </span></v-row
             >
-            <v-row><strong>Liquidity: </strong>{{ pair ? pair.reserveUSD : " - " | truncatePrice | numberWithCommas}}$</v-row>
+            <v-row
+            ><span>
+                <strong>Liquidity: </strong>
+                {{ pair ? pair.reserveUSD : " - " | truncatePrice | numberWithCommas}}$</span
+            ></v-row
+            >
+          </v-col>
+          <v-col col="3" align-self="end" class="oneLineOnMobile">
+            <v-row
+            ><span
+            ><strong
+            >Trade $SNAFU:
+                  <a
+                      href="https://info.honeyswap.org/token/0x27b9c2bd4baea18abdf49169054c1c1c12af9862"
+                      target="_blank"
+                      style="color: rgba(0, 0, 0, 0.6)"
+                  >Honeyswap</a
+                  ></strong
+            >
+              </span></v-row
+            >
+            <v-row
+            ><span>
+                <strong>Total Supply: </strong>
+                {{ snafuSupply | fromWei | truncatePrice | numberWithCommas }} SNAFU</span
+            ></v-row
+            >
+          </v-col>
+          <v-col col="3" align-self="end" class="oneLineOnMobile">
+            <v-row
+            ><span
+            ><strong
+            >Locked Supply:
+                  </strong
+                  >
+               {{snafuLockedSupply | fromWei | truncatePrice | numberWithCommas }} SNAFU
+              </span></v-row
+            >
+            <v-row
+            ><span>
+                <strong>Circulating Supply: </strong>
+                {{snafuCirculatingSupply | fromWei | truncatePrice | numberWithCommas }} SNAFU</span
+            ></v-row
+            >
           </v-col>
         </v-row>
       </v-card-text>
@@ -73,7 +95,7 @@ import gql from "graphql-tag";
 
 export default {
   computed: {
-    ...mapFields("connectweb3", ["snafuSupply"]),
+    ...mapFields("connectweb3", ["snafuSupply", "snafuLockedSupply", "snafuCirculatingSupply"]),
     ...mapFields("nftContract", ["allNFTs"]),
     ...mapState("nftContract", {
       poolNFTs: (state) => state[snafu20Address] || [],
