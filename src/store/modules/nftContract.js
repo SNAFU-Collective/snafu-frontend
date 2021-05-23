@@ -1,5 +1,5 @@
 import { getField, updateField } from 'vuex-map-fields';
-import {snafuNftAddress, snafu20Address, erc1155OwnerAddress} from "../../utils/constants"
+import { snafu20Address } from "../../utils/constants"
 import { ethers } from "ethers";
 import Vue from "vue"
 //Block when the collection was deployed
@@ -118,7 +118,6 @@ export default {
         },
         async getAllNfts(context) {
             let erc1155 = context.rootGetters["connectweb3/getNftSnafu"];
-            const address = erc1155OwnerAddress
 
             let filterSingleTo = erc1155.filters.TransferSingle(null, '0x0000000000000000000000000000000000000000', null);
             let events = await erc1155.queryFilter(filterSingleTo, minBlock)
