@@ -39,7 +39,7 @@
             >
             <v-row
               ><span>
-                <strong>NFTs in pool: </strong> {{ poolNFTs.length }} of 72</span
+                <strong>NFTs in pool: </strong> {{ poolNFTs.length }} of {{allNFTs.length}}</span
               ></v-row
             >
           </v-col>
@@ -74,6 +74,7 @@ import gql from "graphql-tag";
 export default {
   computed: {
     ...mapFields("connectweb3", ["snafuSupply"]),
+    ...mapFields("nftContract", ["allNFTs"]),
     ...mapState("nftContract", {
       poolNFTs: (state) => state[snafu20Address] || [],
     }),
