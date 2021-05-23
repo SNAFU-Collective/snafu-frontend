@@ -1,5 +1,5 @@
 import { getField, updateField } from 'vuex-map-fields';
-import { snafuNftAddress, snafu20Address } from "../../utils/constants";
+import {snafuNftAddress, snafu20Address, erc1155OwnerAddress} from "../../utils/constants"
 import { ethers } from "ethers";
 import Vue from "vue"
 //Block when the collection was deployed
@@ -10,7 +10,7 @@ export default {
     state: {
         poolNFTs: [],
         userNFTs: [],
-
+        allNFTs: [],
 
 
         poolSync: false,
@@ -27,6 +27,15 @@ export default {
         updateField,
         setNfts: (state, payload) => {
             Vue.set(state, payload.address, payload.results)
+        },
+        setAllNfts: (state, payload) => {
+            payload.forEach((item) => {
+                item.id = parseInt(item.id)
+            })
+
+            state.allNFTs = payload.sort(function (a, b) {
+                return b.id - a.id;
+            })
         },
         setNftPool: (state, payload) => { state.poolNFTs = payload; state.poolSync = true },
         setNftUser: (state, payload) => { state.userNFTs = payload; state.userSync = true },
@@ -45,6 +54,7 @@ export default {
         async getNftsFromPool(context) {
             console.log("updating nfts for pool")
             context.dispatch("getNftsFromAddress", { address: snafu20Address })
+            context.dispatch("getAllNfts")
         },
         async getNftsByAddress(context, address) {
             console.log("updating nfts for: " + address)
@@ -85,7 +95,6 @@ export default {
                 }
             }
 
-
             let filterBatchTo = erc1155.filters.TransferBatch(null, null, address)
             events = await erc1155.queryFilter(filterBatchTo, minBlock)
 
@@ -110,7 +119,6 @@ export default {
                 results.push({ id: ids[i], editions: balances[i].toString() })
             }
 
-
             results = results.filter(n => n.editions > 0);
 
             results.sort((a, b) => {
@@ -119,6 +127,25 @@ export default {
 
             context.commit("setNfts", { address, results });
 
+        },
+        async getAllNfts(context) {
+            let erc1155 = context.rootGetters["connectweb3/getNftSnafu"];
+            const address = erc1155OwnerAddress
+
+            let filterSingleTo = erc1155.filters.TransferSingle(null, null, address);
+            let events = await erc1155.queryFilter(filterSingleTo, minBlock)
+
+            let nfts = [];
+            for (let i = 0; i < events.length; i++) {
+                if (typeof events[i] == 'object') {
+                    let nftIndex = nfts.findIndex(n => n.id === events[i].args._id.toString());
+                    if (nftIndex === -1) {
+                        nfts.push({ id: events[i].args._id.toString() });
+                    }
+                }
+            }
+
+            context.commit("setAllNfts", nfts);
         }
     }
 }
