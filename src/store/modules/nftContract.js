@@ -1,5 +1,5 @@
 import { getField, updateField } from 'vuex-map-fields';
-import { snafuNftAddress, snafu20Address } from "../../utils/constants";
+import { snafu20Address } from "../../utils/constants"
 import { ethers } from "ethers";
 import Vue from "vue"
 //Block when the collection was deployed
@@ -8,13 +8,7 @@ const minBlock = 14958798;
 export default {
     namespaced: true,
     state: {
-        //poolNFTs: [],
-        //userNFTs: [],
-
-
-
-        poolSync: false,
-        userSync: false,
+        allNFTs: [],
 
         selectedNft: null,
         selectedNftMetadata: null,
@@ -33,8 +27,7 @@ export default {
         setNfts: (state, payload) => {
             Vue.set(state, payload.address, payload.results)
         },
-        //setNftPool: (state, payload) => { state.poolNFTs = payload; state.poolSync = true },
-        //setNftUser: (state, payload) => { state.userNFTs = payload; state.userSync = true },
+        setAllNfts: (state, payload) =>  state.allNFTs = payload,
         resetSelectedNft: (state) => {
             state.selectedNft = null;
             state.selectedNftMetadata = null;
@@ -90,7 +83,6 @@ export default {
                 }
             }
 
-
             let filterBatchTo = erc1155.filters.TransferBatch(null, null, address)
             events = await erc1155.queryFilter(filterBatchTo, minBlock)
 
@@ -115,7 +107,6 @@ export default {
                 results.push({ id: ids[i], editions: balances[i].toString() })
             }
 
-
             results = results.filter(n => n.editions > 0);
 
             results.sort((a, b) => {
@@ -124,6 +115,28 @@ export default {
 
             context.commit("setNfts", { address, results });
 
+        },
+        async getAllNfts(context) {
+            let erc1155 = context.rootGetters["connectweb3/getNftSnafu"];
+
+            let filterSingleTo = erc1155.filters.TransferSingle(null, '0x0000000000000000000000000000000000000000', null);
+            let events = await erc1155.queryFilter(filterSingleTo, minBlock)
+
+            let nfts = [];
+            for (let i = 0; i < events.length; i++) {
+                if (typeof events[i] == 'object') {
+                    let nftIndex = nfts.findIndex(n => n.id === events[i].args._id.toString());
+                    if (nftIndex === -1) {
+                        nfts.push({ id: events[i].args._id.toString() });
+                    }
+                }
+            }
+
+            nfts.sort(function (a, b) {
+                return +b.id - +a.id;
+            })
+
+            context.commit("setAllNfts", nfts);
         }
     }
 }

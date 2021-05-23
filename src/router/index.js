@@ -20,6 +20,11 @@ const routes = [
     path: '/wallet',
     name: 'Wallet',
     component: () => import('../views/Wallet.vue')
+  },
+  {
+    path: '/nfts',
+    name: 'NFTs',
+    component: () => import('../views/NFTs.vue')
   }
 ]
 

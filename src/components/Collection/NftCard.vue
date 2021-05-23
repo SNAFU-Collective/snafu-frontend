@@ -33,9 +33,10 @@
 
         <v-row style="display: flex; padding-top: 10px; padding-bottom: 5px" class="px-2">
           <span style="width: 60%; text-align: left" class="truncate"><strong>{{ metadata.name }}</strong></span>
-          <span style="width: 40%; text-align: right"><strong>{{
+          <span v-if="nft.editions" style="width: 40%; text-align: right"><strong>{{
               nft.editions
             }} of {{ metadata.editions }}</strong></span>
+          <span v-else style="width: 40%; text-align: right"><strong>{{ metadata.editions }} Editions</strong></span>
         </v-row>
         <v-row class="px-2 subtext">ID: {{ nft.id }}</v-row>
         <v-row class="px-2 subtext">
