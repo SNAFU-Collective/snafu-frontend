@@ -9,9 +9,6 @@ export default {
     namespaced: true,
     state: {
         allNFTs: [],
-        //poolNFTs: [],
-        //userNFTs: [],
-
 
         poolSync: false,
         userSync: false,
@@ -33,8 +30,6 @@ export default {
         setNfts: (state, payload) => {
             Vue.set(state, payload.address, payload.results)
         },
-        //setNftPool: (state, payload) => { state.poolNFTs = payload; state.poolSync = true },
-        //setNftUser: (state, payload) => { state.userNFTs = payload; state.userSync = true },
         setAllNfts: (state, payload) =>  state.allNFTs = payload,
         resetSelectedNft: (state) => {
             state.selectedNft = null;
