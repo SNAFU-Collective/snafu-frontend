@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <v-row justify="center" class="pt-15 mt-15">
+  <div class="allNFTsContainer">
+    <v-row justify="center" class="pt-15">
       <h2>ALL SNAFU NFTs</h2>
     </v-row>
     <v-row class="mt-10">
@@ -29,4 +29,9 @@ export default {
 </script>
 
 <style>
+@media screen and (min-width: 768px) {
+ .allNFTsContainer {
+   margin-top: 15px;
+ }
+}
 </style>
