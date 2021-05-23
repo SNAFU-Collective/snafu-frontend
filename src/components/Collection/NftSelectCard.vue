@@ -50,7 +50,7 @@
                 justify="end"
                 v-if="!withdrawFromPool"
             >
-              Amount: {{ nft.editions }}
+              Owned: {{ nft.editions }}
             </v-row>
             <v-row no-gutters align="end" justify="end" v-if="!hideSelect" class="mr-2">
               <v-btn small dark @click="selectNft"> SELECT </v-btn>
