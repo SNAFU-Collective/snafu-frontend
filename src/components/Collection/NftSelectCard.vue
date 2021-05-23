@@ -11,7 +11,7 @@
             />
           </v-col>
           <v-col cols="4">
-            <v-row no-gutters class="text-subtitle-2 truncate">
+            <v-row no-gutters class="text-subtitle-2 truncate" style="font-weight: bold;">
               {{ metadata.name }}
             </v-row>
             <div class="text-caption">
