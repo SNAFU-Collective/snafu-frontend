@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-card class="mx-auto" max-width="250">
+    <v-card class="mx-auto" :max-width="cardSize || 250">
       <v-card-text style="white-space: pre; background-color: #F5F5F5">
         <v-row justify="center">
           <v-dialog
@@ -27,7 +27,7 @@
             </v-card>
           </v-dialog>
           <a @click="toggle">
-            <v-img :src="'/nfts/'+nft.id+'/image'" height="250" width="250"/>
+            <v-img :src="'/nfts/'+nft.id+'/image'" :height="cardSize || 250" :width="cardSize || 250"/>
           </a>
         </v-row>
 
@@ -63,6 +63,10 @@ export default {
       type: Object,
       required: true,
     },
+    cardSize: {
+      type: Number,
+      required: false
+    }
   },
   methods: {
     toggle() {
