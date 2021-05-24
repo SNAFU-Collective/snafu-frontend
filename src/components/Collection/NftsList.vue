@@ -3,14 +3,22 @@
     <v-row class="pt-15" justify="center">
       <h1>Top Sellers</h1>
     </v-row>
-    <v-row class="mt-5">
-      <nft-card :key="allNFTs.find(x => x.id === '49').id" :nft="allNFTs.find(x => x.id === '49')" cardSize=300
+    <v-row v-if="allNFTs.length !== 0" class="mt-5">
+      <nft-card :key="allNFTs.find(x => x.id === '49').id" :nft="allNFTs.find(x => x.id === '49')" :cardSize=300
                 class="ma-6"/>
-      <nft-card :key="allNFTs.find(x => x.id === '35').id" :nft="allNFTs.find(x => x.id === '35')" cardSize=300
+      <nft-card :key="allNFTs.find(x => x.id === '35').id" :nft="allNFTs.find(x => x.id === '35')" :cardSize=300
                 class="ma-6"/>
-      <nft-card :key="allNFTs.find(x => x.id === '30').id" :nft="allNFTs.find(x => x.id === '30')" cardSize=300
+      <nft-card :key="allNFTs.find(x => x.id === '30').id" :nft="allNFTs.find(x => x.id === '30')" :cardSize=300
                 class="ma-6"/>
     </v-row>
+    <v-row v-else justify="center" class="pt-16">
+      <v-progress-circular
+          size="60"
+          indeterminate
+          color="black"
+      ></v-progress-circular>
+    </v-row>
+
     <v-row justify="center" class="pt-15">
       <h2>SNAFU Collective's NFTs</h2>
     </v-row>
