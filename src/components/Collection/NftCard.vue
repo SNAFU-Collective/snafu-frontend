@@ -11,8 +11,11 @@
               <v-row>
                 <v-col cols="10">
                   <v-card-title>
-                    <span class="headline truncateLong">{{ metadata.name }}</span>
+                    <span class="truncateLong">{{ metadata.name }}</span>
                   </v-card-title>
+                  <v-card-subtitle>
+                    <pre class="nftDescription">{{ metadata.description }}</pre>
+                  </v-card-subtitle>
                 </v-col>
                 <v-col cols="2" style="margin-top: 15px; text-align: right; padding-right: 25px;">
                   <v-btn
@@ -23,7 +26,7 @@
                   </v-btn>
                 </v-col>
               </v-row>
-              <v-img :src="'/nfts/'+nft.id+'/image'" width="100%"/>
+              <v-img :src="'/nfts/'+nft.id+'/image'" />
             </v-card>
           </v-dialog>
           <a @click="toggle">
@@ -111,7 +114,11 @@ export default {
   overflow-x: hidden;
 }
 
-@media screen and (max-width: 768px) {
-
+.nftDescription {
+  font-size: 13px;
+  line-height: 14px;
+  font-family: 'Barlow',serif;
+  margin-top: 10px;
+  white-space: break-spaces;
 }
 </style>
