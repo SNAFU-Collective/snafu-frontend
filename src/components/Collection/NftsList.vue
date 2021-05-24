@@ -3,13 +3,19 @@
     <v-row justify="center" class="pt-15">
       <h2>SNAFU Collective's NFTs</h2>
     </v-row>
+    <v-row justify="center" class="pt-15">
+      <v-btn small v-on:click="filter('all')" :style="currentTag === 'all' ? 'background-color: black; color: white' : ''">All</v-btn>
+      <v-btn small v-on:click="filter('collection1')" class="ml-5" :style="currentTag === 'collection1' ? 'background-color: black; color: white' : ''">Collection #1</v-btn>
+      <v-btn small v-on:click="filter('collection1farming')" class="ml-5" :style="currentTag === 'collection1farming' ? 'background-color: black; color: white' : ''">Collection #1 Farming</v-btn>
+      <v-btn small v-on:click="filter('phobias')" class="ml-5" :style="currentTag === 'phobias' ? 'background-color: black; color: white' : ''">Phobias</v-btn>
+    </v-row>
     <v-row class="mt-10" justify="center">
       <div v-for="(nft, index) in paginatedNFTs" :key="index">
         <nft-card :key="nft.id" :nft="nft" class="ma-6"/>
       </div>
     </v-row>
     <v-row justify="center" class="pb-15 pt-15">
-      <v-btn medium dark @click="loadMore" v-if="currentPage * maxPerPage < allNFTs.length"> LOAD MORE</v-btn>
+      <v-btn medium dark @click="loadMore" v-if="currentPage * maxPerPage < filteredGallery.length"> LOAD MORE</v-btn>
     </v-row>
 
     <v-row v-if="allNFTs.length === 0" justify="center" class="pt-16">
@@ -33,15 +39,45 @@ export default {
       currentPage: 1,
       maxPerPage: 8,
       showReadMore: true,
+      currentTag: 'collection1',
+      collection1Nfts: {
+        collection1: [57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30],
+        phobias: [75, 74, 73, 72, 71, 70, 69, 68 ,67],
+        collection1farming: [58,59, 60, 61, 62, 63, 64, 65, 66]
+      },
     }
   },
   computed: {
     ...mapFields("nftContract", ["allNFTs"]),
     paginatedNFTs() {
-      return this.allNFTs.slice(0, this.currentPage * this.maxPerPage)
+      return this.filteredGallery.slice(0, this.currentPage * this.maxPerPage)
+    },
+    filteredGallery: function () {
+      let ids
+      switch (this.currentTag) {
+        case "all":
+          return this.allNFTs
+        case "collection1":
+          ids = this.collection1Nfts.collection1
+              break
+        case "collection1farming":
+          ids = this.collection1Nfts.collection1farming
+          break
+        case "phobias":
+          ids = this.collection1Nfts.phobias
+              break
+      }
+
+      return this.allNFTs.filter(function (itm) {
+        return ids.indexOf(+itm.id) > -1
+      })
     },
   },
   methods: {
+    filter: function (tag) {
+      this.currentPage = 1
+      this.currentTag = tag
+    },
     async loadMore() {
       this.currentPage += 1
 
