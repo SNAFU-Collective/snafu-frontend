@@ -128,7 +128,7 @@ export default {
 
   #menuDesktop {
     position: fixed;
-    right: 200px;
+    right: 3vw;
     top: 50px;
     display: grid;
   }
