@@ -49,7 +49,7 @@
             ><strong
             >Trade $SNAFU:
                   <a
-                      href="https://info.honeyswap.org/token/0x27b9c2bd4baea18abdf49169054c1c1c12af9862"
+                      href="https://info.honeyswap.org/#/token/0x27b9c2bd4baea18abdf49169054c1c1c12af9862"
                       target="_blank"
                       style="color: rgba(0, 0, 0, 0.6)"
                   >Honeyswap</a
