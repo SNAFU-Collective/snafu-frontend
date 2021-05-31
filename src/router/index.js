@@ -23,7 +23,7 @@ const routes = [
   },
   {
     path: '/nfts',
-    name: 'NFTs',
+    name: 'Catalogue',
     component: () => import('../views/NFTs.vue')
   }
 ]
