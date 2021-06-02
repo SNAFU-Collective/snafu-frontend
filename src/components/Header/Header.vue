@@ -13,10 +13,10 @@
         <router-link class="backHome" :to="{ name: 'Home'}">SWAP</router-link>
         <router-link class="backHome" :to="{ name: 'Catalog'}">CATALOG</router-link>
         <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
-        <a class="backHome" href="https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862" target="_blank">BUY SNAFU</a>
-        <a class="backHome" href="https://vote.nftsnafu.org" target="_blank">VOTE</a>
-        <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM</a>
-        <a class="backHome" href="https://nftsnafu.org" target="_blank">LEARN MORE</a>
+        <a class="backHome" href="https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862" target="_blank">BUY SNAFU <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
+        <a class="backHome" href="https://vote.nftsnafu.org" target="_blank">VOTE <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
+        <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
+        <a class="backHome" href="https://nftsnafu.org" target="_blank">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
       </div>
 
     </div>
@@ -35,10 +35,10 @@
           <router-link class="backHome" :to="{ name: 'Home'}">SWAP</router-link>
           <router-link class="backHome" :to="{ name: 'Catalog'}">CATALOG</router-link>
           <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
-          <a class="backHome" href="https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862" target="_blank">BUY SNAFU</a>
-          <a class="backHome" href="https://vote.nftsnafu.org" target="_blank">VOTE</a>
-          <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM</a>
-          <a class="backHome" href="https://nftsnafu.org" target="_blank">LEARN MORE</a>
+          <a class="backHome" href="https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862" target="_blank">BUY SNAFU <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
+          <a class="backHome" href="https://vote.nftsnafu.org" target="_blank">VOTE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
+          <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
+          <a class="backHome" href="https://nftsnafu.org" target="_blank">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
         </Slide>
       </div>
 
@@ -143,6 +143,9 @@ export default {
   .backHome:hover {
     color: rgb(219, 219, 219) !important;
   }
+  .backHome:hover > .arrowRedirect {
+    color: rgb(219, 219, 219) !important;
+  }
 
   .v-application a {
     color: #303030 !important;
@@ -150,6 +153,11 @@ export default {
 
   a.backHome.router-link-exact-active.router-link-active {
     color: rgb(219, 219, 219) !important;
+  }
+
+  .arrowRedirect:before {
+    font-size: 13px;
+    padding-bottom: 7px;
   }
 }
 
@@ -264,6 +272,12 @@ export default {
   #menuMobile > div > div > div.bm-menu > nav > a {
     color: white;
   }
-}
 
+  .arrowRedirect:before {
+    font-size: 18px;
+    padding-bottom: 5px;
+    color: white;
+  }
+
+}
 </style>
