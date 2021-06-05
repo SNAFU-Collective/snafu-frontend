@@ -4,6 +4,7 @@
       <v-row justify="center" class="pt-15">
         <h1>Leaderboard</h1>
       </v-row>
+      <v-row v-if="leaderboard" justify="center"><strong>Total collectors: {{leaderboard.length - addressToFilter.length}}</strong></v-row>
       <v-row justify="center" class="pt-8 filters-row">
         <v-btn
           small
@@ -12,7 +13,7 @@
           :style="
             currentTag === 'all' ? 'background-color: black; color: white' : ''
           "
-          >All
+          >All NFTs
         </v-btn>
         <v-btn
           small
@@ -32,8 +33,6 @@
           :items="tableItems"
           :headers="tableHeaders"
           sort-desc
-          hide-default-footer
-          hide-default-header
           sort-by="totalBalance"
           class="leaderboardTable"
         >
@@ -51,7 +50,13 @@ export default {
       leaderboard: [],
       loading: true,
       currentTag: "all",
-      addressToFilter: ["0x27B9C2Bd4BaEa18ABdF49169054c1C1c12af9862"],
+      addressToFilter: [
+          "0x27B9C2Bd4BaEa18ABdF49169054c1C1c12af9862", //SNAFU POOL
+          "0xEA912373bEf07E06F04fdE1d8218eb6C77cFF67A", //DAO
+          "0x652d53227d7013f3FbBeA542443Dc2eeF05719De", //OWNER SNAFU NFT
+          "0x8dDc7167e9F838f2e32FaBA229A53d4a48D0aa8d", //$SNAFU FARM
+          "0x88CfEea7BE8A7695A3012276e8C68bf303Afe49a", //LP FARM
+      ],
     };
   },
   async beforeMount() {
@@ -72,6 +77,7 @@ export default {
         return leaderboard.map((item) => {
           return {
             address: item.address,
+            allNfts: item.collection1Nfts,
             totalBalance: item.collection1Balance,
           };
         });
@@ -82,12 +88,24 @@ export default {
     tableHeaders() {
       return [
         {
-          text: "Address",
-          value: "address",
+          text: "Rank",
+          value: "",
+          sortable: false
         },
         {
-          text: "Balance",
+          text: "Address",
+          value: "address",
+          sortable: false
+        },
+        {
+          text: "Unique NFTs",
+          value: "allNfts",
+          sortable: false
+        },
+        {
+          text: "Total Balance",
           value: "totalBalance",
+          sortable: false
         },
       ];
     },
