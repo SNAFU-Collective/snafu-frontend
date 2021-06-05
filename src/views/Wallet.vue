@@ -14,6 +14,7 @@
         </v-row>
       </v-row>
       <v-row justify="center" class="pt-10"><strong>Your NFTs</strong></v-row>
+      <v-row v-if="nfts" justify="center"><strong>Total: {{nfts.length}}</strong></v-row>
       <v-row justify="center">
         <nft-select-card
             :nft="nft"
@@ -60,7 +61,7 @@ export default {
     }),
     nftsToSelect() {
       return this.nfts
-    },
+    }
   }
 }
 </script>
