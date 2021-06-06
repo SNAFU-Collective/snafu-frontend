@@ -32,9 +32,10 @@ const routes = [
     component: () => import('../views/Leaderboard.vue')
   },
   {
-    path: '/user/:id',
+    path: '/user/:address',
     name: 'User',
-    component: () => import('../views/User.vue')
+    component: () => import('../views/User.vue'),
+    props: true
   }
 ]
 

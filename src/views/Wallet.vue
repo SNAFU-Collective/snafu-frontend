@@ -52,7 +52,6 @@ export default {
     ...mapFields("connectweb3", ["account"]),
     ...mapState("nftContract", {
       nfts(state) {
-        console.log(state[this.account])
         return state[this.account];
       },
       nftToFetch(state) {
