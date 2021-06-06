@@ -70,7 +70,7 @@ export default {
     };
   },
   async beforeMount() {
-    let res = await axios.get("./latest.json");
+    let res = await axios.get("https://raw.githubusercontent.com/SNAFU-Collective/leaderboard/main/latest.json");
     this.leaderboard = res.data;
     console.log(this.leaderboard);
   },
