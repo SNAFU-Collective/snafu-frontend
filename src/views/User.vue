@@ -1,12 +1,16 @@
 <template>
   <v-container>
     <div class="allNFTsContainer" style="padding-top: 20px;">
-
+      <v-row justify="center" class="pt-15">
+        <router-link class="backHome" :to="{ name: 'Leaderboard'}" style="display: flex">
+          <v-icon class="backIcon">mdi-arrow-left</v-icon>  BACK
+        </router-link>
+      </v-row>
       <v-row justify="center" class="pt-15" style="display: block; text-align: center">
-                <vth-blockie :string="$route.params.address" />
+        <vth-blockie :string="$route.params.address"/>
         <h3>{{ $route.params.address }}</h3>
       </v-row>
-      <v-row v-if="nfts" justify="center"><strong>Total: {{ nfts.length }}</strong></v-row>
+      <v-row v-if="nfts" justify="center"><strong>Total: {{ nfts.length }} NFTs</strong></v-row>
       <v-row justify="center">
         <nft-select-card
             :nft="nft"
@@ -49,7 +53,7 @@ export default {
   computed: {
     ...mapState("nftContract", {
       nfts(state) {
-        this.getNftsByAddress(this.$route.params.address);
+        this.getNftsByAddress(this.$route.params.address)
         return state[this.$route.params.address]
       },
       nftToFetch(state) {
@@ -59,14 +63,17 @@ export default {
     nftsToSelect() {
       return this.nfts
     },
-  }
+  },
 }
 </script>
 
 <style>
-@media screen and (max-width: 768px) {
-  #mainRowStatus {
-    padding-top: 0px !important;
-  }
+.backHome:hover > .backIcon {
+  color: rgb(219, 219, 219) !important;
+}
+
+.backIcon:before  {
+  font-size: 18px;
+  margin-right: 5px;
 }
 </style>
