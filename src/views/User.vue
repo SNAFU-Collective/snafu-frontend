@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <div class="allNFTsContainer" style="padding-top: 20px;">
-      <v-row justify="center" class="pt-15">
+      <v-row justify="center" class="backBtnRow">
         <router-link class="backHome" :to="{ name: 'Leaderboard'}" style="display: flex">
           <v-icon class="backIcon">mdi-arrow-left</v-icon>  BACK
         </router-link>
@@ -81,5 +81,27 @@ export default {
 
 .addressLink:hover {
   text-decoration: underline !important;
+}
+
+.backBtnRow {
+  padding-top: 60px;
+}
+
+@media screen and (max-width: 768px) {
+  .addressLink{
+    color: #303030 !important;
+    font-size: 15px;
+  }
+
+  a.backHome {
+    color: #303030;
+    text-decoration: unset;
+    font-weight: 600;
+  }
+
+  .backBtnRow {
+    padding-top: 0px;
+  }
+
 }
 </style>
