@@ -35,7 +35,16 @@
           sort-desc
           sort-by="totalBalance"
           class="leaderboardTable"
+          hide-default-footer
+          :items-per-page="25"
         >
+          <template slot="item.rank" slot-scope="data">
+            {{ data.index + 1}}
+          </template>
+
+          <template v-slot:item.blockie={item}>
+            <vth-blockie :string=item.address />
+          </template>
         </v-data-table>
       </v-row>
     </div>
@@ -69,6 +78,7 @@ export default {
       let leaderboard = this.leaderboard.filter(
         (item) => !this.addressToFilter.includes(item.address)
       );
+
       if (this.currentTag === "all") {
         return leaderboard;
       }
@@ -89,7 +99,12 @@ export default {
       return [
         {
           text: "Rank",
-          value: "",
+          value: "rank",
+          sortable: false
+        },
+        {
+          text: "",
+          value: "blockie",
           sortable: false
         },
         {
