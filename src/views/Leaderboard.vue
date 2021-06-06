@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <div class="allNFTsContainer"  style="padding-top: 70px;">
+    <div class="allNFTsContainer"  style="padding-top: 20px;">
       <v-row justify="center" class="pt-15">
         <h1>Leaderboard</h1>
       </v-row>
@@ -38,7 +38,12 @@
           hide-default-footer
           :items-per-page="25"
           mobile-breakpoint="0"
+          @click:row="goToUserPage"
         >
+          <template v-slot:item.address={item}>
+            <span :style="item.address === account ? 'color:red' : ''">{{item.address}}</span>
+          </template>
+
           <template slot="item.rank" slot-scope="data">
             {{ data.index + 1}}
           </template>
@@ -54,6 +59,8 @@
 
 <script>
 import axios from "axios";
+import {mapFields} from "vuex-map-fields"
+
 export default {
   data() {
     return {
@@ -74,7 +81,15 @@ export default {
     this.leaderboard = res.data;
     console.log(this.leaderboard);
   },
+  methods: {
+    goToUserPage(row) {
+     console.log(row)
+      this.$router.push({ path: `user/${row.address}`})
+
+    },
+  },
   computed: {
+    ...mapFields("connectweb3", ["account"]),
     tableItems() {
       let leaderboard = this.leaderboard.filter(
         (item) => !this.addressToFilter.includes(item.address)
@@ -134,6 +149,14 @@ export default {
   tr:hover {
     background-color: transparent !important;
   }
+}
+
+tr:hover {
+  cursor: pointer;
+}
+
+tr:hover > td {
+  background-color: #e0e0e0;
 }
 
 @media screen and (max-width: 768px) {

@@ -30,6 +30,11 @@ const routes = [
     path: '/leaderboard',
     name: 'Leaderboard',
     component: () => import('../views/Leaderboard.vue')
+  },
+  {
+    path: '/user/:id',
+    name: 'User',
+    component: () => import('../views/User.vue')
   }
 ]
 
