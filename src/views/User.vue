@@ -93,7 +93,7 @@ export default {
     font-size: 15px;
   }
 
-  a.backHome {
+  a.backIcon {
     color: #303030 !important;
     text-decoration: unset;
     font-weight: 600;
