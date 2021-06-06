@@ -50,10 +50,12 @@ export default {
   methods: {
     ...mapActions("nftContract", ["getNftsByAddress"]),
   },
+  mounted(){
+        this.getNftsByAddress(this.$route.params.address)
+  },
   computed: {
     ...mapState("nftContract", {
       nfts(state) {
-        this.getNftsByAddress(this.$route.params.address)
         return state[this.$route.params.address]
       },
       nftToFetch(state) {
