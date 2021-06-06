@@ -94,7 +94,7 @@ export default {
   }
 
   a.backHome {
-    color: #303030;
+    color: #303030 !important;
     text-decoration: unset;
     font-weight: 600;
   }
