@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <div class="allNFTsContainer pt-10">
+    <div class="allNFTsContainer"  style="padding-top: 70px;">
       <v-row justify="center" class="pt-15">
         <h1>Leaderboard</h1>
       </v-row>
@@ -37,6 +37,7 @@
           class="leaderboardTable"
           hide-default-footer
           :items-per-page="25"
+          mobile-breakpoint="0"
         >
           <template slot="item.rank" slot-scope="data">
             {{ data.index + 1}}
@@ -132,6 +133,12 @@ export default {
 .leaderboardTable tbody {
   tr:hover {
     background-color: transparent !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .allNFTsContainer {
+    padding-top: 0px !important;
   }
 }
 </style>
