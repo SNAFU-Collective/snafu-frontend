@@ -11,8 +11,9 @@
       <p id="subtitle"><router-link :to="{ name: 'Home'}">Community Pool</router-link></p>
       <div id="menuDesktop">
         <router-link class="backHome" :to="{ name: 'Home'}">SWAP</router-link>
-        <router-link class="backHome" :to="{ name: 'Catalog'}">CATALOG</router-link>
         <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
+        <router-link class="backHome" :to="{ name: 'Catalog'}">CATALOG</router-link>
+        <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
         <a class="backHome" href="https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862" target="_blank">BUY SNAFU <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
         <a class="backHome" href="https://vote.nftsnafu.org" target="_blank">VOTE <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
         <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
@@ -33,8 +34,9 @@
       <div id="menuMobile">
         <Slide right :closeOnNavigation="true"  @openMenu="handleOpenMenu" @closeMenu="handleCloseMenu" :width=windowWidth>
           <router-link class="backHome" :to="{ name: 'Home'}">SWAP</router-link>
-          <router-link class="backHome" :to="{ name: 'Catalog'}">CATALOG</router-link>
           <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
+          <router-link class="backHome" :to="{ name: 'Catalog'}">CATALOG</router-link>
+          <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
           <a class="backHome" href="https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862" target="_blank">BUY SNAFU <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
           <a class="backHome" href="https://vote.nftsnafu.org" target="_blank">VOTE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
           <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>

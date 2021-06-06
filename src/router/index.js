@@ -25,6 +25,17 @@ const routes = [
     path: '/catalog',
     name: 'Catalog',
     component: () => import('../views/NFTs.vue')
+  },
+  {
+    path: '/leaderboard',
+    name: 'Leaderboard',
+    component: () => import('../views/Leaderboard.vue')
+  },
+  {
+    path: '/user/:address',
+    name: 'User',
+    component: () => import('../views/User.vue'),
+    props: true
   }
 ]
 
