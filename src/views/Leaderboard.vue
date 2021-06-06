@@ -16,6 +16,17 @@
           >All NFTs
         </v-btn>
         <v-btn
+            small
+            v-on:click="currentTag = 'collection2'"
+            style="margin: 10px"
+            :style="
+            currentTag === 'collection2'
+              ? 'background-color: black; color: white'
+              : ''
+          "
+        >Collection #2
+        </v-btn>
+        <v-btn
           small
           v-on:click="currentTag = 'collection1'"
           style="margin: 10px"
@@ -84,11 +95,9 @@ export default {
   async beforeMount() {
     let res = await axios.get("https://raw.githubusercontent.com/SNAFU-Collective/leaderboard/main/latest.json");
     this.leaderboard = res.data;
-    console.log(this.leaderboard);
   },
   methods: {
     goToUserPage(row) {
-     console.log(row)
       this.$router.push({ path: `user/${row.address}`})
 
     },
@@ -105,13 +114,31 @@ export default {
       }
 
       if (this.currentTag === "collection1") {
-        return leaderboard.map((item) => {
+        leaderboard = leaderboard.map((item) => {
           return {
             address: item.address,
             allNfts: item.collection1Nfts,
             totalBalance: item.collection1Balance,
           };
         });
+
+        return leaderboard.filter(
+            (item) => item.totalBalance > 0
+        );
+      }
+
+      if (this.currentTag === "collection2") {
+        leaderboard = leaderboard.map((item) => {
+          return {
+            address: item.address,
+            allNfts: item.collection2Nfts || 0,
+            totalBalance: item.collection2Balance || 0,
+          };
+        });
+
+        return leaderboard.filter(
+            (item) => item.totalBalance > 0
+        );
       }
 
       return leaderboard;
