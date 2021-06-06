@@ -5,6 +5,7 @@
         <h1>Leaderboard</h1>
       </v-row>
       <v-row v-if="leaderboard" justify="center"><strong>Total collectors: {{leaderboard.length - addressToFilter.length}}</strong></v-row>
+      <v-row v-if="leaderboard" justify="center" style="font-size: 10px">Last updated at: {{lastUpdate}}</v-row>
       <v-row justify="center" class="pt-8 filters-row">
         <v-btn
           small
@@ -94,7 +95,8 @@ export default {
   },
   async beforeMount() {
     let res = await axios.get("https://raw.githubusercontent.com/SNAFU-Collective/leaderboard/main/latest.json");
-    this.leaderboard = res.data;
+    this.leaderboard = res.data.leaderboard;
+    this.lastUpdate = new Date(res.data.lastUpdate).toLocaleString('en');
   },
   methods: {
     goToUserPage(row) {
