@@ -35,17 +35,17 @@
           sort-desc
           sort-by="totalBalance"
           class="leaderboardTable"
-          hide-default-footer
-          :items-per-page="25"
           mobile-breakpoint="0"
+          :page.sync="pagination.page"
+          :items-per-page.sync="pagination.itemsPerPage"
           @click:row="goToUserPage"
         >
           <template v-slot:item.address={item}>
             <span :style="item.address === account ? 'color:red' : ''">{{item.address}}</span>
           </template>
 
-          <template slot="item.rank" slot-scope="data">
-            {{ data.index + 1}}
+          <template slot="item.rank" slot-scope="props">
+            {{(pagination.page -1 ) * pagination.itemsPerPage + props.index  + 1}}
           </template>
 
           <template v-slot:item.blockie={item}>
@@ -64,6 +64,10 @@ import {mapFields} from "vuex-map-fields"
 export default {
   data() {
     return {
+      pagination: {
+        page: 1,
+        itemsPerPage: 10
+      },
       leaderboard: [],
       loading: true,
       currentTag: "all",
