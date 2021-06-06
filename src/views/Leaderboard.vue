@@ -100,8 +100,7 @@ export default {
   },
   methods: {
     goToUserPage(row) {
-      this.$router.push({ path: `user/${row.address}`})
-
+      this.$router.push({path: `user/${row.address}`})
     },
   },
   computed: {

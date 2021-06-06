@@ -8,7 +8,7 @@
       </v-row>
       <v-row justify="center" class="pt-15" style="display: block; text-align: center">
         <vth-blockie :string="$route.params.address"/>
-        <h3>{{ $route.params.address }}</h3>
+        <h3><a class="addressLink" style="text-decoration: unset;" :href="'https://blockscout.com/poa/xdai/address/'+$route.params.address" target="_blank">{{$route.params.address }} <v-icon style="font-size: 0.8em; color:black"> mdi-open-in-new </v-icon></a></h3>
       </v-row>
       <v-row v-if="nfts" justify="center"><strong>Total: {{ nfts.length }} NFTs</strong></v-row>
       <v-row justify="center">
@@ -77,5 +77,9 @@ export default {
 .backIcon:before  {
   font-size: 18px;
   margin-right: 5px;
+}
+
+.addressLink:hover {
+  text-decoration: underline !important;
 }
 </style>
