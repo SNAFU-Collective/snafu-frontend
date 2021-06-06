@@ -1,15 +1,15 @@
 <template>
   <div class="allNFTsContainer">
     <v-row class="pt-15" justify="center">
-      <h1>Top Sellers</h1>
+      <h1>Latest releases</h1>
     </v-row>
     <v-row v-if="allNFTs.length !== 0" class="mt-5">
-      <nft-card :key="allNFTs.find(x => x.id === '49').id" :nft="allNFTs.find(x => x.id === '49')" :cardSize=300
+      <nft-card :key="allNFTs.find(x => x.id === '76').id" :nft="allNFTs.find(x => x.id === '76')" :cardSize=300
                 class="ma-6"/>
-      <nft-card :key="allNFTs.find(x => x.id === '35').id" :nft="allNFTs.find(x => x.id === '35')" :cardSize=300
+      <nft-card :key="allNFTs.find(x => x.id === '77').id" :nft="allNFTs.find(x => x.id === '77')" :cardSize=300
                 class="ma-6"/>
-      <nft-card :key="allNFTs.find(x => x.id === '30').id" :nft="allNFTs.find(x => x.id === '30')" :cardSize=300
-                class="ma-6"/>
+<!--      <nft-card :key="allNFTs.find(x => x.id === '35').id" :nft="allNFTs.find(x => x.id === '35')" :cardSize=300-->
+<!--                class="ma-6"/>-->
     </v-row>
     <v-row v-else justify="center" class="pt-16">
       <v-progress-circular
@@ -25,6 +25,9 @@
     <v-row justify="center" class="pt-15 filters-row">
       <v-btn small v-on:click="filter('all')" style="margin: 10px"
              :style="currentTag === 'all' ? 'background-color: black; color: white' : ''">All
+      </v-btn>
+      <v-btn small v-on:click="filter('collection2')" style="margin: 10px"
+             :style="currentTag === 'collection2' ? 'background-color: black; color: white' : ''">Collection #2
       </v-btn>
       <v-btn small v-on:click="filter('collection1')" style="margin: 10px"
              :style="currentTag === 'collection1' ? 'background-color: black; color: white' : ''">Collection #1
@@ -68,10 +71,11 @@ export default {
       maxPerPage: 8,
       showReadMore: true,
       currentTag: 'collection1',
-      collection1Nfts: {
+      nfts: {
         collection1: [57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30],
         phobias: [75, 74, 73, 72, 71, 70, 69, 68, 67],
         collection1farming: [58, 59, 60, 61, 62, 63, 64, 65, 66],
+        collection2: [76, 77],
       },
     }
   },
@@ -85,14 +89,17 @@ export default {
       switch (this.currentTag) {
         case "all":
           return this.allNFTs
+        case "collection2":
+          ids = this.nfts.collection2
+          break
         case "collection1":
-          ids = this.collection1Nfts.collection1
+          ids = this.nfts.collection1
           break
         case "collection1farming":
-          ids = this.collection1Nfts.collection1farming
+          ids = this.nfts.collection1farming
           break
         case "phobias":
-          ids = this.collection1Nfts.phobias
+          ids = this.nfts.phobias
           break
       }
 
