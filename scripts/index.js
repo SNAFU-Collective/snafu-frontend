@@ -13,7 +13,7 @@ import path from 'path';
 import axios from 'axios';
 
 const minBlock = 14958798;
-const minNftId = 76;
+const minNftId = 78;
 
 async function getMintedNFTS(erc1155){
     let events = await erc1155.getPastEvents('TransferSingle', {
