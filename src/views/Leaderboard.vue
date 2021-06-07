@@ -39,7 +39,12 @@
           >Collection #1
         </v-btn>
       </v-row>
-
+      <v-row justify="center" style="font-size: 13px; padding-top: 15px; text-align: center" v-if="leaderboard && currentTag === 'collection2'">
+        <span>Top 5 will win the printed copy of <a target="_blank" href="https://www.nftsnafu.org/collection-2"> "SNAFU Collective's Artbook #1"</a>
+        <br>
+          Campaign ends on 01/08/2021
+        </span>
+      </v-row>
       <v-row justify="center" no-gutters class="py-6">
         <v-data-table
           :items="tableItems"
@@ -82,7 +87,7 @@ export default {
       },
       leaderboard: [],
       loading: true,
-      currentTag: "all",
+      currentTag: "collection2",
       addressToFilter: [
           "0x27B9C2Bd4BaEa18ABdF49169054c1C1c12af9862", //SNAFU POOL
           "0xEA912373bEf07E06F04fdE1d8218eb6C77cFF67A", //DAO
