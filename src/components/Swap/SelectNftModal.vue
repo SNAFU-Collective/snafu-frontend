@@ -23,6 +23,7 @@
           :key="nft.id"
           class="my-5"
           :withdrawFromPool="pool"
+          :isSwap="true"
           @selectNft="handleSelect"
         />
         <v-row v-if="nftToFetch" justify="center" class="my-3">
