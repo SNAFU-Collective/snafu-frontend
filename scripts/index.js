@@ -1,8 +1,13 @@
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+
+require('dotenv').config()
+
 import Web3 from "web3";
+const HDWalletProvider = require("@truffle/hdwallet-provider");
 
 const snafuNftAddress = "0xED1eFC6EFCEAAB9F6d609feC89c9E675Bf1efB0a";
 const snafu20Address = "0x27B9C2Bd4BaEa18ABdF49169054c1C1c12af9862";
-const xdaiWebSocket = "wss://rpc.xdaichain.com/wss";
 const xdaiRPC = "https://rpc.xdaichain.com/";
 
 import ERC1155ABI from "../src/assets/abis/ERC1155.json";
@@ -13,7 +18,7 @@ import path from 'path';
 import axios from 'axios';
 
 const minBlock = 14958798;
-const minNftId = 78;
+const minNftId = process.env.MIN_NFT;
 
 async function getMintedNFTS(erc1155){
     let events = await erc1155.getPastEvents('TransferSingle', {
@@ -92,9 +97,9 @@ async function downloadImage (url, path) {
   }
 
 async function generateAssets(){
-    let web3 = new Web3(
-        new Web3.providers.HttpProvider(xdaiRPC)
-    );
+
+    var provider = new HDWalletProvider(process.env.PRIVATE_KEY, xdaiRPC);
+    let web3 = new Web3(provider);
 
     let erc1155 = await new web3.eth.Contract(ERC1155ABI, snafuNftAddress);
     let snafu20 = await new web3.eth.Contract(SNAFU20, snafu20Address);
@@ -105,9 +110,30 @@ async function generateAssets(){
 
     let __dirname = path.resolve(path.dirname(''));
 
+    let tokenIds = [];
+    let editions = [];
+    //Set Editions
     for(let nft of nfts){
-        if(nft.id < minNftId){
-            console.log("Skipping token: ", nft.id);
+        if(+nft.id < +minNftId){
+            continue;
+        }
+        tokenIds.push(nft.id);
+        editions.push(nft.editions);
+    }
+
+    console.log("TokenIds:", tokenIds);
+    console.log("Editions:", editions);
+    console.log("Total tokenIds that will be set: ", tokenIds.length)
+
+    console.log("Starting setTokenEditions transaction...") 
+
+    //let tx = await snafu20.setTokenEditions(tokenIds, editions);
+    //console.log("success:", tx)
+
+
+
+    for(let nft of nfts){
+        if(+nft.id < +minNftId){
             continue;
         }
         console.log("Fetching tokenInfo for token: ", nft.id)
@@ -137,5 +163,14 @@ async function generateAssets(){
 }
 
 
-generateAssets();
-//fetchUri("https://ipfs.infura.io/ipfs/QmT5uTxtbRaSqnSCV9yg3JKpDiFdiDciDUs6FWdz2Q2jnc")
+if(!process.env.MIN_NFT){
+    console.log("Missing Parameter MIN_NFT")
+}else if(!process.env.PRIVATE_KEY){
+    console.log("Missing Parameter PRIVATE_KEY")
+}else{
+    console.log("Generating nft assets / editions starting from ", process.env.MIN_NFT      )
+    setTimeout(generateAssets, 3000);
+}
+
+
+
