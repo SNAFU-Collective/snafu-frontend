@@ -4,11 +4,11 @@
       <h1>Latest releases</h1>
     </v-row>
     <v-row v-if="allNFTs.length !== 0" class="mt-5">
+      <nft-card :key="allNFTs.find(x => x.id === '80').id" :nft="allNFTs.find(x => x.id === '80')" :cardSize=300
+                class="ma-6"/>
+      <nft-card :key="allNFTs.find(x => x.id === '79').id" :nft="allNFTs.find(x => x.id === '79')" :cardSize=300
+                class="ma-6"/>
       <nft-card :key="allNFTs.find(x => x.id === '78').id" :nft="allNFTs.find(x => x.id === '78')" :cardSize=300
-                class="ma-6"/>
-      <nft-card :key="allNFTs.find(x => x.id === '77').id" :nft="allNFTs.find(x => x.id === '77')" :cardSize=300
-                class="ma-6"/>
-      <nft-card :key="allNFTs.find(x => x.id === '76').id" :nft="allNFTs.find(x => x.id === '76')" :cardSize=300
                 class="ma-6"/>
     </v-row>
     <v-row v-else justify="center" class="pt-16">
@@ -70,12 +70,12 @@ export default {
       currentPage: 1,
       maxPerPage: 8,
       showReadMore: true,
-      currentTag: 'collection1',
+      currentTag: 'collection2',
       nfts: {
         collection1: [57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30],
         phobias: [75, 74, 73, 72, 71, 70, 69, 68, 67],
         collection1farming: [58, 59, 60, 61, 62, 63, 64, 65, 66],
-        collection2: [76, 77, 78],
+        collection2: [76, 77, 78, 79, 80],
       },
     }
   },
