@@ -98,7 +98,13 @@ async function downloadImage (url, path) {
 
 async function generateAssets(){
 
-    var provider = new HDWalletProvider(process.env.PRIVATE_KEY, xdaiRPC);
+    let provider = new HDWalletProvider({
+        mnemonic: {
+          phrase: process.env.MNEMONIC
+        },
+        providerOrUrl: xdaiRPC
+      });
+
     let web3 = new Web3(provider);
 
     let erc1155 = await new web3.eth.Contract(ERC1155ABI, snafuNftAddress);
@@ -106,7 +112,6 @@ async function generateAssets(){
 
     
     let nfts = await getMintedNFTS(erc1155)
-    console.log(nfts);
 
     let __dirname = path.resolve(path.dirname(''));
 
@@ -126,8 +131,9 @@ async function generateAssets(){
     console.log("Total tokenIds that will be set: ", tokenIds.length)
 
     console.log("Starting setTokenEditions transaction...") 
+    const accounts = await web3.eth.getAccounts();
 
-    //let tx = await snafu20.setTokenEditions(tokenIds, editions);
+    //let tx = await snafu20.methods.setTokenEditions(tokenIds, editions).send({from: accounts[0]});
     //console.log("success:", tx)
 
 
@@ -165,8 +171,8 @@ async function generateAssets(){
 
 if(!process.env.MIN_NFT){
     console.log("Missing Parameter MIN_NFT")
-}else if(!process.env.PRIVATE_KEY){
-    console.log("Missing Parameter PRIVATE_KEY")
+}else if(!process.env.MNEMONIC){
+    console.log("Missing Parameter MNEMONIC")
 }else{
     console.log("Generating nft assets / editions starting from ", process.env.MIN_NFT      )
     setTimeout(generateAssets, 3000);
