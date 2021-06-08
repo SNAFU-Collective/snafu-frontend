@@ -50,7 +50,7 @@
           :items="tableItems"
           :headers="tableHeaders"
           sort-desc
-          sort-by="totalBalance"
+          sort-by="totalValue"
           class="leaderboardTable"
           mobile-breakpoint="0"
           :page.sync="pagination.page"
@@ -63,6 +63,10 @@
 
           <template slot="item.rank" slot-scope="props">
             {{(pagination.page -1 ) * pagination.itemsPerPage + props.index  + 1}}
+          </template>
+
+          <template v-slot:item.totalValue={item}>
+           {{item.totalValue | truncatePrice }}
           </template>
 
           <template v-slot:item.blockie={item}>
@@ -125,8 +129,9 @@ export default {
         leaderboard = leaderboard.map((item) => {
           return {
             address: item.address,
-            allNfts: item.collection1Nfts,
-            totalBalance: item.collection1Balance,
+            allNfts: item.collection1Nfts || 0,
+            totalBalance: item.collection1Balance || 0,
+            totalValue: item.collection1Value || 0
           };
         });
 
@@ -141,6 +146,7 @@ export default {
             address: item.address,
             allNfts: item.collection2Nfts || 0,
             totalBalance: item.collection2Balance || 0,
+            totalValue: item.collection2Value || 0
           };
         });
 
@@ -176,6 +182,11 @@ export default {
         {
           text: "Total Balance",
           value: "totalBalance",
+          sortable: false
+        },
+        {
+          text: "$SNAFU Value",
+          value: "totalValue",
           sortable: false
         },
       ];
