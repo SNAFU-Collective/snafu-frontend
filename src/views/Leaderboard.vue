@@ -39,13 +39,18 @@
           >Collection #1
         </v-btn>
       </v-row>
-
+      <v-row justify="center" style="font-size: 13px; padding-top: 15px; text-align: center" v-if="leaderboard && currentTag === 'collection2'">
+        <span>Top 5 will win the printed copy of <a target="_blank" href="https://www.nftsnafu.org/collection-2"> "SNAFU Collective's Artbook #1"</a>
+        <br>
+          Campaign ends on 01/08/2021
+        </span>
+      </v-row>
       <v-row justify="center" no-gutters class="py-6">
         <v-data-table
           :items="tableItems"
           :headers="tableHeaders"
           sort-desc
-          sort-by="totalBalance"
+          sort-by="totalValue"
           class="leaderboardTable"
           mobile-breakpoint="0"
           :page.sync="pagination.page"
@@ -58,6 +63,10 @@
 
           <template slot="item.rank" slot-scope="props">
             {{(pagination.page -1 ) * pagination.itemsPerPage + props.index  + 1}}
+          </template>
+
+          <template v-slot:item.totalValue={item}>
+           {{item.totalValue | truncatePrice }}
           </template>
 
           <template v-slot:item.blockie={item}>
@@ -82,7 +91,7 @@ export default {
       },
       leaderboard: [],
       loading: true,
-      currentTag: "all",
+      currentTag: "collection2",
       addressToFilter: [
           "0x27B9C2Bd4BaEa18ABdF49169054c1C1c12af9862", //SNAFU POOL
           "0xEA912373bEf07E06F04fdE1d8218eb6C77cFF67A", //DAO
@@ -92,6 +101,7 @@ export default {
           "0x670BF58c124A958Ec5715b21A57bb2F174Cc14cA", //CAVEAU SNAFU
           "0x191b8c73b4eFA062F548AB9C762c6FC8512493A8", //ALESSANDRO NALLI
           "0xEBd63929331A97F0fC62409Ce1Ee29A0908CB519", //ANIMA
+          "0xeB1f193F347133bF27C81B23D4d2D6CD13167c66", //JASMINE
       ],
     };
   },
@@ -120,8 +130,9 @@ export default {
         leaderboard = leaderboard.map((item) => {
           return {
             address: item.address,
-            allNfts: item.collection1Nfts,
-            totalBalance: item.collection1Balance,
+            allNfts: item.collection1Nfts || 0,
+            totalBalance: item.collection1Balance || 0,
+            totalValue: item.collection1Value || 0
           };
         });
 
@@ -136,6 +147,7 @@ export default {
             address: item.address,
             allNfts: item.collection2Nfts || 0,
             totalBalance: item.collection2Balance || 0,
+            totalValue: item.collection2Value || 0
           };
         });
 
@@ -171,6 +183,11 @@ export default {
         {
           text: "Total Balance",
           value: "totalBalance",
+          sortable: false
+        },
+        {
+          text: "$SNAFU Value",
+          value: "totalValue",
           sortable: false
         },
       ];

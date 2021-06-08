@@ -79,12 +79,16 @@ export default {
     hideSelect:{
       type: Boolean,
       default: false
+    },
+    isSwap: {
+      type: Boolean,
+      default: false
     }
   },
   computed:{
     ...mapGetters("nftContract", ["getUserBalance"]),
     nftValue(){
-      if(this.withdrawFromPool){
+      if(this.withdrawFromPool || !this.isSwap){
         return +this.metadata.price + +this.metadata.fee;
       }else{
         return +this.metadata.price
