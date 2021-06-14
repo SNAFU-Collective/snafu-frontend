@@ -106,6 +106,7 @@ export default {
           "0xF3361Fd22655bff05C617EDe2E061BE8A90c47f4", //ELISA
           "0xCd6fcb4EcF97365fe159284B9Acc3C8519F5B6c4", //BUDA
           "0x86ee5eb5D97E9408223be407eA76C2323F7991E3", //METT
+          "0x37a67ad8Faac22830c87011935B841f982ea50eB", //SEBA
       ],
     };
   },
