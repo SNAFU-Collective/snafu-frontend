@@ -159,6 +159,13 @@ export default {
         return "Insufficient Balance";
       }
 
+      if (this.withdrawFromPool) {
+        return "Buy"
+      }
+
+      if (!this.withdrawFromPool) {
+        return "Sell"
+      }
       return "Swap";
     },
   },
