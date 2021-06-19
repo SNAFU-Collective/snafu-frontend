@@ -7,7 +7,7 @@
       </v-btn>
     </v-row>
     <v-row v-if="poolSync" class="mt-10">
-      <nft-card v-for="nft in paginatedNFTs" :key="nft.id" :nft="nft" class="ma-6"/>
+      <nft-card v-for="nft in paginatedNFTs" :key="nft.id" :nft="nft" class="ma-6" show-buy-button />
     </v-row>
     <v-row v-if="poolSync" justify="center" class="pb-15 pt-15">
       <v-btn medium dark @click="loadMore" v-if="currentPage * maxPerPage < poolNFTs.length"> LOAD MORE</v-btn>

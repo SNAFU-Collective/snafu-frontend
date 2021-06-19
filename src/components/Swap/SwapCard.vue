@@ -76,8 +76,7 @@ export default {
   components: { NftInput, SnafuInput, ConfirmSwapModal, FeeInfos },
   data() {
     return {
-      showConfirmSwap: false,
-      withdrawFromPool: true,
+      showConfirmSwap: false
     };
   },
   methods: {
@@ -102,6 +101,7 @@ export default {
       "selectedNft",
       "selectedNftMetadata",
       "selectedQuantity",
+      "withdrawFromPool"
     ]),
     ...mapGetters("connectweb3", ["isXdai"]),
     disableActions() {
