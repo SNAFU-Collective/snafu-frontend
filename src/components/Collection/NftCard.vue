@@ -55,7 +55,6 @@
           <v-col cols="3" v-if="showBuyButton" style="position:absolute; left: 71%; bottom: -5px;">
             <v-btn small outlined color="black" style="font-weight: 600;" @click="prepareCheckout"> BUY</v-btn>
           </v-col>
-
         </v-row>
       </v-card-text>
     </v-card>
