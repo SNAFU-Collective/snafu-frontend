@@ -6,6 +6,7 @@
           <v-dialog
               v-model="fullscreen"
               width="600px"
+              @input="v => v || pauseAllVideos()"
           >
             <v-card>
               <v-row>
@@ -31,13 +32,13 @@
                 </v-col>
               </v-row>
               <v-img v-if="!metadata.video" :src="'/nfts/'+nft.id+'/image'"/>
-              <video controls v-else :src="'/nfts/'+nft.id+'/image'"/>
+              <video controls loop v-else :src="'/nfts/'+nft.id+'/image'" style="width: 100%"/>
             </v-card>
           </v-dialog>
-          <a @click="toggle" v-if="!metadata.video">
-            <v-img  :src="'/nfts/'+nft.id+'/image'" :height="cardSize || 250" :width="cardSize || 250"/>
+          <a @click="toggle" >
+            <v-img v-if="!metadata.video" :src="'/nfts/'+nft.id+'/image'" :height="cardSize || 250" :width="cardSize || 250"/>
+            <video v-else controls loop :src="'/nfts/'+nft.id+'/image'" :height="cardSize || 250" :width="cardSize || 250"/>
           </a>
-          <video v-else controls :src="'/nfts/'+nft.id+'/image'" :height="cardSize || 250" :width="cardSize || 250"/>
         </v-row>
 
         <v-row style="display: flex; padding-top: 10px; padding-bottom: 5px" class="px-2">
@@ -89,7 +90,23 @@ export default {
       "withdrawFromPool"
     ]),
   },
+  watch: {
+    'fullscreen' :{
+      async handler(newVal, oldVal) {
+        await setTimeout(()=>{
+          this.pauseAllVideos()
+        }, 700)
+      },
+      deep: true
+    },
+  },
   methods: {
+    pauseAllVideos() {
+      let videoList = document.getElementsByTagName("video");
+      for (let i = 0; i < videoList.length; i++) {
+        videoList[i].pause();
+      }
+    },
     toggle() {
       this.fullscreen = !this.fullscreen
     },
