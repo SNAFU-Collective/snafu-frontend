@@ -10,7 +10,7 @@
               width="120"
             />
           </v-col>
-          <v-col cols="4" class="nft-details" :style="!withdrawFromPool ? '' : 'margin-top: 15px;'">
+          <v-col cols="4" class="nft-details" :style="!withdrawFromPool ? '' : 'margin-top: 0px;'">
             <v-row no-gutters class="text-subtitle-2 truncate" style="font-weight: bold;">
               {{ metadata.name }}
             </v-row>
