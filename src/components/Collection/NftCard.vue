@@ -30,12 +30,14 @@
                   </v-btn>
                 </v-col>
               </v-row>
-              <v-img :src="'/nfts/'+nft.id+'/image'"/>
+              <v-img v-if="!metadata.video" :src="'/nfts/'+nft.id+'/image'"/>
+              <video controls v-else :src="'/nfts/'+nft.id+'/image'"/>
             </v-card>
           </v-dialog>
-          <a @click="toggle">
-            <v-img :src="'/nfts/'+nft.id+'/image'" :height="cardSize || 250" :width="cardSize || 250"/>
+          <a @click="toggle" v-if="!metadata.video">
+            <v-img  :src="'/nfts/'+nft.id+'/image'" :height="cardSize || 250" :width="cardSize || 250"/>
           </a>
+          <video v-else controls :src="'/nfts/'+nft.id+'/image'" :height="cardSize || 250" :width="cardSize || 250"/>
         </v-row>
 
         <v-row style="display: flex; padding-top: 10px; padding-bottom: 5px" class="px-2">
