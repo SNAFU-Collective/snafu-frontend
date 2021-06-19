@@ -19,7 +19,7 @@
                   </v-card-subtitle>
                   <v-card-subtitle style="margin-top: -20px">
                     <a :href="metadata.external_url" target="_blank"
-                       style="color: rgba(0, 0, 0, 0.6) !important;">Unique Marketplace</a>
+                       style="color: rgba(0, 0, 0, 0.6) !important;">Unique Marketplace <v-icon style="font-size: 0.7em;"> mdi-arrow-top-right </v-icon></a>
                   </v-card-subtitle>
                 </v-col>
                 <v-col cols="2" style="margin-top: 15px; text-align: right; padding-right: 25px;">
