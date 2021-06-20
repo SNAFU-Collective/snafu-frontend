@@ -12,7 +12,8 @@ export default {
 
         selectedNft: null,
         selectedNftMetadata: null,
-        selectedQuantity: 0
+        selectedQuantity: 0,
+        withdrawFromPool: true
     },
     getters: {
         getField,

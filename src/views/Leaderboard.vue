@@ -90,6 +90,7 @@ export default {
         itemsPerPage: 10
       },
       leaderboard: [],
+      lastUpdate: "",
       loading: true,
       currentTag: "collection2",
       addressToFilter: [

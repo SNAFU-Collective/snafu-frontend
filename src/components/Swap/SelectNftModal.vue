@@ -9,9 +9,9 @@
         <v-row no-gutters class="pt-5">
           <v-text-field
             outlined
-            v-model.trim="filterById"
+            v-model.trim="filterByTitle"
             dense
-            placeholder="Filter by token ID"
+            placeholder="Filter by Title"
             background-color="white"
           />
         </v-row>
@@ -47,6 +47,7 @@ import { mapState } from "vuex";
 import { snafu20Address } from "../../utils/constants";
 
 import NftSelectCard from "../Collection/NftSelectCard.vue";
+import axios from "axios"
 export default {
   components: { NftSelectCard },
   props: {
@@ -61,7 +62,9 @@ export default {
   },
   data(){
     return {
-      filterById: ""
+      filterById: "",
+      filterByTitle: "",
+      metadata: []
     }
   },
   computed: {
@@ -77,7 +80,16 @@ export default {
     ]),
     ...mapState("nftContract", {
       nfts(state){
-        return this.pool ? state[snafu20Address] : state[this.account];
+        let nfts = this.pool ? state[snafu20Address] : state[this.account];
+
+        if (nfts) {
+          nfts.forEach(async (nft) => {
+            let res = await axios.get("./nfts/" + nft.id + "/metadata.json")
+            this.metadata.push(res.data)
+          })
+        }
+
+        return nfts
       },
       nftToFetch(state){
         return this.pool ? state[snafu20Address] == undefined : state[this.account] == undefined;
@@ -88,9 +100,16 @@ export default {
         return [];
       }
       let nft = this.nfts;
-      if(this.filterById){
-        nft = nft.filter((n) => n.id === this.filterById)
+
+      if (this.filterByTitle && this.metadata) {
+        nft = nft.filter((n) => {
+          let nftMetadata = this.metadata.find(element => element.id === n.id)
+          if (nftMetadata) {
+            return (nftMetadata.name.toLowerCase()).includes(this.filterByTitle.toLowerCase())
+          }
+        })
       }
+
       return nft;
     },
     showModal: {

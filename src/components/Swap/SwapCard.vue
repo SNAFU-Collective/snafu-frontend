@@ -76,8 +76,7 @@ export default {
   components: { NftInput, SnafuInput, ConfirmSwapModal, FeeInfos },
   data() {
     return {
-      showConfirmSwap: false,
-      withdrawFromPool: true,
+      showConfirmSwap: false
     };
   },
   methods: {
@@ -102,6 +101,7 @@ export default {
       "selectedNft",
       "selectedNftMetadata",
       "selectedQuantity",
+      "withdrawFromPool"
     ]),
     ...mapGetters("connectweb3", ["isXdai"]),
     disableActions() {
@@ -159,6 +159,13 @@ export default {
         return "Insufficient Balance";
       }
 
+      if (this.withdrawFromPool) {
+        return "Buy"
+      }
+
+      if (!this.withdrawFromPool) {
+        return "Sell"
+      }
       return "Swap";
     },
   },

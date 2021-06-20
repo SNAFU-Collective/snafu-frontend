@@ -10,11 +10,11 @@
               width="120"
             />
           </v-col>
-          <v-col cols="4">
+          <v-col cols="4" class="nft-details" :style="!withdrawFromPool ? '' : 'margin-top: 0px;'">
             <v-row no-gutters class="text-subtitle-2 truncate" style="font-weight: bold;">
               {{ metadata.name }}
             </v-row>
-            <div class="text-caption">
+            <div class="text-caption" :style="!withdrawFromPool ? '' : 'line-height: 21px;'">
               <v-row no-gutters> Token ID: {{ nft.id }} </v-row>
               <v-row no-gutters> Editions: {{ metadata.editions }} </v-row>
               <v-row no-gutters style="white-space: nowrap;">
@@ -23,7 +23,7 @@
               <v-row no-gutters v-if="withdrawFromPool"  class="text-caption">
                 Owned: {{ownedEditions}}
               </v-row>
-              <v-row no-gutters>
+              <v-row no-gutters v-if="!isSwap">
                 <a
                   :href="metadata.external_url"
                   target="_blank"

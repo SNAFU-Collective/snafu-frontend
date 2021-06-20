@@ -6,6 +6,7 @@
           <v-dialog
               v-model="fullscreen"
               width="600px"
+              @input="v => v || pauseAllVideos()"
           >
             <v-card>
               <v-row>
@@ -15,6 +16,10 @@
                   </v-card-title>
                   <v-card-subtitle>
                     <pre class="nftDescription">{{ metadata.description }}</pre>
+                  </v-card-subtitle>
+                  <v-card-subtitle style="margin-top: -20px">
+                    <a :href="metadata.external_url" target="_blank"
+                       style="color: rgba(0, 0, 0, 0.6) !important;">Unique Marketplace <v-icon style="font-size: 0.7em;"> mdi-arrow-top-right </v-icon></a>
                   </v-card-subtitle>
                 </v-col>
                 <v-col cols="2" style="margin-top: 15px; text-align: right; padding-right: 25px;">
@@ -26,11 +31,13 @@
                   </v-btn>
                 </v-col>
               </v-row>
-              <v-img :src="'/nfts/'+nft.id+'/image'" />
+              <v-img v-if="!metadata.video" :src="'/nfts/'+nft.id+'/image'"/>
+              <video controls loop v-else :src="'/nfts/'+nft.id+'/image'" style="width: 100%"/>
             </v-card>
           </v-dialog>
-          <a @click="toggle">
-            <v-img :src="'/nfts/'+nft.id+'/image'" :height="cardSize || 250" :width="cardSize || 250"/>
+          <a @click="toggle" >
+            <v-img v-if="!metadata.video" :src="'/nfts/'+nft.id+'/image'" :height="cardSize || 250" :width="cardSize || 250"/>
+            <video v-else controls loop :src="'/nfts/'+nft.id+'/image'" :height="cardSize || 250" :width="cardSize || 250"/>
           </a>
         </v-row>
 
@@ -43,13 +50,12 @@
         </v-row>
         <v-row class="px-2 subtext">ID: {{ nft.id }}</v-row>
         <v-row class="px-2 subtext">
-          <v-col cols="10" style="text-align: left; padding: 0;">Value:
+          <v-col cols="9" style="text-align: left; padding: 0;">Value:
             {{ (+metadata.price + +metadata.fee) | truncatePrice }} SNAFU
           </v-col>
-          <v-col cols="2" style="text-align: right; padding: 0;"><a :href="metadata.external_url" target="_blank"
-                                                                    style="color: rgba(0, 0, 0, 0.6) !important;">More</a>
+          <v-col cols="3" v-if="showBuyButton" style="position:absolute; left: 71%; bottom: -5px;">
+            <v-btn small outlined color="black" style="font-weight: 600;" @click="prepareCheckout"> BUY</v-btn>
           </v-col>
-
         </v-row>
       </v-card-text>
     </v-card>
@@ -59,6 +65,7 @@
 <script>
 
 import axios from "axios"
+import {mapFields} from "vuex-map-fields"
 
 export default {
   props: {
@@ -68,13 +75,60 @@ export default {
     },
     cardSize: {
       type: Number,
-      required: false
+      required: false,
+    },
+    showBuyButton:{
+      type: Boolean,
+      default: false
     }
   },
+  computed:{
+    ...mapFields("nftContract", [
+      "selectedNft",
+      "selectedQuantity",
+      "selectedNftMetadata",
+      "withdrawFromPool"
+    ]),
+  },
+  watch: {
+    'fullscreen' :{
+      async handler(newVal, oldVal) {
+        await setTimeout(()=>{
+          this.pauseAllVideos()
+        }, 700)
+      },
+      deep: true
+    },
+  },
   methods: {
+    pauseAllVideos() {
+      let videoList = document.getElementsByTagName("video");
+      for (let i = 0; i < videoList.length; i++) {
+        videoList[i].pause();
+      }
+    },
     toggle() {
       this.fullscreen = !this.fullscreen
     },
+    async prepareCheckout() {
+      //SCROLLA SU
+      await setTimeout(() => {
+        //scroll down only on desktop
+          window.scrollTo({
+            left: 0,
+            top: 0,
+            behavior: 'smooth',
+          })
+      }, 500)
+
+      //IMPOSTA SWAP SNAFU -> NFT
+      this.withdrawFromPool = true;
+
+      //NFT SElEZIONATO QUELLO CLICCATO
+      this.selectedNft = this.nft;
+      this.selectedNftMetadata = this.metadata;
+      this.selectedQuantity = 1;
+    }
   },
   data() {
     return {
@@ -117,7 +171,7 @@ export default {
 .nftDescription {
   font-size: 13px;
   line-height: 14px;
-  font-family: 'Barlow',serif;
+  font-family: 'Barlow', serif;
   margin-top: 10px;
   white-space: break-spaces;
 }
