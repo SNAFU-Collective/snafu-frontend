@@ -45,7 +45,6 @@
 import { mapFields } from "vuex-map-fields";
 import { mapState } from "vuex";
 import { snafu20Address } from "../../utils/constants";
-import {toLower} from "lodash"
 
 import NftSelectCard from "../Collection/NftSelectCard.vue";
 import axios from "axios"
@@ -106,7 +105,7 @@ export default {
         nft = nft.filter((n) => {
           let nftMetadata = this.metadata.find(element => element.id === n.id)
           if (nftMetadata) {
-            return toLower(nftMetadata.name).includes(toLower(this.filterByTitle))
+            return (nftMetadata.name.toLowerCase()).includes(this.filterByTitle.toLowerCase())
           }
         })
       }
