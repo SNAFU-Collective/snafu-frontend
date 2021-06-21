@@ -36,8 +36,7 @@
             </v-card>
           </v-dialog>
           <a @click="toggle" >
-            <v-img v-if="!metadata.animation_url" :src="'/nfts/'+nft.id+'/image'" :height="cardSize || 250" :width="cardSize || 250"/>
-            <video v-else controls loop :src="metadata.animation_url" :height="cardSize || 250" :width="cardSize || 250"/>
+            <v-img  :src="'/nfts/'+nft.id+'/image'" :height="cardSize || 250" :width="cardSize || 250"/>
           </a>
         </v-row>
 
