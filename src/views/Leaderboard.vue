@@ -42,7 +42,7 @@
       <v-row justify="center" style="font-size: 13px; padding-top: 15px; text-align: center" v-if="leaderboard && currentTag === 'collection2'">
         <span>Top 5 will win the printed copy of <a target="_blank" href="https://www.nftsnafu.org/collection-2"> "SNAFU Collective's Artbook #1"</a>
         <br>
-          Campaign ends on 01/08/2021
+          Campaign ends on 01/07/2021
         </span>
       </v-row>
       <v-row justify="center" no-gutters class="py-6">
