@@ -137,6 +137,11 @@ export default {
                 return +b.id - +a.id;
             })
 
+            // Remove burned nfts from list
+            nfts = nfts.filter((nft) => {
+                return nft.id !== "90" || nft.id !== "102"
+            })
+
             context.commit("setAllNfts", nfts);
         }
     }
