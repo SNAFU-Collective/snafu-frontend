@@ -280,7 +280,6 @@ export default {
     async goNext() {
       switch (this.transferPhase) {
         case 1:
-          console.log(this.nftsToTransfer)
           this.transferPhase = 2
           this.modalTitle = 'Insert the destination address'
           break
@@ -296,7 +295,6 @@ export default {
       }
     },
     async confirmTransfer() {
-      console.log(this.transferDestinationAddress)
       try {
         this.transferPhase = 4
         this.loading = true

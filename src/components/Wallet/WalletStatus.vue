@@ -66,7 +66,7 @@
           </v-toolbar>
           <v-card-text class="mt-10">
             <v-row style="margin-bottom: 30px">
-              <v-col cols="2" offset="1" style="text-align: center">
+              <v-col cols="1.3" style="text-align: center">
                 <a class="modalSocials" href="https://nftsnafu.org" target="_blank">
                   <v-tooltip bottom color="rgb(0 0 0 / 89%)">
                     <template v-slot:activator="{ on, attrs }">
@@ -77,7 +77,7 @@
                   </v-tooltip>
                 </a>
               </v-col>
-              <v-col cols="2" style="text-align: center">
+              <v-col cols="1.3" style="text-align: center">
                 <a class="modalSocials" href="https://twitter.com/nftsnafu" target="_blank">
                   <v-tooltip bottom color="rgb(0 0 0 / 89%)">
                     <template v-slot:activator="{ on, attrs }">
@@ -87,7 +87,7 @@
                   </v-tooltip>
                 </a>
               </v-col>
-              <v-col cols="2" style="text-align: center">
+              <v-col cols="1.3" style="text-align: center">
                 <a class="modalSocials" href="https://t.me/nftsnafu" target="_blank">
                   <v-tooltip bottom color="rgb(0 0 0 / 89%)">
                     <template v-slot:activator="{ on, attrs }">
@@ -97,7 +97,17 @@
                   </v-tooltip>
                 </a>
               </v-col>
-              <v-col cols="2" style="text-align: center">
+              <v-col cols="1.3" style="text-align: center">
+                <a class="modalSocials" href="https://discord.gg/kvbxMfUyQD" target="_blank">
+                  <v-tooltip bottom color="rgb(0 0 0 / 89%)">
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-icon size="45" color="#303030" v-bind="attrs" v-on="on">mdi-discord</v-icon>
+                    </template>
+                    <span>Discord</span>
+                  </v-tooltip>
+                </a>
+              </v-col>
+              <v-col cols="1.3" style="text-align: center">
                 <a class="modalSocials" href="https://github.com/SNAFU-Collective" target="_blank">
                   <v-tooltip bottom color="rgb(0 0 0 / 89%)">
                     <template v-slot:activator="{ on, attrs }">
@@ -107,7 +117,7 @@
                   </v-tooltip>
                 </a>
               </v-col>
-              <v-col cols="2" style="text-align: center">
+              <v-col cols="1.3" style="text-align: center">
                 <a class="modalSocials"
                    href="https://blockscout.com/xdai/mainnet/address/0x27B9C2Bd4BaEa18ABdF49169054c1C1c12af9862/transactions"
                    target="_blank">
