@@ -1,9 +1,9 @@
 <template>
-  <v-dialog v-model="showModal" scrollable max-width="500px">
+  <v-dialog v-model="showModal" @input="v => v || resetModal()" scrollable max-width="500px" :persistent="loading">
     <v-card color="#F5F5F5">
       <v-card-title>
         <v-row no-gutters style="width: 100%">
-          <v-col cols="11" style="word-break: break-word;">
+          <v-col offset="1" cols="10" style="word-break: break-word; text-align: center">
             {{ modalTitle }}
           </v-col>
           <v-col cols="1">
@@ -21,22 +21,39 @@
         </v-row>
       </v-card-title>
       <v-row
-          v-if="transferPhase === 1 || transferPhase === 2"
+          v-if="transferPhase !== 4"
           justify="center"
           align="center"
           class="mb-5 mt-5"
           no-gutters
           style="width: 100%"
       >
+        <v-row class="mb-5 mt-5" style="width: 100%" justify="center" align="center" v-if="this.transferPhase === 3">
+          Are you sure you want to send the following NFTs:
+        </v-row>
+        <v-row style="width: 100%" justify="center" align="center"
+               v-if="this.transferPhase === 1 && nftsToTransfer.length === 0">Selected NFTs will be displayed here
+        </v-row>
+
         <v-chip label v-for="nft in nftsToTransfer" :key="nft.id" :nft="nft" class="ma-1"
                 style="padding: 0px 10px 0px 0px">
-          <v-img
-              :src="'/nfts/' + nft.id + '/image'"
-              height="30"
-              width="30"
-          />
-          <span class="pl-2">x</span> {{ nft.quantity }}
+          <v-tooltip bottom color="rgb(0 0 0 / 89%)">
+            <template v-slot:activator="{ on, attrs }" style="display: contents">
+
+              <v-img
+                  :src="'/nfts/' + nft.id + '/image'"
+                  height="30"
+                  width="30"
+                  v-bind="attrs" v-on="on"
+              />
+              <div><span class="pl-2">x</span>
+                <span>{{ nft.quantity }}</span></div>
+
+            </template>
+            <span>{{ nft.name }} | ID: {{ nft.id }}</span>
+          </v-tooltip>
         </v-chip>
+
       </v-row>
       <v-card-text v-if="transferPhase === 1">
         <nft-select-card
@@ -53,7 +70,7 @@
               color="black"
           ></v-progress-circular>
         </v-row>
-        <div v-else-if="nftsToSelect.length === 0" class="text-body-2 my-3">
+        <div v-else-if="nftsToSelect.length === 0" class="text-body-2 my-3" style="text-align: center;">
           No SNAFU NFTs found in your wallet.
         </div>
       </v-card-text>
@@ -70,52 +87,86 @@
         <div style="text-align: center;"><span v-if="destinationAddressError" style="color: red;">Please enter a valid destination address</span>
         </div>
       </v-card-text>
-      <v-card-text v-if="transferPhase === 3">
-        <v-row
-            justify="center"
-            align="center"
-            class="mb-5 mt-5"
-            no-gutters
-            style="width: 100%"
-        >
-          Are you sure you want to send the following NFTs:
-        </v-row>
-        <v-row
-            justify="center"
-            align="center"
-            class="mb-5 mt-5"
-            no-gutters
-            style="width: 100%"
-        >
-          <v-chip label v-for="nft in nftsToTransfer" :key="nft.id" :nft="nft" class="ma-1"
-                  style="padding: 0px 10px 0px 0px">
-            <v-img
-                :src="'/nfts/' + nft.id + '/image'"
-                height="30"
-                width="30"
-            />
-            <span class="pl-2">x</span> {{ nft.quantity }}
-          </v-chip>
-        </v-row>
-        <v-row
-            justify="center"
-            align="center"
-            class="mb-5 mt-5"
-            no-gutters
-            style="width: 100%"
-        >
-          To this address:
-        </v-row>
-        <v-row
-            justify="center"
-            align="center"
-            class="mb-5 mt-5"
-            no-gutters
-            style="width: 100%"
-        >
-          <span>{{transferDestinationAddress}}</span> <span class="pl-2">?</span>
-        </v-row>
-      </v-card-text>
+
+      <v-row
+          v-if="transferPhase === 3"
+          justify="center"
+          align="center"
+          style="width: 100%"
+      >
+        To this address:
+      </v-row>
+      <v-row
+          v-if="transferPhase === 3"
+          justify="center"
+          align="center"
+          class="mb-5 mt-5"
+          no-gutters
+          style="width: 100%"
+      >
+        <span><strong>{{ transferDestinationAddress }}</strong></span> <span class="pl-1">?</span>
+      </v-row>
+
+      <div v-if="loading">
+        <v-card-text class="pt-3">
+          <v-row no-gutters justify="center" class="py-4">
+            <v-progress-circular
+                :size="80"
+                color="black"
+                indeterminate
+            ></v-progress-circular>
+          </v-row>
+          <v-row no-gutters justify="center" class="py-4 text-body-1">
+            Transaction in progress
+          </v-row>
+          <v-row no-gutters justify="center" class="mt-n3" v-if="txHash">
+            <a :href="txUrl" target="_blank" style="color: black">
+              View Details on Blockscout
+            </a>
+          </v-row>
+        </v-card-text>
+      </div>
+
+      <div v-if="confirmed">
+        <v-card-text class="pt-3">
+          <v-row no-gutters justify="center" class="py-4">
+            <v-icon size="100" color="success">mdi-check-circle</v-icon>
+          </v-row>
+          <v-row no-gutters justify="center" class="py-4 text-body-1">
+            Transaction completed
+          </v-row>
+          <v-row no-gutters justify="center" class="mt-n3">
+            <a :href="txUrl" target="_blank" style="color: black">
+              View Details on Blockscout
+            </a>
+          </v-row>
+        </v-card-text>
+      </div>
+
+      <div v-if="error">
+        <v-card-text class="pt-3">
+          <v-row no-gutters justify="center" class="py-4">
+            <v-icon size="100" color="error">mdi-alert</v-icon>
+          </v-row>
+          <v-row no-gutters justify="center" class="py-4 text-body-1">
+            Transaction failed
+          </v-row>
+          <v-row
+              no-gutters
+              justify="center"
+              class="mt-n3 red--text"
+              v-if="errorMessage"
+          >
+            {{ errorMessage }}
+          </v-row>
+          <v-row no-gutters justify="center" class="mt-n3" v-if="txHash">
+            <a :href="txUrl" target="_blank" style="color: black">
+              View Details on Blockscout
+            </a>
+          </v-row>
+        </v-card-text>
+      </div>
+
       <v-card-actions style="justify-content: center; display: block" class="ma-2">
         <v-row
             justify="center"
@@ -123,11 +174,15 @@
             style="width: 100%"
             no-gutters
         >
-          <v-btn x-large dark @click="goNext()" :disabled="nftsToTransfer.length === 0"  v-if="transferPhase === 1 || transferPhase === 2"> NEXT</v-btn>
+          <v-btn x-large dark @click="goNext()" :disabled="nftsToTransfer.length === 0"
+                 v-if="transferPhase === 1 || transferPhase === 2"> NEXT
+          </v-btn>
           <v-btn x-large dark @click="confirmTransfer()" v-if="transferPhase === 3"> CONFIRM</v-btn>
         </v-row>
       </v-card-actions>
     </v-card>
+
+
   </v-dialog>
 </template>
 
@@ -155,6 +210,11 @@ export default {
       modalTitle: 'Select the NFTs to transfer',
       transferDestinationAddress: null,
       destinationAddressError: false,
+      loading: false,
+      confirmed: false,
+      error: false,
+      errorMessage: null,
+      txHash: null,
     }
   },
   computed: {
@@ -199,12 +259,14 @@ export default {
 
       return nft
     },
+    txUrl() {
+      return "https://blockscout.com/xdai/mainnet/tx/" + this.txHash
+    },
     showModal: {
       get() {
         return this.show
       },
       set(val) {
-        this.nftsToTransfer = []
         this.$emit("updateDialog", false)
       },
     },
@@ -212,10 +274,7 @@ export default {
   methods: {
     ...mapActions("transferNFTs", ["transfer", 'isAddress']),
     closeModal() {
-      this.nftsToTransfer = []
-      this.transferPhase = 1
-      this.destinationAddressError = false
-      this.modalTitle = 'Select the NFTs to transfer'
+      this.resetModal()
       this.$emit("updateDialog", false)
     },
     async goNext() {
@@ -228,7 +287,7 @@ export default {
         case 2:
           if (await this.isAddress(this.transferDestinationAddress)) {
             this.transferPhase = 3
-            this.modalTitle = 'Confirm transfer'
+            this.modalTitle = 'Confirm Transfer'
             break
           } else {
             this.destinationAddressError = true
@@ -238,8 +297,57 @@ export default {
     },
     async confirmTransfer() {
       console.log(this.transferDestinationAddress)
-      await this.transfer({nfts: this.nftsToTransfer, destinationAddress: this.transferDestinationAddress})
-    }
+      try {
+        this.transferPhase = 4
+        this.loading = true
+        this.modalTitle = 'Confirm Swap'
+
+        let tx = await this.transfer({nfts: this.nftsToTransfer, destinationAddress: this.transferDestinationAddress})
+        this.txHash = tx.hash
+        tx.wait()
+            .then((res) => {
+              //console.log(res);
+              this.confirmed = true
+              this.txHash = res.transactionHash
+            })
+            .catch((err) => {
+              //console.log(err);
+              this.error = true
+              if (err.transactionHash) {
+                this.txHash = err.transactionHash
+              }
+              if (err.message) {
+                this.errorMessage = err.message
+              }
+            })
+            .finally(() => {
+              this.loading = false
+            })
+      } catch (err) {
+        //console.log(err);
+        this.error = true
+        if (err.transactionHash) {
+          this.txHash = err.transactionHash
+        }
+        if (err.message) {
+          this.errorMessage = err.message
+        }
+
+        this.loading = false
+      }
+    },
+    resetModal() {
+      this.transferPhase = 1
+      this.modalTitle = 'Select the NFTs to transfer'
+      this.transferDestinationAddress = null
+      this.destinationAddressError = false
+      this.loading = false
+      this.confirmed = false
+      this.error = false
+      this.errorMessage = null
+      this.txHash = null
+      this.nftsToTransfer = []
+    },
   },
 }
 </script>
