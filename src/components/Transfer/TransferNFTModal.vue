@@ -39,7 +39,6 @@
                 style="padding: 0px 10px 0px 0px">
           <v-tooltip bottom color="rgb(0 0 0 / 89%)">
             <template v-slot:activator="{ on, attrs }" style="display: contents">
-
               <v-img
                   :src="'/nfts/' + nft.id + '/image'"
                   height="30"
@@ -48,7 +47,6 @@
               />
               <div><span class="pl-2">x</span>
                 <span>{{ nft.quantity }}</span></div>
-
             </template>
             <span>{{ nft.name }} | ID: {{ nft.id }}</span>
           </v-tooltip>
@@ -181,8 +179,6 @@
         </v-row>
       </v-card-actions>
     </v-card>
-
-
   </v-dialog>
 </template>
 
@@ -298,7 +294,6 @@ export default {
       try {
         this.transferPhase = 4
         this.loading = true
-        this.modalTitle = 'Confirm Swap'
 
         let tx = await this.transfer({nfts: this.nftsToTransfer, destinationAddress: this.transferDestinationAddress})
         this.txHash = tx.hash
