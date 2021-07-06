@@ -272,7 +272,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions("transferNFTs", ["transfer", 'isAddress']),
+    ...mapActions("transferNFTs", ["transfer", 'isAddress', 'refreshUserNfts']),
     closeModal() {
       this.resetModal()
       this.$emit("updateDialog", false)
@@ -321,6 +321,7 @@ export default {
               }
             })
             .finally(() => {
+              this.refreshUserNfts()
               this.loading = false
             })
       } catch (err) {

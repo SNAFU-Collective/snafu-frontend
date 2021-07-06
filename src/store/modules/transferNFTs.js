@@ -1,5 +1,5 @@
-import { getField, updateField } from 'vuex-map-fields';
-import { ethers } from "ethers";
+import {getField, updateField} from 'vuex-map-fields'
+import {ethers} from "ethers"
 
 export default {
     namespaced: true,
@@ -16,13 +16,13 @@ export default {
         async isAddress(context, address) {
             try {
                 ethers.utils.getAddress(address)
-                return true;
-            } catch(error) {
+                return true
+            } catch (error) {
                 return false
             }
         },
         async transfer(context, payload) {
-            let snafuContract = context.rootGetters["connectweb3/getUserNftSnafu"];
+            let snafuContract = context.rootGetters["connectweb3/getUserNftSnafu"]
 
             let ids = []
             let quantities = []
@@ -31,13 +31,12 @@ export default {
                 quantities.push(nft.quantity)
             })
 
+            let userAddress = context.rootGetters["connectweb3/getUserAccount"]
 
-
-//0x800Ce06e8a40799f2BF52fB7E877a4C310598eCB
-            let userAddress = context.rootGetters["connectweb3/getUserAccount"];
-            console.log(userAddress, payload.destinationAddress, ids, quantities)
-
-            return await snafuContract.safeBatchTransferFrom(userAddress, payload.destinationAddress, ids, quantities,  ethers.utils.hexlify("0x00"), { gasPrice: "1000000000" });
-        }
-    }
+            return await snafuContract.safeBatchTransferFrom(userAddress, payload.destinationAddress, ids, quantities, ethers.utils.hexlify("0x00"), {gasPrice: "1000000000"})
+        },
+        refreshUserNfts(context) {
+            context.dispatch("nftContract/getNftsFromUser", null, {root: true})
+        },
+    },
 }
