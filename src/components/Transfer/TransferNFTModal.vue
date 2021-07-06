@@ -54,7 +54,7 @@
 
       </v-row>
       <v-card-text v-if="transferPhase === 1">
-        <nft-select-card
+        <SelectNftToTransfer
             :nft="nft"
             v-for="nft in nftsToSelect"
             :key="nft.id"
@@ -186,11 +186,11 @@
 import {mapFields} from "vuex-map-fields"
 import {mapActions, mapGetters, mapState} from "vuex"
 import {snafu20Address} from "../../utils/constants"
-import NftSelectCard from "./NftSelectCard.vue"
+import SelectNftToTransfer from "./SelectNftToTransfer.vue"
 import axios from "axios"
 
 export default {
-  components: {NftSelectCard},
+  components: {SelectNftToTransfer},
   props: {
     show: {
       type: Boolean,
