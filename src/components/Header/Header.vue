@@ -16,6 +16,7 @@
         <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
         <router-link class="backHome" :to="{ name: 'Claim'}">CLAIM PRIZE</router-link>
 
+<!--        <a class="backHome" href="https://unifty.io/xdai/market-view.html?location=0x76E277F441610907477245F09b1cEd6C937c332E" target="_blank">MARKET <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>-->
         <a class="backHome" href="https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862" target="_blank">BUY SNAFU <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
         <a class="backHome" href="https://vote.nftsnafu.org" target="_blank">VOTE <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
         <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
@@ -40,7 +41,7 @@
           <router-link class="backHome" :to="{ name: 'Catalog'}">CATALOG</router-link>
           <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
           <router-link class="backHome" :to="{ name: 'Claim'}">CLAIM PRIZE</router-link>
-
+<!--          <a class="backHome" href="https://unifty.io/xdai/market-view.html?location=0x76E277F441610907477245F09b1cEd6C937c332E" target="_blank">MARKET <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
           <a class="backHome" href="https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862" target="_blank">BUY SNAFU <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
           <a class="backHome" href="https://vote.nftsnafu.org" target="_blank">VOTE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
           <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
