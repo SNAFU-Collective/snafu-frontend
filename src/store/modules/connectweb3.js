@@ -32,8 +32,8 @@ export default {
         getUserSnafu721: (state) => state.connected.snafu721,
         getSnafu721: (state) => state.snafu721,
         getUserSnafu20: (state) => state.connected.snafu20,
-
         getUserAccount: (state) => state.account,
+        getUserSigner: (state) => state.connected.signer,
         isMetamask: async (state) => {
             if (state.connected.web3 && state.connected.web3.provider.isMetamask && !state.connected.web3.provider.isMetamask()) {
                 return false
@@ -72,7 +72,8 @@ export default {
             if (connected) {
                 state = context.state.connected;
                 state.web3 = web3;
-                let signer = web3.getSigner();
+                let signer = await web3.getSigner();
+                state.signer = signer
                 context.state.account = (await signer.getAddress());
                 context.state.chainId = (await web3.getNetwork()).chainId
                 //console.log('Chain ID: ', context.state.chainId)
