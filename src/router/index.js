@@ -22,6 +22,11 @@ const routes = [
     component: () => import('../views/Wallet.vue')
   },
   {
+    path: '/claim',
+    name: 'Claim',
+    component: () => import('../views/Claim.vue')
+  },
+  {
     path: '/catalog',
     name: 'Catalog',
     component: () => import('../views/NFTs.vue')
