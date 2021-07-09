@@ -45,8 +45,9 @@
           class="ma-5"
           :withdrawFromPool="false"
           :hideSelect="true"
-          :claim="true"
-          @claimNft="handleClaim"
+          :claim="false"
+          :burn="true"
+          @burnNft="handleBurn"
         />
         <v-row v-if="posterNftsLoading" justify="center" class="my-3">
           <v-progress-circular
@@ -70,6 +71,12 @@
         @updateDialog="() => (showConfirmClaim = false)"
         v-if="showConfirmClaim"
       />
+
+     <confirm-burn-modal
+        :show="showConfirmBurn"
+        @updateDialog="() => (showConfirmBurn = false)"
+        v-if="showConfirmBurn"
+      />
     </v-container>
   </div>
 </template>
@@ -79,13 +86,17 @@ import { mapState } from "vuex";
 import NftSelectCard from "../components/Collection/NftSelectCard.vue";
 import { mapFields } from "vuex-map-fields";
 import ConfirmClaimModal from "../components/Claim/ConfirmClaimModal.vue";
+import ConfirmBurnModal from "../components/Claim/ConfirmBurnModal.vue";
+
 import ClaimForm from '../components/Claim/ClaimForm.vue';
 
 export default {
-  components: { NftSelectCard, ConfirmClaimModal, ClaimForm },
+  components: { NftSelectCard, ConfirmClaimModal, ClaimForm, ConfirmBurnModal},
   data() {
     return {
       showConfirmClaim: false,
+      showConfirmBurn: false,
+
       //FIXME: cambiare con id token di poster!
       prizesId: ["6"],
     };
@@ -123,6 +134,13 @@ export default {
     handleClaim(payload) {
       console.log(payload);
       this.showConfirmClaim = true;
+      this.selectedNft = payload.nft;
+      this.selectedNftMetadata = payload.metadata;
+      this.selectedQuantity = 1;
+    },
+    handleBurn(payload) {
+      console.log(payload);
+      this.showConfirmBurn = true;
       this.selectedNft = payload.nft;
       this.selectedNftMetadata = payload.metadata;
       this.selectedQuantity = 1;

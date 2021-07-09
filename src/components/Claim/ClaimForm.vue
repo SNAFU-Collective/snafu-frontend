@@ -54,10 +54,10 @@
 <script>
 import { mapGetters } from 'vuex';
 import { ethers } from 'ethers';
+import { mapFields } from 'vuex-map-fields';
 export default {
   data() {
     return {
-      formData: {},
       validForm: false,
       loading: false, 
       rules:{
@@ -76,7 +76,8 @@ export default {
     };
   },
   computed:{
-      ...mapGetters("connectweb3", ["getUserSigner"])
+      ...mapGetters("connectweb3", ["getUserSigner"]),
+      ...mapFields("prizeContract", ["formData"])
   },
   methods: {
       submitInformation(){
@@ -88,6 +89,7 @@ export default {
               this.loading = false;
               let signAddress = ethers.utils.verifyMessage(payload, res);
               console.log(signAddress);
+              //TODO: svuotare form ... feedback successo!
           })
           
       }

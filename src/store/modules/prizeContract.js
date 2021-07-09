@@ -13,7 +13,7 @@ export default {
     namespaced: true,
     state: {
         allNFTs: [],
-
+        formData: {},
         selectedNft: null,
         selectedNftMetadata: null,
         selectedQuantity: 0,
@@ -43,7 +43,14 @@ export default {
         async convertErc1155(context){
           let token = context.rootGetters["connectweb3/getUserSnafu721"];
           let nftId = context.state.selectedNft.claimId;
-          return token.claim(nftId);
+          return token.claim(nftId, { gasPrice: "1000000000" });
+        },
+        async burnErc1155(context) {
+          let erc1155 = context.rootGetters["connectweb3/getUserNftSnafu"];
+          let userAddress = context.rootGetters["connectweb3/getUserAccount"];
+          let nftId = context.state.selectedNft.id;
+          let selectedQuantity = context.state.selectedQuantity;
+          return erc1155.burn(userAddress, nftId, selectedQuantity, { gasPrice: "1000000000" });
         },
         async getNftsFromUser(context) {
             console.log("updating nfts721 for user")
