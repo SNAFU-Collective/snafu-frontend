@@ -8,7 +8,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: () => import('../views/NFTs.vue')
   },
   {
     path: '/search',
@@ -22,9 +22,9 @@ const routes = [
     component: () => import('../views/Wallet.vue')
   },
   {
-    path: '/catalog',
-    name: 'Catalog',
-    component: () => import('../views/NFTs.vue')
+    path: '/pool',
+    name: 'Pool',
+    component: Home
   },
   {
     path: '/leaderboard',
