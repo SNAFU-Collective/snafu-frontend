@@ -34,7 +34,7 @@
 
       <div id="menuMobile">
         <Slide right :closeOnNavigation="true"  @openMenu="handleOpenMenu" @closeMenu="handleCloseMenu" :width=windowWidth>
-          <router-link class="backHome" :to="{ name: 'CATALOG'}">CATALOG</router-link>
+          <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
           <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
           <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
           <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
