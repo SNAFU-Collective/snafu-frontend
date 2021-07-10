@@ -109,7 +109,8 @@ export default {
             "g-recaptcha-response": payload.recaptcha,
             "payload": payload.payload,
             "signature": payload.signature, 
-            "addressFromFrontend": payload.signAddress
+            "addressFromFrontend": payload.signAddress,
+            "formData": payload.formData
           })
         }
     }
