@@ -5,22 +5,23 @@
       </v-card-title>
     <v-card-text class="mt-5">
       <v-form v-model="validForm">
-<!--        <v-row>-->
-<!--          <v-text-field-->
-<!--            v-model="formData.burnTxHash"-->
-<!--            outlined-->
-<!--            label="Token Burn Transaction Hash"-->
-<!--            class="mx-10"-->
-<!--            required-->
-<!--            :rules="rules.txHash"-->
-<!--          ></v-text-field>-->
-<!--        </v-row>-->
+        <v-row>
+          <v-text-field
+            v-model="formData.burnTxHash"
+            outlined
+            label="Token Burn Transaction Hash"
+            class=""
+            required
+            disabled
+            :rules="rules.txHash"
+          ></v-text-field>
+        </v-row>
         <v-row>
           <v-text-field
             v-model="formData.fullName"
             outlined
             label="Full Name"
-            class="mx-10"
+            class="mr-1"
             :rules="rules.required"
             required
           ></v-text-field>
@@ -28,7 +29,7 @@
             v-model="formData.email"
             outlined
             label="Email"
-            class="mx-10"
+            class="ml-1"
             required
             :rules="rules.email"
           ></v-text-field>
@@ -38,7 +39,7 @@
             v-model="formData.address"
             outlined
             label="Full Address"
-            class="mx-10"
+            class=""
             required
             :rules="rules.required"
           ></v-text-field>

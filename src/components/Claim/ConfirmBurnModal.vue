@@ -1,5 +1,6 @@
 <template>
-  <v-dialog v-model="showModal" max-width="450px" scrollable persistent >
+  <div>
+  <v-dialog v-model="showModal" max-width="550px" scrollable persistent >
     <v-card color="#F5F5F5">
       <v-card-title>
         <v-row no-gutters
@@ -11,7 +12,8 @@
           </v-col>
         </v-row>
       </v-card-title>
-      <div v-if="!loading && !confirmed && !error" style="overflow-y: auto">
+
+      <div style="overflow-y: auto">
         <v-card-text class="pt-3">
           <v-row
               no-gutters
@@ -48,19 +50,34 @@
           </v-row>
         </v-card-text>
         <v-card-actions>
-          <v-row no-gutters justify="center" class="mb-2" @click="confirmClaim">
-            <v-btn dark large> Next </v-btn>
+          <v-row no-gutters justify="center" class="mb-2">
+            <v-btn :disabled="nftBurned" dark large @click="confirmClaim" class="ma-5"> 1. Burn </v-btn>
+            <v-btn :disabled="!showNext" dark large @click="showConfirmClaim" class="ma-5"> 2. Redeem </v-btn>
           </v-row>
         </v-card-actions>
       </div>
+    </v-card>
+  </v-dialog>
+  <v-dialog v-model="showTransactionModal" max-width="450px" scrollable persistent >
+    <v-card color="#F5F5F5">
+        <v-card-title>
+          <v-row no-gutters
+          ><v-col offset="1" cols="10" class="text-center">
+            Confirm Burn
+          </v-col>
+            <v-col cols="1">
+              <v-icon class="pl-3 pb-2" @click="closeModal"> mdi-close </v-icon>
+            </v-col>
+          </v-row>
+      </v-card-title>
 
       <div v-if="loading">
         <v-card-text class="pt-3">
           <v-row no-gutters justify="center" class="py-4">
             <v-progress-circular
-              :size="80"
-              color="black"
-              indeterminate
+                :size="80"
+                color="black"
+                indeterminate
             ></v-progress-circular>
           </v-row>
           <v-row no-gutters justify="center" class="py-4 text-body-1">
@@ -94,10 +111,10 @@
             Transaction failed
           </v-row>
           <v-row
-            no-gutters
-            justify="center"
-            class="mt-n3 red--text"
-            v-if="errorMessage"
+              no-gutters
+              justify="center"
+              class="mt-n3 red--text"
+              v-if="errorMessage"
           >
             {{ errorMessage }}
           </v-row>
@@ -110,6 +127,7 @@
       </div>
     </v-card>
   </v-dialog>
+  </div>
 </template>
 
 <script>
@@ -127,6 +145,7 @@ export default {
       error: false,
       errorMessage: null,
       txHash: null,
+      nftBurned: false,
     };
   },
   props: {
@@ -149,6 +168,17 @@ export default {
         this.$emit("updateDialog", false);
       },
     },
+    showTransactionModal: {
+      get() {
+        return this.loading || this.success || this.error;
+      },
+      set(val) {
+        // this.$emit("updateDialog2", false);
+      },
+    },
+    showNext() {
+      return this.formData && this.formData.fullName && this.formData.email && this.formData.address
+    },
     txUrl() {
       return "https://blockscout.com/xdai/mainnet/tx/" + this.txHash;
     },
@@ -159,6 +189,9 @@ export default {
     ...mapActions("connectweb3", ["updateData"]),
     closeModal() {
       this.$emit("updateDialog", false);
+    },
+    async showConfirmClaim() {
+      console.log(this.formData)
     },
     async confirmClaim() {
       this.loading = true;
@@ -204,4 +237,10 @@ export default {
 </script>
 
 <style>
+.theme--dark.v-btn.v-btn--disabled.v-btn--has-bg{
+  background-color: #5f5f5f1f !important;
+}
+.theme--dark.v-btn.v-btn--disabled {
+  color: #0000004d !important;
+}
 </style>

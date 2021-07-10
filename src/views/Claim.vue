@@ -6,75 +6,79 @@
       </v-row>
     </v-container>
     <v-container>
-      <v-row
-        class="mt-0 justify-center"
-        id="mainRowStatus"
-        style="padding-top: 70px; display: grid"
-      >
-      </v-row>
-      <v-row justify="center">
-        <h2>CLAIM</h2>
-      </v-row>
-      <v-row justify="center">
-        <nft-select-card
-          :nft="nft"
-          v-for="nft in nftsToClaim"
-          :key="nft.id * Math.random()"
-          class="ma-5"
-          :withdrawFromPool="false"
-          :hideSelect="true"
-          :claim="true"
-          @claimNft="handleClaim"
-        />
-        <v-row v-if="nftsToClaimLoading" justify="center" class="my-3">
-          <v-progress-circular
-            size="40"
-            indeterminate
-            color="black"
-          ></v-progress-circular>
+      <banner></banner>
+    </v-container>
+    <v-container >
+<!--      <v-row-->
+<!--        class="mt-0 justify-center"-->
+<!--        id="mainRowStatus"-->
+<!--        style="padding-top: 70px; display: grid"-->
+<!--      >-->
+<!--      </v-row>-->
+      <v-row  style="margin-top: 100px">
+      <v-col cols="6" style="box-shadow: #0202023d 2px 0px">
+        <v-row justify="center">
+          <h2>CLAIM</h2>
         </v-row>
-        <div v-else-if="nftsToClaim.length === 0" class="text-body-2 my-50 mt-10 mb-10" style="text-align: center">
-           <span style="font-size: 13px; text-align: center">
-          No SNAFU Prizes found in your wallet. <br />
-          Partecipate in our PoolTogether to have a chance to win one!
-           </span>
-        </div>
-      </v-row>
-      <v-row justify="center" class="pt-15" style="margin-top: 100px"
+        <v-row justify="center">
+          <nft-select-card
+            :nft="nft"
+            v-for="nft in nftsToClaim"
+            :key="nft.id * Math.random()"
+            class="ma-5"
+            :withdrawFromPool="false"
+            :hideSelect="true"
+            :claim="true"
+            @claimNft="handleClaim"
+          />
+          <v-row v-if="nftsToClaimLoading" justify="center" class="my-3">
+            <v-progress-circular
+              size="40"
+              indeterminate
+              color="black"
+            ></v-progress-circular>
+          </v-row>
+          <div v-else-if="nftsToClaim.length === 0" class="text-body-2 my-50 mt-10 mb-10" style="text-align: center">
+             <span style="font-size: 13px; text-align: center">
+            No SNAFU Prizes found in your wallet. <br />
+            Partecipate in our PoolTogether to have a chance to win one!
+             </span>
+          </div>
+        </v-row>
+      </v-col>
+      <v-col cols="6">
+        <v-row justify="center"
+          >
+            <h2>REDEEM</h2>
+          </v-row
         >
-          <h2>REDEEM</h2>
-        </v-row
-      >
 
-      <v-row justify="center">
-        <nft-select-card
-          :nft="nft"
-          v-for="nft in posterNftsToBurn"
-          :key="nft.id"
-          class="ma-5"
-          :withdrawFromPool="false"
-          :hideSelect="true"
-          :claim="false"
-          :burn="true"
-          @burnNft="handleBurn"
-        />
-        <v-row v-if="posterNftsLoading" justify="center" class="my-3">
-          <v-progress-circular
-            size="40"
-            indeterminate
-            color="black"
-          ></v-progress-circular>
+        <v-row justify="center">
+          <nft-select-card
+            :nft="nft"
+            v-for="nft in posterNftsToBurn"
+            :key="nft.id"
+            class="ma-5"
+            :withdrawFromPool="false"
+            :hideSelect="true"
+            :claim="false"
+            :burn="true"
+            @burnNft="handleBurn"
+          />
+          <v-row v-if="posterNftsLoading" justify="center" class="my-3">
+            <v-progress-circular
+              size="40"
+              indeterminate
+              color="black"
+            ></v-progress-circular>
+          </v-row>
+          <div v-else-if="posterNftsToBurn.length === 0" class="text-body-2 my-50 mt-10 mb-10" style="text-align: center">
+            <span style="font-size: 13px; text-align: center">Here will appear your SNAFU NFTs redeemable for psyhical items found in your wallet. <br />
+              Partecipate in our PoolTogether to have a chance to win one!</span>
+          </div>
         </v-row>
-        <div v-else-if="posterNftsToBurn.length === 0" class="text-body-2 my-50 mt-10 mb-10" style="text-align: center">
-          <span style="font-size: 13px; text-align: center">Here will appear your SNAFU NFTs redeemable for psyhical items found in your wallet. <br />
-            Partecipate in our PoolTogether to have a chance to win one!</span>
-        </div>
+      </v-col>
       </v-row>
-
-      <v-row no-gutters class="pt-10 justify-center">
-
-      </v-row>
-
       <confirm-claim-modal
         :show="showConfirmClaim"
         @updateDialog="() => (showConfirmClaim = false)"
@@ -98,12 +102,14 @@ import ConfirmClaimModal from "../components/Claim/ConfirmClaimModal.vue";
 import ConfirmBurnModal from "../components/Claim/ConfirmBurnModal.vue";
 import ClaimForm from '../components/Claim/ClaimForm.vue';
 import WalletStatus from "../components/Wallet/WalletStatus"
+import Banner from "../components/Claim/Banner"
 
 export default {
   components: { NftSelectCard, ConfirmClaimModal,
     // ClaimForm,
     ConfirmBurnModal,
     WalletStatus,
+    Banner
   },
   data() {
     return {
