@@ -46,7 +46,8 @@
       </v-form>
     </v-card-text>
     <v-card-actions class="justify-center">
-        <v-btn color="black" class="white--text" :disabled="!validForm" :loading="loading" large @click="submitInformation"> Submit </v-btn>
+        <vue-recaptcha :sitekey="recaptchaSiteKey" :loadRecaptchaScript="true" @verify="handleCaptcha"></vue-recaptcha>
+        <v-btn color="black" class="white--text" :disabled="!validForm || !recaptchaResponse" :loading="loading" large @click="submitInformation"> Submit </v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -55,9 +56,16 @@
 import { mapGetters } from 'vuex';
 import { ethers } from 'ethers';
 import { mapFields } from 'vuex-map-fields';
+import VueRecaptcha from 'vue-recaptcha';
+import {recaptchaSiteKey} from "@/utils/constants"
 export default {
+    components:{
+        VueRecaptcha
+    },
   data() {
     return {
+      recaptchaSiteKey,
+      recaptchaResponse: null,
       validForm: false,
       loading: false, 
       rules:{
@@ -77,9 +85,12 @@ export default {
   },
   computed:{
       ...mapGetters("connectweb3", ["getUserSigner"]),
-      ...mapFields("prizeContract", ["formData"])
+      ...mapFields("prizeContract", ["formData"]),
   },
   methods: {
+      handleCaptcha(res){
+          this.recaptchaResponse = res;
+      },
       submitInformation(){
           this.loading = true;
           let payload = JSON.stringify(this.formData);
