@@ -22,8 +22,8 @@ const routes = [
         component: () => import('../views/Wallet.vue'),
     },
     {
-        path: '/pool',
-        name: 'Pool',
+        path: '/swap',
+        name: 'Swap',
         component: Home,
     },
     {

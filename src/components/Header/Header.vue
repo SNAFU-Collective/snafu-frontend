@@ -11,7 +11,7 @@
       <p id="subtitle"><router-link :to="{ name: 'Home'}">Community Pool</router-link></p>
       <div id="menuDesktop">
         <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
-        <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
+        <router-link class="backHome" :to="{ name: 'Swap'}">SWAP</router-link>
         <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
         <router-link class="backHome" :to="{ name: 'Claim'}">PRIZES</router-link>
         <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
@@ -37,7 +37,7 @@
       <div id="menuMobile">
         <Slide right :closeOnNavigation="true"  @openMenu="handleOpenMenu" @closeMenu="handleCloseMenu" :width=windowWidth>
           <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
-          <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
+          <router-link class="backHome" :to="{ name: 'Swap'}">SWAP</router-link>
           <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
           <router-link class="backHome" :to="{ name: 'Claim'}">PRIZES</router-link>
           <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
