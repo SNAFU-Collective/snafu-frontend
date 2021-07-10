@@ -8,7 +8,7 @@
         <img src="logo.png" alt="logo-SNAFU.png" id="logo">
       </div>
 
-      <p id="subtitle"><router-link :to="{ name: 'Home'}">Community Pool</router-link></p>
+      <p id="subtitle">{{ currentRouteName }}</p>
       <div id="menuDesktop">
         <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
         <router-link class="backHome" :to="{ name: 'Swap'}">SWAP</router-link>
@@ -71,9 +71,11 @@ export default {
       windowWidth: window.innerWidth.toString(),
     }
   },
-  created() {
-    console.log('route',  this.$route.params);
-  },
+  computed: {
+    currentRouteName() {
+      return this.$route.meta.headerSubtitle;
+    }
+  }
 }
 </script>
 
