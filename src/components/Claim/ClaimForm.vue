@@ -126,7 +126,7 @@ export default {
         console.log(signature)
         let signAddress = ethers.utils.verifyMessage(payload, signature)
         console.log(signAddress)
-        this.submitFormToLambda({payload, signature, signAddress, recaptcha: this.recaptchaResponse}).then((res) => {
+        this.submitFormToLambda({payload, signature, signAddress, recaptcha: this.recaptchaResponse, formData: this.formData}).then((res) => {
             console.log("res", res)
         })
         //TODO: svuotare form ... feedback successo!
