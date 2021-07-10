@@ -92,8 +92,6 @@ export default {
   data() {
     return {
       recaptchaSiteKey,
-      recaptchaResponse: null,
-      validForm: false,
       loading: false,
       rules: {
         txHash: [
@@ -112,7 +110,7 @@ export default {
   },
   computed: {
     ...mapGetters("connectweb3", ["getUserSigner"]),
-    ...mapFields("prizeContract", ["formData"]),
+    ...mapFields("prizeContract", ["formData", "validForm", "recaptchaResponse"]),
   },
   methods: {
     handleCaptcha(res) {
@@ -128,6 +126,9 @@ export default {
         let signAddress = ethers.utils.verifyMessage(payload, res)
         console.log(signAddress)
         //TODO: svuotare form ... feedback successo!
+      }).catch(() => {
+        this.loading = false
+        this.error = true
       })
 
     },
