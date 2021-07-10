@@ -15,19 +15,20 @@
       </v-row>
       <v-row justify="center" class="pt-10"><strong>Your NFTs</strong></v-row>
       <v-row v-if="nfts" justify="center"><strong>Total: {{nfts.length}}</strong></v-row>
-      <v-row v-if="nfts">
-        <v-col no-gutters align="center" justify="center">
-          <v-tooltip bottom color="rgb(0 0 0 / 89%)">
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn v-bind="attrs" v-on="on" small dark @click="openTransferNftModal">
-                Transfer
-                <v-icon size="15px" style="width: 20px">mdi-send</v-icon>
-              </v-btn>
-            </template>
-            <span>Transfer one or multiple NFTs</span>
-          </v-tooltip>
-        </v-col>
-      </v-row>
+<!--      TODO: Refactor Transfer-->
+<!--      <v-row v-if="nfts">-->
+<!--        <v-col no-gutters align="center" justify="center">-->
+<!--          <v-tooltip bottom color="rgb(0 0 0 / 89%)">-->
+<!--            <template v-slot:activator="{ on, attrs }">-->
+<!--              <v-btn v-bind="attrs" v-on="on" small dark @click="openTransferNftModal">-->
+<!--                Transfer-->
+<!--                <v-icon size="15px" style="width: 20px">mdi-send</v-icon>-->
+<!--              </v-btn>-->
+<!--            </template>-->
+<!--            <span>Transfer one or multiple NFTs</span>-->
+<!--          </v-tooltip>-->
+<!--        </v-col>-->
+<!--      </v-row>-->
       <v-row justify="center">
         <nft-select-card
             :nft="nft"
