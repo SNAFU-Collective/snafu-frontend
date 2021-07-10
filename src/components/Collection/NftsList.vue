@@ -19,8 +19,8 @@
       ></v-progress-circular>
     </v-row>
 
-    <v-row justify="center" class="pt-15">
-      <h2>SNAFU Collective's NFTs</h2>
+    <v-row justify="center" style="padding-top: 100px">
+      <h2>Catalog</h2>
     </v-row>
     <v-row justify="center" class="pt-15 filters-row">
       <v-btn small v-on:click="filter('all')" style="margin: 10px"

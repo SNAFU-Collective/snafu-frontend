@@ -3,7 +3,6 @@
     <v-container>
       <v-row id="mainRow" justify="center" style="display: grid; padding-top: 100px">
         <wallet-status class="mt-5 pb-2"/>
-        <swap-card />
       </v-row>
     </v-container>
     <v-container>
@@ -13,7 +12,7 @@
         style="padding-top: 70px; display: grid"
       >
       </v-row>
-      <v-row justify="center"  class="pt-15">
+      <v-row justify="center">
         <h2>CLAIM</h2>
       </v-row>
       <v-row justify="center">
@@ -67,7 +66,7 @@
           ></v-progress-circular>
         </v-row>
         <div v-else-if="posterNftsToBurn.length === 0" class="text-body-2 my-50 mt-10 mb-10" style="text-align: center">
-          <span style="font-size: 13px; text-align: center">Here will appear your SNAFU Prizes found in your wallet. <br />
+          <span style="font-size: 13px; text-align: center">Here will appear your SNAFU NFTs redeemable for psyhical items found in your wallet. <br />
             Partecipate in our PoolTogether to have a chance to win one!</span>
         </div>
       </v-row>

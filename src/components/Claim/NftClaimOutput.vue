@@ -7,8 +7,8 @@
       </v-col>
     </v-row>
     <v-row no-gutters align-content="center" class="pt-1 ml-n3">
-      <v-col cols="4" class="whiteBorder pl-1">
-        <div v-if="selectedNft && selectedNft.editions">
+      <v-col cols="7" class="whiteBorder pl-1" style="display:flex;">
+        <div v-if="selectedNft && selectedNft.editions" style="max-width:50px">
         <v-numeric
           hide-details="auto"
           outlined
@@ -18,7 +18,7 @@
           :readonly="disableActions"
         ></v-numeric>
         </div>
-        <div v-else>
+        <div v-else style="max-width:50px">
         <v-text-field
           hide-details="auto"
           outlined
@@ -27,9 +27,11 @@
           :readonly="true"
         ></v-text-field>
         </div>
+        <div style="padding-top: 16px;">
+          <span style="font-size: 1.6em !important; ">SNAFU NFT</span>
+        </div>
       </v-col>
-      <v-col cols="4" />
-      <v-col cols="4" @click="openSelectNftModal" :style="pointerStyle">
+      <v-col cols="5" @click="openSelectNftModal" :style="pointerStyle">
         <div v-if="selectedNft">
           <v-row no-gutters>
             <v-img

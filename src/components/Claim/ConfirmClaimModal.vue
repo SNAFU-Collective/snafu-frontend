@@ -14,6 +14,15 @@
       <div v-if="!loading && !confirmed && !error">
         <v-card-text class="pt-3">
           <v-row
+              no-gutters
+              class="ont-weight-bold pt-8 pb-4"
+              justify="center"
+              style="text-align: center"
+          >
+            By claiming this PRIZE you will receive a SNAFU NFT which you will use
+            to swap, sell or redeem the prize, if any.
+          </v-row>
+          <v-row
             no-gutters
             class="text-caption font-weight-bold pt-8"
             justify="center"
@@ -47,6 +56,11 @@
           </v-row>
           <v-row no-gutters justify="center" class="py-4 text-body-1">
             Transaction in progress
+          </v-row>
+          <v-row no-gutters justify="center" class="mt-n3">
+            <a :href="txUrl" target="_blank" style="color: black">
+              View Details on Blockscout
+            </a>
           </v-row>
         </v-card-text>
       </div>
