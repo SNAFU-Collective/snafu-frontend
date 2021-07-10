@@ -17,9 +17,9 @@
       <h1>Latest releases</h1>
     </v-row>
     <v-row v-if="allNFTs.length !== 0" class="mt-5">
-      <nft-card :key="allNFTs.find(x => x.id === '101').id" :nft="allNFTs.find(x => x.id === '101')" :cardSize=300
+      <nft-card :key="allNFTs.find(x => x.id === '125').id" :nft="allNFTs.find(x => x.id === '125')" :cardSize=300
                 class="ma-6"/>
-      <nft-card :key="allNFTs.find(x => x.id === '80').id" :nft="allNFTs.find(x => x.id === '80')" :cardSize=300
+      <nft-card :key="allNFTs.find(x => x.id === '101').id" :nft="allNFTs.find(x => x.id === '101')" :cardSize=300
                 class="ma-6"/>
       <nft-card :key="allNFTs.find(x => x.id === '77').id" :nft="allNFTs.find(x => x.id === '77')" :cardSize=300
                 class="ma-6"/>
@@ -105,10 +105,10 @@ export default {
           src: 'https://s3.eu-central-1.amazonaws.com/snafu.prod/discord-banner.png',
           mobileSrc: 'https://s3.eu-central-1.amazonaws.com/snafu.prod/discord-banner-mobile.png',
         },
-        {
-          src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
-          mobileSrc: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
-        },
+        // {
+        //   src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+        //   mobileSrc: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+        // },
       ],
     }
   },
