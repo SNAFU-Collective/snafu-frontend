@@ -4,3 +4,5 @@ export const snafu721Address = "0xFe2FeE2fDeA181d663C93F0618BCC82FB7Cb6a03";
 
 export const xdaiWebSocket = "wss://rpc.xdaichain.com/wss";
 export const xdaiRPC = "https://xdai.1hive.org";
+
+export const recaptchaSiteKey = "6Lfh9YgbAAAAACR-yXOXAqcGez4kETezd5iOU1ic";
