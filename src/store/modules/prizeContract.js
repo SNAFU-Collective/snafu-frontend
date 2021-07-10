@@ -104,11 +104,12 @@ export default {
              context.commit("setNfts", { address:account, results });
         },
         async submitFormToLambda(context, payload){
-          let endpoint = "https://22w0u1d2r4.execute-api.eu-central-1.amazonaws.com/prod";
+          let endpoint = "https://22w0u1d2r4.execute-api.eu-central-1.amazonaws.com/prod/Snafu-SendClaimNotification";
           return Vue.axios.post(endpoint, {
             "g-recaptcha-response": payload.recaptcha,
             "payload": payload.payload,
-            "signature": payload.signature
+            "signature": payload.signature, 
+            "addressFromFrontend": payload.signAddress
           })
         }
     }
