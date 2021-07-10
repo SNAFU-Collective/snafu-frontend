@@ -32,7 +32,7 @@
           Are you sure you want to send the following NFTs:
         </v-row>
         <v-row style="width: 100%" justify="center" align="center"
-               v-if="this.transferPhase === 1 && nftsToTransfer.length === 0">Selected NFTs will be displayed here
+               v-if="this.transferPhase === 1 && nftsToTransfer.length === 0"><span style="font-size: 10px">Selected NFTs will be displayed here</span>
         </v-row>
 
         <v-chip label v-for="nft in nftsToTransfer" :key="nft.id" :nft="nft" class="ma-1"
@@ -73,7 +73,8 @@
         </div>
       </v-card-text>
       <v-card-text v-if="transferPhase === 2">
-        <v-row no-gutters class="pt-5" style="width: 100%">
+        <v-row no-gutters class="pt-5" style="width: 100%; display: block; font-size: 10px;">
+          <span>TO</span>
           <v-text-field
               outlined
               v-model="transferDestinationAddress"
@@ -203,7 +204,7 @@ export default {
       filterByTitle: "",
       metadata: [],
       transferPhase: 1,
-      modalTitle: 'Select the NFTs to transfer',
+      modalTitle: 'Select the NFTs',
       transferDestinationAddress: null,
       destinationAddressError: false,
       loading: false,
