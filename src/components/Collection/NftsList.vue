@@ -105,10 +105,10 @@ export default {
           src: 'https://s3.eu-central-1.amazonaws.com/snafu.prod/discord-banner.png',
           mobileSrc: 'https://s3.eu-central-1.amazonaws.com/snafu.prod/discord-banner-mobile.png',
         },
-        // {
-        //   src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
-        //   mobileSrc: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
-        // },
+        {
+          src: 'https://s3.eu-central-1.amazonaws.com/snafu.prod/pool-banner.png',
+          mobileSrc: 'https://s3.eu-central-1.amazonaws.com/snafu.prod/pool-banner-mobile.png',
+        },
       ],
     }
   },
