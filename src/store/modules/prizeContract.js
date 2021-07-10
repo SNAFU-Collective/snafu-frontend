@@ -1,6 +1,4 @@
 import { getField, updateField } from 'vuex-map-fields';
-import { snafu20Address } from "../../utils/constants"
-import { ethers } from "ethers";
 import Vue from "vue"
 //Block when the erc721 was deployed
 const minBlock = 14958798;
@@ -100,7 +98,14 @@ export default {
               }  
 
              context.commit("setNfts", { address:account, results });
-
         },
+        async submitFormToLambda(context, payload){
+          let endpoint = "https://22w0u1d2r4.execute-api.eu-central-1.amazonaws.com/prod";
+          return Vue.axios.post(endpoint, {
+            "g-recaptcha-response": payload.recaptcha,
+            "payload": payload.payload,
+            "signature": payload.signature
+          })
+        }
     }
 }
