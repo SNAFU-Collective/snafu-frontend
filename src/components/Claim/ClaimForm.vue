@@ -60,7 +60,7 @@
       </v-row>
 
       <v-row justify="center" class="mt-10">
-        <v-btn v-if="showSignBtn" color="black" class="white--text" :disabled="!validForm" :loading="loading" large
+        <v-btn v-if="showSignBtn" color="black" class="white--text" :disabled="!validForm || !recaptchaResponse" :loading="loading" large
                @click="submitInformation"> Submit
         </v-btn>
       </v-row>
@@ -92,8 +92,6 @@ export default {
   data() {
     return {
       recaptchaSiteKey,
-      recaptchaResponse: null,
-      validForm: false,
       loading: false,
       rules: {
         txHash: [
@@ -113,7 +111,7 @@ export default {
   },
   computed: {
     ...mapGetters("connectweb3", ["getUserSigner"]),
-    ...mapFields("prizeContract", ["formData"]),
+    ...mapFields("prizeContract", ["formData", "validForm", "recaptchaResponse"]),
   },
   methods: {
     ...mapActions("prizeContract", ["submitFormToLambda"]),
@@ -131,7 +129,11 @@ export default {
         this.submitFormToLambda({payload, signature, signAddress, recaptcha: this.recaptchaResponse}).then((res) => {
             console.log("res", res)
         })
-        })
+        //TODO: svuotare form ... feedback successo!
+      }).catch(() => {
+        this.loading = false
+        this.error = true
+      })
 
     },
   },

@@ -11,11 +11,15 @@ export default {
     namespaced: true,
     state: {
         allNFTs: [],
-        formData: {},
+        formData: {
+            burnTxHash: null
+        },
         selectedNft: null,
         selectedNftMetadata: null,
         selectedQuantity: 0,
-        withdrawFromPool: true
+        withdrawFromPool: true,
+        recaptchaResponse: null,
+        validForm: false,
     },
     getters: {
         getField,
