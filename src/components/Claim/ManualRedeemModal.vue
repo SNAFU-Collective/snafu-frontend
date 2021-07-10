@@ -1,14 +1,15 @@
 <template>
   <div>
-    <v-dialog v-model="showModal" max-width="550px" scrollable persistent >
+    <v-dialog v-model="showModal" max-width="550px" scrollable persistent>
       <v-card color="#F5F5F5">
         <v-card-title>
           <v-row no-gutters
-          ><v-col offset="1" cols="10" class="text-center">
-            Confirm Redeem
-          </v-col>
+          >
+            <v-col offset="1" cols="10" class="text-center">
+              Confirm Redeem
+            </v-col>
             <v-col cols="1">
-              <v-icon class="pl-3 pb-2" @click="closeModal"> mdi-close </v-icon>
+              <v-icon class="pl-3 pb-2" @click="closeModal"> mdi-close</v-icon>
             </v-col>
           </v-row>
         </v-card-title>
@@ -36,13 +37,13 @@
 
 <script>
 
-import ClaimForm from './ClaimForm.vue';
+import ClaimForm from './ClaimForm.vue'
+import {mapFields} from "vuex-map-fields"
 
 export default {
-  components: { ClaimForm},
+  components: {ClaimForm},
   data() {
-    return {
-    };
+    return {}
   },
   props: {
     show: {
@@ -51,21 +52,36 @@ export default {
     },
   },
   computed: {
+    ...mapFields("prizeContract", ["formData", "validForm", "recaptchaResponse"]),
     showModal: {
       get() {
-        return this.show;
+        return this.show
       },
       set(val) {
-        this.$emit("updateDialog", false);
+        this.$emit("updateDialog", false)
       },
     },
   },
   methods: {
     closeModal() {
-      this.$emit("updateDialog", false);
+      this.resetModal()
+      this.$emit("updateDialog", false)
     },
-  }
-};
+    resetModal() {
+      this.loading = false
+      this.confirmed = false
+      this.error = false
+      this.errorMessage = null
+
+      this.txHash = null
+      this.formData = {
+        burnTxHash: null
+      }
+      this.recaptchaResponse = null
+      this.validForm = null
+    },
+  },
+}
 </script>
 
 <style>

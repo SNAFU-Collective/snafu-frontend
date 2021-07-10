@@ -60,7 +60,7 @@
       </v-row>
 
       <v-row justify="center" class="mt-10">
-        <v-btn v-if="showSignBtn" color="black" class="white--text" :disabled="!validForm" :loading="loading" large
+        <v-btn v-if="showSignBtn" color="black" class="white--text" :disabled="!validForm || !recaptchaResponse" :loading="loading" large
                @click="submitInformation"> Submit
         </v-btn>
       </v-row>

@@ -251,7 +251,9 @@ export default {
       this.errorMessage = null
 
       this.txHash = null
-      this.formData = {}
+      this.formData = {
+        burnTxHash: null
+      }
       this.recaptchaResponse = null
       this.validForm = null
     },
