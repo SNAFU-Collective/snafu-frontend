@@ -10,32 +10,47 @@
               width="120"
             />
           </v-col>
-          <v-col cols="4" class="nft-details" :style="!withdrawFromPool ? '' : 'margin-top: 0px;'">
-            <v-row no-gutters class="text-subtitle-2 truncate" style="font-weight: bold;">
+          <v-col
+            cols="4"
+            class="nft-details"
+            :style="!withdrawFromPool ? '' : 'margin-top: 0px;'"
+          >
+            <v-row
+              no-gutters
+              class="text-subtitle-2 truncate"
+              style="font-weight: bold"
+            >
               {{ metadata.name }}
             </v-row>
-            <div class="text-caption" :style="!withdrawFromPool ? '' : 'line-height: 21px;'">
+            <div
+              class="text-caption"
+              :style="!withdrawFromPool ? '' : 'line-height: 21px;'"
+            >
               <v-row no-gutters> Token ID: {{ nft.id }} </v-row>
               <v-row no-gutters> Editions: {{ metadata.editions }} </v-row>
-              <v-row no-gutters style="white-space: nowrap;">
-                Value: {{ nftValue | truncatePrice}} SNAFU</v-row
+              <v-row no-gutters style="white-space: nowrap">
+                Value: {{ nftValue | truncatePrice }} SNAFU</v-row
               >
-              <v-row no-gutters v-if="withdrawFromPool"  class="text-caption">
-                Owned: {{ownedEditions}}
+              <v-row no-gutters v-if="withdrawFromPool" class="text-caption">
+                Owned: {{ ownedEditions }}
               </v-row>
               <v-row no-gutters v-if="!isSwap">
                 <a
                   :href="metadata.external_url"
                   target="_blank"
                   style="color: black"
-                  :style="!hideSelect ? '' : ' margin-top:20px'"
+                  :style="!hideSelect || claim || burn ? '' : ' margin-top:20px'"
                 >
                   View Details
                 </a>
               </v-row>
             </div>
           </v-col>
-          <v-col cols="4" class="d-flex flex-column" :style="withdrawFromPool ? '' : 'margin-bottom: 20px;'">
+          <v-col
+            cols="4"
+            class="d-flex flex-column"
+            :style="withdrawFromPool ? '' : 'margin-bottom: 20px;'"
+          >
             <v-row
               no-gutters
               class="text-caption font-weight-bold mr-2"
@@ -45,15 +60,39 @@
               {{ nft.editions }} Available
             </v-row>
             <v-row
-                no-gutters
-                class="text-caption font-weight-bold mr-2"
-                justify="end"
-                v-if="!withdrawFromPool"
+              no-gutters
+              class="text-caption font-weight-bold mr-2"
+              justify="end"
+              v-if="!withdrawFromPool"
             >
               Owned: {{ nft.editions }}
             </v-row>
-            <v-row no-gutters align="end" justify="end" v-if="!hideSelect" class="mr-2">
+            <v-row
+              no-gutters
+              align="end"
+              justify="end"
+              v-if="!hideSelect"
+              class="mr-2"
+            >
               <v-btn small dark @click="selectNft"> SELECT </v-btn>
+            </v-row>
+            <v-row
+              no-gutters
+              align="end"
+              justify="end"
+              v-if="claim"
+              class="mr-2"
+            >
+              <v-btn small dark @click="claimNft"> CLAIM </v-btn>
+            </v-row>
+            <v-row
+              no-gutters
+              align="end"
+              justify="end"
+              v-if="burn"
+              class="mr-2"
+            >
+              <v-btn small dark @click="burnNft"> BURN </v-btn>
             </v-row>
           </v-col>
         </v-row>
@@ -64,7 +103,7 @@
 
 <script>
 import axios from "axios";
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   props: {
@@ -72,39 +111,53 @@ export default {
       type: Object,
       required: true,
     },
-    withdrawFromPool:{
+    withdrawFromPool: {
       type: Boolean,
-      default: false
+      default: false,
     },
-    hideSelect:{
+    hideSelect: {
       type: Boolean,
-      default: false
+      default: false,
     },
     isSwap: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
+    claim: {
+      type: Boolean,
+      default: false,
+    },
+    burn: {
+      type: Boolean,
+      default: false,
+    },
   },
-  computed:{
+  computed: {
     ...mapGetters("nftContract", ["getUserBalance"]),
-    nftValue(){
-      if(this.withdrawFromPool || !this.isSwap){
+    nftValue() {
+      if (this.withdrawFromPool || !this.isSwap) {
         return +this.metadata.price + +this.metadata.fee;
-      }else{
-        return +this.metadata.price
+      } else {
+        return +this.metadata.price;
       }
     },
-    ownedEditions(){
-            if(this.withdrawFromPool){
-              return this.getUserBalance(this.nft.id);
-            }else{
-              return 0;
-            }
-    }
+    ownedEditions() {
+      if (this.withdrawFromPool) {
+        return this.getUserBalance(this.nft.id);
+      } else {
+        return 0;
+      }
+    },
   },
-  methods:{
-    selectNft(){
-      this.$emit("selectNft", {nft: this.nft, metadata: this.metadata});
+  methods: {
+    selectNft() {
+      this.$emit("selectNft", { nft: this.nft, metadata: this.metadata });
+    },
+    claimNft() {
+      this.$emit("claimNft", { nft: this.nft, metadata: this.metadata });
+    },
+    burnNft() {
+      this.$emit("burnNft", { nft: this.nft, metadata: this.metadata });
     }
   },
   data() {

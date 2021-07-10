@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import connectweb3 from "./modules/connectweb3"
 import nftContract from "./modules/nftContract"
+import prizeContract from "./modules/prizeContract"
 import transferNFTs from "./modules/transferNFTs"
 
 import { getField, updateField } from 'vuex-map-fields';
@@ -22,6 +23,7 @@ export default new Vuex.Store({
   modules: {
     connectweb3,
     nftContract,
+    prizeContract,
     transferNFTs
   }
 })

@@ -26,6 +26,11 @@ const routes = [
     name: 'Pool',
     component: Home
   },
+    path: '/claim',
+    name: 'Claim',
+    component: () => import('../views/Claim.vue')
+  },
+  {
   {
     path: '/leaderboard',
     name: 'Leaderboard',
