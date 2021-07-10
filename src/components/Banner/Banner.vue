@@ -1,16 +1,16 @@
 <template>
   <v-card
       class="mx-auto"
-      style="background-image: url('https://pooltogether.com/pooltogether-facebook-share-image-1200-630@2x.png'); height: 300px;background-position: center; background-size: cover;"
+      :style="cardBackgroundStyle"
   >
-
     <div class="bannerBox">
-      <span class="bannerSubtitle">
-        Participate in the SNAFU no-loss prize games on PoolTogether to win exclusive NFTs and physical items!
+      <span v-if="text" class="bannerSubtitle">
+       {{ text }}
       </span>
       <v-btn
           class="bannerBtn"
           light
+          v-if="showActionBtn"
       >
         PARTICIPATE
       </v-btn>
@@ -23,6 +23,31 @@ export default {
   data: () => ({
     show: false,
   }),
+  props: {
+    src: {
+      type: String,
+      default: '',
+    },
+    mobileSrc: {
+      type: String,
+      default: '',
+    },
+    text: {
+      type: String,
+      default: '',
+    },
+    showActionBtn: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  computed: {
+    cardBackgroundStyle() {
+      console.log(window.innerWidth)
+      let source = window.innerWidth > 726 ? this.src : this.mobileSrc
+      return 'background-image: url(' + source + '); height: 300px;background-position: center; background-size: cover;'
+    },
+  },
 }
 </script>
 
@@ -46,17 +71,20 @@ export default {
     max-width: 490px;
   }
 }
+
 .bannerBox {
   position: absolute;
   bottom: 30px;
   left: 30px;
   display: grid;
 }
+
 .bannerSubtitle {
   border-radius: 3px;
   color: white;
   font-weight: 500;
-  background-color: rgba(0, 0, 0, 0.54); padding: 5px;
+  background-color: rgba(0, 0, 0, 0.54);
+  padding: 5px;
 }
 
 .bannerBtn {

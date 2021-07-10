@@ -1,5 +1,18 @@
 <template>
-  <div class="allNFTsContainer">
+  <div id="mainNftsDive">
+    <v-row>
+      <v-carousel hide-delimiters cycle style="height: 300px">
+        <v-carousel-item v-for="(item, i) in carouselItems"  :key="i">
+          <banner
+              :src="item.src"
+              :mobile-src="item.mobileSrc"
+              :text="item.text"
+              :showActionBtn="false"
+          ></banner>
+        </v-carousel-item>
+      </v-carousel>
+    </v-row>
+
     <v-row class="pt-15" justify="center">
       <h1>Latest releases</h1>
     </v-row>
@@ -20,7 +33,7 @@
     </v-row>
 
     <v-row justify="center" style="padding-top: 100px">
-      <h2>Catalog</h2>
+      <h1>Catalog</h1>
     </v-row>
     <v-row justify="center" class="pt-15 filters-row">
       <v-btn small v-on:click="filter('all')" style="margin: 10px"
@@ -69,9 +82,10 @@
 <script>
 import NftCard from "./NftCard.vue"
 import {mapFields} from "vuex-map-fields"
+import Banner from "../Banner/Banner"
 
 export default {
-  components: {NftCard},
+  components: {NftCard, Banner},
   data() {
     return {
       currentPage: 1,
@@ -86,6 +100,16 @@ export default {
         collection2Farming: [108, 109, 110, 112, 113, 114, 115, 116, 117, 118, 119, 120, 122, 123],
         communityPool: [106, 125],
       },
+      carouselItems: [
+        {
+          src: 'https://s3.eu-central-1.amazonaws.com/snafu.prod/discord-banner.png',
+          mobileSrc: 'https://s3.eu-central-1.amazonaws.com/snafu.prod/discord-banner-mobile.png',
+        },
+        {
+          src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+          mobileSrc: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+        },
+      ],
     }
   },
   computed: {
@@ -148,14 +172,17 @@ export default {
 
 <style>
 @media screen and (min-width: 768px) {
-  .allNFTsContainer {
-    margin-top: 40px;
+  #mainNftsDive {
+    margin-top: 100px;
   }
 }
 
 @media screen and (max-width: 768px) {
   .filters-row {
     margin: 0 10%;
+  }
+  #mainNftsDive {
+    margin-top: 0px !important;
   }
 }
 

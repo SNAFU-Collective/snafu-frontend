@@ -6,7 +6,12 @@
       </v-row>
     </v-container>
     <v-container>
-      <banner></banner>
+      <banner
+          src="https://pooltogether.com/pooltogether-facebook-share-image-1200-630@2x.png"
+          mobile-src="https://pooltogether.com/pooltogether-facebook-share-image-1200-630@2x.png"
+          text="Participate in the SNAFU no-loss prize games on PoolTogether to win exclusive NFTs and physical items!"
+          showActionBtn
+      ></banner>
     </v-container>
     <v-container >
 
@@ -96,7 +101,7 @@ import ConfirmClaimModal from "../components/Claim/ConfirmClaimModal.vue";
 import ConfirmBurnModal from "../components/Claim/ConfirmBurnModal.vue";
 import ClaimForm from '../components/Claim/ClaimForm.vue';
 import WalletStatus from "../components/Wallet/WalletStatus"
-import Banner from "../components/Claim/Banner"
+import Banner from "../components/Banner/Banner"
 
 export default {
   components: { NftSelectCard, ConfirmClaimModal,
