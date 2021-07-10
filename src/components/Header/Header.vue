@@ -13,8 +13,8 @@
         <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
         <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
         <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
+        <router-link class="backHome" :to="{ name: 'Claim'}">CLAIM</router-link>
         <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
-        <router-link class="backHome" :to="{ name: 'Claim'}">CLAIM PRIZE</router-link>
 
 <!--        <a class="backHome" href="https://unifty.io/xdai/market-view.html?location=0x76E277F441610907477245F09b1cEd6C937c332E" target="_blank">MARKET <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>-->
         <a class="backHome" href="https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862" target="_blank">BUY SNAFU <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
@@ -31,7 +31,7 @@
           <img src="logo.png" alt="logo-SNAFU.png" id="logoMobile">
           <router-link :to="{ name: 'Home'}" id="snafuTextMobile">SNAFU</router-link>
         </div>
-        <p id="subtitleMobile"><router-link :to="{ name: 'Home'}">Community Pool</router-link></p>
+        <p id="subtitleMobile">Community Poo></p>
       </div>
 
       <div id="menuMobile">
@@ -39,8 +39,8 @@
           <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
           <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
           <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
+          <router-link class="backHome" :to="{ name: 'Claim'}">CLAIM</router-link>
           <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
-          <router-link class="backHome" :to="{ name: 'Claim'}">CLAIM PRIZE</router-link>
 <!--          <a class="backHome" href="https://unifty.io/xdai/market-view.html?location=0x76E277F441610907477245F09b1cEd6C937c332E" target="_blank">MARKET <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
           <a class="backHome" href="https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862" target="_blank">BUY SNAFU <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
           <a class="backHome" href="https://vote.nftsnafu.org" target="_blank">VOTE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
@@ -64,12 +64,15 @@ export default {
     },
     handleCloseMenu() {
       document.querySelector(".bm-burger-button").style.display = 'block'
-    }
+    },
   },
   data() {
     return {
       windowWidth: window.innerWidth.toString(),
     }
+  },
+  created() {
+    console.log('route',  this.$route.params);
   },
 }
 </script>
