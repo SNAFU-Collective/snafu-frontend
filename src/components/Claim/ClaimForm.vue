@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 import {ethers} from 'ethers'
 import {mapFields} from 'vuex-map-fields'
 import VueRecaptcha from 'vue-recaptcha'
@@ -95,7 +95,8 @@ export default {
       loading: false,
       rules: {
         txHash: [
-          v => !!v || 'Transaction hash is required',
+        
+        v => !!v || 'Transaction hash is required',
           v => /^0x([A-Fa-f0-9]{64})$/.test(v) || "Invalid Transaction Format",
         ],
         email: [
@@ -113,18 +114,21 @@ export default {
     ...mapFields("prizeContract", ["formData", "validForm", "recaptchaResponse"]),
   },
   methods: {
+    ...mapActions("prizeContract", ["submitFormToLambda"]),
     handleCaptcha(res) {
       this.recaptchaResponse = res
     },
     submitInformation() {
       this.loading = true
-      let payload = JSON.stringify(this.formData)
+      let payload = `Burn Transaction Hash: ${this.formData.burnTxHash}, Full Name: ${this.formData.fullName}, Email: ${this.formData.email}, Full Address: ${this.formData.address}, Additional Information: ${this.formData.additionalInformation}`;
       console.log(payload)
-      this.getUserSigner.signMessage(payload).then((res) => {
-        console.log(res)
-        this.loading = false
-        let signAddress = ethers.utils.verifyMessage(payload, res)
+      this.getUserSigner.signMessage(payload).then((signature) => {
+        console.log(signature)
+        let signAddress = ethers.utils.verifyMessage(payload, signature)
         console.log(signAddress)
+        this.submitFormToLambda({payload, signature, signAddress, recaptcha: this.recaptchaResponse}).then((res) => {
+            console.log("res", res)
+        })
         //TODO: svuotare form ... feedback successo!
       }).catch(() => {
         this.loading = false
