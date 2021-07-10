@@ -14,7 +14,7 @@
         <nft-select-card
           :nft="nft"
           v-for="nft in nftsToClaim"
-          :key="nft.id"
+          :key="nft.id * Math.random()"
           class="ma-5"
           :withdrawFromPool="false"
           :hideSelect="true"
