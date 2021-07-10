@@ -92,7 +92,7 @@
               v-if="burn"
               class="mr-2"
             >
-              <v-btn small dark @click="burnNft"> BURN </v-btn>
+              <v-btn small dark @click="burnNft"> REDEEM </v-btn>
             </v-row>
           </v-col>
         </v-row>

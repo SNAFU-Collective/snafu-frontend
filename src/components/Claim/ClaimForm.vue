@@ -1,26 +1,26 @@
 <template>
-  <v-card min-width="50%">
+  <v-card min-width="50%" style="border-shadow: none">
       <v-card-title  primary-title class="justify-center">
-          Submit Shipping Informations
+          Shipping Information
       </v-card-title>
     <v-card-text class="mt-5">
       <v-form v-model="validForm">
-        <v-row>
-          <v-text-field
-            v-model="formData.burnTxHash"
-            outlined
-            label="Token Burn Transaction Hash"
-            class="mx-10"
-            required
-            :rules="rules.txHash"
-          ></v-text-field>
-        </v-row>
+<!--        <v-row>-->
+<!--          <v-text-field-->
+<!--            v-model="formData.burnTxHash"-->
+<!--            outlined-->
+<!--            label="Token Burn Transaction Hash"-->
+<!--            class="mx-10"-->
+<!--            required-->
+<!--            :rules="rules.txHash"-->
+<!--          ></v-text-field>-->
+<!--        </v-row>-->
         <v-row>
           <v-text-field
             v-model="formData.fullName"
             outlined
             label="Full Name"
-            class="ml-10 mr-5"
+            class="mx-10"
             :rules="rules.required"
             required
           ></v-text-field>
@@ -28,7 +28,7 @@
             v-model="formData.email"
             outlined
             label="Email"
-            class="mr-10 mr-5"
+            class="mx-10"
             required
             :rules="rules.email"
           ></v-text-field>
@@ -46,7 +46,7 @@
       </v-form>
     </v-card-text>
     <v-card-actions class="justify-center">
-        <v-btn color="black" class="white--text" :disabled="!validForm" :loading="loading" large @click="submitInformation"> Submit </v-btn>
+<!--        <v-btn color="black" class="white&#45;&#45;text" :disabled="!validForm" :loading="loading" large @click="submitInformation"> Submit </v-btn>-->
     </v-card-actions>
   </v-card>
 </template>

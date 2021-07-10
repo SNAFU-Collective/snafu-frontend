@@ -72,7 +72,7 @@
       </v-row>
 
       <v-row no-gutters class="pt-10 justify-center">
-<!--      <claim-form />-->
+
       </v-row>
 
       <confirm-claim-modal

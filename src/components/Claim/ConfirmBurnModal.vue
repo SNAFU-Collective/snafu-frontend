@@ -1,18 +1,26 @@
 <template>
-  <v-dialog v-model="showModal" max-width="450px" persistent>
+  <v-dialog v-model="showModal" max-width="450px" scrollable persistent >
     <v-card color="#F5F5F5">
       <v-card-title>
         <v-row no-gutters
           ><v-col offset="1" cols="10" class="text-center">
-            Confirm Burn
+            Confirm Redeem
           </v-col>
           <v-col cols="1">
             <v-icon class="pl-3 pb-2" @click="closeModal"> mdi-close </v-icon>
           </v-col>
         </v-row>
       </v-card-title>
-      <div v-if="!loading && !confirmed && !error">
+      <div v-if="!loading && !confirmed && !error" style="overflow-y: auto">
         <v-card-text class="pt-3">
+          <v-row
+              no-gutters
+              class="ont-weight-bold pt-2 pb-0"
+              justify="center"
+              style="text-align: center"
+          >
+            In order to redeem the prize you will first need to burn the NFT, then fill the form and sign it with your wallet.
+          </v-row>
           <v-row
             no-gutters
             class="text-caption font-weight-bold pt-8"
@@ -28,10 +36,20 @@
               :withdrawFromPool="false"
             />
           </v-row>
+          <v-row
+              no-gutters
+              class="text-caption font-weight-bold pt-12"
+              justify="center"
+          >
+            And receive prize at the following address:
+          </v-row>
+          <v-row justify="center" >
+            <claim-form style="margin-top:10px; max-width: 90%" class="container white rounded-lg mx-3 container--fluid"/>
+          </v-row>
         </v-card-text>
         <v-card-actions>
           <v-row no-gutters justify="center" class="mb-2" @click="confirmClaim">
-            <v-btn dark large> Confirm </v-btn>
+            <v-btn dark large> Next </v-btn>
           </v-row>
         </v-card-actions>
       </div>
@@ -98,9 +116,10 @@
 import { mapActions, mapMutations } from "vuex";
 import NftClaimOutput from './NftClaimOutput.vue';
 import { mapFields } from 'vuex-map-fields';
+import ClaimForm from './ClaimForm.vue';
 
 export default {
-  components: { NftClaimOutput },
+  components: { NftClaimOutput,ClaimForm},
   data() {
     return {
       loading: false,
