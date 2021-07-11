@@ -42,6 +42,7 @@
                   :style="!hideSelect || claim || burn ? '' : ' margin-top:20px'"
                 >
                   View Details
+                  <v-icon style="font-size: 1em; padding-bottom: 2px; color:black"> mdi-open-in-new </v-icon>
                 </a>
               </v-row>
             </div>
