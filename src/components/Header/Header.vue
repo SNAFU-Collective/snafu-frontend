@@ -8,16 +8,19 @@
         <img src="logo.png" alt="logo-SNAFU.png" id="logo">
       </div>
 
-      <p id="subtitle"><router-link :to="{ name: 'Home'}">Community Pool</router-link></p>
+      <p id="subtitle">{{ currentRouteName }}</p>
       <div id="menuDesktop">
-        <router-link class="backHome" :to="{ name: 'Home'}">SWAP</router-link>
+        <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
+        <router-link class="backHome" :to="{ name: 'Swap'}">SWAP</router-link>
         <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
-        <router-link class="backHome" :to="{ name: 'Catalog'}">CATALOG</router-link>
+        <router-link class="backHome" :to="{ name: 'Claim'}">PRIZES</router-link>
         <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
+
 <!--        <a class="backHome" href="https://unifty.io/xdai/market-view.html?location=0x76E277F441610907477245F09b1cEd6C937c332E" target="_blank">MARKET <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>-->
         <a class="backHome" href="https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862" target="_blank">BUY SNAFU <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
         <a class="backHome" href="https://vote.nftsnafu.org" target="_blank">VOTE <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
         <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
+        <a class="backHome" href="https://xdai.unique.one/collections/0xED1eFC6EFCEAAB9F6d609feC89c9E675Bf1efB0a" target="_blank">MARKET <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
         <a class="backHome" href="https://nftsnafu.org" target="_blank">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
       </div>
 
@@ -29,19 +32,21 @@
           <img src="logo.png" alt="logo-SNAFU.png" id="logoMobile">
           <router-link :to="{ name: 'Home'}" id="snafuTextMobile">SNAFU</router-link>
         </div>
-        <p id="subtitleMobile"><router-link :to="{ name: 'Home'}">Community Pool</router-link></p>
+        <p id="subtitleMobile">{{ currentRouteName }}</p>
       </div>
 
       <div id="menuMobile">
         <Slide right :closeOnNavigation="true"  @openMenu="handleOpenMenu" @closeMenu="handleCloseMenu" :width=windowWidth>
-          <router-link class="backHome" :to="{ name: 'Home'}">SWAP</router-link>
+          <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
+          <router-link class="backHome" :to="{ name: 'Swap'}">SWAP</router-link>
           <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
-          <router-link class="backHome" :to="{ name: 'Catalog'}">CATALOG</router-link>
+          <router-link class="backHome" :to="{ name: 'Claim'}">PRIZES</router-link>
           <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
 <!--          <a class="backHome" href="https://unifty.io/xdai/market-view.html?location=0x76E277F441610907477245F09b1cEd6C937c332E" target="_blank">MARKET <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
           <a class="backHome" href="https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862" target="_blank">BUY SNAFU <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
           <a class="backHome" href="https://vote.nftsnafu.org" target="_blank">VOTE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
           <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
+          <a class="backHome" href="https://xdai.unique.one/collections/0xED1eFC6EFCEAAB9F6d609feC89c9E675Bf1efB0a" target="_blank">MARKET <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
           <a class="backHome" href="https://nftsnafu.org" target="_blank">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
         </Slide>
       </div>
@@ -61,13 +66,18 @@ export default {
     },
     handleCloseMenu() {
       document.querySelector(".bm-burger-button").style.display = 'block'
-    }
+    },
   },
   data() {
     return {
       windowWidth: window.innerWidth.toString(),
     }
   },
+  computed: {
+    currentRouteName() {
+      return this.$route.meta.headerSubtitle;
+    }
+  }
 }
 </script>
 

@@ -1,0 +1,115 @@
+<template>
+  <v-container fluid class="white rounded-lg">
+    <v-row no-gutters class="text-caption" v-if="!hideBalance">
+      <v-col cols="8"> Quantity </v-col>
+      <v-col cols="4" style="text-align: right">
+        Balance: {{ selectedNft ? selectedNft.editions : "-" }}
+      </v-col>
+    </v-row>
+    <v-row no-gutters align-content="center" class="pt-1 ml-n3">
+      <v-col cols="7" class="whiteBorder pl-1" style="display:flex;">
+        <div v-if="selectedNft && selectedNft.editions" style="max-width:50px">
+        <v-numeric
+          hide-details="auto"
+          outlined
+          v-model="selectedQuantity"
+          :maxValue="selectedNft.editions"
+          :disabled="!selectedNft"
+          :readonly="disableActions"
+        ></v-numeric>
+        </div>
+        <div v-else style="max-width:50px">
+        <v-text-field
+          hide-details="auto"
+          outlined
+          v-model="defaultQuantity"
+          :disabled="true"
+          :readonly="true"
+        ></v-text-field>
+        </div>
+        <div style="padding-top: 16px;">
+          <span style="font-size: 1.6em !important; ">SNAFU NFT</span>
+        </div>
+      </v-col>
+      <v-col cols="5" @click="openSelectNftModal" :style="pointerStyle">
+        <div v-if="selectedNft">
+          <v-row no-gutters>
+            <v-img
+              :src="'/nfts/' + selectedNft.id + '/image'"
+              height="50"
+              width="50"
+            />
+            <v-icon medium v-if="!hideBalance"> mdi-menu-down </v-icon>
+          </v-row>
+        </div>
+        <div v-else class="mt-2">
+          <v-row no-gutters>
+            <v-chip :style="pointerStyle">
+              Select NFT
+              <v-icon medium > mdi-menu-down </v-icon>
+            </v-chip>
+          </v-row>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
+
+<script>
+import { mapFields } from "vuex-map-fields";
+import VNumeric from '../Input/vNumeric.vue';
+
+export default {
+  components: { VNumeric },
+  props:{
+    disableActions:{
+      type: Boolean,
+      default: false
+    },
+    hideBalance:{
+      type: Boolean,
+      default: false
+    },
+    withdrawFromPool:{
+      type: Boolean,
+      default: false
+    }
+  },
+  data() {
+    return {
+      showModal: false,
+      defaultQuantity: 0
+    };
+  },
+  methods: {
+    openSelectNftModal() {
+      if(!this.disableActions){
+        this.showModal = true;
+      }
+    },
+  },
+  computed: {
+    ...mapFields("prizeContract", ["selectedNft", "selectedQuantity"]),
+    pointerStyle(){
+      if(this.disableActions){
+        return "cursor: not-allowed;"
+      }else{
+        return "cursor: pointer;"
+      }
+    }
+  },
+};
+</script>
+
+<style>
+.whiteBorder .v-text-field--outlined input {
+  text-align: left!important;;
+}
+.whiteBorder .v-text-field--outlined fieldset {
+  color: white !important;
+}
+
+.whiteBorder .v-text-field input {
+  font-size: 1.6em !important;
+}
+</style>

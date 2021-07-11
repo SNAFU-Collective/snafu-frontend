@@ -38,7 +38,7 @@ export default {
     };
   },
   mounted() {
-    console.log("maxValue", this.maxValue);
+    // console.log("maxValue", this.maxValue);
     // Create the AutoNumeric instance on the VTextField input element
     this.anElement = new AutoNumeric(this.$refs.input, this.anOptions);
     // Set the AutoNumeric  default value

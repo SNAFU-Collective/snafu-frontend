@@ -86,7 +86,7 @@ export default {
       leaderboard: [],
       lastUpdate: "",
       loading: true,
-      currentTag: "collection2",
+      currentTag: "all",
       addressToFilter: [
           "0x27B9C2Bd4BaEa18ABdF49169054c1C1c12af9862", //SNAFU POOL
           "0xEA912373bEf07E06F04fdE1d8218eb6C77cFF67A", //DAO

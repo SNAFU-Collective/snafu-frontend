@@ -91,7 +91,8 @@ export default {
                 if (typeof events[i] == 'object') {
                     for (let j = 0; j < events[i].args[3].length; j++) {
                         let nftIndex = nfts.find(n => n.id === events[i].args[3][j].toString())
-                        if (nftIndex === -1) {
+
+                        if (nftIndex === undefined) {
                             nfts.push({ id: events[i].args[3][j].toString() });
                         }
                     }
@@ -113,9 +114,8 @@ export default {
             results.sort((a, b) => {
                 return +b.id - +a.id
             })
-
+            
             context.commit("setNfts", { address, results });
-
         },
         async getAllNfts(context) {
             let erc1155 = context.rootGetters["connectweb3/getNftSnafu"];
@@ -137,6 +137,10 @@ export default {
                 return +b.id - +a.id;
             })
 
+            // Remove burned nfts from list
+            let burnedIds = ["90", "102", "121"]
+            nfts = nfts.filter((nft) => !burnedIds.includes(nft.id))
+            
             context.commit("setAllNfts", nfts);
         }
     }

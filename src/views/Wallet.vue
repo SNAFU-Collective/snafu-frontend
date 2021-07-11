@@ -15,6 +15,20 @@
       </v-row>
       <v-row justify="center" class="pt-10"><strong>Your NFTs</strong></v-row>
       <v-row v-if="nfts" justify="center"><strong>Total: {{nfts.length}}</strong></v-row>
+<!--      TODO: Refactor Transfer-->
+<!--      <v-row v-if="nfts">-->
+<!--        <v-col no-gutters align="center" justify="center">-->
+<!--          <v-tooltip bottom color="rgb(0 0 0 / 89%)">-->
+<!--            <template v-slot:activator="{ on, attrs }">-->
+<!--              <v-btn v-bind="attrs" v-on="on" small dark @click="openTransferNftModal">-->
+<!--                Transfer-->
+<!--                <v-icon size="15px" style="width: 20px">mdi-send</v-icon>-->
+<!--              </v-btn>-->
+<!--            </template>-->
+<!--            <span>Transfer one or multiple NFTs</span>-->
+<!--          </v-tooltip>-->
+<!--        </v-col>-->
+<!--      </v-row>-->
       <v-row justify="center">
         <nft-select-card
             :nft="nft"
@@ -36,6 +50,7 @@
         </div>
       </v-row>
     </v-container>
+    <TransferNFTModal :show="showModal" @updateDialog="() => showModal = false" />
   </div>
 </template>
 
@@ -45,9 +60,10 @@ import NftSelectCard from '../components/Collection/NftSelectCard.vue'
 import WalletStatus from "../components/Wallet/WalletStatus"
 import SnafuBalance from '../components/Wallet/SnafuBalance.vue';
 import {mapFields} from "vuex-map-fields"
+import TransferNFTModal from "../components/Transfer/TransferNFTModal"
 
 export default {
-  components: {NftSelectCard, WalletStatus, SnafuBalance},
+  components: {NftSelectCard, WalletStatus, SnafuBalance, TransferNFTModal},
   computed: {
     ...mapFields("connectweb3", ["account"]),
     ...mapState("nftContract", {
@@ -61,7 +77,19 @@ export default {
     nftsToSelect() {
       return this.nfts
     }
-  }
+  },
+  data () {
+    return {
+      showModal: false,
+    }
+  },
+  methods:{
+    openTransferNftModal() {
+      if(!this.disableActions){
+        this.showModal = true;
+      }
+    },
+  },
 }
 </script>
 
