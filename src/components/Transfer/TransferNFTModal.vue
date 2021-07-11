@@ -53,6 +53,30 @@
         </v-chip>
 
       </v-row>
+      <v-card-text v-if="transferPhase === 0">
+        <v-row>
+          <v-col cols="6" style="text-align: center">
+            <a>
+              <v-row justify="center">
+                <v-icon size="150px" color="#8080804f"> mdi-image-multiple </v-icon>
+              </v-row>
+              <v-row justify="center">
+                <span style="color:#8080804f"> Multiple NFTs Transfer</span>
+              </v-row>
+            </a>
+          </v-col>
+          <v-col cols="6" style="text-align: center">
+            <a @click="showTransferSingleNftModal">
+              <v-row justify="center">
+                <v-icon size="150px"> mdi-image </v-icon>
+              </v-row>
+              <v-row justify="center">
+                <span> Single NFT Transfer</span>
+              </v-row>
+            </a>
+          </v-col>
+        </v-row>
+      </v-card-text>
       <v-card-text v-if="transferPhase === 1">
         <SelectNftToTransfer
             :nft="nft"
@@ -60,6 +84,7 @@
             :key="nft.id"
             class="my-5"
             :reset="!showModal"
+            :transferSingleNft="transferSingleNft"
         />
         <v-row v-if="nftToFetch" justify="center" class="my-3">
           <v-progress-circular
@@ -174,7 +199,7 @@
             no-gutters
         >
           <v-btn x-large dark @click="goNext()" :disabled="nftsToTransfer.length === 0"
-                 v-if="transferPhase === 1 || transferPhase === 2"> NEXT
+                 v-if="(transferPhase === 1 || transferPhase === 2) && !transferSingleNft"> NEXT
           </v-btn>
           <v-btn x-large dark @click="confirmTransfer()" v-if="transferPhase === 3"> CONFIRM</v-btn>
         </v-row>
@@ -203,8 +228,8 @@ export default {
       filterById: "",
       filterByTitle: "",
       metadata: [],
-      transferPhase: 1,
-      modalTitle: 'Select the NFTs',
+      transferPhase: 0,
+      modalTitle: 'Select Transfer Type',
       transferDestinationAddress: null,
       destinationAddressError: false,
       loading: false,
@@ -212,6 +237,7 @@ export default {
       error: false,
       errorMessage: null,
       txHash: null,
+      transferSingleNft: false,
     }
   },
   computed: {
@@ -274,6 +300,11 @@ export default {
       this.resetModal()
       this.$emit("updateDialog", false)
     },
+    showTransferSingleNftModal() {
+      this.transferSingleNft = true
+      this.transferPhase = 1
+      this.modalTitle = 'Select NFT to transfer'
+    },
     async goNext() {
       switch (this.transferPhase) {
         case 1:
@@ -332,8 +363,8 @@ export default {
       }
     },
     resetModal() {
-      this.transferPhase = 1
-      this.modalTitle = 'Select the NFTs to transfer'
+      this.transferPhase = 0
+      this.modalTitle = 'Select Transfer Type'
       this.transferDestinationAddress = null
       this.destinationAddressError = false
       this.loading = false

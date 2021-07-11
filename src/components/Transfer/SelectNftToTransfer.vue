@@ -16,19 +16,21 @@
               <v-col cols="12" class="text-subtitle-2 truncate" style="font-weight: bold;"> {{ metadata.name }}</v-col>
             </v-row>
             <v-row no-gutters justify="start" class="mr-2 mt-5" style="align-items: center">
-              <v-col cols="9">
+              <v-col cols="8">
                 <v-row>
-                  <v-col cols="7" style="justify-content: start"><span>Select quantity </span></v-col>
-                  <v-col cols="5" style="justify-content: end; text-align: right">
-                    <span>(Max: {{ ownedEditions }})</span></v-col>
+                  <v-col cols="12" style="justify-content: start; padding-bottom: 0;padding-top: 0"> <span>Select quantity </span></v-col>
+                  <v-col cols="12" style="justify-content: start; padding-top: 1px">  <span>(Max: {{ ownedEditions }})</span> </v-col>
                 </v-row>
-                <v-numeric
-                    hide-details="auto"
-                    v-model="defaultQuantity"
-                    :maxValue="nft.editions"
-                    @change="updateNftToTransfer"
-                    ref="quantityToTransferInput"
-                ></v-numeric>
+                    <v-numeric
+                        hide-details="auto"
+                        v-model="defaultQuantity"
+                        :maxValue="nft.editions"
+                        @change="updateNftToTransfer"
+                        ref="quantityToTransferInput"
+                    ></v-numeric>
+              </v-col>
+              <v-col cols="3" offset="1" v-if="transferSingleNft">
+               <v-btn small dark style="position: absolute; bottom: 15px">SEND</v-btn>
               </v-col>
             </v-row>
           </v-col>
@@ -59,6 +61,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    transferSingleNft: {
+      type: Boolean,
+      default: false
+    }
   },
   computed: {
     ...mapGetters("nftContract", ["getUserBalance"]),
@@ -85,7 +91,7 @@ export default {
           })
         }
       }
-    },
+    }
   },
   data() {
     return {
