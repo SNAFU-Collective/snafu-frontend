@@ -43,11 +43,11 @@ const routes = [
         component: Home,
     },
     {
-        path: '/claim',
-        name: 'Claim',
+        path: '/lottery',
+        name: 'Lottery',
         meta: {
-            title: 'Prizes | SNAFU',
-            headerSubtitle: 'Prizes',
+            title: 'Lottery - Pool Together | SNAFU',
+            headerSubtitle: 'Lottery',
         },
         component: () => import('../views/Claim.vue'),
     },
