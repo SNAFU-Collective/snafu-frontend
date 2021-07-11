@@ -13,6 +13,9 @@
           showActionBtn
           actionUrl="https://community.pooltogether.com/pools/xdai/0x1221fe13f8Aa51856538b41E85a737d843edd825"
           action-label="PARTICIPATE"
+          show-secondary-action-btn="true"
+          secondary-action-label="LEARN MORE"
+          secondaryActionUrl="https://nftsnafu.org"
       ></banner>
     </v-container>
     <v-container>
@@ -54,12 +57,6 @@
             <h2>REDEEM</h2>
           </v-row
           >
-          <v-row justify="center" class="mt-5">
-            <span style="font-size: 15px">Did you already burned the NFT?</span>
-          </v-row>
-          <v-row justify="center" class="mt-5">
-            <v-btn small dark @click="handleManualClaim()">Manual redeem</v-btn>
-          </v-row>
           <v-row justify="center">
             <nft-select-card
                 :nft="nft"
@@ -84,6 +81,12 @@
             <span style="font-size: 13px; text-align: center">Here will appear your SNAFU NFTs redeemable for psyhical items found in your wallet. <br/>
               Partecipate in our PoolTogether to have a chance to win one!</span>
             </div>
+          </v-row>
+          <v-row justify="center" class="mt-5">
+            <span style="font-size: 15px">Did you already burned the NFT?</span>
+          </v-row>
+          <v-row justify="center" class="mt-5">
+            <v-btn small dark @click="handleManualClaim()">Manual redeem</v-btn>
           </v-row>
         </v-col>
       </v-row>
