@@ -136,7 +136,7 @@ export default {
       showConfirmBurn: false,
       showManualClaim: false,
       //FIXME: cambiare con id token di poster!
-      prizesId: ["6"],
+      prizesId: [],
     }
   },
   computed: {
