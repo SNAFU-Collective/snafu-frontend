@@ -15,7 +15,7 @@
           action-label="PARTICIPATE"
           show-secondary-action-btn="true"
           secondary-action-label="LEARN MORE"
-          secondaryActionUrl="https://nftsnafu.org"
+          secondaryActionUrl="https://www.nftsnafu.org/pooltogether-learnmore"
       ></banner>
     </v-container>
     <v-container>
@@ -85,7 +85,7 @@
           <v-row justify="center" class="mt-5">
             <span style="font-size: 15px">Did you already burned the NFT?</span>
           </v-row>
-          <v-row justify="center" class="mt-5">
+          <v-row justify="center" class="mt-5 mb-10">
             <v-btn small dark @click="handleManualClaim()">Manual redeem</v-btn>
           </v-row>
         </v-col>
@@ -136,7 +136,7 @@ export default {
       showConfirmBurn: false,
       showManualClaim: false,
       //FIXME: cambiare con id token di poster!
-      prizesId: ["6", "2"],
+      prizesId: ["6"],
     }
   },
   computed: {
