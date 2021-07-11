@@ -271,6 +271,7 @@ export default {
     padding: .7em 1.5em !important;
     text-decoration: none;
     font-size: 27px;
+    padding-top: 6px !important;
     justify-content: flex-end;
     font-weight: 500;
     letter-spacing: 2px;
