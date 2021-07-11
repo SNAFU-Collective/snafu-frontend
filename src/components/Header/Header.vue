@@ -16,11 +16,20 @@
         <router-link class="backHome" :to="{ name: 'Claim'}">PRIZES</router-link>
         <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
 
-<!--        <a class="backHome" href="https://unifty.io/xdai/market-view.html?location=0x76E277F441610907477245F09b1cEd6C937c332E" target="_blank">MARKET <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>-->
-        <a class="backHome" href="https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862" target="_blank">BUY SNAFU <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
-        <a class="backHome" href="https://vote.nftsnafu.org" target="_blank">VOTE <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
-        <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
-        <a class="backHome" href="https://nftsnafu.org" target="_blank">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
+        <!--        <a class="backHome" href="https://unifty.io/xdai/market-view.html?location=0x76E277F441610907477245F09b1cEd6C937c332E" target="_blank">MARKET <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>-->
+        <!--        <a class="backHome" href="https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862" target="_blank">BUY SNAFU <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>-->
+        <a class="backHome" @click="openRedirectModal('buy')" target="_blank">BUY SNAFU
+          <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right</v-icon>
+        </a>
+        <a class="backHome" href="https://vote.nftsnafu.org" target="_blank">VOTE
+          <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right</v-icon>
+        </a>
+        <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM
+          <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right</v-icon>
+        </a>
+        <a class="backHome" href="https://nftsnafu.org" target="_blank">LEARN MORE
+          <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right</v-icon>
+        </a>
       </div>
 
     </div>
@@ -35,26 +44,59 @@
       </div>
 
       <div id="menuMobile">
-        <Slide right :closeOnNavigation="true"  @openMenu="handleOpenMenu" @closeMenu="handleCloseMenu" :width=windowWidth>
+        <Slide right :closeOnNavigation="true" @openMenu="handleOpenMenu" @closeMenu="handleCloseMenu"
+               :width=windowWidth>
           <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
           <router-link class="backHome" :to="{ name: 'Swap'}">SWAP</router-link>
           <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
           <router-link class="backHome" :to="{ name: 'Claim'}">PRIZES</router-link>
           <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
-<!--          <a class="backHome" href="https://unifty.io/xdai/market-view.html?location=0x76E277F441610907477245F09b1cEd6C937c332E" target="_blank">MARKET <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
-          <a class="backHome" href="https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862" target="_blank">BUY SNAFU <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
-          <a class="backHome" href="https://vote.nftsnafu.org" target="_blank">VOTE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
-          <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
-          <a class="backHome" href="https://nftsnafu.org" target="_blank">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
+          <!--          <a class="backHome" href="https://unifty.io/xdai/market-view.html?location=0x76E277F441610907477245F09b1cEd6C937c332E" target="_blank">MARKET <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
+          <a class="backHome"
+             href="https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862"
+             target="_blank">BUY SNAFU
+            <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right</v-icon>
+          </a>
+          <a class="backHome" href="https://vote.nftsnafu.org" target="_blank">VOTE
+            <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right</v-icon>
+          </a>
+          <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM
+            <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right</v-icon>
+          </a>
+          <a class="backHome" href="https://nftsnafu.org" target="_blank">LEARN MORE
+            <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right</v-icon>
+          </a>
         </Slide>
       </div>
+
+      <v-dialog v-model="showRedirectModal" @input="v => v || closeModal()" max-width="400">
+        <v-card>
+          <v-card-title style="justify-content: center" no-gutters>Continue?</v-card-title>
+          <v-card-text style="text-align: center">
+            <span style="font-size: 15px;">You will be redirected to {{
+                redirectionSiteName
+              }}. Do you want to continue?</span>
+
+          <div style="justify-content: center">
+            <v-col cols="6" offset="3"> <v-img :src="redirectServiceImageSrc" class="pa-15" width="150px"></v-img></v-col>
+          </div>
+
+          </v-card-text>
+          <v-card-actions class="pb-10">
+            <v-row justify="center">
+              <v-btn class="ma-2" @click="closeModal()">CLOSE</v-btn>
+              <v-btn class="ma-2">CONTINUE</v-btn>
+            </v-row>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
 
     </div>
   </div>
 </template>
 
 <script>
-import { Slide } from 'vue-burger-menu'
+import {Slide} from 'vue-burger-menu'
 
 export default {
   components: {Slide},
@@ -65,17 +107,33 @@ export default {
     handleCloseMenu() {
       document.querySelector(".bm-burger-button").style.display = 'block'
     },
+    openRedirectModal(service) {
+      switch (service) {
+        case 'buy':
+          this.redirectionSiteName = 'Honeyswap Dex'
+          this.redirectServiceImageSrc = '/redirect/honeyswap.png'
+          break
+      }
+      this.showRedirectModal = true
+    },
+    closeModal() {
+      this.showRedirectModal = false
+      this.$emit("updateDialog", false)
+    },
   },
   data() {
     return {
+      redirectionSiteName: '',
+      showRedirectModal: false,
+      redirectServiceImageSrc: '',
       windowWidth: window.innerWidth.toString(),
     }
   },
   computed: {
     currentRouteName() {
-      return this.$route.meta.headerSubtitle;
-    }
-  }
+      return this.$route.meta.headerSubtitle
+    },
+  },
 }
 </script>
 
@@ -84,6 +142,7 @@ export default {
   #desktopHeader {
     display: block;
   }
+
   #menuMobile {
     display: none;
   }
@@ -133,7 +192,7 @@ export default {
     font-size: 17px;
   }
 
-  #desktopHeader > #subtitle > a{
+  #desktopHeader > #subtitle > a {
     text-decoration: unset;
     color: #303030;
   }
@@ -155,6 +214,7 @@ export default {
   .backHome:hover {
     color: rgb(219, 219, 219) !important;
   }
+
   .backHome:hover > .arrowRedirect {
     color: rgb(219, 219, 219) !important;
   }
@@ -206,7 +266,7 @@ export default {
     font-size: 16px;
   }
 
-  #subtitleMobile > a{
+  #subtitleMobile > a {
     text-decoration: unset;
     color: #303030;
   }
@@ -264,7 +324,7 @@ export default {
     opacity: 0.9;
   }
 
-  .bm-item-list>* {
+  .bm-item-list > * {
     display: flex;
     padding: .7em 1.5em !important;
     text-decoration: none;
@@ -281,6 +341,7 @@ export default {
   #menuMobile > div > div > div.bm-menu > nav > a.backHome.router-link-exact-active.router-link-active {
     color: rgb(143, 143, 143) !important;
   }
+
   #menuMobile > div > div > div.bm-menu > nav > a {
     color: white;
   }
