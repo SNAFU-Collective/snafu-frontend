@@ -11,8 +11,9 @@
           class="bannerBtn"
           light
           v-if="showActionBtn"
+          @click="handleActionClick()"
       >
-        PARTICIPATE
+        {{actionLabel}}
       </v-btn>
     </div>
   </v-card>
@@ -40,6 +41,14 @@ export default {
       type: Boolean,
       default: true,
     },
+    actionUrl: {
+      type: String,
+      default: ''
+    },
+    actionLabel: {
+      type: String,
+      default: ''
+    }
   },
   computed: {
     cardBackgroundStyle() {
@@ -48,6 +57,11 @@ export default {
       return 'background-image: url(' + source + '); height: 300px;background-position: center; background-size: cover;'
     },
   },
+  methods: {
+    handleActionClick() {
+      window.open(this.actionUrl, '_blank');
+    }
+  }
 }
 </script>
 
