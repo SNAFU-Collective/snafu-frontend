@@ -1,7 +1,7 @@
 <template>
   <div id="mainNftsDive">
     <v-row>
-      <v-carousel hide-delimiters cycle style="height: 300px">
+      <v-carousel hide-delimiter-background show-arrows-on-hover cycle style="height: 300px">
         <v-carousel-item v-for="(item, i) in carouselItems"  :key="i">
           <banner
               :src="item.src"
@@ -102,12 +102,16 @@ export default {
       },
       carouselItems: [
         {
-          src: 'https://s3.eu-central-1.amazonaws.com/snafu.prod/discord-banner.png',
-          mobileSrc: 'https://s3.eu-central-1.amazonaws.com/snafu.prod/discord-banner-mobile.png',
+          src: '/banners/pool-banner.png',
+          mobileSrc: '/banners/pool-banner-mobile.png',
         },
         {
-          src: 'https://s3.eu-central-1.amazonaws.com/snafu.prod/pool-banner.png',
-          mobileSrc: 'https://s3.eu-central-1.amazonaws.com/snafu.prod/pool-banner-mobile.png',
+          src: '/banners/farming.png',
+          mobileSrc: '/banners/pool-banner-mobile.png',
+        },
+        {
+          src: '/banners/discord-banner.png',
+          mobileSrc: '/banners/discord-banner-mobile.png',
         },
       ],
     }

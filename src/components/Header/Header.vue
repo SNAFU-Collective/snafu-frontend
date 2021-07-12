@@ -14,10 +14,11 @@
         <router-link class="backHome" :to="{ name: 'Swap'}">SWAP</router-link>
         <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
         <router-link class="backHome" :to="{ name: 'Lottery'}">LOTTERY</router-link>
+        <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
         <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
         <a class="backHome" @click="openBuySnafuModal()">BUY SNAFU <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
         <a class="backHome" @click="openVoteModal()">VOTE <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
-        <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
+<!--        <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>-->
         <a class="backHome" href="https://xdai.unique.one/collections/0xED1eFC6EFCEAAB9F6d609feC89c9E675Bf1efB0a" target="_blank">MARKET <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
         <a class="backHome" href="https://nftsnafu.org" target="_blank">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
       </div>
@@ -40,10 +41,11 @@
           <router-link class="backHome" :to="{ name: 'Swap'}">SWAP</router-link>
           <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
           <router-link class="backHome" :to="{ name: 'Lottery'}">LOTTERY</router-link>
+          <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
           <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
           <a class="backHome" @click="openBuySnafuModal()" target="_blank">BUY SNAFU <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
           <a class="backHome" @click="openVoteModal()" target="_blank">VOTE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
-          <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
+<!--          <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
           <a class="backHome" href="https://xdai.unique.one/collections/0xED1eFC6EFCEAAB9F6d609feC89c9E675Bf1efB0a" target="_blank">MARKET <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
           <a class="backHome" href="https://nftsnafu.org" target="_blank">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
         </Slide>
