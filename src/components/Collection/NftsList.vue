@@ -107,7 +107,7 @@ export default {
         },
         {
           src: '/banners/farming.png',
-          mobileSrc: '/banners/pool-banner-mobile.png',
+          mobileSrc: '/banners/farming-mobile.png',
         },
         {
           src: '/banners/discord-banner.png',
