@@ -11,7 +11,7 @@
           mobile-src="https://pooltogether.com/pooltogether-facebook-share-image-1200-630@2x.png"
           text="Participate in the SNAFU no-loss prize games on PoolTogether to win exclusive NFTs and physical items!"
           showActionBtn
-          actionUrl="https://community.pooltogether.com/pools/xdai/0x1221fe13f8Aa51856538b41E85a737d843edd825"
+          actionUrl="https://community.pooltogether.com/pools/xdai/0x1221fe13f8aa51856538b41e85a737d843edd825/home"
           action-label="PARTICIPATE"
           show-secondary-action-btn="true"
           secondary-action-label="LEARN MORE"
