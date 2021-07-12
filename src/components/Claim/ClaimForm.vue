@@ -38,7 +38,7 @@
           <v-text-field
               v-model="formData.address"
               outlined
-              label="Full Address"
+              label="Full Shipping Address"
               class=""
               required
               :rules="rules.required"

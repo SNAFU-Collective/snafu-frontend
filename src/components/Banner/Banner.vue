@@ -7,13 +7,27 @@
       <span v-if="text" class="bannerSubtitle">
        {{ text }}
       </span>
-      <v-btn
-          class="bannerBtn"
-          light
-          v-if="showActionBtn"
-      >
-        PARTICIPATE
-      </v-btn>
+
+      <v-row style="padding: 0 0; margin: 0 0">
+        <v-btn
+            class="bannerBtn"
+            light
+            v-if="showActionBtn"
+            @click="handleActionClick('primary')"
+        >
+          {{ actionLabel }}
+        </v-btn>
+        <v-btn
+            class="bannerBtn"
+            text
+            light
+            color="white"
+            v-if="showSecondaryActionBtn"
+            @click="handleActionClick('secondary')"
+        >
+          {{ secondaryActionLabel }}
+        </v-btn>
+      </v-row>
     </div>
   </v-card>
 </template>
@@ -40,12 +54,44 @@ export default {
       type: Boolean,
       default: true,
     },
+    actionUrl: {
+      type: String,
+      default: '',
+    },
+    actionLabel: {
+      type: String,
+      default: '',
+    },
+    showSecondaryActionBtn: {
+      type: Boolean,
+      default: false,
+    },
+    secondaryActionLabel: {
+      type: String,
+      default: 'Learn More',
+    },
+    secondaryActionUrl: {
+      type: String,
+      default: '',
+    },
   },
   computed: {
     cardBackgroundStyle() {
       console.log(window.innerWidth)
       let source = window.innerWidth > 726 ? this.src : this.mobileSrc
       return 'background-image: url(' + source + '); height: 300px;background-position: center; background-size: cover;'
+    },
+  },
+  methods: {
+    handleActionClick(buttonType) {
+      switch (buttonType) {
+        case 'primary':
+          window.open(this.actionUrl, '_blank')
+          break
+        case 'secondary':
+          window.open(this.secondaryActionUrl, '_blank')
+          break
+      }
     },
   },
 }

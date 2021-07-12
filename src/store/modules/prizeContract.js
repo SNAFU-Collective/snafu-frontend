@@ -1,7 +1,7 @@
 import { getField, updateField } from 'vuex-map-fields';
 import Vue from "vue"
 //Block when the erc721 was deployed
-const minBlock = 14958798;
+const minBlock = 17019377;
 
 function addressEqual(a, b) {
     return a.toLowerCase() === b.toLowerCase();
@@ -68,10 +68,10 @@ export default {
             let token = context.rootGetters["connectweb3/getSnafu721"];
             let account = payload.address;
             const sentLogs = await token.queryFilter(
-                token.filters.Transfer(account, null),
+                token.filters.Transfer(account, null), minBlock
               );
               const receivedLogs = await token.queryFilter(
-                token.filters.Transfer(null, account),
+                token.filters.Transfer(null, account), minBlock
               );
             
               const logs = sentLogs.concat(receivedLogs)
