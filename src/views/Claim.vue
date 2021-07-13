@@ -13,7 +13,7 @@
           showActionBtn
           actionUrl="https://community.pooltogether.com/pools/xdai/0x1221fe13f8aa51856538b41e85a737d843edd825/home"
           action-label="PARTICIPATE"
-          show-secondary-action-btn="true"
+          :show-secondary-action-btn="true"
           secondary-action-label="LEARN MORE"
           secondaryActionUrl="https://www.nftsnafu.org/pooltogether-learnmore"
       ></banner>
