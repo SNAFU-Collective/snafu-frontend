@@ -6,3 +6,6 @@ export const xdaiWebSocket = "wss://rpc.xdaichain.com/wss";
 export const xdaiRPC = "https://xdai.1hive.org";
 
 export const recaptchaSiteKey = "6Lfh9YgbAAAAACR-yXOXAqcGez4kETezd5iOU1ic";
+
+export const commonFarmAddress = "0x8dDc7167e9F838f2e32FaBA229A53d4a48D0aa8d";
+export const rareFarmAddress = "0x88CfEea7BE8A7695A3012276e8C68bf303Afe49a";

@@ -47,6 +47,7 @@
                 <v-btn
                     class="farmingBannerBtn"
                     light
+                    @click="getBalance()"
                 >
                   OPEN
                 </v-btn>
@@ -97,8 +98,10 @@
 
 <script>
 import {mapFields} from "vuex-map-fields"
+import {mapActions} from "vuex"
 import WalletStatus from "../components/Wallet/WalletStatus"
 import Banner from "../components/Banner/Banner"
+import { commonFarmAddress } from "../utils/constants"
 
 export default {
   components: {
@@ -110,8 +113,14 @@ export default {
   },
   computed: {
     ...mapFields("connectweb3", ["account"]),
+    ...mapFields("transferNFTs", ["balanceOf"]),
   },
-  methods: {},
+  methods: {
+    ...mapActions("farming", ["balanceOf"]),
+  },
+  mounted(){
+    this.balanceOf();
+  },
 }
 </script>
 
