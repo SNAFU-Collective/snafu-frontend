@@ -166,7 +166,13 @@ export default {
         console.log(signAddress)
         this.submitFormToLambda({payload, signature, signAddress, recaptcha: this.recaptchaResponse, formData: this.formData}).then((res) => {
             console.log("res", res)
-            this.success = true;
+            if(res.data.status == 200 && res.data.code == "success"){
+              this.success = true;
+            }else{
+              let message = res.data.message ? res.data.message : "";
+              throw new Error(message)
+            }
+            
         })
         //TODO: svuotare form ... feedback successo!
       }).catch((err) => {
