@@ -166,6 +166,7 @@ export default {
         console.log(signAddress)
         this.submitFormToLambda({payload, signature, signAddress, recaptcha: this.recaptchaResponse, formData: this.formData}).then((res) => {
             console.log("res", res)
+            this.loading = false
             if(res.data.status == 200 && res.data.code == "success"){
               this.success = true;
             }else{
@@ -176,13 +177,10 @@ export default {
         })
         //TODO: svuotare form ... feedback successo!
       }).catch((err) => {
+        this.loading = false
         this.error = true
         this.errorMessage = err
-      }).finally(() => {
-        this.loading = false
       })
-    
-
     },
   },
 }
