@@ -19,8 +19,8 @@
         <a class="backHome" @click="openBuySnafuModal()">BUY SNAFU <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
         <a class="backHome" @click="openVoteModal()">VOTE <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
 <!--        <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>-->
-        <a class="backHome" href="https://xdai.unique.one/collections/0xED1eFC6EFCEAAB9F6d609feC89c9E675Bf1efB0a" target="_blank">MARKET <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
-        <a class="backHome" href="https://nftsnafu.org" target="_blank">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
+        <a class="backHome" @click="openMarketModal()">MARKET <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
+        <a class="backHome" @click="openLearnMoreModal()">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
       </div>
 
     </div>
@@ -43,11 +43,11 @@
           <router-link class="backHome" :to="{ name: 'Lottery'}">LOTTERY</router-link>
           <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
           <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
-          <a class="backHome" @click="openBuySnafuModal()" target="_blank">BUY SNAFU <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
-          <a class="backHome" @click="openVoteModal()" target="_blank">VOTE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
+          <a class="backHome" @click="openBuySnafuModal()">BUY SNAFU <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
+          <a class="backHome" @click="openVoteModal()">VOTE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
 <!--          <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
-          <a class="backHome" href="https://xdai.unique.one/collections/0xED1eFC6EFCEAAB9F6d609feC89c9E675Bf1efB0a" target="_blank">MARKET <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
-          <a class="backHome" href="https://nftsnafu.org" target="_blank">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
+          <a class="backHome" @click="openMarketModal()">MARKET <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
+          <a class="backHome" @click="openLearnMoreModal()">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
         </Slide>
       </div>
 
@@ -87,6 +87,48 @@
         </v-card>
       </v-dialog>
 
+      <v-dialog v-model="showMarketModal" @input="v => v || closeModal()" max-width="400">
+        <v-card>
+          <v-card-title style="justify-content: center" no-gutters>Choose Marketplace</v-card-title>
+          <v-card-text style="text-align: center">
+            <span style="font-size: 15px;">Our NFTs are can be traded on all NFT Marketplaces on xDai Chain. <br> Please choose the Marketplace where you want to be redirected.</span>
+            <v-row style="justify-content: center" class="mt-5">
+              <v-col cols="6" style="text-align: -webkit-center" class="highlightOnHover">
+                <a href="https://xdai.unique.one/collections/0xED1eFC6EFCEAAB9F6d609feC89c9E675Bf1efB0a" target="_blank"><v-img src="/redirect/unique.png" class="pa-15" width="150px"></v-img> <span>Unique.One</span></a>
+              </v-col>
+              <v-col cols="6" style="text-align: -webkit-center" class="highlightOnHover">
+                <a href="https://epor.io/browse?token_address=0xed1efc6efceaab9f6d609fec89c9e675bf1efb0a" target="_blank"><v-img src="/redirect/eporio.png" class="pa-15" width="150px"></v-img> <span>Eporio</span></a>
+              </v-col>
+            </v-row>
+            <v-row style="justify-content: center">
+              <v-col cols="6" style="text-align: -webkit-center" class="highlightOnHover">
+                <a href="https://unifty.io/xdai/market.html" target="_blank"><v-img src="/redirect/unifty.png" class="pa-15" width="150px"></v-img><span>Unifty</span></a>
+              </v-col>
+            </v-row>
+          </v-card-text>
+          <v-card-actions class="pb-10">
+            <v-row justify="center">
+              <v-btn class="ma-2" @click="closeModal()">CLOSE</v-btn>
+            </v-row>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
+      <v-dialog v-model="showLearnMoreModal" @input="v => v || closeModal()" max-width="400">
+        <v-card>
+          <v-card-title style="justify-content: center" no-gutters>Continue?</v-card-title>
+          <v-card-text style="text-align: center">
+            <span style="font-size: 15px;">You will be redirected to the SNAFU Collective's landing website. <br> Continue?</span>
+          </v-card-text>
+          <v-card-actions class="pb-10">
+            <v-row justify="center">
+              <v-btn class="ma-2" @click="closeModal()">CLOSE</v-btn>
+              <v-btn class="ma-2" @click="goTo('https://nftsnafu.org')">CONTINUE</v-btn>
+            </v-row>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
     </div>
   </div>
 </template>
@@ -109,9 +151,17 @@ export default {
     openVoteModal() {
       this.showVoteModal = true
     },
+    openMarketModal() {
+      this.showMarketModal = true
+    },
+    openLearnMoreModal() {
+      this.showLearnMoreModal = true
+    },
     closeModal() {
       this.showBuySnafuModal = false
       this.showVoteModal = false
+      this.showMarketModal = false
+      this.showLearnMoreModal = false
       this.$emit("updateDialog", false)
     },
     goTo(url) {
@@ -122,6 +172,8 @@ export default {
     return {
       showBuySnafuModal: false,
       showVoteModal: false,
+      showMarketModal: false,
+      showLearnMoreModal: false,
       windowWidth: window.innerWidth.toString(),
     }
   },
@@ -134,6 +186,9 @@ export default {
 </script>
 
 <style>
+.highlightOnHover:hover {
+  background-color: #a7a7a752;
+}
 @media screen and (min-width: 769px) {
   #desktopHeader {
     display: block;
