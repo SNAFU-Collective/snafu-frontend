@@ -32,6 +32,13 @@
       ></v-progress-circular>
     </v-row>
 
+    <v-row justify="center">
+      <v-col cols="12" class="pl-6">
+        <collection-info />
+      </v-col>
+
+    </v-row>
+
     <v-row justify="center" style="padding-top: 100px">
       <h1>Catalog</h1>
     </v-row>
@@ -85,10 +92,11 @@
 <script>
 import NftCard from "./NftCard.vue"
 import {mapFields} from "vuex-map-fields"
-import Banner from "../Banner/Banner"
+import Banner from "../Common/Banner"
+import CollectionInfo from '../Common/CollectionInfoCard.vue'
 
 export default {
-  components: {NftCard, Banner},
+  components: {NftCard, Banner, CollectionInfo},
   data() {
     return {
       currentPage: 1,
