@@ -19,7 +19,7 @@
       <v-row justify="center" style="padding-top: 100px; padding-bottom: 10px">
         <h1>Active Farms</h1>
       </v-row>
-      
+
       <v-row>
         <v-col cols="12" md="4">
           <v-card
