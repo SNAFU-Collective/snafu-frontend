@@ -119,7 +119,7 @@ import ConfirmClaimModal from "../components/Claim/ConfirmClaimModal.vue"
 import ConfirmBurnModal from "../components/Claim/ConfirmBurnModal.vue"
 import ClaimForm from '../components/Claim/ClaimForm.vue'
 import WalletStatus from "../components/Wallet/WalletStatus"
-import Banner from "../components/Banner/Banner"
+import Banner from "../components/Common/Banner"
 import ManualRedeemModal from "../components/Claim/ManualRedeemModal"
 
 export default {

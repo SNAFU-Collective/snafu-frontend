@@ -3,8 +3,9 @@ import { ethers } from "ethers";
 import ERC1155ABI from "../../assets/abis/ERC1155.json";
 import SNAFU20 from "@/assets/abis/SNAFU20Pair.json";
 import SNAFU721 from "@/assets/abis/SNAFU721.json"
+import FARM from "@/assets/abis/UNIFTY_FARM.json"
 
-import { snafu20Address, snafuNftAddress, snafu721Address, xdaiRPC, xdaiWebSocket } from "../../utils/constants"
+import { snafu20Address, snafuNftAddress, snafu721Address, xdaiRPC, xdaiWebSocket, commonFarmAddress } from "../../utils/constants"
 
 import { getField, updateField } from 'vuex-map-fields';
 
@@ -31,6 +32,7 @@ export default {
         getUserNftSnafu: (state) => state.connected.snafuNft,
         getUserSnafu721: (state) => state.connected.snafu721,
         getSnafu721: (state) => state.snafu721,
+        getCommonFarm: (state) => state.commonFarm,
         getUserSnafu20: (state) => state.connected.snafu20,
         getUserAccount: (state) => state.account,
         getUserSigner: (state) => state.connected.signer,
@@ -84,11 +86,13 @@ export default {
                 state.snafuNft = await new ethers.Contract(snafuNftAddress, ERC1155ABI, signer);
                 state.snafu721 = await new ethers.Contract(snafu721Address, SNAFU721.output.abi, signer);
                 state.snafu20 = await new ethers.Contract(snafu20Address, SNAFU20, signer);
+                state.commonFarm = await new ethers.Contract(commonFarmAddress, FARM, signer);
             } else {
                 state.web3 = web3;
                 state.snafuNft = await new ethers.Contract(snafuNftAddress, ERC1155ABI, web3);
                 state.snafu721 = await new ethers.Contract(snafu721Address, SNAFU721.output.abi, web3);
                 state.snafu20 = await new ethers.Contract(snafu20Address, SNAFU20, web3);
+                state.commonFarm = await new ethers.Contract(commonFarmAddress, FARM, web3);
                 context.dispatch("nftContract/getNftsFromPool", null, { root: true })
                 context.dispatch("nftContract/getAllNfts", null, { root: true })
                 context.dispatch("updateSnafu20Supply");

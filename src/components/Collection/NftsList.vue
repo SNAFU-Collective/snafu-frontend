@@ -1,7 +1,7 @@
 <template>
   <div id="mainNftsDive">
     <v-row>
-      <v-carousel hide-delimiters cycle style="height: 300px">
+      <v-carousel hide-delimiter-background show-arrows-on-hover cycle style="height: 300px">
         <v-carousel-item v-for="(item, i) in carouselItems"  :key="i">
           <banner
               :src="item.src"
@@ -30,6 +30,13 @@
           indeterminate
           color="black"
       ></v-progress-circular>
+    </v-row>
+
+    <v-row justify="center">
+      <v-col cols="12" class="pl-6">
+        <collection-info />
+      </v-col>
+
     </v-row>
 
     <v-row justify="center" style="padding-top: 100px">
@@ -85,10 +92,11 @@
 <script>
 import NftCard from "./NftCard.vue"
 import {mapFields} from "vuex-map-fields"
-import Banner from "../Banner/Banner"
+import Banner from "../Common/Banner"
+import CollectionInfo from '../Common/CollectionInfoCard.vue'
 
 export default {
-  components: {NftCard, Banner},
+  components: {NftCard, Banner, CollectionInfo},
   data() {
     return {
       currentPage: 1,
@@ -106,12 +114,16 @@ export default {
       },
       carouselItems: [
         {
-          src: 'https://s3.eu-central-1.amazonaws.com/snafu.prod/discord-banner.png',
-          mobileSrc: 'https://s3.eu-central-1.amazonaws.com/snafu.prod/discord-banner-mobile.png',
+          src: '/banners/pool-banner.png',
+          mobileSrc: '/banners/pool-banner-mobile.png',
         },
         {
-          src: 'https://s3.eu-central-1.amazonaws.com/snafu.prod/pool-banner.png',
-          mobileSrc: 'https://s3.eu-central-1.amazonaws.com/snafu.prod/pool-banner-mobile.png',
+          src: '/banners/farming.png',
+          mobileSrc: '/banners/farming-mobile.png',
+        },
+        {
+          src: '/banners/discord-banner.png',
+          mobileSrc: '/banners/discord-banner-mobile.png',
         },
       ],
     }

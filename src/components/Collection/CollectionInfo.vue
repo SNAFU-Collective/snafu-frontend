@@ -1,12 +1,12 @@
 <template>
   <v-container id="collectionInfoContainer" fluid class="pt-15">
     <v-card flat>
-      <v-card-title class="pl-10">
-        <v-avatar class="mr-2">
-          <v-img src="logo.png" />
-        </v-avatar>
-        SNAFU Collection
-      </v-card-title>
+<!--      <v-card-title style="justify-content: center">-->
+<!--        <v-avatar class="mr-2">-->
+<!--          <v-img src="logo.png" />-->
+<!--        </v-avatar>-->
+<!--        SNAFU Collection-->
+<!--      </v-card-title>-->
       <v-card-text class="pt-3 pl-15">
         <v-row>
           <v-col col="3" align-self="start" class="oneLineOnMobile">

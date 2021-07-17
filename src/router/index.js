@@ -70,6 +70,16 @@ const routes = [
         component: () => import('../views/User.vue'),
         props: true,
     },
+    {
+        path: '/farm',
+        name: 'Farm',
+        meta: {
+            title: 'Farm | SNAFU',
+            headerSubtitle: 'Farming',
+        },
+        component: () => import('../views/Farms.vue'),
+        props: true,
+    },
 ]
 
 const router = new VueRouter({
