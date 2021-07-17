@@ -46,7 +46,7 @@
             <div v-else-if="nftsToClaim.length === 0" class="text-body-2 my-50 mt-10 mb-10" style="text-align: center">
                <span style="font-size: 13px; text-align: center">
               No SNAFU Prizes found in your wallet. <br/>
-              Partecipate in our PoolTogether to have a chance to win one!
+              Partecipate in our PoolTogether lottery to have a chance to win one!
                </span>
             </div>
           </v-row>
@@ -79,7 +79,7 @@
             <div v-else-if="posterNftsToBurn.length === 0" class="text-body-2 my-50 mt-10 mb-10"
                  style="text-align: center">
             <span style="font-size: 13px; text-align: center">Here will appear your SNAFU NFTs redeemable for psyhical items found in your wallet. <br/>
-              Partecipate in our PoolTogether to have a chance to win one!</span>
+              Partecipate in our PoolTogether lottery to have a chance to win one!</span>
             </div>
           </v-row>
           <v-row justify="center" class="mt-5">
