@@ -39,6 +39,9 @@
       <v-btn small v-on:click="filter('all')" style="margin: 10px"
              :style="currentTag === 'all' ? 'background-color: black; color: white' : ''">All
       </v-btn>
+      <v-btn small v-on:click="filter('prizes')" style="margin: 10px"
+             :style="currentTag === 'prizes' ? 'background-color: black; color: white' : ''">Prizes
+      </v-btn>
       <v-btn small v-on:click="filter('communityPool')" style="margin: 10px"
              :style="currentTag === 'communityPool' ? 'background-color: black; color: white' : ''">Community Pool
       </v-btn>
@@ -99,6 +102,7 @@ export default {
         collection2: [76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 89, 91, 94, 95, 96, 97, 98, 99, 100, 101, 103, 104, 105, 124],
         collection2Farming: [108, 109, 110, 112, 113, 114, 115, 116, 117, 118, 119, 120, 122, 123],
         communityPool: [106, 125],
+        prizes: [126, 127],
       },
       carouselItems: [
         {
@@ -143,6 +147,9 @@ export default {
           break
         case "communityPool":
           ids = this.nfts.communityPool
+          break
+        case "prizes":
+          ids = this.nfts.prizes
           break
       }
 

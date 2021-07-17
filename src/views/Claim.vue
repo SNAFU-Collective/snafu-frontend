@@ -12,7 +12,7 @@
           text="Participate in the SNAFU no-loss prize games on PoolTogether to win exclusive NFTs and physical items!"
           showActionBtn
           actionUrl="https://community.pooltogether.com/pools/xdai/0x1221fe13f8aa51856538b41e85a737d843edd825/home"
-          action-label="PARTICIPATE"
+          action-label="JOIN LOTTERY"
           :show-secondary-action-btn="true"
           secondary-action-label="LEARN MORE"
           secondaryActionUrl="https://www.nftsnafu.org/pooltogether-learnmore"
@@ -46,7 +46,7 @@
             <div v-else-if="nftsToClaim.length === 0" class="text-body-2 my-50 mt-10 mb-10" style="text-align: center">
                <span style="font-size: 13px; text-align: center">
               No SNAFU Prizes found in your wallet. <br/>
-              Partecipate in our PoolTogether to have a chance to win one!
+              Partecipate in our PoolTogether lottery to have a chance to win one!
                </span>
             </div>
           </v-row>
@@ -79,7 +79,7 @@
             <div v-else-if="posterNftsToBurn.length === 0" class="text-body-2 my-50 mt-10 mb-10"
                  style="text-align: center">
             <span style="font-size: 13px; text-align: center">Here will appear your SNAFU NFTs redeemable for psyhical items found in your wallet. <br/>
-              Partecipate in our PoolTogether to have a chance to win one!</span>
+              Partecipate in our PoolTogether lottery to have a chance to win one!</span>
             </div>
           </v-row>
           <v-row justify="center" class="mt-5">
@@ -136,7 +136,7 @@ export default {
       showConfirmBurn: false,
       showManualClaim: false,
       //FIXME: cambiare con id token di poster!
-      prizesId: [],
+      prizesId: ["126"],
     }
   },
   computed: {

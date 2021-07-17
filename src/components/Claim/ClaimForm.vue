@@ -1,5 +1,7 @@
 <template>
   <v-card min-width="50%" style="border-shadow: none">
+    <div v-if="!success && !error">
+
     <v-card-title primary-title class="justify-center">
       Shipping Information
     </v-card-title>
@@ -65,6 +67,39 @@
         </v-btn>
       </v-row>
     </v-card-actions>
+          </div>
+          <div v-else-if="success">
+           <v-card-text class="pt-3">
+          <v-row no-gutters justify="center" class="py-4">
+            <v-icon size="100" color="success">mdi-check-circle</v-icon>
+          </v-row>
+          <v-row no-gutters justify="center" class="pt-4 text-body-1">
+            You registered your claim successfully.
+          </v-row>
+                    <v-row no-gutters justify="center" class="text-body-1">
+            We will contact you after the shipping
+          </v-row>
+        </v-card-text>
+          </div>
+        <div v-else-if="error">
+                   <v-card-text class="pt-3">
+          <v-row no-gutters justify="center" class="py-4">
+            <v-icon size="100" color="error">mdi-alert</v-icon>
+          </v-row>
+          <v-row no-gutters justify="center" class="py-4 text-body-1">
+            Error during form submission
+          </v-row>
+          <v-row
+            no-gutters
+            justify="center"
+            class="mt-n3 red--text"
+            v-if="errorMessage"
+          >
+            {{ errorMessage }}
+          </v-row>
+
+        </v-card-text>
+          </div>
   </v-card>
 </template>
 
@@ -93,6 +128,9 @@ export default {
     return {
       recaptchaSiteKey,
       loading: false,
+      error: false,
+      errorMessage: "",
+      success: false,
       rules: {
         txHash: [
         
@@ -128,13 +166,21 @@ export default {
         console.log(signAddress)
         this.submitFormToLambda({payload, signature, signAddress, recaptcha: this.recaptchaResponse, formData: this.formData}).then((res) => {
             console.log("res", res)
+            this.loading = false
+            if(res.data.status == 200 && res.data.code == "success"){
+              this.success = true;
+            }else{
+              let message = res.data.message ? res.data.message : "";
+              throw new Error(message)
+            }
+            
         })
         //TODO: svuotare form ... feedback successo!
-      }).catch(() => {
+      }).catch((err) => {
         this.loading = false
         this.error = true
+        this.errorMessage = err
       })
-
     },
   },
 }
