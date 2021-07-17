@@ -6,12 +6,14 @@ export default {
     namespaced: true,
     state: {
         pools: [],
+        userBalance: 0,
     },
     getters: {
         getField,
     },
     mutations: {
         updateField,
+        setFarmBalance: (state, payload) => state.userBalance = payload,
     },
     actions: {
         async getFarmData(context) {
@@ -21,10 +23,10 @@ export default {
             let account = context.rootGetters["connectweb3/getUserAccount"]
 
             let contract = context.rootGetters["connectweb3/getCommonFarm"]
-            console.log(contract, account)
+            // console.log(contract, account)
             let balance = await contract.balanceOf(account)
-
-            console.log("Received balance", balance.toString())
+            context.commit("setFarmBalance", balance.toString())
+            // console.log("Received balance", balance.toString())
             return balance
 
 

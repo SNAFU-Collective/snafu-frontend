@@ -5,13 +5,13 @@
           <v-row>
             <v-col col="4" align-self="start" class="oneLineOnMobile">
               <v-row
-              ><span>
+              ><span style="font-weight: 500">
                 <strong>$SNAFU Price: </strong>
                 {{ pair ? pair.token1Price : "-" | truncatePrice | numberWithCommas }}$
               </span></v-row
               >
               <v-row
-              ><span
+              ><span style="font-weight: 500"
               ><strong
               >Trade $SNAFU:
                   <a
@@ -26,13 +26,13 @@
             </v-col>
             <v-col col="4" align-self="center" class="oneLineOnMobile">
               <v-row
-              ><span>
+              ><span style="font-weight: 500">
                 <strong>Liquidity: </strong>
                 {{ pair ? pair.reserveUSD : " - " | truncatePrice | numberWithCommas}}$</span
               ></v-row
               >
               <v-row
-              ><span>
+              ><span style="font-weight: 500">
                 <strong>Total Supply: </strong>
                 {{ snafuSupply | fromWei | truncatePrice | numberWithCommas }} SNAFU</span
               ></v-row
@@ -40,7 +40,7 @@
             </v-col>
             <v-col col="4" align-self="end" class="oneLineOnMobile">
               <v-row
-              ><span
+              ><span style="font-weight: 500"
               ><strong
               >Locked Supply:
                   </strong
@@ -49,7 +49,7 @@
               </span></v-row
               >
               <v-row
-              ><span>
+              ><span style="font-weight: 500">
                 <strong>Circulating Supply: </strong>
                 {{snafuCirculatingSupply | fromWei | truncatePrice | numberWithCommas }} SNAFU</span
               ></v-row
@@ -102,7 +102,7 @@ export default {
 }
 
 #collectionInfoCard {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url(http://app.nftsnafu.org/nfts/73/image);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url('/nfts/73/image');
   background-position: center center;
   background-size: cover;
 }

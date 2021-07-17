@@ -19,35 +19,32 @@
       <v-row justify="center" style="padding-top: 100px; padding-bottom: 10px">
         <h1>Active Farms</h1>
       </v-row>
+      
       <v-row>
-        <v-col cols="6">
+        <v-col cols="12" md="4">
           <v-card
               class="mx-auto"
-              style="background-image: url('/banners/farm1.png'); height: 300px;background-position: center; background-size: cover;"
+              style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url('/farming/common.png'); height: 300px;background-position: center; background-size: cover;"
           >
             <div>
               <div class="cardText" style="display: grid">
-                 <span style="font-size: 28px">
-                  COMMON FARM
-                </span>
-                <span>
+                <v-row>
+                    <v-col cols="12" style="font-size: 28px">
+                  COMMON
+                </v-col>
+                </v-row>
+               <v-row>
+                 <v-col cols="12" style="font-size: 15px">
                   STAKE $SNAFU TOKEN
-                </span>
-                <span>
-                  MIN/MAX: 1/100
-                </span>
-                <span>
-                  PARTICIPANTS: 11
-                </span>
-                 <span>
-                  NFTs: 15
-                </span>
+               <br>
+                  MIN/MAX: 100/2000
+                </v-col>
+               </v-row>
               </div>
               <v-row style="padding: 0 0; margin: 0 0">
                 <v-btn
                     class="farmingBannerBtn"
                     light
-                    @click="getBalance()"
                 >
                   OPEN
                 </v-btn>
@@ -55,29 +52,59 @@
             </div>
           </v-card>
         </v-col>
-        <v-col cols="6">
+        <v-col cols="12" md="4">
           <v-card
               class="mx-auto"
-              style="background-image: url('/banners/farm2.png'); height: 300px;background-position: center; background-size: cover;"
+              style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url('/farming/rare.png'); height: 300px;background-position: center; background-size: cover;"
           >
             <div>
 
               <div class="cardText" style="display: grid">
-                 <span style="font-size: 28px">
-                  RARE FARM
-                </span>
-                <span>
-                  STAKE LP TOKEN
-                </span>
-                <span>
-                  MIN/MAX: 1/100
-                </span>
-                <span>
-                  PARTICIPANTS: 11
-                </span>
-                <span>
-                  NFTs: 15
-                </span>
+                <v-row>
+                  <v-col cols="12" style="font-size: 28px">
+                    RARE
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="12" style="font-size: 15px">
+                    STAKE SNAFU/WXDAI LP TOKEN
+                    <br>
+                    MIN/MAX: 220/500
+                  </v-col>
+                </v-row>
+              </div>
+
+              <v-row style="padding: 0 0; margin: 0 0">
+                <v-btn
+                    class="farmingBannerBtn"
+                    light
+                >
+                  OPEN
+                </v-btn>
+              </v-row>
+            </div>
+          </v-card>
+        </v-col>
+        <v-col cols="12" md="4">
+          <v-card
+              class="mx-auto"
+              style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url('/farming/ultra.png'); height: 300px;background-position: center; background-size: cover;"
+          >
+            <div>
+
+              <div class="cardText" style="display: grid">
+                <v-row>
+                  <v-col cols="12" style="font-size: 28px">
+                    ULTRA RARE
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="12" style="font-size: 15px">
+                    STAKE SNAFU/WXDAI LP TOKEN
+                    <br>
+                    MIN/MAX: 300/600 + FEES
+                  </v-col>
+                </v-row>
               </div>
 
               <v-row style="padding: 0 0; margin: 0 0">
@@ -100,7 +127,7 @@
 import {mapFields} from "vuex-map-fields"
 import {mapActions} from "vuex"
 import WalletStatus from "../components/Wallet/WalletStatus"
-import Banner from "../components/Banner/Banner"
+import Banner from "../components/Common/Banner"
 import { commonFarmAddress } from "../utils/constants"
 
 export default {
@@ -113,13 +140,13 @@ export default {
   },
   computed: {
     ...mapFields("connectweb3", ["account"]),
-    ...mapFields("transferNFTs", ["balanceOf"]),
+    ...mapFields("transferNFTs", ['userBalance']),
   },
   methods: {
     ...mapActions("farming", ["balanceOf"]),
   },
   mounted(){
-    this.balanceOf();
+    // this.balanceOf();
   },
 }
 </script>
