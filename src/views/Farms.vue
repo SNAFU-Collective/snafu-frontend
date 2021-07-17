@@ -45,8 +45,9 @@
                 <v-btn
                     class="farmingBannerBtn"
                     light
+                    @click="goTo('https://unifty.io/xdai/farm-view.html?address=0x8dDc7167e9F838f2e32FaBA229A53d4a48D0aa8d')"
                 >
-                  OPEN
+                  OPEN <v-icon style="font-size: 1em; padding-top: 1px; padding-left: 4px; color:black"> mdi-open-in-new </v-icon>
                 </v-btn>
               </v-row>
             </div>
@@ -78,8 +79,9 @@
                 <v-btn
                     class="farmingBannerBtn"
                     light
+                    @click="goTo('https://unifty.io/xdai/farm-view.html?address=0x88CfEea7BE8A7695A3012276e8C68bf303Afe49a')"
                 >
-                  OPEN
+                  OPEN <v-icon style="font-size: 1em; padding-top: 1px; padding-left: 4px; color:black"> mdi-open-in-new </v-icon>
                 </v-btn>
               </v-row>
             </div>
@@ -102,7 +104,7 @@
                   <v-col cols="12" style="font-size: 15px">
                     STAKE SNAFU/WXDAI LP TOKEN
                     <br>
-                    MIN/MAX: 300/600 + FEES
+                    MIN/MAX: 400/800
                   </v-col>
                 </v-row>
               </div>
@@ -111,8 +113,9 @@
                 <v-btn
                     class="farmingBannerBtn"
                     light
+                    @click="goTo('https://unifty.io/xdai/farm-view.html?address=0x662D6C48818abD8bBCb7cb589D24E2Fe11Cdba52')"
                 >
-                  OPEN
+                  OPEN  <v-icon style="font-size: 1em; padding-top: 1px; padding-left: 4px; color:black"> mdi-open-in-new </v-icon>
                 </v-btn>
               </v-row>
             </div>
@@ -144,6 +147,9 @@ export default {
   },
   methods: {
     ...mapActions("farming", ["balanceOf"]),
+    goTo(url) {
+      window.open(url, '_blank')
+    }
   },
   mounted(){
     // this.balanceOf();
