@@ -91,7 +91,7 @@
         <v-card>
           <v-card-title style="justify-content: center" no-gutters>Choose Marketplace</v-card-title>
           <v-card-text style="text-align: center">
-            <span style="font-size: 15px;">Our NFTs are can be traded on all NFT Marketplaces on xDai Chain. <br> Please choose the Marketplace where you want to be redirected.</span>
+            <span style="font-size: 15px;">SNAFU NFTs can be traded on all NFT Marketplaces on xDai Chain. <br> Please choose the Marketplace where you want to be redirected.</span>
             <v-row style="justify-content: center" class="mt-5">
               <v-col cols="6" style="text-align: -webkit-center" class="highlightOnHover">
                 <a href="https://xdai.unique.one/collections/0xED1eFC6EFCEAAB9F6d609feC89c9E675Bf1efB0a" target="_blank"><v-img src="/redirect/unique.png" class="pa-15" width="150px"></v-img> <span>Unique.One</span></a>
