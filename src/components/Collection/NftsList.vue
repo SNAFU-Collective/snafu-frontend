@@ -102,7 +102,7 @@ export default {
       currentPage: 1,
       maxPerPage: 8,
       showReadMore: true,
-      currentTag: 'collection2',
+      currentTag: 'all',
       nfts: {
         collection1: [57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30],
         phobias: [75, 74, 73, 72, 71, 70, 69, 68, 67],
@@ -110,7 +110,7 @@ export default {
         collection2: [76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 89, 91, 94, 95, 96, 97, 98, 99, 100, 101, 103, 104, 105, 124],
         collection2Farming: [108, 109, 110, 112, 113, 114, 115, 116, 117, 118, 119, 120, 122, 123],
         communityPool: [106, 125, 128],
-        prizes: [126, 127],
+        prizes: [126, 127, 129],
       },
       carouselItems: [
         {
