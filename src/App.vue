@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <div style="height:100px; width: 100%; background-color: #303030;" class="container">
+    <div style="height:100px; width: 100%; background-color: #303030;" class="container responsiveWarning">
       <p style="color: white; text-align: center"><strong>Warning:</strong> we are experiencing some rate-limit problems while fetching SNAFU NFTs information.
         <br>
         While we are looking into solving this the <strong>Leaderboard, Wallet, Catalog and Swap</strong> features will not be completely functional.
@@ -46,4 +46,11 @@ html, body {
 #app {
   font-family: 'Barlow', sans-serif;
 }
+
+@media screen and  (max-width:768px){
+  .responsiveWarning {
+    height:250px !important;
+  }
+}
+
 </style>
