@@ -1,6 +1,16 @@
 <template>
   <v-app>
+    <div style="height:100px; width: 100%; background-color: #303030;" class="container">
+      <p style="color: white; text-align: center"><strong>Warning:</strong> we are experiencing some rate-limit problems while fetching SNAFU NFTs information.
+        <br>
+        While we are looking into solving this the <strong>Leaderboard, Wallet and Catalog</strong> features will not be completely functional.
+        The <strong>Swap page instead is 100% functional</strong>.
+        <br>
+        We are sorry for the inconvenience. <strong>This is only a frontend issue</strong> that we'll try to solve as soon as possible.
+      </p>
+    </div>
     <v-main>
+
       <Header />
       <router-view />
     </v-main>
