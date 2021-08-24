@@ -8,7 +8,7 @@ const HDWalletProvider = require("@truffle/hdwallet-provider");
 
 const snafuNftAddress = "0xED1eFC6EFCEAAB9F6d609feC89c9E675Bf1efB0a";
 const snafu20Address = "0x27B9C2Bd4BaEa18ABdF49169054c1C1c12af9862";
-const xdaiRPC = "https://rpc.xdaichain.com/";
+const xdaiRPC = "https://young-dawn-surf.xdai.quiknode.pro/8445895a67d18339d6b8e8cf8b7f4964bbf70cab/";
 
 import ERC1155ABI from "../src/assets/abis/ERC1155.json";
 import SNAFU20 from "../src/assets/abis/SNAFU20Pair.json";
@@ -132,9 +132,9 @@ async function generateAssets(){
 
     console.log("Starting setTokenEditions transaction...") 
     const accounts = await web3.eth.getAccounts();
-
-    //let tx = await snafu20.methods.setTokenEditions(tokenIds, editions).send({from: accounts[0]});
-    //console.log("success:", tx)
+    //
+    // let tx = await snafu20.methods.setTokenEditions(tokenIds, editions).send({from: accounts[0]});
+    // console.log("success:", tx)
 
 
 
