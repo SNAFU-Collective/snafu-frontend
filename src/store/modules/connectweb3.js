@@ -5,7 +5,7 @@ import SNAFU20 from "@/assets/abis/SNAFU20Pair.json";
 import SNAFU721 from "@/assets/abis/SNAFU721.json"
 import FARM from "@/assets/abis/UNIFTY_FARM.json"
 
-import { snafu20Address, snafuNftAddress, snafu721Address, xdaiRPC, xdaiWebSocket, commonFarmAddress } from "../../utils/constants"
+import { snafu20Address, snafuNftAddress, snafu721Address, xdaiRPC, commonFarmAddress } from "../../utils/constants"
 
 import { getField, updateField } from 'vuex-map-fields';
 
