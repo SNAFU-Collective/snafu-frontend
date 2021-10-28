@@ -35,19 +35,19 @@ const routes = [
     },
     {
         path: '/swap',
-        name: 'Swap',
+        name: 'Marketplace',
         meta: {
-            title: 'Community Pool | SNAFU',
-            headerSubtitle: 'Community Pool',
+            title: 'Marketplace | SNAFU',
+            headerSubtitle: 'Marketplace',
         },
         component: Home,
     },
     {
-        path: '/lottery',
-        name: 'Lottery',
+        path: '/claim',
+        name: 'Claim',
         meta: {
-            title: 'Lottery - Pool Together | SNAFU',
-            headerSubtitle: 'Lottery',
+            title: 'Claim/Redeem - Pool Together | SNAFU',
+            headerSubtitle: 'Claim',
         },
         component: () => import('../views/Claim.vue'),
     },

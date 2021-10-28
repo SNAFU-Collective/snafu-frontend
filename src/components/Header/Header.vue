@@ -19,7 +19,7 @@
         <a class="backHome" @click="openBuySnafuModal()">BUY SNAFU <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
         <a class="backHome" @click="openVoteModal()">VOTE <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
 <!--        <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>-->
-        <a class="backHome" @click="openMarketModal()">MARKET <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
+        <a class="backHome" @click="openMarketModal()">MARKETS <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
         <a class="backHome" @click="openLearnMoreModal()">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
       </div>
 
@@ -46,7 +46,7 @@
           <a class="backHome" @click="openBuySnafuModal()">BUY SNAFU <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
           <a class="backHome" @click="openVoteModal()">VOTE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
 <!--          <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
-          <a class="backHome" @click="openMarketModal()">MARKET <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
+          <a class="backHome" @click="openMarketModal()">MARKETS <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
           <a class="backHome" @click="openLearnMoreModal()">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
         </Slide>
       </div>
