@@ -89,7 +89,7 @@
 
       <v-dialog v-model="showMarketModal" @input="v => v || closeModal()" max-width="400">
         <v-card>
-          <v-card-title style="justify-content: center" no-gutters>Choose Marketplace</v-card-title>
+          <v-card-title style="justify-content: center" no-gutters>Secondary Markets</v-card-title>
           <v-card-text style="text-align: center">
             <span style="font-size: 15px;">SNAFU NFTs can be traded on all NFT Marketplaces on xDai Chain. <br> Please choose the Marketplace where you want to be redirected.</span>
             <v-row style="justify-content: center" class="mt-5">
