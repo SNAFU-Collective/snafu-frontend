@@ -11,9 +11,9 @@
       <p id="subtitle">{{ currentRouteName }}</p>
       <div id="menuDesktop">
         <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
-        <router-link class="backHome" :to="{ name: 'Marketplace'}">SWAP</router-link>
+        <router-link class="backHome" :to="{ name: 'Marketplace'}">MARKETPLACE</router-link>
         <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
-        <router-link class="backHome" :to="{ name: 'Claim'}">LOTTERY</router-link>
+        <router-link class="backHome" :to="{ name: 'Claim'}">CLAIM</router-link>
         <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
         <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
         <a class="backHome" @click="openBuySnafuModal()">BUY SNAFU <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
@@ -38,9 +38,9 @@
         <Slide right :closeOnNavigation="true" @openMenu="handleOpenMenu" @closeMenu="handleCloseMenu"
                :width=windowWidth>
           <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
-          <router-link class="backHome" :to="{ name: 'Marketplace'}">SWAP</router-link>
+          <router-link class="backHome" :to="{ name: 'Marketplace'}">MARKETPLACE</router-link>
           <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
-          <router-link class="backHome" :to="{ name: 'Claim'}">LOTTERY</router-link>
+          <router-link class="backHome" :to="{ name: 'Claim'}">CLAIM</router-link>
           <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
           <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
           <a class="backHome" @click="openBuySnafuModal()">BUY SNAFU <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
