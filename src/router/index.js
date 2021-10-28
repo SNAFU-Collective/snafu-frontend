@@ -47,7 +47,7 @@ const routes = [
         name: 'Claim',
         meta: {
             title: 'Claim/Redeem - Pool Together | SNAFU',
-            headerSubtitle: 'Claim',
+            headerSubtitle: 'Claim/Redeem',
         },
         component: () => import('../views/Claim.vue'),
     },
