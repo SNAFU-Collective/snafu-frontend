@@ -138,7 +138,7 @@ export default {
             })
 
             // Remove burned nfts from list
-            let burnedIds = ["90", "102", "121"]
+            let burnedIds = ["90", "102", "121", "171"]
             nfts = nfts.filter((nft) => !burnedIds.includes(nft.id))
             
             context.commit("setAllNfts", nfts);
