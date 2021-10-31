@@ -18,6 +18,17 @@
         </v-btn>
         <v-btn
             small
+            v-on:click="currentTag = 'collection3'"
+            style="margin: 10px"
+            :style="
+            currentTag === 'collection3'
+              ? 'background-color: black; color: white'
+              : ''
+          "
+        >Collection #3
+        </v-btn>
+        <v-btn
+            small
             v-on:click="currentTag = 'collection2'"
             style="margin: 10px"
             :style="
@@ -150,6 +161,21 @@ export default {
             allNfts: item.collection2Nfts || 0,
             totalBalance: item.collection2Balance || 0,
             totalValue: item.collection2Value || 0
+          };
+        });
+
+        return leaderboard.filter(
+            (item) => item.totalBalance > 0
+        );
+      }
+
+      if (this.currentTag === "collection3") {
+        leaderboard = leaderboard.map((item) => {
+          return {
+            address: item.address,
+            allNfts: item.collection3Nfts || 0,
+            totalBalance: item.collection3Balance || 0,
+            totalValue: item.collection3Value || 0
           };
         });
 
