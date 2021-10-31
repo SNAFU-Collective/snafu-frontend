@@ -102,6 +102,10 @@ export default {
       nfts: ids,
       carouselItems: [
         {
+          src: '/banners/banner-coll-3.png',
+          mobileSrc: '/banners/banner-coll-3-mob.png',
+        },
+        {
           src: '/banners/pool-banner.png',
           mobileSrc: '/banners/pool-banner-mobile.png',
         },
