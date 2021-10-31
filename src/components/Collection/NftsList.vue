@@ -89,6 +89,7 @@ import NftCard from "./NftCard.vue"
 import {mapFields} from "vuex-map-fields"
 import Banner from "../Common/Banner"
 import CollectionInfo from '../Common/CollectionInfoCard.vue'
+import ids from "../../utils/ids"
 
 export default {
   components: {NftCard, Banner, CollectionInfo},
@@ -98,14 +99,7 @@ export default {
       maxPerPage: 8,
       showReadMore: true,
       currentTag: 'collection3',
-      nfts: {
-        collection1: [57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 58, 59, 60, 61, 62, 63, 64, 65, 66],
-        phobias: [75, 74, 73, 72, 71, 70, 69, 68, 67],
-        collection2: [76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 89, 91, 94, 95, 96, 97, 98, 99, 100, 101, 103, 104, 105, 124, 108, 109, 110, 112, 113, 114, 115, 116, 117, 118, 119, 120, 122, 123],
-        communityPool: [106, 125, 128, 130],
-        gadgets: [126, 127, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139],
-        collection3: []
-      },
+      nfts: ids,
       carouselItems: [
         {
           src: '/banners/pool-banner.png',
