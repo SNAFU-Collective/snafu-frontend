@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row justify="center" class="pt-15">
-      <h2>NFTS IN POOL</h2>
+      <h2>Available NFTs</h2>
       <v-btn icon color="black" @click="getNftsFromPool">
         <v-icon>mdi-cached</v-icon>
       </v-btn>
