@@ -68,6 +68,10 @@
              :style="currentTag === 'gadgets' ? 'background-color: black; color: white' : ''">Gadgets
       </v-btn>
     </v-row>
+    <v-row v-if="currentTag === 'physical'"  justify="center" style="margin-top:40px;text-align: center">
+      <p>Real, at your house: the artworks of our artists are on sale! <br>
+      <a href="https://www.nftsnafu.org/physical-artworks" target="_blank">Read here</a> for more info. </p>
+    </v-row>
     <v-row class="mt-10" justify="center">
       <div v-for="(nft, index) in paginatedNFTs" :key="index">
         <nft-card :key="nft.id" :nft="nft" class="ma-6"/>
