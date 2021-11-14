@@ -62,7 +62,7 @@
              :style="currentTag === 'phobias' ? 'background-color: black; color: white' : ''">Phobias
       </v-btn>
       <v-btn small v-on:click="filter('physical')" style="margin: 10px"
-             :style="currentTag === 'physical' ? 'background-color: black; color: white' : ''">Physical
+             :style="currentTag === 'physical' ? 'background-color: black; color: white' : ''">Physical <span class="newFlag">NEW</span>
       </v-btn>
       <v-btn small v-on:click="filter('gadgets')" style="margin: 10px"
              :style="currentTag === 'gadgets' ? 'background-color: black; color: white' : ''">Gadgets
@@ -198,6 +198,18 @@ export default {
   #mainNftsDive {
     margin-top: 0px !important;
   }
+}
+
+.newFlag {
+  position: absolute;
+  top: -16px;
+  right: -20px;
+  background-color: red;
+  padding: 2px;
+  color: white;
+  font-weight: 800;
+  border-radius: 3px;
+  font-size: 10px;
 }
 
 </style>
