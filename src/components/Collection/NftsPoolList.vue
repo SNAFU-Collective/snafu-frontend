@@ -25,6 +25,9 @@
       <v-btn small v-on:click="filter('phobias')" style="margin: 10px"
              :style="currentTag === 'phobias' ? 'background-color: black; color: white' : ''">Phobias
       </v-btn>
+      <v-btn small v-on:click="filter('physical')" style="margin: 10px"
+             :style="currentTag === 'physical' ? 'background-color: black; color: white' : ''">Physical
+      </v-btn>
       <v-btn small v-on:click="filter('gadgets')" style="margin: 10px"
              :style="currentTag === 'gadgets' ? 'background-color: black; color: white' : ''">Gadgets
       </v-btn>
@@ -111,6 +114,9 @@ export default {
             break
           case "gadgets":
             ids = this.nfts.gadgets
+            break
+          case "physical":
+            ids = this.nfts.physical
             break
         }
 
