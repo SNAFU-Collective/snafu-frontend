@@ -45,7 +45,7 @@
                 <v-btn
                     class="farmingBannerBtn"
                     light
-                    @click="goTo('https://unifty.io/xdai/farm-view.html?address=0x8dDc7167e9F838f2e32FaBA229A53d4a48D0aa8d')"
+                    @click="goTo('https://rarity.garden/xdai/farm-view.html?address=0x8dDc7167e9F838f2e32FaBA229A53d4a48D0aa8d')"
                 >
                   OPEN <v-icon style="font-size: 1em; padding-top: 1px; padding-left: 4px; color:black"> mdi-open-in-new </v-icon>
                 </v-btn>
@@ -79,7 +79,7 @@
                 <v-btn
                     class="farmingBannerBtn"
                     light
-                    @click="goTo('https://unifty.io/xdai/farm-view.html?address=0x88CfEea7BE8A7695A3012276e8C68bf303Afe49a')"
+                    @click="goTo('https://rarity.garden/xdai/farm-view.html?address=0x88CfEea7BE8A7695A3012276e8C68bf303Afe49a')"
                 >
                   OPEN <v-icon style="font-size: 1em; padding-top: 1px; padding-left: 4px; color:black"> mdi-open-in-new </v-icon>
                 </v-btn>
@@ -113,7 +113,7 @@
                 <v-btn
                     class="farmingBannerBtn"
                     light
-                    @click="goTo('https://unifty.io/xdai/farm-view.html?address=0x662D6C48818abD8bBCb7cb589D24E2Fe11Cdba52')"
+                    @click="goTo('https://rarity.garden/xdai/farm-view.html?address=0x662D6C48818abD8bBCb7cb589D24E2Fe11Cdba52')"
                 >
                   OPEN  <v-icon style="font-size: 1em; padding-top: 1px; padding-left: 4px; color:black"> mdi-open-in-new </v-icon>
                 </v-btn>

@@ -102,7 +102,7 @@
             </v-row>
             <v-row style="justify-content: center">
               <v-col cols="6" style="text-align: -webkit-center" class="highlightOnHover">
-                <a href="https://unifty.io/xdai/market.html" target="_blank"><v-img src="/redirect/unifty.png" class="pa-15" width="150px"></v-img><span>Unifty</span></a>
+                <a href="https://rarity.garden/xdai/market.html" target="_blank"><v-img src="/redirect/unifty.png" class="pa-15" width="150px"></v-img><span>Unifty</span></a>
               </v-col>
             </v-row>
           </v-card-text>
