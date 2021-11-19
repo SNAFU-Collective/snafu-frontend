@@ -80,6 +80,16 @@ const routes = [
         component: () => import('../views/Farms.vue'),
         props: true,
     },
+    {
+        path: '/bridge',
+        name: 'Bridge',
+        meta: {
+            title: 'Bridge | SNAFU',
+            headerSubtitle: 'test',
+        },
+        component: () => import('../views/Bridge.vue'),
+        props: true,
+    },
 ]
 
 const router = new VueRouter({
