@@ -61,6 +61,9 @@
       <v-btn small v-on:click="filter('phobias')" style="margin: 10px"
              :style="currentTag === 'phobias' ? 'background-color: black; color: white' : ''">Phobias
       </v-btn>
+      <v-btn small v-on:click="filter('okki')" style="margin: 10px"
+             :style="currentTag === 'okki' ? 'background-color: black; color: white' : ''">Okki
+      </v-btn>
       <v-btn small v-on:click="filter('physical')" style="margin: 10px"
              :style="currentTag === 'physical' ? 'background-color: black; color: white' : ''">Physical <span class="newFlag">NEW</span>
       </v-btn>
@@ -157,6 +160,9 @@ export default {
           break
         case "physical":
           ids = this.nfts.physical
+          break
+        case "okki":
+          ids = this.nfts.okki
           break
       }
 
