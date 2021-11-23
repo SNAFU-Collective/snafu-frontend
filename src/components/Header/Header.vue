@@ -8,20 +8,21 @@
         <img src="logo.png" alt="logo-SNAFU.png" id="logo">
       </div>
 
-      <p id="subtitle">{{ currentRouteName }}</p>
-<!--      <div id="menuDesktop">-->
-<!--        <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>-->
-<!--        <router-link class="backHome" :to="{ name: 'Marketplace'}">MARKETPLACE</router-link>-->
-<!--        <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>-->
-<!--        <router-link class="backHome" :to="{ name: 'Claim'}">CLAIM</router-link>-->
-<!--        <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>-->
-<!--        <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>-->
-<!--        <a class="backHome" @click="openBuySnafuModal()">BUY SNAFU <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>-->
-<!--        <a class="backHome" @click="openVoteModal()">VOTE <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>-->
+<!--      <p id="subtitle">{{ currentRouteName }}</p>-->
+      <div id="subtitle">
+        <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
+        <router-link class="backHome" :to="{ name: 'Marketplace'}">MARKETPLACE</router-link>
+        <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
+        <router-link class="backHome" :to="{ name: 'Claim'}">CLAIM</router-link>
+        <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
+        <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
+        <router-link class="backHome" :to="{ name: 'Leaderboard'}">RESOURCES</router-link>
+<!--        <a class="backHome" @click="openBuySnafuModal()">BUY SNAFU </a>-->
+<!--        <a class="backHome" @click="openVoteModal()">VOTE </a>-->
 <!--&lt;!&ndash;        <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>&ndash;&gt;-->
-<!--        <a class="backHome" @click="openMarketModal()">MARKETS <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>-->
-<!--        <a class="backHome" @click="openLearnMoreModal()">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
-<!--      </div>-->
+<!--        <a class="backHome" @click="openMarketModal()">MARKETS </a>-->
+<!--        <a class="backHome" @click="openLearnMoreModal()">LEARN MORE </a>-->
+      </div>
 
       <wallet-status class="mt-5 pb-2 walletHeader"/>
     </div>
@@ -266,17 +267,24 @@ export default {
 
   .backHome {
     text-decoration: unset;
-    color: #303030;
-    font-size: 17px;
-    font-weight: 500;
+    color: rgb(143, 143, 143);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 0 10px;
+    margin: 0 5px;
   }
 
   .backHome:hover {
-    color: rgb(219, 219, 219) !important;
-  }
-
-  .backHome:hover > .arrowRedirect {
-    color: rgb(219, 219, 219) !important;
+    color: rgb(143, 143, 143) !important;
+    /* position: absolute; */
+    left: 0;
+    bottom: 1px;
+    border-width: 0 0 1px;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 1px;
+    border-left-width: 0px;
+    border-style: solid;
   }
 
   .v-application a {
@@ -284,7 +292,16 @@ export default {
   }
 
   a.backHome.router-link-exact-active.router-link-active {
-    color: rgb(219, 219, 219) !important;
+    color: rgb(143, 143, 143) !important;
+    /* position: absolute; */
+    left: 0;
+    bottom: 1px;
+    border-width: 0 0 1px;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 1px;
+    border-left-width: 0px;
+    border-style: solid;
   }
 
   .arrowRedirect:before {

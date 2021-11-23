@@ -2,7 +2,7 @@
   <div style="margin-bottom: 50px">
     <v-container>
       <v-row id="mainRow" justify="center" style="display: grid; padding-top: 100px">
-        <wallet-status class="mt-5 pb-2"/>
+      
       </v-row>
     </v-container>
     <v-container>
@@ -135,7 +135,6 @@ import { commonFarmAddress } from "../utils/constants"
 
 export default {
   components: {
-    WalletStatus,
     Banner,
   },
   data() {

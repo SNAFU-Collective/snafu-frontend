@@ -2,7 +2,6 @@
   <div>
     <v-container>
       <v-row id="mainRow" justify="center" style="display: grid; padding-top: 100px">
-        <wallet-status class="mt-5 pb-2"/>
       </v-row>
     </v-container>
     <v-container>
@@ -127,7 +126,6 @@ export default {
     ManualRedeemModal, NftSelectCard, ConfirmClaimModal,
     // ClaimForm,
     ConfirmBurnModal,
-    WalletStatus,
     Banner,
   },
   data() {
