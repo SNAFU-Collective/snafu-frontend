@@ -71,11 +71,11 @@
              :style="currentTag === 'gadgets' ? 'background-color: black; color: white' : ''">Gadgets
       </v-btn>
     </v-row>
-    <v-row v-if="currentTag === 'physical'"  justify="center" style="margin-top:40px;text-align: center">
+    <v-row v-if="currentTag === 'physical'"  justify="center" style="margin-top:40px;text-align: center; padding: 0 10px">
       <p>Real, at your house: the artworks of our artists are on sale! <br>
       <a href="https://www.nftsnafu.org/physical-artworks" target="_blank">Read here</a> for more info. </p>
     </v-row>
-    <v-row v-if="currentTag === 'okki'"  justify="center" style="margin-top:40px;text-align: center">
+    <v-row v-if="currentTag === 'okki'"  justify="center" style="margin-top:40px;text-align: center; padding: 0 10px">
       <p>The eyes are the mirror of the soul, they convey our emotional state better than anything else. A glance can show us happiness, sadness, desire, and even fear. <br>
         <a href="https://www.nftsnafu.org/okki-snafumett" target="_blank">Read more</a> about this collection. </p>
     </v-row>
