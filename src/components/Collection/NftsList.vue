@@ -112,7 +112,7 @@ export default {
       currentPage: 1,
       maxPerPage: 8,
       showReadMore: true,
-      currentTag: 'collection3',
+      currentTag: 'okki',
       nfts: ids,
       carouselItems: [
         {
