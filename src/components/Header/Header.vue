@@ -9,135 +9,137 @@
       </div>
 
       <p id="subtitle">{{ currentRouteName }}</p>
-      <div id="menuDesktop">
-        <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
-        <router-link class="backHome" :to="{ name: 'Marketplace'}">MARKETPLACE</router-link>
-        <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
-        <router-link class="backHome" :to="{ name: 'Claim'}">CLAIM</router-link>
-        <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
-        <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
-        <a class="backHome" @click="openBuySnafuModal()">BUY SNAFU <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
-        <a class="backHome" @click="openVoteModal()">VOTE <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
-<!--        <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>-->
-        <a class="backHome" @click="openMarketModal()">MARKETS <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
-        <a class="backHome" @click="openLearnMoreModal()">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
-      </div>
+<!--      <div id="menuDesktop">-->
+<!--        <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>-->
+<!--        <router-link class="backHome" :to="{ name: 'Marketplace'}">MARKETPLACE</router-link>-->
+<!--        <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>-->
+<!--        <router-link class="backHome" :to="{ name: 'Claim'}">CLAIM</router-link>-->
+<!--        <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>-->
+<!--        <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>-->
+<!--        <a class="backHome" @click="openBuySnafuModal()">BUY SNAFU <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>-->
+<!--        <a class="backHome" @click="openVoteModal()">VOTE <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>-->
+<!--&lt;!&ndash;        <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>&ndash;&gt;-->
+<!--        <a class="backHome" @click="openMarketModal()">MARKETS <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>-->
+<!--        <a class="backHome" @click="openLearnMoreModal()">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
+<!--      </div>-->
 
+      <wallet-status class="mt-5 pb-2 walletHeader"/>
     </div>
 
-    <div id="mobileHeader">
-      <div id="mobileHeaderContainer">
-        <div id="mobileLogoContainer" style="margin-left: -5px">
-          <img src="logo.png" alt="logo-SNAFU.png" id="logoMobile">
-          <router-link :to="{ name: 'Home'}" id="snafuTextMobile">SNAFU</router-link>
-        </div>
-        <p id="subtitleMobile">{{ currentRouteName }}</p>
-      </div>
+<!--    <div id="mobileHeader">-->
+<!--      <div id="mobileHeaderContainer">-->
+<!--        <div id="mobileLogoContainer" style="margin-left: -5px">-->
+<!--          <img src="logo.png" alt="logo-SNAFU.png" id="logoMobile">-->
+<!--          <router-link :to="{ name: 'Home'}" id="snafuTextMobile">SNAFU</router-link>-->
+<!--        </div>-->
+<!--        <p id="subtitleMobile">{{ currentRouteName }}</p>-->
+<!--      </div>-->
 
-      <div id="menuMobile">
-        <Slide right :closeOnNavigation="true" @openMenu="handleOpenMenu" @closeMenu="handleCloseMenu"
-               :width=windowWidth>
-          <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
-          <router-link class="backHome" :to="{ name: 'Marketplace'}">MARKETPLACE</router-link>
-          <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
-          <router-link class="backHome" :to="{ name: 'Claim'}">CLAIM</router-link>
-          <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
-          <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
-          <a class="backHome" @click="openBuySnafuModal()">BUY SNAFU <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
-          <a class="backHome" @click="openVoteModal()">VOTE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
-<!--          <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
-          <a class="backHome" @click="openMarketModal()">MARKETS <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
-          <a class="backHome" @click="openLearnMoreModal()">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
-        </Slide>
-      </div>
+<!--      <div id="menuMobile">-->
+<!--        <Slide right :closeOnNavigation="true" @openMenu="handleOpenMenu" @closeMenu="handleCloseMenu"-->
+<!--               :width=windowWidth>-->
+<!--          <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>-->
+<!--          <router-link class="backHome" :to="{ name: 'Marketplace'}">MARKETPLACE</router-link>-->
+<!--          <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>-->
+<!--          <router-link class="backHome" :to="{ name: 'Claim'}">CLAIM</router-link>-->
+<!--          <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>-->
+<!--          <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>-->
+<!--          <a class="backHome" @click="openBuySnafuModal()">BUY SNAFU <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
+<!--          <a class="backHome" @click="openVoteModal()">VOTE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
+<!--&lt;!&ndash;          <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>&ndash;&gt;-->
+<!--          <a class="backHome" @click="openMarketModal()">MARKETS <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
+<!--          <a class="backHome" @click="openLearnMoreModal()">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
+<!--        </Slide>-->
+<!--      </div>-->
 
-      <v-dialog v-model="showBuySnafuModal" @input="v => v || closeModal()" max-width="400">
-        <v-card>
-          <v-card-title style="justify-content: center" no-gutters>Continue?</v-card-title>
-          <v-card-text style="text-align: center">
-            <span style="font-size: 15px;">You will be redirected to Honeyswap, a decentralized exchange where you can buy $SNAFU. <br> Do you want to continue?</span>
-          <div style="justify-content: center">
-            <v-col cols="6" offset="3"> <v-img src="/redirect/honeyswap.png" class="pa-15" width="150px"></v-img></v-col>
-          </div>
-          </v-card-text>
-          <v-card-actions class="pb-10">
-            <v-row justify="center">
-              <v-btn class="ma-2" @click="closeModal()">CLOSE</v-btn>
-              <v-btn class="ma-2" @click="goTo('https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862')">CONTINUE</v-btn>
-            </v-row>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
+<!--      <v-dialog v-model="showBuySnafuModal" @input="v => v || closeModal()" max-width="400">-->
+<!--        <v-card>-->
+<!--          <v-card-title style="justify-content: center" no-gutters>Continue?</v-card-title>-->
+<!--          <v-card-text style="text-align: center">-->
+<!--            <span style="font-size: 15px;">You will be redirected to Honeyswap, a decentralized exchange where you can buy $SNAFU. <br> Do you want to continue?</span>-->
+<!--          <div style="justify-content: center">-->
+<!--            <v-col cols="6" offset="3"> <v-img src="/redirect/honeyswap.png" class="pa-15" width="150px"></v-img></v-col>-->
+<!--          </div>-->
+<!--          </v-card-text>-->
+<!--          <v-card-actions class="pb-10">-->
+<!--            <v-row justify="center">-->
+<!--              <v-btn class="ma-2" @click="closeModal()">CLOSE</v-btn>-->
+<!--              <v-btn class="ma-2" @click="goTo('https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862')">CONTINUE</v-btn>-->
+<!--            </v-row>-->
+<!--          </v-card-actions>-->
+<!--        </v-card>-->
+<!--      </v-dialog>-->
 
-      <v-dialog v-model="showVoteModal" @input="v => v || closeModal()" max-width="400">
-        <v-card>
-          <v-card-title style="justify-content: center" no-gutters>Continue?</v-card-title>
-          <v-card-text style="text-align: center">
-            <span style="font-size: 15px;">You will be redirected to Snapshot, a decentralized voting system used by the SNAFU Collective for its governance. <br> Do you want to continue?</span>
-            <div style="justify-content: center">
-              <v-col cols="6" offset="3"> <v-img src="/redirect/snapshot.jpg" class="pa-15" width="150px"></v-img></v-col>
-            </div>
-          </v-card-text>
-          <v-card-actions class="pb-10">
-            <v-row justify="center">
-              <v-btn class="ma-2" @click="closeModal()">CLOSE</v-btn>
-              <v-btn class="ma-2" @click="goTo('https://vote.nftsnafu.org/#/')">CONTINUE</v-btn>
-            </v-row>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
+<!--      <v-dialog v-model="showVoteModal" @input="v => v || closeModal()" max-width="400">-->
+<!--        <v-card>-->
+<!--          <v-card-title style="justify-content: center" no-gutters>Continue?</v-card-title>-->
+<!--          <v-card-text style="text-align: center">-->
+<!--            <span style="font-size: 15px;">You will be redirected to Snapshot, a decentralized voting system used by the SNAFU Collective for its governance. <br> Do you want to continue?</span>-->
+<!--            <div style="justify-content: center">-->
+<!--              <v-col cols="6" offset="3"> <v-img src="/redirect/snapshot.jpg" class="pa-15" width="150px"></v-img></v-col>-->
+<!--            </div>-->
+<!--          </v-card-text>-->
+<!--          <v-card-actions class="pb-10">-->
+<!--            <v-row justify="center">-->
+<!--              <v-btn class="ma-2" @click="closeModal()">CLOSE</v-btn>-->
+<!--              <v-btn class="ma-2" @click="goTo('https://vote.nftsnafu.org/#/')">CONTINUE</v-btn>-->
+<!--            </v-row>-->
+<!--          </v-card-actions>-->
+<!--        </v-card>-->
+<!--      </v-dialog>-->
 
-      <v-dialog v-model="showMarketModal" @input="v => v || closeModal()" max-width="400">
-        <v-card>
-          <v-card-title style="justify-content: center" no-gutters>Secondary Markets</v-card-title>
-          <v-card-text style="text-align: center">
-            <span style="font-size: 15px;">SNAFU NFTs can be traded on all NFT Marketplaces on xDai Chain. <br> Please choose the Marketplace where you want to be redirected.</span>
-            <v-row style="justify-content: center" class="mt-5">
-              <v-col cols="6" style="text-align: -webkit-center" class="highlightOnHover">
-                <a href="https://xdai.unique.one/collections/0xED1eFC6EFCEAAB9F6d609feC89c9E675Bf1efB0a" target="_blank"><v-img src="/redirect/unique.png" class="pa-15" width="150px"></v-img> <span>Unique.One</span></a>
-              </v-col>
-              <v-col cols="6" style="text-align: -webkit-center" class="highlightOnHover">
-                <a href="https://epor.io/browse?token_address=0xed1efc6efceaab9f6d609fec89c9e675bf1efb0a" target="_blank"><v-img src="/redirect/eporio.png" class="pa-15" width="150px"></v-img> <span>Eporio</span></a>
-              </v-col>
-            </v-row>
-            <v-row style="justify-content: center">
-              <v-col cols="6" style="text-align: -webkit-center" class="highlightOnHover">
-                <a href="https://rarity.garden/xdai/market.html" target="_blank"><v-img src="/redirect/unifty.png" class="pa-15" width="150px"></v-img><span>Unifty</span></a>
-              </v-col>
-            </v-row>
-          </v-card-text>
-          <v-card-actions class="pb-10">
-            <v-row justify="center">
-              <v-btn class="ma-2" @click="closeModal()">CLOSE</v-btn>
-            </v-row>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
+<!--      <v-dialog v-model="showMarketModal" @input="v => v || closeModal()" max-width="400">-->
+<!--        <v-card>-->
+<!--          <v-card-title style="justify-content: center" no-gutters>Secondary Markets</v-card-title>-->
+<!--          <v-card-text style="text-align: center">-->
+<!--            <span style="font-size: 15px;">SNAFU NFTs can be traded on all NFT Marketplaces on xDai Chain. <br> Please choose the Marketplace where you want to be redirected.</span>-->
+<!--            <v-row style="justify-content: center" class="mt-5">-->
+<!--              <v-col cols="6" style="text-align: -webkit-center" class="highlightOnHover">-->
+<!--                <a href="https://xdai.unique.one/collections/0xED1eFC6EFCEAAB9F6d609feC89c9E675Bf1efB0a" target="_blank"><v-img src="/redirect/unique.png" class="pa-15" width="150px"></v-img> <span>Unique.One</span></a>-->
+<!--              </v-col>-->
+<!--              <v-col cols="6" style="text-align: -webkit-center" class="highlightOnHover">-->
+<!--                <a href="https://epor.io/browse?token_address=0xed1efc6efceaab9f6d609fec89c9e675bf1efb0a" target="_blank"><v-img src="/redirect/eporio.png" class="pa-15" width="150px"></v-img> <span>Eporio</span></a>-->
+<!--              </v-col>-->
+<!--            </v-row>-->
+<!--            <v-row style="justify-content: center">-->
+<!--              <v-col cols="6" style="text-align: -webkit-center" class="highlightOnHover">-->
+<!--                <a href="https://rarity.garden/xdai/market.html" target="_blank"><v-img src="/redirect/unifty.png" class="pa-15" width="150px"></v-img><span>Unifty</span></a>-->
+<!--              </v-col>-->
+<!--            </v-row>-->
+<!--          </v-card-text>-->
+<!--          <v-card-actions class="pb-10">-->
+<!--            <v-row justify="center">-->
+<!--              <v-btn class="ma-2" @click="closeModal()">CLOSE</v-btn>-->
+<!--            </v-row>-->
+<!--          </v-card-actions>-->
+<!--        </v-card>-->
+<!--      </v-dialog>-->
 
-      <v-dialog v-model="showLearnMoreModal" @input="v => v || closeModal()" max-width="400">
-        <v-card>
-          <v-card-title style="justify-content: center" no-gutters>Continue?</v-card-title>
-          <v-card-text style="text-align: center">
-            <span style="font-size: 15px;">You will be redirected to the SNAFU Collective's landing website. <br> Continue?</span>
-          </v-card-text>
-          <v-card-actions class="pb-10">
-            <v-row justify="center">
-              <v-btn class="ma-2" @click="closeModal()">CLOSE</v-btn>
-              <v-btn class="ma-2" @click="goTo('https://nftsnafu.org')">CONTINUE</v-btn>
-            </v-row>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
+<!--      <v-dialog v-model="showLearnMoreModal" @input="v => v || closeModal()" max-width="400">-->
+<!--        <v-card>-->
+<!--          <v-card-title style="justify-content: center" no-gutters>Continue?</v-card-title>-->
+<!--          <v-card-text style="text-align: center">-->
+<!--            <span style="font-size: 15px;">You will be redirected to the SNAFU Collective's landing website. <br> Continue?</span>-->
+<!--          </v-card-text>-->
+<!--          <v-card-actions class="pb-10">-->
+<!--            <v-row justify="center">-->
+<!--              <v-btn class="ma-2" @click="closeModal()">CLOSE</v-btn>-->
+<!--              <v-btn class="ma-2" @click="goTo('https://nftsnafu.org')">CONTINUE</v-btn>-->
+<!--            </v-row>-->
+<!--          </v-card-actions>-->
+<!--        </v-card>-->
+<!--      </v-dialog>-->
 
-    </div>
+<!--    </div>-->
   </div>
 </template>
 
 <script>
 import {Slide} from 'vue-burger-menu'
+import WalletStatus from '../Wallet/WalletStatus.vue'
 
 export default {
-  components: {Slide},
+  components: {WalletStatus},
   methods: {
     handleOpenMenu() {
       document.querySelector(".bm-burger-button").style.display = 'none'
@@ -190,6 +192,13 @@ export default {
   background-color: #a7a7a752;
 }
 @media screen and (min-width: 769px) {
+  .walletHeader {
+    width: 355px;
+    position: absolute;
+    right: 0px;
+    top: 20px;
+  }
+
   #desktopHeader {
     display: block;
   }
