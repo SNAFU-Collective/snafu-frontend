@@ -130,29 +130,8 @@ export default {
       switch (this.currentTag) {
         case "all":
           return this.shuffle(this.allNFTs)
-        case "collection3":
-          ids = this.nfts.collection3
-          break
-        case "collection2":
-          ids = this.nfts.collection2
-          break
-        case "collection1":
-          ids = this.nfts.collection1
-          break
-        case "phobias":
-          ids = this.nfts.phobias
-          break
-        case "communityPool":
-          ids = this.nfts.communityPool
-          break
-        case "gadgets":
-          ids = this.nfts.gadgets
-          break
-        case "physical":
-          ids = this.nfts.physical
-          break
-        case "okki":
-          ids = this.nfts.okki
+        default:
+          ids = this.nfts[this.currentTag]
           break
       }
 
