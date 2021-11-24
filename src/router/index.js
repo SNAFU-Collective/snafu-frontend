@@ -89,7 +89,7 @@ const routes = [
         },
         component: () => import('../views/Bridge.vue'),
         props: true,
-    },
+    }
 ]
 
 const router = new VueRouter({
