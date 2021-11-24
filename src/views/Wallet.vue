@@ -7,6 +7,9 @@
             <SnafuBalance />
           </v-col>
         </v-row>
+        <v-row justify="center" class="pt-10">
+<!--          <collection-info />-->
+        </v-row>
       </v-row>
       <v-row justify="center" class="pt-10"><strong>Your NFTs</strong></v-row>
       <v-row v-if="nfts" justify="center"><strong>Total: {{nfts.length}}</strong></v-row>
@@ -24,6 +27,7 @@
 <!--          </v-tooltip>-->
 <!--        </v-col>-->
 <!--      </v-row>-->
+
       <v-row justify="center">
         <nft-select-card
             :nft="nft"
@@ -50,6 +54,7 @@
 </template>
 
 <script>
+import CollectionInfo from '../components/Collection/CollectionInfo.vue'
 import {mapState} from "vuex"
 import NftSelectCard from '../components/Collection/NftSelectCard.vue'
 import WalletStatus from "../components/Wallet/WalletStatus"
@@ -58,7 +63,12 @@ import {mapFields} from "vuex-map-fields"
 import TransferNFTModal from "../components/Transfer/TransferNFTModal"
 
 export default {
-  components: {NftSelectCard, SnafuBalance, TransferNFTModal},
+  components: {
+    NftSelectCard,
+    SnafuBalance,
+    TransferNFTModal,
+    // CollectionInfo
+  },
   computed: {
     ...mapFields("connectweb3", ["account"]),
     ...mapState("nftContract", {

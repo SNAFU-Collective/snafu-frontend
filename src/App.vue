@@ -1,8 +1,7 @@
 <template>
   <v-app>
     <v-main>
-
-      <Header style="padding-bottom: 100px" />
+      <Header style="padding-bottom: 60px" />
       <router-view />
     </v-main>
   </v-app>

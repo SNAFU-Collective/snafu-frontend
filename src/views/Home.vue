@@ -3,9 +3,6 @@
     <v-row id="mainRow" justify="center" style="display: grid; padding-top: 100px">
       <swap-card />
     </v-row>
-<!--    <v-row justify="center" class="pt-10">-->
-<!--      <collection-info />-->
-<!--    </v-row>-->
     <v-row justify="center" class="pt-10">
       <nfts-pool-list />
     </v-row>
@@ -13,7 +10,6 @@
 </template>
 
 <script>
-import CollectionInfo from '../components/Collection/CollectionInfo.vue'
 import NftsPoolList from '../components/Collection/NftsPoolList.vue'
 import SwapCard from '../components/Swap/SwapCard.vue'
 
@@ -21,7 +17,6 @@ export default {
   name: 'Home',
   components: {
     SwapCard,
-    // CollectionInfo,
     NftsPoolList
   }
 }

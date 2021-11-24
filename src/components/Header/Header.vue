@@ -213,7 +213,7 @@ export default {
   }
 
   #pinnedLeftHeader {
-    position: fixed;
+    position: absolute;
     top: 110px;
     display: inline-table;
     z-index: 11111;

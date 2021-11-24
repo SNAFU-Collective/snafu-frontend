@@ -1,40 +1,48 @@
 <template>
   <div>
     <v-row justify="center" class="pt-15">
-      <h2>Available NFTs</h2>
-      <v-btn icon color="black" @click="getNftsFromPool">
-        <v-icon>mdi-cached</v-icon>
-      </v-btn>
+
+
     </v-row>
-    <v-row justify="center" class="pt-15 filters-row">
-      <v-btn small v-on:click="filter('all')" style="margin: 10px"
-             :style="currentTag === 'all' ? 'background-color: black; color: white' : ''">All
-      </v-btn>
-      <v-btn small v-on:click="filter('collection3')" style="margin: 10px"
-             :style="currentTag === 'collection3' ? 'background-color: black; color: white' : ''">Collection #3
-      </v-btn>
-      <v-btn small v-on:click="filter('collection2')" style="margin: 10px"
-             :style="currentTag === 'collection2' ? 'background-color: black; color: white' : ''">Collection #2
-      </v-btn>
-      <v-btn small v-on:click="filter('collection1')" style="margin: 10px"
-             :style="currentTag === 'collection1' ? 'background-color: black; color: white' : ''">Collection #1
-      </v-btn>
-      <v-btn small v-on:click="filter('communityPool')" style="margin: 10px"
-             :style="currentTag === 'communityPool' ? 'background-color: black; color: white' : ''">Community Pool
-      </v-btn>
-      <v-btn small v-on:click="filter('phobias')" style="margin: 10px"
-             :style="currentTag === 'phobias' ? 'background-color: black; color: white' : ''">Phobias
-      </v-btn>
-      <v-btn small v-on:click="filter('okki')" style="margin: 10px"
-             :style="currentTag === 'okki' ? 'background-color: black; color: white' : ''">Okki
-      </v-btn>
-      <v-btn small v-on:click="filter('physical')" style="margin: 10px"
-             :style="currentTag === 'physical' ? 'background-color: black; color: white' : ''">Physical
-      </v-btn>
-      <v-btn small v-on:click="filter('gadgets')" style="margin: 10px"
-             :style="currentTag === 'gadgets' ? 'background-color: black; color: white' : ''">Gadgets
-      </v-btn>
+
+    <v-row class="pt-15 filters-row">
+      <v-col cols="2">
+        <h4 style="padding-top: 6px;padding-left: 10px;">Available NFTs</h4>
+<!--        <v-btn icon color="black" @click="getNftsFromPool">-->
+<!--          <v-icon>mdi-cached</v-icon>-->
+<!--        </v-btn>-->
+      </v-col>
+      <v-col cols="10" >
+        <v-btn plain v-on:click="filter('all')" class="filter"
+               :style="currentTag === 'all' ? ' color:  rgb(143, 143, 143)' : ''">All
+        </v-btn>
+        <v-btn plain v-on:click="filter('collection3')"  class="filter"
+               :style="currentTag === 'collection3' ? 'color:  rgb(143, 143, 143)' : ''">Collection #3
+        </v-btn>
+        <v-btn plain v-on:click="filter('collection2')"  class="filter"
+               :style="currentTag === 'collection2' ? 'color:  rgb(143, 143, 143)' : ''">Collection #2
+        </v-btn>
+        <v-btn plain v-on:click="filter('collection1')"  class="filter"
+               :style="currentTag === 'collection1' ? 'bcolor:  rgb(143, 143, 143)' : ''">Collection #1
+        </v-btn>
+        <v-btn plain v-on:click="filter('communityPool')"  class="filter"
+               :style="currentTag === 'communityPool' ? 'color:  rgb(143, 143, 143)' : ''">Community Pool
+        </v-btn>
+        <v-btn plain v-on:click="filter('phobias')"  class="filter"
+               :style="currentTag === 'phobias' ? 'bcolor:  rgb(143, 143, 143)' : ''">Phobias
+        </v-btn>
+        <v-btn plain v-on:click="filter('okki')"  class="filter"
+               :style="currentTag === 'okki' ? 'color:  rgb(143, 143, 143)' : ''">Okki
+        </v-btn>
+        <v-btn plain v-on:click="filter('physical')"  class="filter"
+               :style="currentTag === 'physical' ? 'color:  rgb(143, 143, 143)' : ''">Physical
+        </v-btn>
+        <v-btn plain v-on:click="filter('gadgets')"  class="filter"
+               :style="currentTag === 'gadgets' ? 'color:  rgb(143, 143, 143)' : ''" >Gadgets
+        </v-btn>
+      </v-col>
     </v-row>
+
     <v-row v-if="poolSync" class="mt-10">
       <nft-card v-for="nft in paginatedNFTs" :key="nft.id" :nft="nft" class="ma-6" show-buy-button />
     </v-row>
@@ -138,6 +146,11 @@ export default {
 </script>
 
 <style>
+.filter {
+  margin: 0;
+  font-size: 12px !important;
+}
+
 @media screen and (min-width: 768px) {
   .allNFTsContainer {
     margin-top: 40px;
