@@ -148,7 +148,7 @@ export default {
     },
     buttonText() {
       if (!this.isConnected) {
-        return "Connect wallet";
+        return "Sign in";
       }
 
       if (!this.isXdai) {

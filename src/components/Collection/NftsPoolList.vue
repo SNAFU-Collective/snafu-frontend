@@ -1,45 +1,25 @@
 <template>
   <div>
-    <v-row class="pt-15 filters-row">
-      <v-col cols="2">
-        <h4 style="padding-top: 6px;padding-left: 10px;">Available NFTs</h4>
-<!--        <v-btn icon color="black" @click="getNftsFromPool">-->
-<!--          <v-icon>mdi-cached</v-icon>-->
-<!--        </v-btn>-->
-      </v-col>
-      <v-col cols="10" >
-        <v-btn plain v-on:click="filter('all')" class="filter"
-               :style="currentTag === 'all' ? ' color:  rgb(143, 143, 143)' : ''">All
-        </v-btn>
-        <v-btn plain v-on:click="filter('collection3')"  class="filter"
-               :style="currentTag === 'collection3' ? 'color:  rgb(143, 143, 143)' : ''">Collection #3
-        </v-btn>
-        <v-btn plain v-on:click="filter('collection2')"  class="filter"
-               :style="currentTag === 'collection2' ? 'color:  rgb(143, 143, 143)' : ''">Collection #2
-        </v-btn>
-        <v-btn plain v-on:click="filter('collection1')"  class="filter"
-               :style="currentTag === 'collection1' ? 'bcolor:  rgb(143, 143, 143)' : ''">Collection #1
-        </v-btn>
-        <v-btn plain v-on:click="filter('communityPool')"  class="filter"
-               :style="currentTag === 'communityPool' ? 'color:  rgb(143, 143, 143)' : ''">Community Pool
-        </v-btn>
-        <v-btn plain v-on:click="filter('phobias')"  class="filter"
-               :style="currentTag === 'phobias' ? 'bcolor:  rgb(143, 143, 143)' : ''">Phobias
-        </v-btn>
-        <v-btn plain v-on:click="filter('okki')"  class="filter"
-               :style="currentTag === 'okki' ? 'color:  rgb(143, 143, 143)' : ''">Okki
-        </v-btn>
-        <v-btn plain v-on:click="filter('physical')"  class="filter"
-               :style="currentTag === 'physical' ? 'color:  rgb(143, 143, 143)' : ''">Physical
-        </v-btn>
-        <v-btn plain v-on:click="filter('gadgets')"  class="filter"
-               :style="currentTag === 'gadgets' ? 'color:  rgb(143, 143, 143)' : ''" >Gadgets
-        </v-btn>
-      </v-col>
-    </v-row>
+    <v-row v-if="poolSync" class="mt-10" style="min-width: 100%">
+      <v-row class="pt-15 filters-row" style="min-width: 100%">
+        <v-col cols="3" style="display: flex">
+          <h4 style="padding-top: 6px;padding-left: 10px;">Available NFTs: {{ poolNFTs.length }}/{{ allNFTs.length }}</h4>
+          <v-btn icon color="black" @click="getNftsFromPool">
+            <v-icon>mdi-cached</v-icon>
+          </v-btn>
+        </v-col>
+        <v-col cols="9" style="text-align: right;">
+          <v-btn plain v-on:click="filter('all')" class="filter"
+                 :style="currentTag === 'all' ? ' color:  rgb(143, 143, 143)' : ''">All
+          </v-btn>
+          <v-btn v-for="category in extractedFilters" :key="category" plain v-on:click="filter(category)" class="filter"
+                 :style="currentTag === category ? 'color:  rgb(143, 143, 143)' : ''">{{ category }}
+          </v-btn>
 
-    <v-row v-if="poolSync" class="mt-10">
-      <nft-card v-for="nft in paginatedNFTs" :key="nft.id" :nft="nft" class="ma-6" show-buy-button />
+        </v-col>
+      </v-row>
+
+      <nft-card v-for="nft in paginatedNFTs" :key="nft.id" :nft="nft" class="ma-6" show-buy-button/>
     </v-row>
     <v-row v-if="poolSync" justify="center" class="pb-15 pt-15">
       <h3 v-if="filteredGallery.length === 0">No NFT available</h3>
@@ -50,7 +30,7 @@
           size="60"
           indeterminate
           color="black"
-      ></v-progress-circular>
+      > <h3 style="padding-top: 150px;white-space: pre;">Loading NFTs</h3></v-progress-circular>
     </v-row>
   </div>
 </template>
@@ -60,6 +40,7 @@ import {mapActions, mapState} from "vuex"
 import NftCard from "./NftCard.vue"
 import {snafu20Address} from "../../utils/constants"
 import ids from "../../utils/ids"
+import {mapFields} from "vuex-map-fields"
 
 export default {
   data() {
@@ -92,8 +73,27 @@ export default {
       this.currentPage = 1
       this.currentTag = tag
     },
+    toArray: function (my_object) {
+      let my_array = Object.entries(my_object).map(function (entry) {
+        let key = entry[0]
+        let value = entry[1]
+
+        let nested_object = value
+        nested_object.key = key
+
+        return nested_object
+      })
+
+      // Expected output : [
+      //    {"key": "key1", "a": 1, "b": 2},
+      //    {"key": "key2", "y": 25, "z": 26},
+      //    {"key": "key3", "much": "stuff"}
+      //]
+      return my_array
+    },
   },
   computed: {
+    ...mapFields("nftContract", ["allNFTs"]),
     ...mapState("nftContract", {
       paginatedNFTs() {
         return this.filteredGallery.slice(0, this.currentPage * this.maxPerPage)
@@ -132,6 +132,20 @@ export default {
         return this.poolNFTs.filter(function (itm) {
           return ids.indexOf(+itm.id) > -1
         })
+      },
+      extractedFilters: function () {
+        let poolNfts = this.poolNFTs
+        let filters = []
+
+        const nfts = this.toArray(this.nfts)
+        nfts.forEach(function (val, index, theArray) {
+          poolNfts.forEach((nft) => {
+            if (val.includes(parseInt(nft.id)) && !filters.includes(val.key))
+              filters.push(val.key)
+          })
+        })
+
+        return filters
       },
       poolNFTs: state => state[snafu20Address],
       poolSync: state => state[snafu20Address] !== undefined,
