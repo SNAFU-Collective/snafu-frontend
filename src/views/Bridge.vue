@@ -6,19 +6,19 @@
       style="display: grid; padding-top: 100px"
     >
       <div>NFT List</div>
-      {{ nfts }}
+      {{ Object.assign({}, nfts) }}
     </v-row>
 
   <v-row>
     <v-col>
     Nft To Bridge
     </v-col>
-    <v-col>
+    <v-col v-if="nfts && nfts.length > 0">
             <v-numeric
           hide-details="auto"
           outlined
           v-model="nftIdToBridge"
-          :maxValue="nfts.length + 1"
+          :maxValue="nfts.length - 1 "
         ></v-numeric>
     </v-col>
   </v-row>
