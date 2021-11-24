@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="min-width: 100%;">
     <v-row v-if="poolSync" class="mt-10" style="min-width: 100%; justify-content: center;">
       <v-row class="pt-15 filters-row" style="min-width: 98%;max-width: 98%">
         <v-col cols="3" style="display: flex">
@@ -19,7 +19,7 @@
         </v-col>
       </v-row>
 
-      <nft-card v-for="nft in paginatedNFTs" :key="nft.id" :nft="nft" class="ma-6" show-buy-button/>
+      <nft-card style="margin-top: 50px !important;" v-for="nft in paginatedNFTs" :key="nft.id" :nft="nft" class="ma-6" show-buy-button/>
     </v-row>
     <v-row v-if="poolSync" justify="center" class="pb-15 pt-15">
       <h3 v-if="filteredGallery.length === 0">No NFT available</h3>
