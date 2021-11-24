@@ -74,8 +74,11 @@
            {{item.totalValue | truncatePrice }}
           </template>
 
-          <template v-slot:item.blockie={item}>
-            <vth-blockie :string=item.address />
+          <template v-slot:item.blockie>
+            <v-avatar style="margin: 5px !important;">
+              <v-img src="/pfp/8.png"/>
+            </v-avatar>
+<!--            <vth-blockie :string=item.address />-->
           </template>
         </v-data-table>
       </v-row>

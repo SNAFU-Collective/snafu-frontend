@@ -1,10 +1,5 @@
 <template>
   <div>
-    <v-row justify="center" class="pt-15">
-
-
-    </v-row>
-
     <v-row class="pt-15 filters-row">
       <v-col cols="2">
         <h4 style="padding-top: 6px;padding-left: 10px;">Available NFTs</h4>

@@ -10,10 +10,10 @@
 
 <!--      <p id="subtitle">{{ currentRouteName }}</p>-->
       <div id="subtitle">
-        <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
+        <router-link class="backHome" :to="{ name: 'Home'}">EXPLORE</router-link>
         <router-link class="backHome" :to="{ name: 'Marketplace'}">MARKETPLACE</router-link>
-        <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
-        <router-link class="backHome" :to="{ name: 'Claim'}">CLAIM</router-link>
+        <router-link class="backHome" :to="{ name: 'Wallet'}">MY PROFILE</router-link>
+        <router-link class="backHome" :to="{ name: 'Claim'}">REDEEM</router-link>
         <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
         <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
         <router-link class="backHome" :to="{ name: 'Leaderboard'}">RESOURCES</router-link>
