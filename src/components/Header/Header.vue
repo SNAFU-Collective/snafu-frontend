@@ -270,8 +270,8 @@ export default {
     color: rgb(143, 143, 143);
     font-size: 15px;
     font-weight: 600;
-    padding: 0 10px;
-    margin: 0 5px;
+    padding: 0 5px;
+    margin: 0 10px;
   }
 
   .backHome:hover {

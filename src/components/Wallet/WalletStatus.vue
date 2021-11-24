@@ -6,23 +6,27 @@
       </v-btn>
     </div>
     <div cols="9" no-gutters v-else>
+
       <v-chip
           :color="isXdai ? '#3EBD6A' : '#bc423e'"
           :text-color="isXdai ? '#fff' : '#fff'"
           style="margin-bottom: 10px; padding-left: 0"
       >
+        <router-link class="accountLinkHeader" :to="{ name: 'Wallet'}">
         <v-chip
             color="#e4e4e499"
             text-color="black"
-            style="border: #A7A7A7"
+            style="border: #A7A7A7; cursor: pointer"
         >
           <v-avatar left>
             <v-icon color="#fff" size="20px">mdi-account</v-icon>
           </v-avatar>
           <span style="color: #fff; font-weight: 500">{{ account | abbreviateAddress }}</span>
         </v-chip>
+        </router-link>
         <span style="padding-left: 5px; font-weight: 500">{{ chainId | networkName }}</span>
       </v-chip>
+
     </div>
 
     <div cols="1" v-if="isConnected" style="margin-left: 10px;margin-top: 2.5px">
@@ -72,6 +76,10 @@ export default {
 </script>
 
 <style>
+.accountLinkHeader {
+  text-decoration: none;
+}
+
 .headline {
   justify-content: center;
   font-weight: bold !important;
