@@ -38,4 +38,30 @@ html, body {
   font-family: 'Barlow', sans-serif;
 }
 
+.filter {
+  margin: 0;
+  font-size: 12px !important;
+  color:  rgb(143, 143, 143);
+}
+
+.currentTag {
+  color: #303030;
+  left: 0;
+  bottom: 1px;
+  border-radius: 0 !important;
+  border-width: 0 0 1px;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 1px;
+  border-left-width: 0px;
+  border-style: solid;
+  opacity: 1 !important;
+}
+
+@media screen and (max-width: 768px) {
+  .filters-row {
+    margin: 0 10%;
+  }
+}
+
 </style>

@@ -10,10 +10,10 @@
         </v-col>
         <v-col cols="9" style="text-align: right;">
           <v-btn plain v-on:click="filter('all')" class="filter"
-                 :style="currentTag === 'all' ? ' color:  rgb(143, 143, 143)' : ''">All
+                 :class="currentTag === 'all' ? 'currentTag' : ''">All
           </v-btn>
           <v-btn v-for="category in extractedFilters" :key="category" plain v-on:click="filter(category)" class="filter"
-                 :style="currentTag === category ? 'color:  rgb(143, 143, 143)' : ''">{{ category }}
+                 :class="currentTag === category ? 'currentTag' : ''">{{ category }}
           </v-btn>
 
         </v-col>
@@ -134,20 +134,10 @@ export default {
 </script>
 
 <style>
-.filter {
-  margin: 0;
-  font-size: 12px !important;
-}
 
 @media screen and (min-width: 768px) {
   .allNFTsContainer {
     margin-top: 40px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .filters-row {
-    margin: 0 10%;
   }
 }
 </style>

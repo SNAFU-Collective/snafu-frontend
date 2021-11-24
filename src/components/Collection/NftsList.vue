@@ -39,11 +39,8 @@
         <h4 style="padding-top: 6px;padding-left: 10px;">Explore</h4>
       </v-col>
       <v-col cols="9" style="text-align: right;">
-        <v-btn plain v-on:click="filter('all')" class="filter"
-               :style="currentTag === 'all' ? ' color:  rgb(143, 143, 143)' : ''">All
-        </v-btn>
         <v-btn v-for="category in categories" :key="category" plain v-on:click="filter(category)" class="filter"
-               :style="currentTag === category ? 'color:  rgb(143, 143, 143)' : ''">{{ category }} <span v-if="showNewFlag(category)" class="newFlag">NEW</span>
+               :class="currentTag === category ? 'currentTag' : ''">{{ category }} <span v-if="showNewFlag(category)" class="newFlag">NEW</span>
         </v-btn>
 
       </v-col>
@@ -91,6 +88,7 @@ export default {
       currentTag: 'all',
       nfts: ids,
       categories: [
+          'all',
           'collection3',
           'collection2',
           'collection1',
