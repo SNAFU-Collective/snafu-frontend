@@ -61,8 +61,11 @@
       <v-btn small v-on:click="filter('phobias')" style="margin: 10px"
              :style="currentTag === 'phobias' ? 'background-color: black; color: white' : ''">Phobias
       </v-btn>
+      <v-btn small v-on:click="filter('cliff')" style="margin: 10px"
+             :style="currentTag === 'cliff' ? 'background-color: black; color: white' : ''">Cliff Blank  <span class="newFlag">NEW</span>
+      </v-btn>
       <v-btn small v-on:click="filter('okki')" style="margin: 10px"
-             :style="currentTag === 'okki' ? 'background-color: black; color: white' : ''">Okki <span class="newFlag">NEW</span>
+             :style="currentTag === 'okki' ? 'background-color: black; color: white' : ''">Okki
       </v-btn>
       <v-btn small v-on:click="filter('physical')" style="margin: 10px"
              :style="currentTag === 'physical' ? 'background-color: black; color: white' : ''">Physical <span class="newFlag">NEW</span>
@@ -171,6 +174,9 @@ export default {
           break
         case "okki":
           ids = this.nfts.okki
+          break
+        case "cliff":
+          ids = this.nfts.cliff
           break
       }
 
