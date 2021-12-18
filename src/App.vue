@@ -4,18 +4,21 @@
       <Header style="padding-bottom: 60px" />
       <router-view />
     </v-main>
+    <ScrollToTop/>
   </v-app>
 </template>
 
 <script>
 import {mapActions} from "vuex"
 import Header from "./components/Header/Header"
+import ScrollToTop from "./components/ScrollToTop/Button"
 
 export default {
   name: "App",
 
   components: {
-    Header
+    Header,
+    ScrollToTop
   },
 
   methods: {
