@@ -3,7 +3,7 @@
     <v-container>
       <v-row justify="center" style="margin-top: 80px">
         <v-avatar left style="width: 200px !important; height: 200px !important;">
-          <v-img src="/pfp/8.png"/>
+          <v-img src="/pfp/unknown.jpeg"/>
         </v-avatar>
       </v-row>
       <v-row class="ma-5 justify-center" id="mainRowStatus" style="padding-top: 70px; display: grid;">

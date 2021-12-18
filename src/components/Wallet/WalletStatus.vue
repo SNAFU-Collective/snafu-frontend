@@ -20,7 +20,7 @@
         >
           <v-avatar left style="width: 50px !important; height: 50px !important; margin-left: -15px; padding-right: 5px">
 <!--            <v-icon color="#fff" size="20px">mdi-account</v-icon>-->
-            <v-img src="/pfp/8.png"/>
+            <v-img src="/pfp/unknown.jpeg"/>
           </v-avatar>
           <span style="color: #fff; font-weight: 500">{{ account | abbreviateAddress }}</span>
         </v-chip>

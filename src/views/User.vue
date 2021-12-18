@@ -9,7 +9,7 @@
       <v-row justify="center" class="pt-15" style="display: block; text-align: center">
         <v-row justify="center">
           <v-avatar left style="width: 200px !important; height: 200px !important;">
-            <v-img src="/pfp/8.png"/>
+            <v-img src="/pfp/unknown.jpeg"/>
           </v-avatar>
         </v-row>
         <v-row justify="center" style=" margin-top: 50px">

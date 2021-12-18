@@ -76,7 +76,7 @@
 
           <template v-slot:item.blockie>
             <v-avatar style="margin: 5px !important;">
-              <v-img src="/pfp/8.png"/>
+              <v-img src="/pfp/unknown.jpeg"/>
             </v-avatar>
 <!--            <vth-blockie :string=item.address />-->
           </template>
