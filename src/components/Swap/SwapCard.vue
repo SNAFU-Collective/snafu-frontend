@@ -1,13 +1,13 @@
 <template>
   <v-card
-    height="465"
+    height="413"
     width="350"
     color="#F5F5F5"
     class="d-flex flex-column rounded-lg"
     style="max-width: 350px"
   >
-    <v-row no-gutters class="text-caption pa-3">
-      <v-col cols="11" class="text-caption greyColor px-2"> FROM </v-col>
+    <v-row no-gutters class="text-caption pa-3 pb-0">
+      <v-col cols="11" class="text-caption greyColor px-2"> <span style="font-size: 10px">FROM</span> </v-col>
     </v-row>
     <v-row no-gutters justify="center" v-if="!withdrawFromPool">
       <nft-input
@@ -26,8 +26,8 @@
       </v-btn>
     </v-row>
 
-    <v-row no-gutters class="text-caption pa-3 mt-n3 greyColor">
-      <v-col cols="12" class="text-caption greyColor px-2"> TO </v-col>
+    <v-row no-gutters class="text-caption px-3 mt-n3 greyColor">
+      <v-col cols="12" class="text-caption greyColor px-2">  <span style="font-size: 10px">TO</span> </v-col>
     </v-row>
     <v-row no-gutters justify="center" v-if="!withdrawFromPool">
       <snafu-input class="mx-3" :withdrawFromPool="withdrawFromPool" />
@@ -148,7 +148,7 @@ export default {
     },
     buttonText() {
       if (!this.isConnected) {
-        return "Connect wallet";
+        return "Sign in";
       }
 
       if (!this.isXdai) {

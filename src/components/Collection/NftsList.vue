@@ -1,5 +1,5 @@
-<template>
-  <div id="mainNftsDive">
+<template style="min-width: 100%">
+  <div id="mainNftsDive" style="min-width: 100%">
     <v-row>
       <v-carousel hide-delimiter-background show-arrows-on-hover cycle style="height: 300px">
         <v-carousel-item v-for="(item, i) in carouselItems"  :key="i">
@@ -13,8 +13,10 @@
       </v-carousel>
     </v-row>
 
-    <v-row class="pt-15" justify="center">
-      <h1>Latest releases</h1>
+    <v-row class="pt-15" justify="start">
+      <v-col cols="3" style="display: flex">
+        <h4 style="padding-top: 6px;padding-left: 10px;">Latest releases</h4>
+      </v-col>
     </v-row>
     <v-row v-if="allNFTs.length !== 0" class="mt-5">
       <nft-card :key="allNFTs.find(x => x.id === '211').id" :nft="allNFTs.find(x => x.id === '211')" :cardSize=300
@@ -32,47 +34,16 @@
       ></v-progress-circular>
     </v-row>
 
-    <v-row justify="center">
-      <v-col cols="12" class="pl-6">
-        <collection-info />
+    <v-row class="pt-15 filters-row" style="min-width: 98%;max-width: 98%">
+      <v-col cols="3" style="display: flex">
+        <h4 style="padding-top: 6px;padding-left: 10px;">Explore</h4>
       </v-col>
+      <v-col cols="9" style="text-align: right;">
+        <v-btn v-for="category in categories" :key="category" plain v-on:click="filter(category)" class="filter"
+               :class="currentTag === category ? 'currentTag' : ''">{{ category }} <span v-if="showNewFlag(category)" class="newFlag">NEW</span>
+        </v-btn>
 
-    </v-row>
-
-    <v-row justify="center" style="padding-top: 100px">
-      <h1>Catalog</h1>
-    </v-row>
-    <v-row justify="center" class="pt-15 filters-row">
-      <v-btn small v-on:click="filter('all')" style="margin: 10px"
-             :style="currentTag === 'all' ? 'background-color: black; color: white' : ''">All
-      </v-btn>
-      <v-btn small v-on:click="filter('collection3')" style="margin: 10px"
-             :style="currentTag === 'collection3' ? 'background-color: black; color: white' : ''">Collection #3
-      </v-btn>
-      <v-btn small v-on:click="filter('collection2')" style="margin: 10px"
-             :style="currentTag === 'collection2' ? 'background-color: black; color: white' : ''">Collection #2
-      </v-btn>
-      <v-btn small v-on:click="filter('collection1')" style="margin: 10px"
-             :style="currentTag === 'collection1' ? 'background-color: black; color: white' : ''">Collection #1
-      </v-btn>
-      <v-btn small v-on:click="filter('communityPool')" style="margin: 10px"
-             :style="currentTag === 'communityPool' ? 'background-color: black; color: white' : ''">Community Pool
-      </v-btn>
-      <v-btn small v-on:click="filter('phobias')" style="margin: 10px"
-             :style="currentTag === 'phobias' ? 'background-color: black; color: white' : ''">Phobias
-      </v-btn>
-      <v-btn small v-on:click="filter('cliff')" style="margin: 10px"
-             :style="currentTag === 'cliff' ? 'background-color: black; color: white' : ''">Cliff Blank  <span class="newFlag">NEW</span>
-      </v-btn>
-      <v-btn small v-on:click="filter('okki')" style="margin: 10px"
-             :style="currentTag === 'okki' ? 'background-color: black; color: white' : ''">Okki
-      </v-btn>
-      <v-btn small v-on:click="filter('physical')" style="margin: 10px"
-             :style="currentTag === 'physical' ? 'background-color: black; color: white' : ''">Physical <span class="newFlag">NEW</span>
-      </v-btn>
-      <v-btn small v-on:click="filter('gadgets')" style="margin: 10px"
-             :style="currentTag === 'gadgets' ? 'background-color: black; color: white' : ''">Gadgets
-      </v-btn>
+      </v-col>
     </v-row>
     <v-row v-if="currentTag === 'physical'"  justify="center" style="margin-top:40px;text-align: center; padding: 0 20px">
       <p>Real, at your house: the artworks of our artists are on sale! <br>
@@ -105,18 +76,28 @@
 import NftCard from "./NftCard.vue"
 import {mapFields} from "vuex-map-fields"
 import Banner from "../Common/Banner"
-import CollectionInfo from '../Common/CollectionInfoCard.vue'
 import ids from "../../utils/ids"
 
 export default {
-  components: {NftCard, Banner, CollectionInfo},
+  components: {NftCard, Banner},
   data() {
     return {
       currentPage: 1,
       maxPerPage: 8,
       showReadMore: true,
-      currentTag: 'okki',
+      currentTag: 'all',
       nfts: ids,
+      categories: [
+          'all',
+          'collection3',
+          'collection2',
+          'collection1',
+          'communityPool',
+          'phobias',
+          'okki',
+          'physical',
+          'gadgets',
+      ],
       carouselItems: [
         {
           src: '/banners/calendar.png',
@@ -150,33 +131,9 @@ export default {
       let ids
       switch (this.currentTag) {
         case "all":
-          return this.allNFTs
-        case "collection3":
-          ids = this.nfts.collection3
-          break
-        case "collection2":
-          ids = this.nfts.collection2
-          break
-        case "collection1":
-          ids = this.nfts.collection1
-          break
-        case "phobias":
-          ids = this.nfts.phobias
-          break
-        case "communityPool":
-          ids = this.nfts.communityPool
-          break
-        case "gadgets":
-          ids = this.nfts.gadgets
-          break
-        case "physical":
-          ids = this.nfts.physical
-          break
-        case "okki":
-          ids = this.nfts.okki
-          break
-        case "cliff":
-          ids = this.nfts.cliff
+          return this.shuffle(this.allNFTs)
+        default:
+          ids = this.nfts[this.currentTag]
           break
       }
 
@@ -186,6 +143,16 @@ export default {
     },
   },
   methods: {
+    showNewFlag: function (category) {
+      switch (category) {
+        case 'physical':
+          return true
+        case 'okki':
+          return true
+        default:
+          return false
+      }
+    },
     filter: function (tag) {
       this.currentPage = 1
       this.currentTag = tag
@@ -204,6 +171,22 @@ export default {
         }
       }, 500)
     },
+    shuffle(arr) {
+      let len = arr.length;
+      let d = len;
+      let array = [];
+      let k, i;
+      for (i = 0; i < d; i++) {
+        k = Math.floor(Math.random() * len);
+        array.push(arr[k]);
+        arr.splice(k, 1);
+        len = arr.length;
+      }
+      for (i = 0; i < d; i++) {
+        arr[i] = array[i];
+      }
+      return arr;
+    }
   },
 }
 </script>
@@ -226,9 +209,9 @@ export default {
 
 .newFlag {
   position: absolute;
-  top: -16px;
+  top: -15px;
   right: -20px;
-  background-color: red;
+  background-color: rgba(255, 0, 0, 0.81);
   padding: 2px;
   color: white;
   font-weight: 800;

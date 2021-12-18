@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-card class="mx-auto" :max-width="cardSize || 250">
+    <v-card class="mx-auto nftCard" :max-width="cardSize || 250">
       <v-card-text style="white-space: pre; background-color: #F5F5F5">
         <v-row justify="center">
           <v-dialog

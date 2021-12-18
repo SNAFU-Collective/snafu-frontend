@@ -1,9 +1,9 @@
 <template>
   <v-container fluid class="white rounded-lg">
     <v-row no-gutters class="text-caption" v-if="!hideBalance">
-      <v-col cols="8"> Quantity </v-col>
+      <v-col cols="8">  <span style="font-size: 10px">Quantity</span> </v-col>
       <v-col cols="4" style="text-align: right">
-        Balance: {{ selectedNft ? selectedNft.editions : "-" }}
+        <span style="font-size: 10px">Balance: {{ selectedNft ? selectedNft.editions : "-" }}</span>
       </v-col>
     </v-row>
     <v-row no-gutters align-content="center" class="pt-1 ml-n3">
@@ -43,7 +43,7 @@
         <div v-else class="mt-2">
           <v-row no-gutters>
             <v-chip :style="pointerStyle">
-              Select NFT
+              <span style="font-size: 13px">Select NFT</span>
               <v-icon medium > mdi-menu-down </v-icon>
             </v-chip>
           </v-row>
@@ -86,7 +86,7 @@ export default {
       if(!this.disableActions){
         this.showModal = true;
       }
-    },
+    }
   },
   computed: {
     ...mapFields("nftContract", ["selectedNft", "selectedQuantity"]),

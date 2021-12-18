@@ -1,42 +1,25 @@
 <template>
-  <div>
-    <v-row justify="center" class="pt-15">
-      <h2>Available NFTs</h2>
-      <v-btn icon color="black" @click="getNftsFromPool">
-        <v-icon>mdi-cached</v-icon>
-      </v-btn>
-    </v-row>
-    <v-row justify="center" class="pt-15 filters-row">
-      <v-btn small v-on:click="filter('all')" style="margin: 10px"
-             :style="currentTag === 'all' ? 'background-color: black; color: white' : ''">All
-      </v-btn>
-      <v-btn small v-on:click="filter('collection3')" style="margin: 10px"
-             :style="currentTag === 'collection3' ? 'background-color: black; color: white' : ''">Collection #3
-      </v-btn>
-      <v-btn small v-on:click="filter('collection2')" style="margin: 10px"
-             :style="currentTag === 'collection2' ? 'background-color: black; color: white' : ''">Collection #2
-      </v-btn>
-      <v-btn small v-on:click="filter('collection1')" style="margin: 10px"
-             :style="currentTag === 'collection1' ? 'background-color: black; color: white' : ''">Collection #1
-      </v-btn>
-      <v-btn small v-on:click="filter('communityPool')" style="margin: 10px"
-             :style="currentTag === 'communityPool' ? 'background-color: black; color: white' : ''">Community Pool
-      </v-btn>
-      <v-btn small v-on:click="filter('phobias')" style="margin: 10px"
-             :style="currentTag === 'phobias' ? 'background-color: black; color: white' : ''">Phobias
-      </v-btn>
-      <v-btn small v-on:click="filter('okki')" style="margin: 10px"
-             :style="currentTag === 'okki' ? 'background-color: black; color: white' : ''">Okki
-      </v-btn>
-      <v-btn small v-on:click="filter('physical')" style="margin: 10px"
-             :style="currentTag === 'physical' ? 'background-color: black; color: white' : ''">Physical
-      </v-btn>
-      <v-btn small v-on:click="filter('gadgets')" style="margin: 10px"
-             :style="currentTag === 'gadgets' ? 'background-color: black; color: white' : ''">Gadgets
-      </v-btn>
-    </v-row>
-    <v-row v-if="poolSync" class="mt-10">
-      <nft-card v-for="nft in paginatedNFTs" :key="nft.id" :nft="nft" class="ma-6" show-buy-button />
+  <div style="min-width: 100%;">
+    <v-row v-if="poolSync" class="mt-10" style="min-width: 100%; justify-content: center;">
+      <v-row class="pt-15 filters-row" style="min-width: 98%;max-width: 98%">
+        <v-col cols="3" style="display: flex">
+          <h4 style="padding-top: 6px;padding-left: 10px;">Available NFTs: {{ poolNFTs.length }}/{{ allNFTs.length }}</h4>
+          <v-btn icon color="black" @click="getNftsFromPool">
+            <v-icon>mdi-cached</v-icon>
+          </v-btn>
+        </v-col>
+        <v-col cols="9" style="text-align: right;">
+          <v-btn plain v-on:click="filter('all')" class="filter"
+                 :class="currentTag === 'all' ? 'currentTag' : ''">All
+          </v-btn>
+          <v-btn v-for="category in extractedFilters" :key="category" plain v-on:click="filter(category)" class="filter"
+                 :class="currentTag === category ? 'currentTag' : ''">{{ category }}
+          </v-btn>
+
+        </v-col>
+      </v-row>
+
+      <nft-card style="margin-top: 50px !important;" v-for="nft in paginatedNFTs" :key="nft.id" :nft="nft" class="ma-6" show-buy-button/>
     </v-row>
     <v-row v-if="poolSync" justify="center" class="pb-15 pt-15">
       <h3 v-if="filteredGallery.length === 0">No NFT available</h3>
@@ -47,7 +30,7 @@
           size="60"
           indeterminate
           color="black"
-      ></v-progress-circular>
+      > <h3 style="padding-top: 150px;white-space: pre;">Loading NFTs</h3></v-progress-circular>
     </v-row>
   </div>
 </template>
@@ -57,6 +40,7 @@ import {mapActions, mapState} from "vuex"
 import NftCard from "./NftCard.vue"
 import {snafu20Address} from "../../utils/constants"
 import ids from "../../utils/ids"
+import {mapFields} from "vuex-map-fields"
 
 export default {
   data() {
@@ -89,8 +73,27 @@ export default {
       this.currentPage = 1
       this.currentTag = tag
     },
+    toArray: function (my_object) {
+      let my_array = Object.entries(my_object).map(function (entry) {
+        let key = entry[0]
+        let value = entry[1]
+
+        let nested_object = value
+        nested_object.key = key
+
+        return nested_object
+      })
+
+      // Expected output : [
+      //    {"key": "key1", "a": 1, "b": 2},
+      //    {"key": "key2", "y": 25, "z": 26},
+      //    {"key": "key3", "much": "stuff"}
+      //]
+      return my_array
+    },
   },
   computed: {
+    ...mapFields("nftContract", ["allNFTs"]),
     ...mapState("nftContract", {
       paginatedNFTs() {
         return this.filteredGallery.slice(0, this.currentPage * this.maxPerPage)
@@ -100,35 +103,28 @@ export default {
         switch (this.currentTag) {
           case "all":
             return this.poolNFTs
-          case "collection3":
-            ids = this.nfts.collection3
-            break
-          case "collection2":
-            ids = this.nfts.collection2
-            break
-          case "collection1":
-            ids = this.nfts.collection1
-            break
-          case "phobias":
-            ids = this.nfts.phobias
-            break
-          case "communityPool":
-            ids = this.nfts.communityPool
-            break
-          case "gadgets":
-            ids = this.nfts.gadgets
-            break
-          case "physical":
-            ids = this.nfts.physical
-            break
-          case "okki":
-            ids = this.nfts.okki
-            break
+          default:
+              ids = this.nfts[this.currentTag]
+              break
         }
 
         return this.poolNFTs.filter(function (itm) {
           return ids.indexOf(+itm.id) > -1
         })
+      },
+      extractedFilters: function () {
+        let poolNfts = this.poolNFTs
+        let filters = []
+
+        const nfts = this.toArray(this.nfts)
+        nfts.forEach(function (val, index, theArray) {
+          poolNfts.forEach((nft) => {
+            if (val.includes(parseInt(nft.id)) && !filters.includes(val.key))
+              filters.push(val.key)
+          })
+        })
+
+        return filters
       },
       poolNFTs: state => state[snafu20Address],
       poolSync: state => state[snafu20Address] !== undefined,
@@ -138,15 +134,10 @@ export default {
 </script>
 
 <style>
+
 @media screen and (min-width: 768px) {
   .allNFTsContainer {
     margin-top: 40px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .filters-row {
-    margin: 0 10%;
   }
 }
 </style>
