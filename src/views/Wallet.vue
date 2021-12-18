@@ -34,7 +34,7 @@
       <v-row justify="center" v-if="!nftToFetch">
         <v-row class="pt-15 filters-row" style="min-width: 98%;max-width: 98%">
           <v-col cols="3" style="display: flex">
-            <h4 style="padding-top: 6px;padding-left: 10px;">Your Collection: {{ filteredGallery.length }} NFTs</h4>
+            <h4 style="padding-top: 6px;padding-left: 10px;">Your Collection: {{ filteredGallery ?  filteredGallery.length : '0' }} NFTs</h4>
           </v-col>
           <v-col cols="9" style="text-align: right;">
             <v-btn plain v-on:click="filter('all')" class="filter"
