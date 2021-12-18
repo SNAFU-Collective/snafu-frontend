@@ -100,6 +100,10 @@ export default {
       ],
       carouselItems: [
         {
+          src: '/banners/calendar.png',
+          mobileSrc: '/banners/calendar.png',
+        },
+        {
           src: '/banners/banner-coll-3.png',
           mobileSrc: '/banners/banner-coll-3-mob.png',
         },
