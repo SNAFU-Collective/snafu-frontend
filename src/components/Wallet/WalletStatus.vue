@@ -8,21 +8,19 @@
     <div cols="9" no-gutters v-else>
 
       <v-chip
-          :color="isXdai ? '#3EBD6A' : '#bc423e'"
+          :color="isXdai ? '#303030' : '#bc423e'"
           :text-color="isXdai ? '#fff' : '#fff'"
           style="margin-bottom: 10px; padding-left: 0"
       >
         <router-link class="accountLinkHeader" :to="{ name: 'Wallet'}">
         <v-chip
-            color="#e4e4e499"
-            text-color="black"
-            style="border: #A7A7A7; cursor: pointer;"
+            style="border: #A7A7A7; cursor: pointer; background-color: #f3f3f3;"
         >
           <v-avatar left style="width: 50px !important; height: 50px !important; margin-left: -15px; padding-right: 5px">
 <!--            <v-icon color="#fff" size="20px">mdi-account</v-icon>-->
             <v-img src="/pfp/unknown.jpeg"/>
           </v-avatar>
-          <span style="color: #fff; font-weight: 500">{{ account | abbreviateAddress }}</span>
+          <span style="color: #303030; font-weight: 500">{{ account | abbreviateAddress }}</span>
         </v-chip>
         </router-link>
         <span style="padding-left: 5px; font-weight: 500">{{ chainId | networkName }}</span>
@@ -34,7 +32,7 @@
       <v-tooltip bottom color="rgb(0 0 0 / 89%)">
         <template v-slot:activator="{ on, attrs }">
           <v-btn
-              color="grey"
+              color="#303030"
               dark
               v-bind="attrs"
               v-on="on"

@@ -152,7 +152,7 @@ export default {
       }
 
       if (!this.isXdai) {
-        return "Wrong network: Switch to xDai";
+        return "Wrong network: Switch to Gnosis Chain";
       }
 
       if (this.withdrawFromPool && this.insufficientBalance) {

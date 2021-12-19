@@ -47,7 +47,7 @@ Vue.filter('fromWei', function (value) {
 Vue.filter('networkName', function (value) {
     console.log('networknamevalue', value)
   if (value === 100 || value === '0x64'){
-      return 'xDai'
+      return 'Gnosis Chain'
   } else {
       return 'Wrong network'
   }
