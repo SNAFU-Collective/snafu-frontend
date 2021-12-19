@@ -1,16 +1,46 @@
 <template style="min-width: 100%">
   <div id="mainNftsDive" style="min-width: 100%">
     <v-row>
-      <v-carousel hide-delimiter-background show-arrows-on-hover cycle style="height: 300px">
-        <v-carousel-item v-for="(item, i) in carouselItems"  :key="i">
-          <banner
-              :src="item.src"
-              :mobile-src="item.mobileSrc"
-              :text="item.text"
-              :showActionBtn="false"
-          ></banner>
-        </v-carousel-item>
-      </v-carousel>
+      <v-container>
+        <v-row>
+          <v-col>
+            <banner
+                src="/banners/poolTogether675.png"
+                mobile-src="https://pooltogether.com/pooltogether-facebook-share-image-1200-630@2x.png"
+                showActionBtn
+                actionUrl="https://community.pooltogether.com/pools/xdai/0x1221fe13f8aa51856538b41e85a737d843edd825/home"
+                action-label="JOIN LOTTERY"
+                :show-secondary-action-btn="true"
+                secondary-action-label="LEARN MORE"
+                secondaryActionUrl="https://www.nftsnafu.org/pooltogether-learnmore"
+                width="675px"
+                height="400px"
+            ></banner>
+          </v-col>
+          <v-col>
+            <banner
+                src='/banners/joinDiscord425.png'
+                mobile-src='/banners/discord-banner-mobile.png'
+                :show-secondary-action-btn="true"
+                :showActionBtn="false"
+                secondary-action-label="LEARN MORE"
+                secondaryActionUrl="https://www.nftsnafu.org/pooltogether-learnmore"
+                width="425px"
+                height="150px"
+            ></banner>
+            <banner
+                style="margin-top:5px"
+                src='/banners/farming425.png'
+                mobile-src='/banners/farming-mobile.png'
+                showActionBtn
+                actionUrl="https://community.pooltogether.com/pools/xdai/0x1221fe13f8aa51856538b41e85a737d843edd825/home"
+                action-label="JOIN LOTTERY"
+                width="425px"
+                height="245px"
+            ></banner>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-row>
 
     <v-row class="pt-15" justify="start">
@@ -32,6 +62,21 @@
           indeterminate
           color="black"
       ></v-progress-circular>
+    </v-row>
+
+    <v-row>
+      <v-carousel hide-delimiter-background show-arrows-on-hover cycle style="height: 200px; margin: 100px 0">
+        <v-carousel-item v-for="(item, i) in carouselItems"  :key="i">
+          <banner
+              :src="item.src"
+              :mobile-src="item.mobileSrc"
+              :text="item.text"
+              :showActionBtn="false"
+              width="100%"
+              height="200px"
+          ></banner>
+        </v-carousel-item>
+      </v-carousel>
     </v-row>
 
     <v-row class="pt-15 filters-row" style="min-width: 98%;max-width: 98%">
@@ -106,18 +151,6 @@ export default {
         {
           src: '/banners/banner-coll-3.png',
           mobileSrc: '/banners/banner-coll-3-mob.png',
-        },
-        {
-          src: '/banners/pool-banner.png',
-          mobileSrc: '/banners/pool-banner-mobile.png',
-        },
-        {
-          src: '/banners/farming.png',
-          mobileSrc: '/banners/farming-mobile.png',
-        },
-        {
-          src: '/banners/discord-banner.png',
-          mobileSrc: '/banners/discord-banner-mobile.png',
         },
       ],
     }
