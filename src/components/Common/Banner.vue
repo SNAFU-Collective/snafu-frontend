@@ -74,12 +74,20 @@ export default {
       type: String,
       default: '',
     },
+    width: {
+      type: String,
+      default: '400px',
+    },
+    height: {
+      type: String,
+      default: '300px',
+    },
   },
   computed: {
     cardBackgroundStyle() {
       console.log(window.innerWidth)
       let source = window.innerWidth > 726 ? this.src : this.mobileSrc
-      return 'background-image: url(' + source + '); height: 300px;background-position: center; background-size: cover;'
+      return 'background-image: url(' + source + '); height: ' + this.height +'; width:' + this.width + ';background-position: center; background-size: cover;'
     },
   },
   methods: {
@@ -120,7 +128,7 @@ export default {
 
 .bannerBox {
   position: absolute;
-  bottom: 30px;
+  bottom: 10px;
   left: 30px;
   display: grid;
 }

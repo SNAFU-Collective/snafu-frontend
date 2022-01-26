@@ -1,16 +1,36 @@
-<template style="min-width: 100%">
-  <div id="mainNftsDive" style="min-width: 100%">
+<template>
+  <div id="mainNftsDive">
     <v-row>
-      <v-carousel hide-delimiter-background show-arrows-on-hover cycle style="height: 300px">
-        <v-carousel-item v-for="(item, i) in carouselItems"  :key="i">
+        <v-col>
           <banner
-              :src="item.src"
-              :mobile-src="item.mobileSrc"
-              :text="item.text"
+              src="/banners/coll3-twitter-head.png"
+              mobile-src="https://pooltogether.com/pooltogether-facebook-share-image-1200-630@2x.png"
               :showActionBtn="false"
+              secondaryActionUrl="https://www.nftsnafu.org/pooltogether-learnmore"
+              width="675px"
+              height="400px"
+          >
+          </banner>
+        </v-col>
+        <v-col>
+          <banner
+              src='/banners/joinDiscord425.png'
+              mobile-src='/banners/discord-banner-mobile.png'
+              :showActionBtn="false"
+              secondaryActionUrl="https://www.nftsnafu.org/pooltogether-learnmore"
+              width="425px"
+              height="150px"
           ></banner>
-        </v-carousel-item>
-      </v-carousel>
+          <banner
+              style="margin-top:5px"
+              src='/banners/farming425.png'
+              mobile-src='/banners/farming-mobile.png'
+              :showActionBtn="false"
+              actionUrl="https://community.pooltogether.com/pools/xdai/0x1221fe13f8aa51856538b41e85a737d843edd825/home"
+              width="425px"
+              height="245px"
+          ></banner>
+        </v-col>
     </v-row>
 
     <v-row class="pt-15" justify="start">
@@ -34,6 +54,21 @@
       ></v-progress-circular>
     </v-row>
 
+    <v-row>
+      <v-carousel hide-delimiter-background :show-arrows-on-hover=false :cycle="false" style="height: 300px; margin: 100px 0">
+        <v-carousel-item v-for="(item, i) in carouselItems"  :key="i">
+          <banner
+              :src="item.src"
+              :mobile-src="item.mobileSrc"
+              :text="item.text"
+              :showActionBtn="false"
+              width="100%"
+              height="200px"
+          ></banner>
+        </v-carousel-item>
+      </v-carousel>
+    </v-row>
+
     <v-row class="pt-15 filters-row" style="min-width: 98%;max-width: 98%">
       <v-col cols="3" style="display: flex">
         <h4 style="padding-top: 6px;padding-left: 10px;">Explore</h4>
@@ -42,7 +77,6 @@
         <v-btn v-for="category in categories" :key="category" plain v-on:click="filter(category)" class="filter"
                :class="currentTag === category ? 'currentTag' : ''">{{ category }} <span v-if="showNewFlag(category)" class="newFlag">NEW</span>
         </v-btn>
-
       </v-col>
     </v-row>
     <v-row v-if="currentTag === 'physical'"  justify="center" style="margin-top:40px;text-align: center; padding: 0 20px">
@@ -79,7 +113,10 @@ import Banner from "../Common/Banner"
 import ids from "../../utils/ids"
 
 export default {
-  components: {NftCard, Banner},
+  components: {
+    NftCard,
+    Banner
+  },
   data() {
     return {
       currentPage: 1,
@@ -100,24 +137,8 @@ export default {
       ],
       carouselItems: [
         {
-          src: '/banners/calendar.png',
-          mobileSrc: '/banners/calendar.png',
-        },
-        {
-          src: '/banners/banner-coll-3.png',
-          mobileSrc: '/banners/banner-coll-3-mob.png',
-        },
-        {
-          src: '/banners/pool-banner.png',
-          mobileSrc: '/banners/pool-banner-mobile.png',
-        },
-        {
-          src: '/banners/farming.png',
-          mobileSrc: '/banners/farming-mobile.png',
-        },
-        {
-          src: '/banners/discord-banner.png',
-          mobileSrc: '/banners/discord-banner-mobile.png',
+          src: '/banners/david-background.jpg',
+          mobileSrc: '/banners/david-background.jpg',
         },
       ],
     }

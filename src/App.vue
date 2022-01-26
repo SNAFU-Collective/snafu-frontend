@@ -5,6 +5,9 @@
       <router-view />
     </v-main>
     <ScrollToTop/>
+    <Footer
+      style="margin-top: 100px"
+    />
   </v-app>
 </template>
 
@@ -12,11 +15,13 @@
 import {mapActions} from "vuex"
 import Header from "./components/Header/Header"
 import ScrollToTop from "./components/ScrollToTop/Button"
+import Footer from "./components/Footer/Footer"
 
 export default {
   name: "App",
 
   components: {
+    Footer,
     Header,
     ScrollToTop
   },
