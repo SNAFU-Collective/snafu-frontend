@@ -14,7 +14,7 @@
           :style="
             currentTag === 'all' ? 'background-color: black; color: white' : ''
           "
-          >All NFTs
+          >Total
         </v-btn>
         <v-btn
             small
