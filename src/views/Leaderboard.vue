@@ -67,11 +67,11 @@
           </template>
 
           <template slot="item.rank" slot-scope="props">
-            {{(pagination.page -1 ) * pagination.itemsPerPage + props.index  + 1}}
+            <b>{{(pagination.page -1 ) * pagination.itemsPerPage + props.index  + 1}}</b>
           </template>
 
           <template v-slot:item.totalValue={item}>
-           {{item.totalValue | truncatePrice }}
+          <b> {{item.totalValue | truncatePrice }}</b>
           </template>
 
           <template v-slot:item.blockie>
@@ -202,7 +202,7 @@ export default {
           sortable: false
         },
         {
-          text: "Address",
+          text: "User",
           value: "address",
           sortable: false
         },
@@ -217,7 +217,7 @@ export default {
           sortable: false
         },
         {
-          text: "$SNAFU Value",
+          text: "Points",
           value: "totalValue",
           sortable: false
         },

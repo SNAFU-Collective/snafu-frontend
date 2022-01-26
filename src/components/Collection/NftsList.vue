@@ -1,46 +1,36 @@
-<template style="min-width: 100%">
-  <div id="mainNftsDive" style="min-width: 100%">
+<template>
+  <div id="mainNftsDive">
     <v-row>
-      <v-container>
-        <v-row>
-          <v-col>
-            <banner
-                src="/banners/poolTogether675.png"
-                mobile-src="https://pooltogether.com/pooltogether-facebook-share-image-1200-630@2x.png"
-                showActionBtn
-                actionUrl="https://community.pooltogether.com/pools/xdai/0x1221fe13f8aa51856538b41e85a737d843edd825/home"
-                action-label="JOIN LOTTERY"
-                :show-secondary-action-btn="true"
-                secondary-action-label="LEARN MORE"
-                secondaryActionUrl="https://www.nftsnafu.org/pooltogether-learnmore"
-                width="675px"
-                height="400px"
-            ></banner>
-          </v-col>
-          <v-col>
-            <banner
-                src='/banners/joinDiscord425.png'
-                mobile-src='/banners/discord-banner-mobile.png'
-                :show-secondary-action-btn="true"
-                :showActionBtn="false"
-                secondary-action-label="LEARN MORE"
-                secondaryActionUrl="https://www.nftsnafu.org/pooltogether-learnmore"
-                width="425px"
-                height="150px"
-            ></banner>
-            <banner
-                style="margin-top:5px"
-                src='/banners/farming425.png'
-                mobile-src='/banners/farming-mobile.png'
-                showActionBtn
-                actionUrl="https://community.pooltogether.com/pools/xdai/0x1221fe13f8aa51856538b41e85a737d843edd825/home"
-                action-label="JOIN LOTTERY"
-                width="425px"
-                height="245px"
-            ></banner>
-          </v-col>
-        </v-row>
-      </v-container>
+        <v-col>
+          <banner
+              src="/banners/coll3-twitter-head.png"
+              mobile-src="https://pooltogether.com/pooltogether-facebook-share-image-1200-630@2x.png"
+              :showActionBtn="false"
+              secondaryActionUrl="https://www.nftsnafu.org/pooltogether-learnmore"
+              width="675px"
+              height="400px"
+          >
+          </banner>
+        </v-col>
+        <v-col>
+          <banner
+              src='/banners/joinDiscord425.png'
+              mobile-src='/banners/discord-banner-mobile.png'
+              :showActionBtn="false"
+              secondaryActionUrl="https://www.nftsnafu.org/pooltogether-learnmore"
+              width="425px"
+              height="150px"
+          ></banner>
+          <banner
+              style="margin-top:5px"
+              src='/banners/farming425.png'
+              mobile-src='/banners/farming-mobile.png'
+              :showActionBtn="false"
+              actionUrl="https://community.pooltogether.com/pools/xdai/0x1221fe13f8aa51856538b41e85a737d843edd825/home"
+              width="425px"
+              height="245px"
+          ></banner>
+        </v-col>
     </v-row>
 
     <v-row class="pt-15" justify="start">
@@ -87,7 +77,6 @@
         <v-btn v-for="category in categories" :key="category" plain v-on:click="filter(category)" class="filter"
                :class="currentTag === category ? 'currentTag' : ''">{{ category }} <span v-if="showNewFlag(category)" class="newFlag">NEW</span>
         </v-btn>
-
       </v-col>
     </v-row>
     <v-row v-if="currentTag === 'physical'"  justify="center" style="margin-top:40px;text-align: center; padding: 0 20px">
@@ -124,7 +113,10 @@ import Banner from "../Common/Banner"
 import ids from "../../utils/ids"
 
 export default {
-  components: {NftCard, Banner},
+  components: {
+    NftCard,
+    Banner
+  },
   data() {
     return {
       currentPage: 1,
@@ -147,10 +139,6 @@ export default {
         {
           src: '/banners/calendar.png',
           mobileSrc: '/banners/calendar.png',
-        },
-        {
-          src: '/banners/banner-coll-3.png',
-          mobileSrc: '/banners/banner-coll-3-mob.png',
         },
       ],
     }
