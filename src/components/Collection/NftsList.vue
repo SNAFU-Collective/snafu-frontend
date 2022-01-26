@@ -55,7 +55,7 @@
     </v-row>
 
     <v-row>
-      <v-carousel hide-delimiter-background show-arrows-on-hover cycle style="height: 200px; margin: 100px 0">
+      <v-carousel hide-delimiter-background :show-arrows-on-hover=false :cycle="false" style="height: 300px; margin: 100px 0">
         <v-carousel-item v-for="(item, i) in carouselItems"  :key="i">
           <banner
               :src="item.src"
@@ -137,8 +137,8 @@ export default {
       ],
       carouselItems: [
         {
-          src: '/banners/calendar.png',
-          mobileSrc: '/banners/calendar.png',
+          src: '/banners/david-background.jpg',
+          mobileSrc: '/banners/david-background.jpg',
         },
       ],
     }
