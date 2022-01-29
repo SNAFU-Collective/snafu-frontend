@@ -20,7 +20,7 @@
     </v-row>
     <v-row class="mt-10" justify="center">
       <div v-for="(nft, index) in paginatedNFTs" :key="index">
-        <nft-card :cardSize=200 :key="nft.id" :nft="nft" class="ma-1"/>
+        <nft-card :cardSize="200" :key="nft.id" :nft="nft" style='margin:6px;'/>
       </div>
     </v-row>
     <v-row justify="center" class="pb-15 pt-15">
@@ -49,10 +49,11 @@ export default {
   data() {
     return {
       currentPage: 1,
-      maxPerPage: 8,
+      maxPerPage: 10,
       showReadMore: true,
       currentTag: 'all',
       nfts: ids,
+      windowWidth: window.innerWidth.toString(),
       categories: [
           'all',
           'collection3',
