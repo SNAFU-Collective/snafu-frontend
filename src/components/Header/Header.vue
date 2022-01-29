@@ -8,7 +8,6 @@
         <img src="logo.png" alt="logo-SNAFU.png" id="logo">
       </div>
 
-<!--      <p id="subtitle">{{ currentRouteName }}</p>-->
       <div id="subtitle">
         <router-link class="backHome" :to="{ name: 'Home'}">EXPLORE</router-link>
         <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
@@ -16,7 +15,7 @@
         <router-link class="backHome" :to="{ name: 'Claim'}">REDEEM</router-link>
         <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
         <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
-        <router-link class="backHome" :to="{ name: 'Leaderboard'}">RESOURCES</router-link>
+        <router-link class="backHome" :to="{ name: 'Resources'}">RESOURCES</router-link>
 <!--        <a class="backHome" @click="openBuySnafuModal()">BUY SNAFU </a>-->
 <!--        <a class="backHome" @click="openVoteModal()">VOTE </a>-->
 <!--&lt;!&ndash;        <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>&ndash;&gt;-->
@@ -39,12 +38,13 @@
       <div id="menuMobile">
         <Slide right :closeOnNavigation="true" @openMenu="handleOpenMenu" @closeMenu="handleCloseMenu"
                :width=windowWidth>
-          <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
-          <router-link class="backHome" :to="{ name: 'Marketplace'}">MARKETPLACE</router-link>
-          <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
-          <router-link class="backHome" :to="{ name: 'Claim'}">CLAIM</router-link>
+          <router-link class="backHome" :to="{ name: 'Home'}">EXPLORE</router-link>
+          <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
+          <router-link class="backHome" :to="{ name: 'Wallet'}">MY PROFILE</router-link>
+          <router-link class="backHome" :to="{ name: 'Claim'}">REDEEM</router-link>
           <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
           <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
+          <router-link class="backHome" :to="{ name: 'Resources'}">RESOURCES</router-link>
 <!--          <a class="backHome" @click="openBuySnafuModal()">BUY SNAFU <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
 <!--          <a class="backHome" @click="openVoteModal()">VOTE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
 <!--&lt;!&ndash;          <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>&ndash;&gt;-->
