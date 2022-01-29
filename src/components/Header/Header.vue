@@ -1,14 +1,14 @@
 <template>
-  <div>
+  <div class="headerMain">
     <div id="desktopHeader">
-      <div id="pinnedLeftHeader">
-        <div id="transformedText">
+      <v-col cols="2" id="pinnedLeftHeader">
+        <div id="transformedText" style="justify-content: center; display: flex">
           <router-link :to="{ name: 'Home'}" id="snafuText">SNAFU</router-link>
         </div>
         <img src="logo.png" alt="logo-SNAFU.png" id="logo">
-      </div>
+      </v-col>
 
-      <div id="subtitle">
+      <v-col cols="8" offset="1" id="subtitle">
         <router-link class="backHome" :to="{ name: 'Home'}">EXPLORE</router-link>
         <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
         <router-link class="backHome" :to="{ name: 'Wallet'}">MY PROFILE</router-link>
@@ -16,14 +16,11 @@
         <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
         <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
         <router-link class="backHome" :to="{ name: 'Resources'}">RESOURCES</router-link>
-<!--        <a class="backHome" @click="openBuySnafuModal()">BUY SNAFU </a>-->
-<!--        <a class="backHome" @click="openVoteModal()">VOTE </a>-->
-<!--&lt;!&ndash;        <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>&ndash;&gt;-->
-<!--        <a class="backHome" @click="openMarketModal()">MARKETS </a>-->
-<!--        <a class="backHome" @click="openLearnMoreModal()">LEARN MORE </a>-->
-      </div>
+      </v-col>
 
-      <wallet-status class="mt-5 pb-2 walletHeader"/>
+      <v-col cols="2">
+        <wallet-status class="mt-5 pb-2 walletHeader" style="justify-content: end"/>
+      </v-col>
     </div>
 
     <div id="mobileHeader">
@@ -37,6 +34,7 @@
       <div id="menuMobile">
         <Slide right :closeOnNavigation="true" @openMenu="handleOpenMenu" @closeMenu="handleCloseMenu"
                :width=windowWidth>
+          <wallet-status class="mt-5 pb-2 walletHeader"/>
           <router-link class="backHome" :to="{ name: 'Home'}">EXPLORE</router-link>
           <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
           <router-link class="backHome" :to="{ name: 'Wallet'}">MY PROFILE</router-link>
@@ -191,18 +189,13 @@ export default {
 .highlightOnHover:hover {
   background-color: #a7a7a752;
 }
+.headerMain {
+  /*position: absolute;*/
+  width: 100%;
+  top: 0;
+}
+
 @media screen and (min-width: 769px) {
-  .walletHeader {
-    width: 355px;
-    position: absolute;
-    right: 0px;
-    top: 20px;
-  }
-
-  #desktopHeader {
-    display: block;
-  }
-
   #menuMobile {
     display: none;
   }
@@ -228,12 +221,12 @@ export default {
     line-height: 1.2em;
   }
 
-  #pinnedLeftHeader > #logo {
+  #logo {
     width: 65px;
     height: 65px;
     position: absolute;
     top: 125px;
-    left: 60px;
+    left:123px;
     cursor: pointer;
   }
 
@@ -243,10 +236,18 @@ export default {
     );
   }
 
+  #desktopHeader {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    padding: 0 20px;
+    margin-top: 30px;
+  }
+
   #desktopHeader > #subtitle {
-    position: absolute;
-    top: 50px;
-    left: 148px;
+    /*position: absolute;*/
+    /*top: 50px;*/
+    /*left: 250px;*/
     font-weight: bold;
     letter-spacing: 0.1em;
     font-size: 17px;

@@ -13,15 +13,15 @@
           style="margin-bottom: 10px; padding-left: 0"
       >
         <router-link class="accountLinkHeader" :to="{ name: 'Wallet'}">
-        <v-chip
-            style="border: #A7A7A7; cursor: pointer; background-color: #f3f3f3;"
-        >
-          <v-avatar left style="width: 50px !important; height: 50px !important; margin-left: -15px; padding-right: 5px">
-<!--            <v-icon color="#fff" size="20px">mdi-account</v-icon>-->
-            <v-img src="/pfp/unknown.jpeg"/>
-          </v-avatar>
-          <span style="color: #303030; font-weight: 500">{{ account | abbreviateAddress }}</span>
-        </v-chip>
+          <v-chip
+              style="border: #A7A7A7; cursor: pointer; background-color: #f3f3f3;"
+          >
+            <v-avatar left style="width: 50px !important; height: 50px !important; margin-left: -15px; padding-right: 5px">
+              <!--            <v-icon color="#fff" size="20px">mdi-account</v-icon>-->
+              <v-img src="/pfp/unknown.jpeg"/>
+            </v-avatar>
+            <span style="color: #303030; font-weight: 500">{{ account | abbreviateAddress }}</span>
+          </v-chip>
         </router-link>
         <span style="padding-left: 5px; font-weight: 500">{{ chainId | networkName }}</span>
       </v-chip>
@@ -64,7 +64,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions("connectweb3", ["connectWallet", "addSnafuToMetamask", "disconnectWallet"]),
+    ...mapActions("connectweb3", ["connectWallet", "disconnectWallet"]),
   },
   computed: {
     ...mapFields("connectweb3", ["isConnected", "account", 'chainId']),

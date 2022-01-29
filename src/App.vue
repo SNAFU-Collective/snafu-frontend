@@ -1,9 +1,8 @@
 <template>
   <v-app>
-    <v-main>
-      <Header style="padding-bottom: 60px" />
-      <router-view />
-    </v-main>
+    <Header/>
+    <router-view />
+<!--    <v-main />-->
     <ScrollToTop/>
     <Footer
       style="margin-top: 100px"
