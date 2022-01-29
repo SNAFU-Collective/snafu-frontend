@@ -13,7 +13,7 @@
         <v-btn
             class="mx-4 black--text"
             icon
-            @click="goTo('https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862')"
+            @click="goTo('https://twitter.com/nftsnafu')"
         >
           <v-icon size="24px">
             mdi-twitter
@@ -23,17 +23,7 @@
         <v-btn
             class="mx-4 black--text"
             icon
-            @click="goTo('https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862')"
-        >
-          <v-icon size="24px">
-            mdi-github
-          </v-icon>
-        </v-btn>
-
-        <v-btn
-            class="mx-4 black--text"
-            icon
-            @click="goTo('https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862')"
+            @click="goTo('https://discord.gg/kvbxMfUyQD')"
         >
           <v-icon size="24px">
             mdi-discord
@@ -43,7 +33,27 @@
         <v-btn
             class="mx-4 black--text"
             icon
-            @click="goTo('https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862')"
+            @click="goTo('https://t.me/joinchat/8BfTPOsJZ8o3YjJk')"
+        >
+          <v-icon size="24px">
+            mdi-send
+          </v-icon>
+        </v-btn>
+
+        <v-btn
+            class="mx-4 black--text"
+            icon
+            @click="goTo('https://github.com/SNAFU-Collective')"
+        >
+          <v-icon size="24px">
+            mdi-github
+          </v-icon>
+        </v-btn>
+
+        <v-btn
+            class="mx-4 black--text"
+            icon
+            @click="goTo('https://www.nftsnafu.org/')"
         >
           <v-icon size="24px">
             mdi-web

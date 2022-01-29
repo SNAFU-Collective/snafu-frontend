@@ -1,41 +1,38 @@
 <template>
   <v-container>
-    <v-row id="mainRow" justify="center" style="display: grid; padding-top: 100px">
-      <swap-card />
-    </v-row>
     <v-row justify="center" class="pt-10">
-      <nfts-pool-list />
+      <TopBanner class="mt-10"/>
+      <LatestReleases class="mt-10"/>
+      <banner
+          style="margin-top: 150px"
+          src="/banners/david-background.jpg"
+          mobile-src="/banners/david-background.jpg"
+          :showActionBtn="false"
+          width="100%"
+          height="200px"
+      >
+      </banner>
+      <Explore />
     </v-row>
   </v-container>
 </template>
 
 <script>
-import NftsPoolList from '../components/Collection/NftsPoolList.vue'
-import SwapCard from '../components/Swap/SwapCard.vue'
+import Explore from '../components/Collection/Explore.vue'
+import TopBanner from '../components/HomeComponents/TopBanner.vue'
+import LatestReleases from "../components/HomeComponents/LatestReleases"
+import Banner from "./../components/Common/Banner"
 
 export default {
-  name: 'Home',
+  name: 'NFTs',
   components: {
-    SwapCard,
-    NftsPoolList
+    LatestReleases,
+    Explore,
+    TopBanner,
+    Banner
   }
 }
 </script>
 
 <style>
-@media screen and (max-width: 768px) {
-  #mainRow {
-    padding-top: 20px !important;
-  }
-}
-
-.warningText {
-  font-size: 14px;
-  text-align: center;
-}
-
-.warningDiv {
-  background-color: #3030300d;
-  border-radius: 5px;
-}
 </style>
