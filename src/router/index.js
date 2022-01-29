@@ -11,7 +11,7 @@ const routes = [
             title: 'Artist Collective | SNAFU',
             headerSubtitle: 'Artist Collective',
         },
-        component: () => import('../views/NFTs.vue'),
+        component: () => import('../views/Home.vue'),
     },
     {
         path: '/search',

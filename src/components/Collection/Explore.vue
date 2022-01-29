@@ -1,74 +1,5 @@
 <template>
   <div id="mainNftsDive">
-    <v-row>
-        <v-col>
-          <banner
-              src="/banners/coll3-twitter-head.png"
-              mobile-src="https://pooltogether.com/pooltogether-facebook-share-image-1200-630@2x.png"
-              :showActionBtn="false"
-              secondaryActionUrl="https://www.nftsnafu.org/pooltogether-learnmore"
-              width="675px"
-              height="400px"
-          >
-          </banner>
-        </v-col>
-        <v-col>
-          <banner
-              src='/banners/joinDiscord425.png'
-              mobile-src='/banners/discord-banner-mobile.png'
-              :showActionBtn="false"
-              secondaryActionUrl="https://www.nftsnafu.org/pooltogether-learnmore"
-              width="425px"
-              height="150px"
-          ></banner>
-          <banner
-              style="margin-top:5px"
-              src='/banners/farming425.png'
-              mobile-src='/banners/farming-mobile.png'
-              :showActionBtn="false"
-              actionUrl="https://community.pooltogether.com/pools/xdai/0x1221fe13f8aa51856538b41e85a737d843edd825/home"
-              width="425px"
-              height="245px"
-          ></banner>
-        </v-col>
-    </v-row>
-
-    <v-row class="pt-15" justify="start">
-      <v-col cols="3" style="display: flex">
-        <h4 style="padding-top: 6px;padding-left: 10px;">Latest releases</h4>
-      </v-col>
-    </v-row>
-    <v-row v-if="allNFTs.length !== 0" class="mt-5">
-      <nft-card :key="allNFTs.find(x => x.id === '211').id" :nft="allNFTs.find(x => x.id === '211')" :cardSize=300
-                class="ma-6"/>
-      <nft-card :key="allNFTs.find(x => x.id === '149').id" :nft="allNFTs.find(x => x.id === '149')" :cardSize=300
-                class="ma-6"/>
-      <nft-card :key="allNFTs.find(x => x.id === '172').id" :nft="allNFTs.find(x => x.id === '172')" :cardSize=300
-                class="ma-6"/>
-    </v-row>
-    <v-row v-else justify="center" class="pt-16">
-      <v-progress-circular
-          size="60"
-          indeterminate
-          color="black"
-      ></v-progress-circular>
-    </v-row>
-
-    <v-row>
-      <v-carousel hide-delimiter-background :show-arrows-on-hover=false :cycle="false" style="height: 300px; margin: 100px 0">
-        <v-carousel-item v-for="(item, i) in carouselItems"  :key="i">
-          <banner
-              :src="item.src"
-              :mobile-src="item.mobileSrc"
-              :text="item.text"
-              :showActionBtn="false"
-              width="100%"
-              height="200px"
-          ></banner>
-        </v-carousel-item>
-      </v-carousel>
-    </v-row>
-
     <v-row class="pt-15 filters-row" style="min-width: 98%;max-width: 98%">
       <v-col cols="3" style="display: flex">
         <h4 style="padding-top: 6px;padding-left: 10px;">Explore</h4>
@@ -109,13 +40,11 @@
 <script>
 import NftCard from "./NftCard.vue"
 import {mapFields} from "vuex-map-fields"
-import Banner from "../Common/Banner"
 import ids from "../../utils/ids"
 
 export default {
   components: {
     NftCard,
-    Banner
   },
   data() {
     return {
@@ -134,12 +63,6 @@ export default {
           'okki',
           'physical',
           'gadgets',
-      ],
-      carouselItems: [
-        {
-          src: '/banners/david-background.jpg',
-          mobileSrc: '/banners/david-background.jpg',
-        },
       ],
     }
   },
