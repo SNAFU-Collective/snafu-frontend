@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row justify="center" class="pt-10">
-      <TopBanner class="mt-10"/>
+      <TopBanner />
       <LatestReleases class="mt-10"/>
       <banner
           style="margin-top: 150px"
