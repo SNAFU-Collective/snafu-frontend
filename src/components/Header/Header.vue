@@ -11,7 +11,7 @@
 <!--      <p id="subtitle">{{ currentRouteName }}</p>-->
       <div id="subtitle">
         <router-link class="backHome" :to="{ name: 'Home'}">EXPLORE</router-link>
-        <router-link class="backHome" :to="{ name: 'Marketplace'}">POOL</router-link>
+        <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
         <router-link class="backHome" :to="{ name: 'Wallet'}">MY PROFILE</router-link>
         <router-link class="backHome" :to="{ name: 'Claim'}">REDEEM</router-link>
         <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>

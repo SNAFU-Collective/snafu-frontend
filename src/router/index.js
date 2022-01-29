@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
@@ -35,12 +34,11 @@ const routes = [
     },
     {
         path: '/swap',
-        name: 'Marketplace',
+        name: 'Pool',
         meta: {
-            title: 'Marketplace | SNAFU',
-            headerSubtitle: 'Marketplace',
+            title: 'Pool | SNAFU',
         },
-        component: Home,
+        component: () => import('../views/Pool.vue'),
     },
     {
         path: '/claim',

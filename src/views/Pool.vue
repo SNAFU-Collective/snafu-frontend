@@ -14,7 +14,7 @@ import NftsPoolList from '../components/Collection/NftsPoolList.vue'
 import SwapCard from '../components/Swap/SwapCard.vue'
 
 export default {
-  name: 'Home',
+  name: 'Pool',
   components: {
     SwapCard,
     NftsPoolList
