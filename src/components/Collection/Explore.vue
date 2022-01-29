@@ -20,7 +20,7 @@
     </v-row>
     <v-row class="mt-10" justify="center">
       <div v-for="(nft, index) in paginatedNFTs" :key="index">
-        <nft-card :key="nft.id" :nft="nft" class="ma-6"/>
+        <nft-card :cardSize=200 :key="nft.id" :nft="nft" class="ma-1"/>
       </div>
     </v-row>
     <v-row justify="center" class="pb-15 pt-15">
