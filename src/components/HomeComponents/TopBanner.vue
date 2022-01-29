@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row style="width: 100%">
     <v-col>
       <banner
           src="/banners/coll3-twitter-head.png"

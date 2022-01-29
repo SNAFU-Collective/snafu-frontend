@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="width: 100%">
     <v-row class="pt-15" justify="start">
       <v-col cols="3" style="display: flex">
         <h4 style="padding-top: 6px;padding-left: 10px;">Latest releases</h4>
