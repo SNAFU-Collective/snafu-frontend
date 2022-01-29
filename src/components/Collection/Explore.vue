@@ -1,6 +1,6 @@
 <template>
-  <div id="mainNftsDive" style="width: 100%">
-    <v-row class="pt-15 filters-row" style="min-width: 98%;max-width: 98%">
+  <div style="min-width: 100%;">
+    <v-row style="min-width: 100%; justify-content: center; margin-top: 100px">
       <v-col cols="3" style="display: flex">
         <h4 style="padding-top: 6px;padding-left: 10px;">Explore</h4>
       </v-col>

@@ -32,7 +32,6 @@
           <img src="logo.png" alt="logo-SNAFU.png" id="logoMobile">
           <router-link :to="{ name: 'Home'}" id="snafuTextMobile">SNAFU</router-link>
         </div>
-        <p id="subtitleMobile">{{ currentRouteName }}</p>
       </div>
 
       <div id="menuMobile">
