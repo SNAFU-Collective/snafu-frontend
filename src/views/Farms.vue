@@ -1,21 +1,6 @@
 <template>
   <div style="margin-bottom: 50px">
     <v-container>
-      <v-row id="mainRow" justify="center" style="display: grid; padding-top: 100px">
-      
-      </v-row>
-    </v-container>
-    <v-container>
-      <banner
-          src="/banners/farming.png"
-          mobile-src="'/banners/farming-mobile.png'"
-          :showActionBtn="false"
-          :show-secondary-action-btn="true"
-          secondary-action-label="LEARN MORE"
-          secondaryActionUrl="https://www.nftsnafu.org/farms"
-      ></banner>
-    </v-container>
-    <v-container>
       <v-row justify="center" style="padding-top: 100px; padding-bottom: 10px">
         <h1>Active Farms</h1>
       </v-row>
@@ -135,7 +120,7 @@ import { commonFarmAddress } from "../utils/constants"
 
 export default {
   components: {
-    Banner,
+
   },
   data() {
     return {}

@@ -26,7 +26,7 @@
             @click="goTo('https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862')"
         >
           <v-icon size="24px">
-            mdi-github
+            mdi-discord
           </v-icon>
         </v-btn>
 
@@ -36,7 +36,17 @@
             @click="goTo('https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862')"
         >
           <v-icon size="24px">
-            mdi-discord
+            mdi-send
+          </v-icon>
+        </v-btn>
+
+        <v-btn
+            class="mx-4 black--text"
+            icon
+            @click="goTo('https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862')"
+        >
+          <v-icon size="24px">
+            mdi-github
           </v-icon>
         </v-btn>
 

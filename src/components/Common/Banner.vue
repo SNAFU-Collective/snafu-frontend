@@ -1,7 +1,8 @@
 <template>
   <v-card
-      class="mx-auto"
+      class="mx-auto banner-card"
       :style="cardBackgroundStyle"
+      :ripple="true"
   >
     <div class="bannerBox">
       <span v-if="text" class="bannerSubtitle">
@@ -139,6 +140,10 @@ export default {
   font-weight: 500;
   background-color: rgba(0, 0, 0, 0.54);
   padding: 5px;
+}
+
+.banner-card {
+  cursor: pointer;
 }
 
 .bannerBtn {

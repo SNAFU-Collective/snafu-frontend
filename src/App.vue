@@ -38,6 +38,10 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css?family=Barlow:200,400,600,800');
 
+.container {
+  max-width: 1185px !important;
+}
+
 html, body {
   font-family: 'Barlow', sans-serif;
 }
