@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row id="mainRow" justify="center" style="display: grid; padding-top: 100px">
+    <v-row id="mainRow" justify="center" style="display: grid; padding-top: 80px">
       <swap-card />
     </v-row>
     <v-row justify="center" class="pt-10">
@@ -24,9 +24,7 @@ export default {
 
 <style>
 @media screen and (max-width: 768px) {
-  #mainRow {
-    padding-top: 20px !important;
-  }
+
 }
 
 .warningText {
