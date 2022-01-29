@@ -19,7 +19,7 @@
         </v-col>
       </v-row>
 
-      <nft-card style="margin-top: 50px !important;" v-for="nft in paginatedNFTs" :key="nft.id" :nft="nft" class="ma-6" show-buy-button/>
+      <nft-card style="margin-top: 50px !important;" v-for="nft in paginatedNFTs" :key="nft.id" :nft="nft" class="ma-6" :cardSize="windowWidth > 728 ? 250 : 300" show-buy-button/>
     </v-row>
     <v-row v-if="poolSync" justify="center" class="pb-15 pt-15">
       <h3 v-if="filteredGallery.length === 0">No NFT available</h3>
@@ -50,6 +50,7 @@ export default {
       showReadMore: true,
       currentTag: 'all',
       nfts: ids,
+      windowWidth: window.innerWidth.toString(),
     }
   },
   components: {NftCard},
