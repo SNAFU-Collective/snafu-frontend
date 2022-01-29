@@ -1,60 +1,89 @@
 <template>
-  <v-row style="width: 100%">
-    <v-col>
-      <banner
-          src="/banners/coll3-twitter-head.png"
-          mobile-src="https://pooltogether.com/pooltogether-facebook-share-image-1200-630@2x.png"
-          :showActionBtn="false"
-          secondaryActionUrl="https://www.nftsnafu.org/pooltogether-learnmore"
-          width="675px"
-          height="400px"
-      >
-      </banner>
+  <v-row justify="center" style="text-align: left; display: flex" class="ma-10 topText">
+    <v-col cols-md="5" class="ma-6">
+      <h1><b>SNAFU Artist Collective</b></h1>
+      <br>
+      <h2 class="mt-5">Welcome to the home of the italian underground artists.</h2>
+      <br>
+      <h2 class="mt-5">Here you can find exclusive <b>NFTs</b> and <b>Original Artworks</b>. Join the other collectors in <b>farming NFTs</b> or try to win one of them at the <b>lottery</b>!</h2>
     </v-col>
-    <v-col>
-      <banner
-          src='/banners/joinDiscord425.png'
-          mobile-src='/banners/discord-banner-mobile.png'
-          :showActionBtn="false"
-          secondaryActionUrl="https://www.nftsnafu.org/pooltogether-learnmore"
-          width="425px"
-          height="150px"
-      ></banner>
-      <banner
-          style="margin-top:5px"
-          src='/banners/farming425.png'
-          mobile-src='/banners/farming-mobile.png'
-          :showActionBtn="false"
-          actionUrl="https://community.pooltogether.com/pools/xdai/0x1221fe13f8aa51856538b41e85a737d843edd825/home"
-          width="425px"
-          height="245px"
-      ></banner>
+
+    <v-col cols-md="5" style="justify-content: end">
+      <nft-card
+          v-if="allNFTs.length !== 0"
+          :key="allNFTs.find(x => x.id === currentId+'').id"
+          :nft="allNFTs.find(x => x.id === currentId+'')"
+          :cardSize=400
+          class="ma-6"
+      />
+      <v-row v-else justify="center" class="pt-16">
+        <v-progress-circular
+            size="60"
+            indeterminate
+            color="black"
+        ></v-progress-circular>
+      </v-row>
     </v-col>
   </v-row>
+
 </template>
 
 
 <script>
 import Banner from "../Common/Banner"
+import {mapFields} from "vuex-map-fields"
+import NftCard from "../Collection/NftCard"
 
 export default {
   components: {
-    Banner
+    // Banner,
+    NftCard
   },
   data() {
     return {
+      currentIndex: 1,
+      currentId: 29,
+      topNFTs: [3, 5, 12, 26, 101, 85, 108, 105, 161, 29, 159]
     }
   },
   computed: {
-
+    ...mapFields("nftContract", ["allNFTs"]),
+    screenHeight() {
+      return window.innerHeight
+    },
   },
   methods: {
+    getRandomInt() {
+      let number
+      do {
+        number = Math.floor(Math.random() * this.topNFTs.length - 1)
+      } while (this.topNFTs[number] === undefined)
 
+      return number
+    },
+  },
+  mounted() {
+    setInterval(() => {
+      this.currentIndex =  this.getRandomInt()
+      this.currentId = this.topNFTs[this.currentIndex]
+    }, 15000)
   },
 }
 </script>
 
 <style>
+
+.topText h1 {
+  color: #303030;
+  font-weight: bold;
+  font: 48px barlow-bold,sans-serif;
+}
+
+.topText h2 {
+  color: #303030;
+  font:normal normal normal 30px/1.4em barlow-medium,barlow,sans-serif;
+}
+
 @media screen and (min-width: 768px) {
 
 }
