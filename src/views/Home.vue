@@ -1,49 +1,57 @@
 <template>
   <v-container>
-    <v-row id="mainRow" justify="center" style="display: grid; padding-top: 100px">
-      <wallet-status class="mt-5 pb-2"/>
-      <swap-card />
-    </v-row>
     <v-row justify="center" class="pt-10">
-      <collection-info />
-    </v-row>
-    <v-row justify="center" class="pt-10">
-      <nfts-pool-list />
+      <TopBanner />
+      <LatestReleases class="mt-10"/>
+      <banner
+          style="margin-top: 150px"
+          src="/banners/DCOMINGSOON.png"
+          mobile-src="/banners/DCOMINGSOON.png"
+          :showActionBtn="false"
+          width="100%"
+          height="350px"
+      >
+      </banner>
+      <Explore :shuffle="true" />
     </v-row>
   </v-container>
 </template>
 
 <script>
-import CollectionInfo from '../components/Collection/CollectionInfo.vue'
-import NftsPoolList from '../components/Collection/NftsPoolList.vue'
-import SwapCard from '../components/Swap/SwapCard.vue'
-import WalletStatus from '../components/Wallet/WalletStatus.vue'
+import Explore from '../components/Collection/Explore.vue'
+import TopBanner from '../components/HomeComponents/TopBanner.vue'
+import LatestReleases from "../components/HomeComponents/LatestReleases"
+import Banner from "./../components/Common/Banner"
+import {mapFields} from "vuex-map-fields"
+import NftCard from "../components/Collection/NftCard"
 
 export default {
-  name: 'Home',
+  name: 'NFTs',
   components: {
-    WalletStatus,
-    SwapCard,
-    CollectionInfo,
-    NftsPoolList
+    LatestReleases,
+    Explore,
+    TopBanner,
+    Banner,
+    // NftCard,
+  },
+  computed: {
+    ...mapFields("nftContract", ["allNFTs"]),
+    screenHeight() {
+      return window.innerHeight
+    },
   }
 }
 </script>
 
 <style>
-@media screen and (max-width: 768px) {
-  #mainRow {
-    padding-top: 20px !important;
-  }
+.topText h1 {
+  color: #303030;
+font-weight: bold;
+ font: 48px barlow-bold,sans-serif;
 }
 
-.warningText {
-  font-size: 14px;
-  text-align: center;
-}
-
-.warningDiv {
-  background-color: #3030300d;
-  border-radius: 5px;
+.topText h2 {
+  color: #303030;
+  font:normal normal normal 30px/1.4em barlow-medium,barlow,sans-serif;
 }
 </style>

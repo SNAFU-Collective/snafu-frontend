@@ -1,10 +1,10 @@
 <template>
-  <v-container fluid class="white rounded-lg">
+  <v-container fluid class="white rounded-lg" style="padding: 5px 10px; !important;">
     <v-row no-gutters class="text-caption" v-if="!hideBalance">
-      <v-col cols="4"> Value </v-col>
+      <v-col cols="4"> <span style="font-size: 10px">Value</span> </v-col>
       <v-col cols="8" > 
           <v-row no-gutters justify="end">
-          Balance: {{ balance | fromWei | truncatePrice | numberWithCommas }}
+            <span style="font-size: 10px">Balance: {{ balance | fromWei | truncatePrice | numberWithCommas }}</span>
           </v-row>
       </v-col>
     </v-row>

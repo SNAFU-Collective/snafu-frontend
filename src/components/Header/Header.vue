@@ -1,28 +1,26 @@
 <template>
-  <div>
+  <div class="headerMain">
     <div id="desktopHeader">
-      <div id="pinnedLeftHeader">
-        <div id="transformedText">
+      <v-col cols="2" id="pinnedLeftHeader">
+        <div id="transformedText" style="justify-content: center; display: flex">
           <router-link :to="{ name: 'Home'}" id="snafuText">SNAFU</router-link>
         </div>
         <img src="logo.png" alt="logo-SNAFU.png" id="logo">
-      </div>
+      </v-col>
 
-      <p id="subtitle">{{ currentRouteName }}</p>
-      <div id="menuDesktop">
+      <v-col cols="8" offset="1" id="subtitle">
         <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
-        <router-link class="backHome" :to="{ name: 'Marketplace'}">MARKETPLACE</router-link>
-        <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
-        <router-link class="backHome" :to="{ name: 'Claim'}">CLAIM</router-link>
+        <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
+        <router-link class="backHome" :to="{ name: 'Wallet'}">MY PROFILE</router-link>
         <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
         <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
-        <a class="backHome" @click="openBuySnafuModal()">BUY SNAFU <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
-        <a class="backHome" @click="openVoteModal()">VOTE <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
-<!--        <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>-->
-        <a class="backHome" @click="openMarketModal()">MARKETS <v-icon class="arrowRedirect backHome"> mdi-arrow-top-right </v-icon></a>
-        <a class="backHome" @click="openLearnMoreModal()">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
-      </div>
+        <router-link class="backHome" :to="{ name: 'Catalog'}">CATALOG</router-link>
+        <router-link class="backHome" :to="{ name: 'Manifest'}">MANIFEST</router-link>
+      </v-col>
 
+      <v-col cols="2">
+        <wallet-status class="mt-5 pb-2 walletHeader" style="justify-content: end"/>
+      </v-col>
     </div>
 
     <div id="mobileHeader">
@@ -31,23 +29,24 @@
           <img src="logo.png" alt="logo-SNAFU.png" id="logoMobile">
           <router-link :to="{ name: 'Home'}" id="snafuTextMobile">SNAFU</router-link>
         </div>
-        <p id="subtitleMobile">{{ currentRouteName }}</p>
       </div>
 
       <div id="menuMobile">
         <Slide right :closeOnNavigation="true" @openMenu="handleOpenMenu" @closeMenu="handleCloseMenu"
                :width=windowWidth>
+          <wallet-status class="mt-5 pb-2 walletHeader"/>
           <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
-          <router-link class="backHome" :to="{ name: 'Marketplace'}">MARKETPLACE</router-link>
-          <router-link class="backHome" :to="{ name: 'Wallet'}">WALLET</router-link>
-          <router-link class="backHome" :to="{ name: 'Claim'}">CLAIM</router-link>
+          <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
+          <router-link class="backHome" :to="{ name: 'Wallet'}">MY PROFILE</router-link>
           <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
           <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
-          <a class="backHome" @click="openBuySnafuModal()">BUY SNAFU <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
-          <a class="backHome" @click="openVoteModal()">VOTE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
-<!--          <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
-          <a class="backHome" @click="openMarketModal()">MARKETS <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
-          <a class="backHome" @click="openLearnMoreModal()">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>
+          <router-link class="backHome" :to="{ name: 'Catalog'}">CATALOG</router-link>
+          <router-link class="backHome" :to="{ name: 'Manifest'}">MANIFEST</router-link>
+<!--          <a class="backHome" @click="openBuySnafuModal()">BUY SNAFU <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
+<!--          <a class="backHome" @click="openVoteModal()">VOTE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
+<!--&lt;!&ndash;          <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>&ndash;&gt;-->
+<!--          <a class="backHome" @click="openMarketModal()">MARKETS <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
+<!--          <a class="backHome" @click="openLearnMoreModal()">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
         </Slide>
       </div>
 
@@ -135,9 +134,10 @@
 
 <script>
 import {Slide} from 'vue-burger-menu'
+import WalletStatus from '../Wallet/WalletStatus.vue'
 
 export default {
-  components: {Slide},
+  components: {WalletStatus, Slide},
   methods: {
     handleOpenMenu() {
       document.querySelector(".bm-burger-button").style.display = 'none'
@@ -189,11 +189,13 @@ export default {
 .highlightOnHover:hover {
   background-color: #a7a7a752;
 }
-@media screen and (min-width: 769px) {
-  #desktopHeader {
-    display: block;
-  }
+.headerMain {
+  /*position: absolute;*/
+  width: 100%;
+  top: 0;
+}
 
+@media screen and (min-width: 769px) {
   #menuMobile {
     display: none;
   }
@@ -203,7 +205,7 @@ export default {
   }
 
   #pinnedLeftHeader {
-    position: fixed;
+    position: absolute;
     top: 110px;
     display: inline-table;
     z-index: 11111;
@@ -219,12 +221,12 @@ export default {
     line-height: 1.2em;
   }
 
-  #pinnedLeftHeader > #logo {
+  #logo {
     width: 65px;
     height: 65px;
     position: absolute;
     top: 125px;
-    left: 60px;
+    left:123px;
     cursor: pointer;
   }
 
@@ -234,18 +236,21 @@ export default {
     );
   }
 
-  #desktopHeader > #subtitle {
-    position: absolute;
-    top: 50px;
-    left: 148px;
-    font-weight: bold;
-    letter-spacing: 0.23em;
-    font-size: 17px;
+  #desktopHeader {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    padding: 0 20px;
+    margin-top: 30px;
   }
 
-  #desktopHeader > #subtitle > a {
-    text-decoration: unset;
-    color: #303030;
+  #desktopHeader > #subtitle {
+    /*position: absolute;*/
+    /*top: 50px;*/
+    /*left: 250px;*/
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    font-size: 17px;
   }
 
   #menuDesktop {
@@ -257,25 +262,41 @@ export default {
 
   .backHome {
     text-decoration: unset;
-    color: #303030;
-    font-size: 17px;
-    font-weight: 500;
+    color: rgb(143, 143, 143) !important;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 0 5px;
+    margin: 0 10px;
   }
 
   .backHome:hover {
-    color: rgb(219, 219, 219) !important;
-  }
-
-  .backHome:hover > .arrowRedirect {
-    color: rgb(219, 219, 219) !important;
+    color: #303030 !important;
+    /* position: absolute; */
+    left: 0;
+    bottom: 1px;
+    border-width: 0 0 1px;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 1px;
+    border-left-width: 0px;
+    border-style: solid;
   }
 
   .v-application a {
-    color: #303030 !important;
+    /*color: #303030 !important;*/
   }
 
   a.backHome.router-link-exact-active.router-link-active {
-    color: rgb(219, 219, 219) !important;
+    color: #303030 !important;
+    /* position: absolute; */
+    left: 0;
+    bottom: 1px;
+    border-width: 0 0 1px;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 1px;
+    border-left-width: 0px;
+    border-style: solid;
   }
 
   .arrowRedirect:before {
@@ -324,6 +345,7 @@ export default {
 
   #mobileLogoContainer {
     display: flex;
+    margin-top: 5px;
   }
 
   #mobileHeader {

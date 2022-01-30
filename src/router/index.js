@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
@@ -12,7 +11,7 @@ const routes = [
             title: 'Artist Collective | SNAFU',
             headerSubtitle: 'Artist Collective',
         },
-        component: () => import('../views/NFTs.vue'),
+        component: () => import('../views/Home.vue'),
     },
     {
         path: '/search',
@@ -35,12 +34,11 @@ const routes = [
     },
     {
         path: '/swap',
-        name: 'Marketplace',
+        name: 'Pool',
         meta: {
-            title: 'Marketplace | SNAFU',
-            headerSubtitle: 'Marketplace',
+            title: 'Pool | SNAFU',
         },
-        component: Home,
+        component: () => import('../views/Pool.vue'),
     },
     {
         path: '/claim',
@@ -78,6 +76,26 @@ const routes = [
             headerSubtitle: 'Farming',
         },
         component: () => import('../views/Farms.vue'),
+        props: true,
+    },
+    {
+        path: '/manifest',
+        name: 'Manifest',
+        meta: {
+            title: 'Manifest | SNAFU',
+            headerSubtitle: 'Manifest',
+        },
+        component: () => import('../views/Manifest.vue'),
+        props: true,
+    },
+    {
+        path: '/catalog',
+        name: 'Catalog',
+        meta: {
+            title: 'Catalog | SNAFU',
+            headerSubtitle: 'Catalog',
+        },
+        component: () => import('../views/Catalog.vue'),
         props: true,
     },
 ]

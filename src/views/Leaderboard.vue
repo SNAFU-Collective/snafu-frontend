@@ -14,7 +14,7 @@
           :style="
             currentTag === 'all' ? 'background-color: black; color: white' : ''
           "
-          >All NFTs
+          >Total
         </v-btn>
         <v-btn
             small
@@ -67,15 +67,18 @@
           </template>
 
           <template slot="item.rank" slot-scope="props">
-            {{(pagination.page -1 ) * pagination.itemsPerPage + props.index  + 1}}
+            <b>{{(pagination.page -1 ) * pagination.itemsPerPage + props.index  + 1}}</b>
           </template>
 
           <template v-slot:item.totalValue={item}>
-           {{item.totalValue | truncatePrice }}
+          <b> {{item.totalValue | truncatePrice }}</b>
           </template>
 
-          <template v-slot:item.blockie={item}>
-            <vth-blockie :string=item.address />
+          <template v-slot:item.blockie>
+            <v-avatar style="margin: 5px !important;">
+              <v-img src="/pfp/unknown.jpeg"/>
+            </v-avatar>
+<!--            <vth-blockie :string=item.address />-->
           </template>
         </v-data-table>
       </v-row>
@@ -199,7 +202,7 @@ export default {
           sortable: false
         },
         {
-          text: "Address",
+          text: "User",
           value: "address",
           sortable: false
         },
@@ -214,7 +217,7 @@ export default {
           sortable: false
         },
         {
-          text: "$SNAFU Value",
+          text: "Points",
           value: "totalValue",
           sortable: false
         },
