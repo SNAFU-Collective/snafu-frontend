@@ -4,9 +4,12 @@
       <v-col cols-md="12" colls-xs="12" class="ma-10 px-15" style="text-align: center; color: #303030d4">
         <p class="h2 mt-5">This is the Community Pool: here is where collectors <b>discard the NFTs</b> they are not able to sell, and receive <b>$SNAFU</b> for them.</p>
         <p class="h2">Here you will find very good trade opportunities, by buying SNAFU NFTs at their <b>base price</b>.</p>
+        <v-btn text class="font-weight-thin" @click="goTo('https://www.nftsnafu.org/swap-protocol')">
+          Learn more
+        </v-btn>
       </v-col>
     </v-row>
-    <v-row id="mainRow" justify="center" style="display: grid; padding-top: 80px">
+    <v-row id="mainRow" justify="center" style="display: grid; padding-top: 30px">
       <swap-card />
     </v-row>
     <v-row justify="center" class="pt-10">
@@ -24,6 +27,11 @@ export default {
   components: {
     SwapCard,
     NftsPoolList
+  },
+  methods: {
+    goTo(url) {
+      window.open(url, '_blank')
+    }
   }
 }
 </script>
