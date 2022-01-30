@@ -5,8 +5,8 @@
       <LatestReleases class="mt-10"/>
       <banner
           style="margin-top: 150px"
-          src="/banners/david-background.jpg"
-          mobile-src="/banners/david-background.jpg"
+          src="/banners/DCOMINGSOON.png"
+          mobile-src="/banners/DCOMINGSOON.png"
           :showActionBtn="false"
           width="100%"
           height="350px"
