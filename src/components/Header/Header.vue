@@ -345,6 +345,7 @@ export default {
 
   #mobileLogoContainer {
     display: flex;
+    margin-top: 5px;
   }
 
   #mobileHeader {
