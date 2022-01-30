@@ -86,9 +86,9 @@ export default {
   .topText {
     margin: 0;
   }
-  .onlyDesktop {
-    display: none;
-  }
+  /*.onlyDesktop {*/
+  /*  display: none;*/
+  /*}*/
   .topText .h1 {
     color: #303030;
     font-weight: bold;
@@ -97,7 +97,7 @@ export default {
 
   .topText .h2 {
     color: #303030;
-    font:normal normal normal 20px/1em barlow-medium,barlow,sans-serif;
+    font:normal normal normal 20px/1.3em barlow-medium,barlow,sans-serif;
   }
 
   .leftText{
