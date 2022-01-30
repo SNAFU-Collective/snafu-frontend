@@ -60,6 +60,7 @@ export default {
           'collection2',
           'collection1',
           'communityPool',
+          'ChristmasFarming',
           'phobias',
           'okki',
           'physical',
@@ -98,9 +99,7 @@ export default {
   methods: {
     showNewFlag: function (category) {
       switch (category) {
-        case 'physical':
-          return true
-        case 'okki':
+        case 'ChristmasFarming':
           return true
         default:
           return false

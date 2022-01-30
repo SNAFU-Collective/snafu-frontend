@@ -31,7 +31,9 @@
       <!--        </v-col>-->
       <!--      </v-row>-->
 
-      <v-row justify="center" v-if="!nftToFetch">
+      <Claim class="mt-15"/>
+
+      <v-row justify="center" v-if="!nftToFetch" class="mt-15">
         <v-row class="pt-15 filters-row" style="min-width: 98%;max-width: 98%">
           <v-col cols="3" style="display: flex">
             <h4 style="padding-top: 6px;padding-left: 10px;">Your Collection: {{ filteredGallery ?  filteredGallery.length : '0' }} NFTs</h4>
@@ -68,6 +70,7 @@
       <div v-else-if="userNfts.length === 0" class="text-body-2 my-5">
         No SNAFU NFTs found in your wallet.
       </div>
+
     </v-container>
     <TransferNFTModal :show="showModal" @updateDialog="() => showModal = false"/>
   </div>
@@ -82,6 +85,7 @@ import SnafuBalance from '../components/Wallet/SnafuBalance.vue'
 import {mapFields} from "vuex-map-fields"
 import TransferNFTModal from "../components/Transfer/TransferNFTModal"
 import NftCard from "../components/Collection/NftCard.vue"
+import Claim from "./Claim.vue"
 import ids from "../utils/ids"
 
 export default {
@@ -90,6 +94,7 @@ export default {
     SnafuBalance,
     TransferNFTModal,
     NftCard,
+    Claim,
     // CollectionInfo
   },
   data() {

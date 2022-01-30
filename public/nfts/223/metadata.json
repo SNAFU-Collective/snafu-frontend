@@ -1,0 +1,17 @@
+{
+  "name": "SANTA NOEl",
+  "description": "Farming Edition - Christmas 2021 | Simone Marchetti\n",
+  "image": "https://ipfs.infura.io/ipfs/QmQaMEduA5EJHQutHaB8QwQ7s8FsBxdmpUEySdBFmL9dYJ",
+  "external_url": "https://xdai.unique.one/token2/0xED1eFC6EFCEAAB9F6d609feC89c9E675Bf1efB0a:223",
+  "attributes": [
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "Simone Marchetti"
+    }
+  ],
+  "id": "223",
+  "editions": "10",
+  "price": "95",
+  "fee": "5"
+}

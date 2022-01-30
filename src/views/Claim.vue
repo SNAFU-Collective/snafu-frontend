@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container>
-
+<!--      <v-row justify="center"><h1>Available Prizes</h1></v-row>-->
       <v-row style="margin-top: 100px" class="boxRow">
         <v-col class="claimBox">
           <v-row justify="center">

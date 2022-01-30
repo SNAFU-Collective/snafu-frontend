@@ -12,7 +12,6 @@
         <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
         <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
         <router-link class="backHome" :to="{ name: 'Wallet'}">MY PROFILE</router-link>
-        <router-link class="backHome" :to="{ name: 'Claim'}">REDEEM</router-link>
         <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
         <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
         <router-link class="backHome" :to="{ name: 'Catalog'}">CATALOG</router-link>
@@ -39,7 +38,6 @@
           <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
           <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
           <router-link class="backHome" :to="{ name: 'Wallet'}">MY PROFILE</router-link>
-          <router-link class="backHome" :to="{ name: 'Claim'}">REDEEM</router-link>
           <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
           <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
           <router-link class="backHome" :to="{ name: 'Catalog'}">CATALOG</router-link>
