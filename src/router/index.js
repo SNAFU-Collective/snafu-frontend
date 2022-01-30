@@ -78,6 +78,16 @@ const routes = [
         component: () => import('../views/Farms.vue'),
         props: true,
     },
+    {
+        path: '/manifest',
+        name: 'Manifest',
+        meta: {
+            title: 'Manifest | SNAFU',
+            headerSubtitle: 'Manifest',
+        },
+        component: () => import('../views/Manifest.vue'),
+        props: true,
+    },
 ]
 
 const router = new VueRouter({

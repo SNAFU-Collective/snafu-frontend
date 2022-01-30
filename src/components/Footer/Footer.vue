@@ -67,6 +67,12 @@
         <span>who try to create a unique point of view regarding what can be conceived like Art in an era where everything is digital and unsubstantial.</span>
         <br>
          <span>At the same time, we are driven by the desire of creating a new form of sustenance for emerging artists exploiting new paradigms that blockchain and cryptocurrencies had brought.</span>
+        <br><br>
+        <span>We navigate in the digital ocean in a stubborn and contrary di- rection, because we are pirates and we want to take everything we deserve.</span>
+        <br>
+        <v-btn text class="font-weight-thin" style="color: black" @click="$router.push('/manifest')">
+          Read the manifest
+        </v-btn>
       </v-card-text>
 
       <v-divider></v-divider>
