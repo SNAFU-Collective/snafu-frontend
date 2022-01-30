@@ -1,6 +1,6 @@
 <template>
   <v-container style="max-width: 726px !important;">
-    <v-row justify="center" style="text-align: left; display: flex;" class="ma-10 topText">
+    <v-row justify="center" style="text-align: left; display: flex;" class="topText">
       <div class="ma-6 leftText">
         <p class="h1"><b>Preface</b></p>
         <br>
@@ -108,18 +108,26 @@ export default {
 </script>
 
 <style>
-
-.flipbook {
-  width: 90vw;
-  height: 90vh;
-}
 @media screen and (min-width: 768px) {
   .h1 {
     font-size: 30px;
   }
+  .topText {
+    margin: 40px;
+  }
 }
 
 @media screen and (max-width: 768px) {
+  .topText {
+    margin: 0;
+  }
+  .h2 {
+    color: rgba(48, 48, 48, 0.91);
+    font-family: 'Barlow', sans-serif;
+    line-height: 1;
+  }
+  .h1 {
+    font-size: 25px;
+  }
 }
-
 </style>

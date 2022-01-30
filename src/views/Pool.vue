@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols-md="12" colls-xs="12" class="ma-10 px-15" style="text-align: center; color: #303030d4">
+      <v-col cols-md="12" colls-xs="12" class="topText px-15" style="text-align: center; color: #303030d4">
         <p class="h2 mt-5">This is the Community Pool: here is where collectors <b>discard the NFTs</b> they are not able to sell, and receive <b>$SNAFU</b> for them.</p>
         <p class="h2">Here you will find very good trade opportunities, by buying SNAFU NFTs at their <b>base price</b>.</p>
         <v-btn text class="font-weight-thin" @click="goTo('https://www.nftsnafu.org/swap-protocol')">
@@ -38,16 +38,22 @@ export default {
 
 <style>
 @media screen and (max-width: 768px) {
-
-  .h2 {
-    color: #303030;
-    font:normal normal normal 20px/2em barlow-medium,barlow,sans-serif;
+  .topText {
+    margin: 0;
   }
+  .h2 {
+    color: rgba(48, 48, 48, 0.91);
+    font:normal normal normal 20px/1em barlow-medium,barlow,sans-serif;
+  }
+
 }
 @media screen and (min-width: 768px) {
   .h2 {
     color: #303030;
     font:normal normal normal 25px/1.4em barlow-medium,barlow,sans-serif;
+  }
+  .topText {
+    margin: 40px;
   }
 }
 
