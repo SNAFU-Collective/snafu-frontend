@@ -11,7 +11,7 @@
           :key="allNFTs.find(x => x.id === currentId+'').id"
           :nft="allNFTs.find(x => x.id === currentId+'')"
           :cardSize=300
-          class="ma-6"
+          class="ma-6 mt-0"
       />
     </v-col>
   </v-row>
@@ -89,7 +89,6 @@ export default {
   /*  display: none;*/
   /*}*/
   .topText .h1 {
-    max-width: 70px;
     color: #303030;
     font-weight: bold;
     font:25px barlow-bold,sans-serif;
