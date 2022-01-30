@@ -67,6 +67,12 @@ export default {
       ],
     }
   },
+  props: {
+    shuffle: {
+      type: Boolean,
+      default: false,
+    },
+  },
   computed: {
     ...mapFields("nftContract", ["allNFTs"]),
     paginatedNFTs() {
@@ -74,9 +80,11 @@ export default {
     },
     filteredGallery: function () {
       let ids
+      let copyArray =  [].slice.call(this.allNFTs)
       switch (this.currentTag) {
         case "all":
-          return this.shuffle(this.allNFTs)
+          console.log(this.shuffle)
+          return this.shuffle ? this.shuffleArray(copyArray) : this.allNFTs
         default:
           ids = this.nfts[this.currentTag]
           break
@@ -116,7 +124,7 @@ export default {
         }
       }, 500)
     },
-    shuffle(arr) {
+    shuffleArray(arr) {
       let len = arr.length;
       let d = len;
       let array = [];

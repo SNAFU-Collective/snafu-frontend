@@ -62,11 +62,14 @@
       </v-card-text>
 
       <v-card-text class="black--text footerText" style="width: 100%">
-        <p>SNAFU is an Italian collective of artists composed of cyberpunks, painters, graphic designers, programmers, photographers, musicians, art lovers</p>
-        <p>who try to create a unique point of view regarding what can be conceived like Art in an era where everything is digital and unsubstantial.</p>
-         <p>At the same time, we are driven by the desire of creating a new form of sustenance for emerging artists exploiting new paradigms that blockchain and cryptocurrencies had brought.</p>
+        <span>SNAFU is an Italian collective of artists composed of cyberpunks, painters, graphic designers, programmers, photographers, musicians, art lovers</span>
         <br>
-        <p>We navigate in the digital ocean in a stubborn and contrary direction, because we are pirates and we want to take everything we deserve.</p>
+        <span>who try to create a unique point of view regarding what can be conceived like Art in an era where everything is digital and unsubstantial.</span>
+        <br>
+        <span>At the same time, we are driven by the desire of creating a new form of sustenance for emerging artists exploiting new paradigms that blockchain and cryptocurrencies had brought.</span>
+        <br>  <br>
+        <span>We navigate in the digital ocean in a stubborn and contrary direction, because we are pirates and we want to take everything we deserve.</span>
+        <br>
         <v-btn text class="font-weight-thin" style="color: black" @click="$router.push('/manifest')">
           Read the manifest
         </v-btn>
@@ -99,6 +102,7 @@ export default {
 @media screen and (min-width: 768px) {
   .footerText {
     padding: 40px;
+    line-height: 1.2;
   }
 }
 

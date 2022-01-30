@@ -12,7 +12,7 @@
           height="350px"
       >
       </banner>
-      <Explore />
+      <Explore :shuffle="true" />
     </v-row>
   </v-container>
 </template>

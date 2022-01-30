@@ -88,6 +88,16 @@ const routes = [
         component: () => import('../views/Manifest.vue'),
         props: true,
     },
+    {
+        path: '/catalog',
+        name: 'Catalog',
+        meta: {
+            title: 'Catalog | SNAFU',
+            headerSubtitle: 'Catalog',
+        },
+        component: () => import('../views/Catalog.vue'),
+        props: true,
+    },
 ]
 
 const router = new VueRouter({
