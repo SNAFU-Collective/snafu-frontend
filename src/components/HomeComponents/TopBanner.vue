@@ -2,7 +2,6 @@
   <v-row justify="center" style="text-align: left; display: flex" class="topText">
     <v-col cols-md="5" colls-xs="12" class="ma-6 leftText">
       <p class="h1"><b>SNAFU - Artists Collective</b></p>
-      <br>
       <p class="h2 mt-5">Welcome to the home of the <b>Italian underground artists</b>.</p>
       <p class="h2 mt-5">Here you can find exclusive <b>NFTs</b> and <b>Original Artworks</b>. Join the other collectors in <b>farming NFTs</b> or try to win one of them at the <b>lottery</b>!</p>
     </v-col>
@@ -86,10 +85,11 @@ export default {
   .topText {
     margin: 0;
   }
-  .onlyDesktop {
-    display: none;
-  }
+  /*.onlyDesktop {*/
+  /*  display: none;*/
+  /*}*/
   .topText .h1 {
+    max-width: 70px;
     color: #303030;
     font-weight: bold;
     font:25px barlow-bold,sans-serif;
