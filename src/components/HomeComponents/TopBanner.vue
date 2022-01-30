@@ -1,16 +1,14 @@
 <template>
   <v-row justify="center" style="text-align: left; display: flex" class="ma-10 topText">
     <v-col cols-md="5" colls-xs="12" class="ma-6 leftText">
-      <span class="h1"><b>SNAFU Artist Collective</b></span>
+      <p class="h1"><b>SNAFU - Artists Collective</b></p>
       <br>
+      <p class="h2 mt-5">Welcome to the home of the <b>Italian underground artists</b>.</p>
       <br>
-      <span class="h2 mt-5">Welcome to the home of the italian underground artists.</span>
-      <br>
-      <br>
-      <span class="h2 mt-5">Here you can find exclusive <b>NFTs</b> and <b>Original Artworks</b>. Join the other collectors in <b>farming NFTs</b> or try to win one of them at the <b>lottery</b>!</span>
+      <p class="h2 mt-5">Here you can find exclusive <b>NFTs</b> and <b>Original Artworks</b>. Join the other collectors in <b>farming NFTs</b> or try to win one of them at the <b>lottery</b>!</p>
     </v-col>
 
-    <v-col v-if="allNFTs.length !== 0" cols-md="5" style="justify-content: end">
+    <v-col v-if="allNFTs.length !== 0" cols-md="5" style="justify-content: end" class="onlyDesktop">
       <nft-card
           :key="allNFTs.find(x => x.id === currentId+'').id"
           :nft="allNFTs.find(x => x.id === currentId+'')"
@@ -83,6 +81,9 @@ export default {
 }
 
 @media screen and (max-width: 768px) {
+  .onlyDesktop {
+    display: none;
+  }
   .topText .h1 {
     color: #303030;
     font-weight: bold;
