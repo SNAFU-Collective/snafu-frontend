@@ -11,7 +11,7 @@
       <nft-card
           :key="allNFTs.find(x => x.id === currentId+'').id"
           :nft="allNFTs.find(x => x.id === currentId+'')"
-          :cardSize=400
+          :cardSize=300
           class="ma-6"
       />
     </v-col>
