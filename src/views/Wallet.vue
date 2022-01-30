@@ -6,10 +6,10 @@
           <v-img src="/pfp/unknown.jpeg"/>
         </v-avatar>
       </v-row>
-      <v-row class="ma-5 justify-center" id="mainRowStatus" style="padding-top: 70px; display: grid;">
-        <v-row style="margin-top: -15px; width: 350px">
-          <v-col cols="12" justify="center">
-            <SnafuBalance/>
+      <v-row class="ma-5 justify-center" id="mainRowStatus" style="padding-top: 20px; display: grid;">
+        <v-row>
+          <v-col cols="12" justify="center" style="text-align: center">
+            <SnafuBalance />
           </v-col>
         </v-row>
         <v-row justify="center" class="pt-10">
