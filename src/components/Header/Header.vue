@@ -9,7 +9,7 @@
       </v-col>
 
       <v-col cols="8" offset="1" id="subtitle">
-        <router-link class="backHome" :to="{ name: 'Home'}">EXPLORE</router-link>
+        <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
         <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
         <router-link class="backHome" :to="{ name: 'Wallet'}">MY PROFILE</router-link>
         <router-link class="backHome" :to="{ name: 'Claim'}">REDEEM</router-link>
@@ -35,7 +35,7 @@
         <Slide right :closeOnNavigation="true" @openMenu="handleOpenMenu" @closeMenu="handleCloseMenu"
                :width=windowWidth>
           <wallet-status class="mt-5 pb-2 walletHeader"/>
-          <router-link class="backHome" :to="{ name: 'Home'}">EXPLORE</router-link>
+          <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
           <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
           <router-link class="backHome" :to="{ name: 'Wallet'}">MY PROFILE</router-link>
           <router-link class="backHome" :to="{ name: 'Claim'}">REDEEM</router-link>
