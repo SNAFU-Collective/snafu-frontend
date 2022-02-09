@@ -38,46 +38,60 @@
         <!--        </v-col>-->
         <!--      </v-row>-->
 
-        <Claim class="mt-15"/>
 
-        <v-row justify="center" v-if="!nftToFetch" class="mt-15">
-          <v-row class="pt-15 filters-row" style="min-width: 98%;max-width: 98%">
-            <v-col cols="3" style="display: flex">
-              <h4 style="padding-top: 6px;padding-left: 10px;">Your Collection:
-                {{ filteredGallery ? filteredGallery.length : '0' }} NFTs</h4>
-            </v-col>
-            <v-col cols="9" style="text-align: right;">
-              <v-btn plain v-on:click="filter('all')" class="filter"
-                     :class="currentTag === 'all' ? 'currentTag' : ''">All
-              </v-btn>
-              <v-btn v-for="category in extractedFilters" :key="category" plain v-on:click="filter(category)"
-                     class="filter"
-                     :class="currentTag === category ? 'currentTag' : ''">{{ category }}
-              </v-btn>
+          <v-tabs v-model="tab" color="black" centered>
+            <v-tab v-for="item in items" :key="item.tab">
+              {{ item.tab }}
+            </v-tab>
+          </v-tabs>
 
-            </v-col>
-          </v-row>
-          <v-row>
-            <NftCard style="margin-top: 50px !important;" :cardSize=200 v-for="nft in paginatedNFTs" :key="nft.id"
-                     :nft="nft" class="ma-1"/>
-          </v-row>
-          <v-row justify="center" class="pb-15 pt-15">
-            <h3 v-if="filteredGallery.length === 0">No NFT available</h3>
-            <v-btn medium dark @click="loadMore" v-if="currentPage * maxPerPage < filteredGallery.length"> LOAD MORE
-            </v-btn>
-          </v-row>
-        </v-row>
-        <v-row v-if="nftToFetch" justify="center" class="my-3">
-          <v-progress-circular
-              size="40"
-              indeterminate
-              color="black"
-              tyle="margin-top: 80px"
-          ><h3 style="padding-top: 150px;white-space: pre;">Loading Collection</h3></v-progress-circular>
-        </v-row>
-        <div v-else-if="userNfts.length === 0" class="text-body-2 my-5">
-          No SNAFU NFTs found in your wallet.
-        </div>
+          <v-tabs-items v-model="tab">
+            <v-tab-item v-for="item in items" :key="item.tab">
+              <v-card flat>
+                <v-row justify="center" v-if="!nftToFetch && item.id === 1">
+                  <v-row class="pt-15 filters-row" style="min-width: 98%;max-width: 98%">
+                    <v-col cols="3" style="display: flex">
+                      <h4 style="padding-top: 6px;padding-left: 10px;">Your Collection:
+                        {{ filteredGallery ? filteredGallery.length : '0' }} NFTs</h4>
+                    </v-col>
+                    <v-col cols="9" style="text-align: right;">
+                      <v-btn plain v-on:click="filter('all')" class="filter"
+                             :class="currentTag === 'all' ? 'currentTag' : ''">All
+                      </v-btn>
+                      <v-btn v-for="category in extractedFilters" :key="category" plain v-on:click="filter(category)"
+                             class="filter"
+                             :class="currentTag === category ? 'currentTag' : ''">{{ category }}
+                      </v-btn>
+
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <NftCard style="margin-top: 50px !important;" :cardSize=200 v-for="nft in paginatedNFTs" :key="nft.id"
+                             :nft="nft" class="ma-1"/>
+                  </v-row>
+                  <v-row justify="center" class="pb-15 pt-15">
+                    <h3 v-if="filteredGallery.length === 0">No NFT available</h3>
+                    <v-btn medium dark @click="loadMore" v-if="currentPage * maxPerPage < filteredGallery.length"> LOAD MORE
+                    </v-btn>
+                  </v-row>
+                </v-row>
+                <v-row v-if="nftToFetch" justify="center" class="my-3">
+                  <v-progress-circular
+                      size="40"
+                      indeterminate
+                      color="black"
+                      tyle="margin-top: 80px"
+                  ><h3 style="padding-top: 150px;white-space: pre;">Loading Collection</h3></v-progress-circular>
+                </v-row>
+                <div v-else-if="userNfts.length === 0" class="text-body-2 my-5">
+                  No SNAFU NFTs found in your wallet.
+                </div>
+
+                <Claim v-if="item.id === 2"/>
+              </v-card>
+            </v-tab-item>
+          </v-tabs-items>
+
       </div>
     </v-container>
     <TransferNFTModal :show="showModal" @updateDialog="() => showModal = false"/>
@@ -113,6 +127,11 @@ export default {
       showReadMore: true,
       currentTag: 'all',
       allNFTs: ids,
+      tab: null,
+      items: [
+        { tab: 'My Collection', id: 1 },
+        { tab: 'Claim', id: 2 },
+      ],
     }
   },
   methods: {
