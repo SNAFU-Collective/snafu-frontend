@@ -2,7 +2,7 @@
   <div style="margin-bottom: 50px">
     <v-container>
       <v-row>
-        <v-col cols-md="12" colls-xs="12" class="topTextPool px-15" style="text-align: center; color: #303030d4">
+        <v-col cols-md="12" colls-xs="12" class="topTextPool px-15 mt-15" style="text-align: center; color: #303030d4">
           <b class="h2 mt-5">Add Liquidity to <b>$SNAFU</b> token, <b>accumulate points</b> and <b>redeem</b> unique
             artworks from our artists.</b>
         </v-col>

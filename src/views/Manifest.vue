@@ -1,9 +1,10 @@
 <template>
   <v-container style="max-width: 726px !important;">
-    <v-row justify="center" style="text-align: left; display: flex;" class="topTextManifest">
+    <v-row justify="center" class="mt-15">
+      <iframe style="width:700px;height:400px" src="https://online.fliphtml5.com/lceji/nohs/"  seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" ></iframe>
+    </v-row>
+    <v-row justify="center" style="text-align: justify; display: flex; " class="topTextManifest mt-15">
       <div class="ma-6 leftText">
-        <p class="h1"><b>Preface</b></p>
-        <br>
         <p class="h2"><b>In 1950</b> the mathematician Ben Laposky realized an oscillogram and
           inserted in his processor a mathematical function, obtaining a basis
           for a graphical projection, then with an oscilloscope he varied the
@@ -84,10 +85,6 @@
         <p class="h2">We navigate in the digital ocean in a stubborn and contrary direction, because <b>we are pirates and we want to take everything we
           deserve.</b></p>
       </div>
-    </v-row>
-
-    <v-row justify="center">
-      <iframe style="width:700px;height:400px" src="https://online.fliphtml5.com/lceji/nohs/"  seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" ></iframe>
     </v-row>
   </v-container>
 </template>
