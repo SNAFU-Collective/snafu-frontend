@@ -55,7 +55,7 @@ export default {
     setInterval(() => {
       this.currentIndex =  this.getRandomInt()
       this.currentId = this.topNFTs[this.currentIndex]
-    }, 15000)
+    }, 10000)
   },
 }
 </script>
