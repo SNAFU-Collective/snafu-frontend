@@ -37,6 +37,21 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css?family=Barlow:200,400,600,800');
 
+@media screen and (max-width: 768px) {
+  .h2 {
+    color: rgba(48, 48, 48, 0.91);
+    font: normal normal normal 20px/1em barlow-medium, barlow, sans-serif;
+  }
+
+}
+
+@media screen and (min-width: 768px) {
+  .h2 {
+    color: #303030;
+    font: normal normal normal 25px/1.4em barlow-medium, barlow, sans-serif;
+  }
+}
+
 .container {
   max-width: 1185px !important;
 }

@@ -9,7 +9,12 @@
       </v-row>
 
       <div v-if="!isConnected">
-        Please login first.
+        <v-row class="mt-15">
+          <v-col cols-md="12" colls-xs="12" class="topTextPool px-15" style="text-align: center; color: #303030d4">
+            <b class="h2 mt-15">Welcome! <br> Login to access your NFTs.</b>
+            <wallet-status class="mt-15 pb-2 walletHeader" style="justify-content: center"/>
+          </v-col>
+        </v-row>
       </div>
 
       <div v-if="isConnected">
@@ -117,6 +122,7 @@ export default {
     TransferNFTModal,
     NftCard,
     Claim,
+    WalletStatus
     // CollectionInfo
   },
   data() {
