@@ -2,16 +2,18 @@
   <v-container>
     <v-row justify="center" class="pt-10">
       <TopBanner />
+
       <LatestReleases class="mt-10"/>
-      <banner
-          style="margin-top: 150px"
-          src="/banners/DCOMINGSOON.png"
-          mobile-src="/banners/DCOMINGSOON.png"
-          :showActionBtn="false"
-          width="100%"
-          height="350px"
+
+      <v-card
+          class="mx-auto"
+          :ripple="true"
+          style="margin-top: 150px; cursor: pointer;"
+          @click="openInNewPage"
       >
-      </banner>
+        <v-img src="/banners/preview.jpeg"></v-img>
+      </v-card>
+
       <Explore :shuffle="true" />
     </v-row>
   </v-container>
@@ -31,13 +33,18 @@ export default {
     LatestReleases,
     Explore,
     TopBanner,
-    Banner,
+    // Banner,
     // NftCard,
   },
   computed: {
     ...mapFields("nftContract", ["allNFTs"]),
     screenHeight() {
       return window.innerHeight
+    },
+  },
+  methods: {
+    openInNewPage() {
+      window.open('https://boreddavid.com', '_blank')
     },
   }
 }
