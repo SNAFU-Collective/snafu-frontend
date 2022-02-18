@@ -53,7 +53,7 @@
         <v-btn
             class="mx-4 black--text"
             icon
-            @click="goTo('https://www.nftsnafu.org/')"
+            @click="goTo('https://www.info.nftsnafu.org/')"
         >
           <v-icon size="24px">
             mdi-web

@@ -122,7 +122,7 @@
           <v-card-actions class="pb-10">
             <v-row justify="center">
               <v-btn class="ma-2" @click="closeModal()">CLOSE</v-btn>
-              <v-btn class="ma-2" @click="goTo('https://nftsnafu.org')">CONTINUE</v-btn>
+              <v-btn class="ma-2" @click="goTo('https://info.nftsnafu.org')">CONTINUE</v-btn>
             </v-row>
           </v-card-actions>
         </v-card>

@@ -4,7 +4,7 @@
       <v-col cols-md="12" colls-xs="12" class="topTextPool px-15" style="text-align: center; color: #303030d4">
         <p  class="h2 mt-5">SNAFU NFTs are powered by <b>Gnosis Chain</b>, available on <b>all blockchains</b> and tradable on all decentralized NFT marketplaces.</p>
         <p  class="h2">The selection and minting of the NFTs is managed by the <b>SNAFU DAO</b>.</p>
-        <v-btn text class="font-weight-thin" style="color: black"  @click="goTo('https://nftsnafu.org/nft')">
+        <v-btn text class="font-weight-thin" style="color: black"  @click="goTo('https://info.nftsnafu.org/nft')">
          Collections overview
         </v-btn>
       </v-col>
