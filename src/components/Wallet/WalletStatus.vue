@@ -20,12 +20,23 @@
               <!--            <v-icon color="#fff" size="20px">mdi-account</v-icon>-->
               <v-img src="/pfp/unknown.jpeg"/>
             </v-avatar>
-            <span style="color: #303030; font-weight: 500">{{ account | abbreviateAddress }}</span>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <span style="color: #303030; font-weight: 500" v-bind="attrs" v-on="on">{{ account | abbreviateAddress }}</span>
+              </template>
+              <span>Go to your profile</span>
+            </v-tooltip>
           </v-chip>
         </router-link>
-        <span style="padding-left: 5px; font-weight: 500">{{ chainId | networkName }}</span>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <span style="padding-left: 5px; font-weight: 500; cursor: pointer"
+                  v-bind="attrs" v-on="on" @click="addGnosisChainNetwork"
+            >{{ chainId | networkName }}</span>
+          </template>
+          <span>Change network</span>
+        </v-tooltip>
       </v-chip>
-
     </div>
 
     <div cols="1" v-if="isConnected" style="margin-left: 10px;margin-top: 2.5px">
@@ -64,7 +75,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions("connectweb3", ["connectWallet", "disconnectWallet"]),
+    ...mapActions("connectweb3", ["connectWallet", "disconnectWallet", "addGnosisChainNetwork"]),
   },
   computed: {
     ...mapFields("connectweb3", ["isConnected", "account", 'chainId']),
