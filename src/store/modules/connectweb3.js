@@ -24,6 +24,7 @@ export default {
         snafuCirculatingSupply: 0,
         snafuFee: 0,
         chainId: null,
+        xDaiBalance: 0,
     },
     getters: {
         getField,
@@ -55,6 +56,7 @@ export default {
         updateField,
         setConnected: (state, payload) => state.isConnected = payload,
         setSnafuBalance: (state, payload) => state.snafuBalance = payload,
+        setxDaiBalance: (state, payload) => state.xDaiBalance = payload,
         setSnafuSupply: (state, payload) => state.snafuSupply = payload,
         setSnafuLockedSupply: (state, payload) => state.snafuLockedSupply = payload,
         setSnafuCirculatingSupply: (state, payload) => state.snafuCirculatingSupply = payload,
@@ -166,6 +168,14 @@ export default {
             let balance = await contract.balanceOf(account)
             context.commit("setSnafuBalance", balance.toString())
         },
+        async updatexDaiBalance(context) {
+            console.log("updating xdai Balance")
+            let account = context.state.account
+            await context.state.web3.getBalance(account).then(async (balance) => {
+                console.log('updated xdai balance', balance.toString())
+                context.commit("setxDaiBalance", ethers.utils.formatEther(balance))
+            })
+        },
         async updateSnafu20Supply(context) {
             let contract = context.state.snafu20
             console.log("updatingSupply")
@@ -218,6 +228,7 @@ export default {
             context.dispatch("updateSnafu20Supply")
             context.dispatch("updateSnafu20LockedSupply")
             context.dispatch("updateSnafu20Balance")
+            context.dispatch("updatexDaiBalance")
             context.dispatch("nftContract/getNftsFromPool", null, {root: true})
             context.dispatch("nftContract/getAllNfts", null, {root: true})
             context.dispatch("nftContract/getNftsFromUser", null, {root: true})
