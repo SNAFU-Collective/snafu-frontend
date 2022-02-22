@@ -2,7 +2,7 @@
   <v-container class="pa-15 mt-15">
     <div v-if="pair">
       <v-row justify="center">
-        <h2 >Net worth</h2>
+        <h2 >Net Value</h2>
       </v-row>
       <v-row class="mt-5" justify="center">
         <h3 style="color: limegreen">$ {{netWorth | truncatePrice}}</h3>
