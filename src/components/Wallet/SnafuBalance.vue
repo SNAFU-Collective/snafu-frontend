@@ -32,7 +32,7 @@
           </template>
 
           <template v-slot:item.balance={item}>
-            $ {{item.balance | truncatePrice }}
+           {{item.balance | truncatePrice }}
           </template>
 
           <template v-slot:item.price={item}>
