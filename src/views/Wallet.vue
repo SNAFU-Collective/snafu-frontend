@@ -2,10 +2,18 @@
   <div style="min-width: 100%">
     <v-container>
 
-      <v-row justify="center" style="margin: 80px">
+      <v-row justify="center" style="margin: 80px; display: grid">
         <v-avatar left style="width: 200px !important; height: 200px !important;">
           <v-img src="/pfp/unknown.jpeg"/>
         </v-avatar>
+        <v-chip
+            color="#e4e4e4"
+            text-color="black"
+            style="border: #A7A7A7;justify-content: center;"
+            class="mt-5"
+        >
+          {{ account | abbreviateAddress }}
+        </v-chip>
       </v-row>
 
       <div v-if="!isConnected">
