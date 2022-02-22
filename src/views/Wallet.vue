@@ -90,7 +90,7 @@
                 <v-row class="walletSection" v-if="item.id === 3">
 <!--                  <Assets/> -->
                   <SnafuBalance/>
-                  <CollectionInfo />
+<!--                  <CollectionInfo />-->
                 </v-row>
               </v-card>
             </v-tab-item>
@@ -122,7 +122,7 @@ export default {
     NftCard,
     Claim,
     WalletStatus,
-    CollectionInfo
+    // CollectionInfo
   },
   data() {
     return {

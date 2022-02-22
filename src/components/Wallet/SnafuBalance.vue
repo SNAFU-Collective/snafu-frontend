@@ -1,7 +1,14 @@
 <template>
   <v-container class="pa-15 mt-15">
     <div v-if="pair">
-      <v-row>
+      <v-row justify="center">
+        <h2 >Net worth</h2>
+      </v-row>
+      <v-row class="mt-5" justify="center">
+        <h3 style="color: limegreen">$ {{netWorth | truncatePrice}}</h3>
+      </v-row>
+
+      <v-row class="mt-15" justify="center">
         <h2>Assets</h2>
       </v-row>
 
@@ -10,20 +17,32 @@
             :headers="headers"
             :items="assets"
             hide-default-footer
-            class="elevation-1"
+            class="elevation-0"
             loading-text="Loading... Please wait"
-        ></v-data-table>
-      </v-row>
+            style="width: 100%"
+        >
+          <template v-slot:item.currency={item} >
+            <div v-if="item.show_only_logo">
+              <v-img :src="item.logo" width="60px" class="ml-2"></v-img>
+            </div>
+            <div v-else style="display: inline-flex;align-items: center;">
+              <v-img :src="item.logo" width="30px"></v-img>
+              <span class="ml-1"><b>{{item.currency}}</b></span>
+            </div>
+          </template>
 
-      <v-row>
-        <v-col col="3" align-self="start" class="oneLineOnMobile">
-          <v-row>
-            <!--              <span>-->
-            <!--                <strong>SNAFU: </strong> {{ balance | fromWei | truncatePrice }}-->
-            <!--                <span>≅ {{ pair && balance ? snafuValue : '-' | truncatePrice | numberWithCommas }}$</span>-->
-            <!--              </span>-->
-          </v-row>
-        </v-col>
+          <template v-slot:item.balance={item}>
+            $ {{item.balance | truncatePrice }}
+          </template>
+
+          <template v-slot:item.price={item}>
+            $ {{item.price | truncatePrice }}
+          </template>
+
+          <template v-slot:item.total_value={item}>
+            <b> $ {{item.total_value | truncatePrice }}</b>
+          </template>
+        </v-data-table>
       </v-row>
     </div>
     <div v-else>
@@ -56,20 +75,27 @@ export default {
     snafuValue() {
       return parseFloat(this.pair.token1Price) * parseFloat(ethers.utils.formatEther(this.snafuBalance))
     },
+    netWorth() {
+      return parseFloat(this.snafuValue) + parseFloat(this.xDaiBalance)
+    },
     assets() {
       console.log('xdai balance', this.xDaiBalance)
       return [
         {
-          name: 'SNAFU',
+          currency: 'SNAFU',
+          logo: './coins/snafu.jpeg',
+          show_only_logo: false,
           balance: parseFloat(ethers.utils.formatEther(this.snafuBalance)),
-          price: '$ ' + this.pair ? parseFloat(this.pair.token1Price) : '-',
-          total_value: '$ ' + this.snafuValue,
+          price: this.pair ? parseFloat(this.pair.token1Price) : '-',
+          total_value: this.snafuValue,
         },
         {
-          name: 'xDAI',
+          currency: 'xDAI',
+          logo: './coins/xdai-light.png',
+          show_only_logo: true,
           balance: this.xDaiBalance,
-          price: '$ ' + 1,
-          total_value: '$ ' + this.xDaiBalance,
+          price: 1,
+          total_value: this.xDaiBalance,
         }]
     }
   },
@@ -98,7 +124,7 @@ export default {
           text: 'Asset',
           align: 'start',
           sortable: false,
-          value: 'name',
+          value: 'currency',
         },
         {
           text: 'Balance',
