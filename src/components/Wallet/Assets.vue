@@ -32,7 +32,7 @@
           </template>
 
           <template v-slot:item.balance={item}>
-           {{item.balance | truncatePrice }}
+            {{item.balance | truncatePrice }}
           </template>
 
           <template v-slot:item.price={item}>
@@ -42,6 +42,7 @@
           <template v-slot:item.total_value={item}>
             <b> $ {{item.total_value | truncatePrice }}</b>
           </template>
+
           <template v-slot:item.actions={item} style="align-items: center">
             <v-row justify="end" v-if="item.id === 'snafu'">
               <v-btn
@@ -136,6 +137,7 @@
               </v-btn>
             </v-row>
           </template>
+
         </v-data-table>
       </v-row>
     </div>
