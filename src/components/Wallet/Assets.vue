@@ -320,7 +320,7 @@ export default {
         },
         {
           text: 'Value',
-          sortable: true,
+          sortable: false,
           value: 'total_value',
         },
         {
