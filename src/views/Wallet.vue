@@ -97,7 +97,7 @@
 
                 <v-row class="walletSection" v-if="item.id === 3">
 <!--                  <Assets/> -->
-                  <SnafuBalance/>
+                  <Assets/>
 <!--                  <CollectionInfo />-->
                 </v-row>
               </v-card>
@@ -115,7 +115,7 @@ import CollectionInfo from '../components/Collection/CollectionInfo.vue'
 import {mapState} from "vuex"
 import NftSelectCard from '../components/Collection/NftSelectCard.vue'
 import WalletStatus from "../components/Wallet/WalletStatus"
-import SnafuBalance from '../components/Wallet/SnafuBalance.vue'
+import Assets from '../components/Wallet/Assets.vue'
 import {mapFields} from "vuex-map-fields"
 import TransferNFTModal from "../components/Transfer/TransferNFTModal"
 import NftCard from "../components/Collection/NftCard.vue"
@@ -125,7 +125,7 @@ import ids from "../utils/ids"
 export default {
   components: {
     // NftSelectCard,
-    SnafuBalance,
+    Assets,
     TransferNFTModal,
     NftCard,
     Claim,

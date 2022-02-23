@@ -27,7 +27,7 @@
             </div>
             <div v-else style="display: inline-flex;align-items: center;">
               <v-img :src="item.logo" width="30px"></v-img>
-              <span class="ml-1"><b>{{item.currency}}</b></span>
+              <span class="ml-1">{{item.currency}}</span>
             </div>
           </template>
 
@@ -56,6 +56,27 @@
                   @click="goTo('https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862&outputCurrency=0xe91d153e0b41518a2ce8dd3d7944fa863463a97d&chainId=100')"
               >
                 Sell <v-icon class="ml-1" style="font-size: 1em; color:black"> mdi-open-in-new </v-icon></v-btn>
+            </v-row>
+
+            <v-row justify="end" v-if="item.id === 'snafuxdai'">
+              <v-btn
+                  x-small
+                  @click="goTo('https://app.honeyswap.org/#/add/0x27b9c2bd4baea18abdf49169054c1c1c12af9862/XDAI?chainId=100')"
+              >
+                Add Liquidity <v-icon class="ml-1" style="font-size:1em; color:black"> mdi-open-in-new </v-icon>
+              </v-btn>
+              <v-btn
+                  x-small
+                  class="ml-2"
+                  @click="goTo('https://app.honeyswap.org/#/remove/0x27B9C2Bd4BaEa18ABdF49169054c1C1c12af9862/0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d')"
+              >
+                Remove Liquidty <v-icon class="ml-1" style="font-size: 1em; color:black"> mdi-open-in-new </v-icon></v-btn>
+              <v-btn
+                  x-small
+                  class="ml-2"
+                  @click="goTo('https://app.honeyswap.org/#/pool')"
+              >
+                Manage <v-icon class="ml-1" style="font-size: 1em; color:black"> mdi-open-in-new </v-icon></v-btn>
             </v-row>
 
             <v-row justify="end" v-else-if="item.id === 'xdai'">
@@ -94,7 +115,6 @@
         ><h3 style="padding-top: 150px;white-space: pre;">Loading Assets</h3></v-progress-circular>
       </v-row>
     </div>
-
   </v-container>
 </template>
 
@@ -108,22 +128,41 @@ import {mapActions} from "vuex"
 export default {
   beforeMount(){
     this.updatexDaiBalance();
+    this.updateSnafuxDaiLPBalance();
   },
   computed: {
-    ...mapFields("connectweb3", [ "snafuBalance", "xDaiBalance"]),
+    ...mapFields("connectweb3", [ "snafuBalance", "xDaiBalance", "xDaiSnafuLPBalance", "xDaiSnafuLPSupply"]),
     snafuValue() {
+      if (!this.pair)
+        return 0
+
       return parseFloat(this.pair.token1Price) * parseFloat(ethers.utils.formatEther(this.snafuBalance))
     },
     netWorth() {
-      return parseFloat(this.snafuValue) + parseFloat(this.xDaiBalance)
+      if (!this.pair)
+        return 0
+
+      return parseFloat(this.snafuValue) + parseFloat(this.xDaiBalance) + parseFloat(this.snafuXDaiLPValue)
+    },
+    snafuXDaiLPPrice() {
+      if (!this.pair)
+        return 0
+
+      return parseFloat(this.pair.reserveUSD) / parseFloat(this.xDaiSnafuLPSupply)
+    },
+    snafuXDaiLPValue() {
+      if (!this.pair)
+        return 0
+
+      return parseFloat(this.snafuXDaiLPPrice) * parseFloat(ethers.utils.formatEther(this.xDaiSnafuLPBalance))
     },
     assets() {
       console.log('xdai balance', this.xDaiBalance)
       return [
         {
           currency: 'xDAI',
-          logo: './coins/xdai-light.png',
-          show_only_logo: true,
+          logo: './coins/xdai.png',
+          show_only_logo: false,
           balance: this.xDaiBalance,
           price: 1,
           total_value: this.xDaiBalance,
@@ -134,17 +173,27 @@ export default {
           currency: 'SNAFU',
           logo: './coins/snafu.jpeg',
           show_only_logo: false,
-          balance: parseFloat(ethers.utils.formatEther(this.snafuBalance)),
+          balance: this.snafuBalance === 0 ? 0 : parseFloat(ethers.utils.formatEther(this.snafuBalance)),
           price: this.pair ? parseFloat(this.pair.token1Price) : '-',
-          total_value: this.snafuValue,
+          total_value: this.pair ? this.snafuValue : '-',
           actions: [],
           id: 'snafu'
+        },
+        {
+          currency: 'SNAFU - xDAI LP',
+          logo: './coins/snafuxdai.png',
+          show_only_logo: false,
+          balance: parseFloat(ethers.utils.formatEther(this.xDaiSnafuLPBalance)),
+          price: this.snafuXDaiLPPrice,
+          total_value: this.snafuXDaiLPValue,
+          actions: [],
+          id: 'snafuxdai'
         },
      ]
     }
   },
   methods: {
-    ...mapActions("connectweb3", ["updatexDaiBalance"]),
+    ...mapActions("connectweb3", ["updatexDaiBalance", "updateSnafuxDaiLPBalance"]),
     goTo(url) {
       window.open(url, '_blank')
     },

@@ -1,11 +1,20 @@
 import {ethers} from "ethers"
 import ERC1155ABI from "../../assets/abis/ERC1155.json"
-import SNAFU20 from "@/assets/abis/SNAFU20Pair.json"
-import SNAFU721 from "@/assets/abis/SNAFU721.json"
-import FARM from "@/assets/abis/UNIFTY_FARM.json"
+import SNAFU20 from "../../assets/abis/SNAFU20Pair.json"
+import SNAFU721 from "../../assets/abis/SNAFU721.json"
+import FARM from "../../assets/abis/UNIFTY_FARM.json"
+import SNAFUXDAILP from "../../assets/abis/SNAFUXDAILP.json"
+
 import detectEthereumProvider from '@metamask/detect-provider';
 
-import {snafu20Address, snafuNftAddress, snafu721Address, xdaiRPC, commonFarmAddress} from "../../utils/constants"
+import {
+    snafu20Address,
+    snafuNftAddress,
+    snafu721Address,
+    xdaiRPC,
+    commonFarmAddress,
+    xDaiSnafuLiquidityAddress,
+} from "../../utils/constants"
 
 import {getField, updateField} from 'vuex-map-fields'
 
@@ -25,6 +34,9 @@ export default {
         snafuFee: 0,
         chainId: null,
         xDaiBalance: 0,
+        xDaiSnafuLP: null,
+        xDaiSnafuLPBalance: 0,
+        xDaiSnafuLPSupply: 1,
     },
     getters: {
         getField,
@@ -61,7 +73,8 @@ export default {
         setSnafuLockedSupply: (state, payload) => state.snafuLockedSupply = payload,
         setSnafuCirculatingSupply: (state, payload) => state.snafuCirculatingSupply = payload,
         setSnafuFee: (state, payload) => state.snafuFee = payload,
-
+        setSnafuXDaiLPBalance: (state, payload) => state.xDaiSnafuLPBalance = payload,
+        setSnafuXDaiLPSupply: (state, payload) => state.xDaiSnafuLPSupply = payload,
         disconnectWallet: async function (state) {
             state.connected = {}
             state.account = null
@@ -89,12 +102,14 @@ export default {
                 state.snafu721 = await new ethers.Contract(snafu721Address, SNAFU721.output.abi, signer)
                 state.snafu20 = await new ethers.Contract(snafu20Address, SNAFU20, signer)
                 state.commonFarm = await new ethers.Contract(commonFarmAddress, FARM, signer)
+                state.xDaiSnafuLP = await new ethers.Contract(xDaiSnafuLiquidityAddress, SNAFUXDAILP, signer)
             } else {
                 state.web3 = web3
                 state.snafuNft = await new ethers.Contract(snafuNftAddress, ERC1155ABI, web3)
                 state.snafu721 = await new ethers.Contract(snafu721Address, SNAFU721.output.abi, web3)
                 state.snafu20 = await new ethers.Contract(snafu20Address, SNAFU20, web3)
                 state.commonFarm = await new ethers.Contract(commonFarmAddress, FARM, web3)
+                state.xDaiSnafuLP = await new ethers.Contract(xDaiSnafuLiquidityAddress, SNAFUXDAILP, web3)
                 context.dispatch("nftContract/getNftsFromPool", null, {root: true})
                 context.dispatch("nftContract/getAllNfts", null, {root: true})
                 context.dispatch("updateSnafu20Supply")
@@ -175,6 +190,16 @@ export default {
                 console.log('updated xdai balance', balance.toString())
                 context.commit("setxDaiBalance", ethers.utils.formatEther(balance))
             })
+        },
+        async updateSnafuxDaiLPBalance(context) {
+            console.log("updateSnafuxDaiLPBalance")
+            let contract = context.state.xDaiSnafuLP
+            let account = context.state.account
+            let balance = await contract.balanceOf(account)
+            context.commit("setSnafuXDaiLPBalance", balance.toString())
+
+            let supply = await contract.totalSupply()
+            context.commit("setSnafuXDaiLPSupply", ethers.utils.formatEther(supply))
         },
         async updateSnafu20Supply(context) {
             let contract = context.state.snafu20
