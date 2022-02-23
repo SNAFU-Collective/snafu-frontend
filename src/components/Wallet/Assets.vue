@@ -1,5 +1,5 @@
 <template>
-  <v-container class="pa-15 mt-15">
+  <v-container class="pa-15 mt-5">
     <div v-if="pair">
       <v-row justify="center">
         <h2 >Net Value</h2>
@@ -110,6 +110,15 @@
                 Manage <v-icon class="ml-1" style="font-size:1em; color:black"> mdi-open-in-new </v-icon>
               </v-btn>
             </v-row>
+
+            <v-row justify="end" v-if="item.id === 'stakedSnafu'">
+              <v-btn
+                  x-small
+                  @click="goTo('https://rarity.garden/xdai/farm-view.html?address=0x8dDc7167e9F838f2e32FaBA229A53d4a48D0aa8d')"
+              >
+                Manage <v-icon class="ml-1" style="font-size:1em; color:black"> mdi-open-in-new </v-icon>
+              </v-btn>
+            </v-row>
           </template>
         </v-data-table>
       </v-row>
@@ -139,9 +148,18 @@ export default {
     this.updatexDaiBalance();
     this.updateSnafuxDaiLPBalance();
     this.updatePSnafuBalance();
+    this.updateCommonFarmStakedBalance();
+  },
+  methods: {
+    ...mapActions("connectweb3", ["updatexDaiBalance", "updateSnafuxDaiLPBalance", "updatePSnafuBalance"]),
+    ...mapActions("farming", ["updateCommonFarmStakedBalance",]),
+    goTo(url) {
+      window.open(url, '_blank')
+    },
   },
   computed: {
     ...mapFields("connectweb3", [ "snafuBalance", "xDaiBalance", "xDaiSnafuLPBalance", "xDaiSnafuLPSupply", "pSnafuBalance", "pSnafuSupply"]),
+    ...mapFields("farming", [ "commonFarmStakedBalance"]),
     snafuValue() {
       if (!this.pair)
         return 0
@@ -153,6 +171,7 @@ export default {
         return 0
 
       return parseFloat(this.snafuValue) + parseFloat(this.xDaiBalance) + parseFloat(this.snafuXDaiLPValue) + parseFloat(this.pSnafuValue)
+          + parseFloat(this.commonPoolTotalValue)
     },
     snafuXDaiLPPrice() {
       if (!this.pair)
@@ -168,6 +187,12 @@ export default {
     },
     pSnafuValue() {
       return parseFloat(ethers.utils.formatEther(this.pSnafuBalance)) * parseFloat(this.snafuXDaiLPPrice)
+    },
+    commonPoolTotalValue() {
+      if (!this.pair)
+        return 0
+
+      return parseFloat(this.pair.token1Price) * parseFloat(this.commonFarmStakedBalance)
     },
     assets() {
       console.log('xdai balance', this.xDaiBalance)
@@ -212,14 +237,18 @@ export default {
           actions: [],
           id: 'pSnafu'
         },
+        {
+          currency: 'Staked SNAFU',
+          logo: './coins/snafu.jpeg',
+          show_only_logo: false,
+          balance: parseFloat(this.commonFarmStakedBalance),
+          price: this.pair ? parseFloat(this.pair.token1Price) : '-',
+          total_value: this.commonPoolTotalValue,
+          actions: [],
+          id: 'stakedSnafu'
+        },
      ]
     }
-  },
-  methods: {
-    ...mapActions("connectweb3", ["updatexDaiBalance", "updateSnafuxDaiLPBalance", "updatePSnafuBalance"]),
-    goTo(url) {
-      window.open(url, '_blank')
-    },
   },
   apollo: {
     //WXDAI - SNAFU pair

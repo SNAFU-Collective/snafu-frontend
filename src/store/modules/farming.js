@@ -6,32 +6,25 @@ export default {
     namespaced: true,
     state: {
         pools: [],
-        userBalance: 0,
+        commonFarmStakedBalance: 0,
     },
     getters: {
         getField,
     },
     mutations: {
         updateField,
-        setFarmBalance: (state, payload) => state.userBalance = payload,
+        setCommonFarmStakedBalance: (state, payload) => state.commonFarmStakedBalance = payload,
     },
     actions: {
-        async getFarmData(context) {
-
-        },
-        async balanceOf(context) {
+        async updateCommonFarmStakedBalance(context) {
             let account = context.rootGetters["connectweb3/getUserAccount"]
 
             let contract = context.rootGetters["connectweb3/getCommonFarm"]
             // console.log(contract, account)
             let balance = await contract.balanceOf(account)
-            context.commit("setFarmBalance", balance.toString())
+            context.commit("setCommonFarmStakedBalance", ethers.utils.formatEther(balance))
             // console.log("Received balance", balance.toString())
             return balance
-
-
-            // return balance / Math.pow(10, decimals >= 0 ? decimals : 0);
-
         },
     },
 }
