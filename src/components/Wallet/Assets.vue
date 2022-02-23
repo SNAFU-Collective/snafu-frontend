@@ -1,15 +1,15 @@
 <template>
-  <v-container class="pa-15 mt-5">
+  <v-container class="pa-15">
     <div v-if="pair">
       <v-row justify="center">
-        <h2 >Net Value</h2>
+        <h3>Net Value</h3>
       </v-row>
       <v-row class="mt-5" justify="center">
-        <h3 style="color: limegreen">$ {{netWorth | truncatePrice}}</h3>
+        <h4 style="color: limegreen">$ {{netWorth | truncatePrice}}</h4>
       </v-row>
 
-      <v-row class="mt-15" justify="center">
-        <h2>Assets</h2>
+      <v-row class="mt-10" justify="center" style="align-items: center">
+        <h3>Assets</h3>
         <v-btn icon color="black" @click="updateAssets">
           <v-icon>mdi-cached</v-icon>
         </v-btn>
