@@ -181,7 +181,7 @@ export default {
       if (!this.pair)
         return 0
 
-      return parseFloat(this.pair.token1Price) * parseFloat(ethers.utils.formatEther(this.snafuBalance))
+      return parseFloat(this.pair.token1Price) * parseFloat(ethers.utils.formatEther(this.snafuBalance.toString()))
     },
     netWorth() {
       if (!this.pair)
@@ -200,10 +200,10 @@ export default {
       if (!this.pair)
         return 0
 
-      return parseFloat(this.snafuXDaiLPPrice) * parseFloat(ethers.utils.formatEther(this.xDaiSnafuLPBalance))
+      return parseFloat(this.snafuXDaiLPPrice) * parseFloat(this.xDaiSnafuLPBalance)
     },
     pSnafuValue() {
-      return parseFloat(ethers.utils.formatEther(this.pSnafuBalance)) * parseFloat(this.snafuXDaiLPPrice)
+      return parseFloat(this.pSnafuBalance) * parseFloat(this.snafuXDaiLPPrice)
     },
     commonPoolTotalValue() {
       if (!this.pair)
@@ -236,8 +236,8 @@ export default {
           logo: './coins/snafu.jpeg',
           show_only_logo: false,
           balance: this.snafuBalance === 0 ? 0 : parseFloat(ethers.utils.formatEther(this.snafuBalance)),
-          price: this.pair ? parseFloat(this.pair.token1Price) : '-',
-          total_value: this.pair ? this.snafuValue : '-',
+          price: this.pair ? parseFloat(this.pair.token1Price) : 0,
+          total_value: this.pair ? this.snafuValue : 0,
           actions: [],
           id: 'snafu'
         },
@@ -245,7 +245,7 @@ export default {
           currency: 'SNAFU - xDAI LP',
           logo: './coins/snafuxdai.png',
           show_only_logo: false,
-          balance: parseFloat(ethers.utils.formatEther(this.xDaiSnafuLPBalance)),
+          balance: parseFloat(this.xDaiSnafuLPBalance),
           price: this.snafuXDaiLPPrice,
           total_value: this.snafuXDaiLPValue,
           actions: [],
@@ -255,7 +255,7 @@ export default {
           currency: 'pSNAFU',
           logo: './coins/pSnafu.png',
           show_only_logo: false,
-          balance: parseFloat(ethers.utils.formatEther(this.pSnafuBalance)),
+          balance: parseFloat(this.pSnafuBalance),
           price: this.snafuXDaiLPPrice,
           total_value: parseFloat(this.pSnafuValue),
           actions: [],
@@ -266,7 +266,7 @@ export default {
           logo: './coins/snafu.jpeg',
           show_only_logo: false,
           balance: parseFloat(this.commonFarmStakedBalance),
-          price: this.pair ? parseFloat(this.pair.token1Price) : '-',
+          price: this.pair ? parseFloat(this.pair.token1Price) : 0,
           total_value: this.commonPoolTotalValue,
           actions: [],
           id: 'stakedSnafu'

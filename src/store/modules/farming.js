@@ -27,7 +27,7 @@ export default {
             // console.log(contract, account)
             let balance = await contract.balanceOf(account)
             context.commit("setCommonFarmStakedBalance", ethers.utils.formatEther(balance))
-            console.log("setCommonFarmStakedBalance", balance.toString())
+            // console.log("setCommonFarmStakedBalance", balance.toString())
         },
         async updateRareFarmStakedBalance(context) {
             let account = context.rootGetters["connectweb3/getUserAccount"]
@@ -36,7 +36,7 @@ export default {
             // console.log(contract, account)
             let balance = await contract.balanceOf(account)
             context.commit("setRareFarmStakedBalance", ethers.utils.formatEther(balance))
-            console.log("setRareFarmStakedBalance", balance.toString())
+            // console.log("setRareFarmStakedBalance", balance.toString())
         },
         async updateUltraRareFarmStakedBalance(context) {
             let account = context.rootGetters["connectweb3/getUserAccount"]
@@ -45,7 +45,7 @@ export default {
             // console.log(contract, account)
             let balance = await contract.balanceOf(account)
             context.commit("setUltraRareFarmStakedBalance", ethers.utils.formatEther(balance))
-            console.log("setUltraRareFarmStakedBalance", balance.toString())
+            // console.log("setUltraRareFarmStakedBalance", balance.toString())
         },
     },
 }

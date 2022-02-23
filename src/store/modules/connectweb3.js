@@ -28,7 +28,7 @@ export default {
         isLoaded: false,
         account: null,
         isLoading: false,
-        snafuBalance: null,
+        snafuBalance: 0,
         snafuSupply: 0,
         snafuLockedSupply: 0,
         snafuCirculatingSupply: 0,
@@ -207,8 +207,8 @@ export default {
             console.log("updating xdai Balance")
             let account = context.state.account
             await context.state.web3.getBalance(account).then(async (balance) => {
-                console.log('updated xdai balance', balance.toString())
-                context.commit("setxDaiBalance", ethers.utils.formatEther(balance))
+                // console.log('updated xdai balance', balance.toString())
+                context.commit("setxDaiBalance", ethers.utils.formatEther(balance.toString()))
             })
         },
         async updateSnafuxDaiLPBalance(context) {
@@ -216,17 +216,17 @@ export default {
             let contract = context.state.xDaiSnafuLP
             let account = context.state.account
             let balance = await contract.balanceOf(account)
-            context.commit("setSnafuXDaiLPBalance", balance.toString())
+            context.commit("setSnafuXDaiLPBalance", ethers.utils.formatEther(balance.toString()))
 
             let supply = await contract.totalSupply()
             context.commit("setSnafuXDaiLPSupply", ethers.utils.formatEther(supply))
         },
         async updatePSnafuBalance(context,) {
-            console.log("updatePSnafuBalance", context.state.account)
+            console.log("updatePSnafuBalance")
             let contract = context.state.pSnafu
             let account = context.state.account
             let balance = await contract.balanceOf(account)
-            context.commit("setPSnafuBalance", balance.toString())
+            context.commit("setPSnafuBalance", ethers.utils.formatEther(balance.toString()))
 
             let supply = await contract.totalSupply()
             context.commit("setPSnafuSupply", ethers.utils.formatEther(supply))

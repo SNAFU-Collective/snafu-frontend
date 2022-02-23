@@ -113,7 +113,6 @@
 <script>
 import CollectionInfo from '../components/Collection/CollectionInfo.vue'
 import {mapState} from "vuex"
-import NftSelectCard from '../components/Collection/NftSelectCard.vue'
 import WalletStatus from "../components/Wallet/WalletStatus"
 import Assets from '../components/Wallet/Assets.vue'
 import {mapFields} from "vuex-map-fields"
@@ -124,7 +123,6 @@ import ids from "../utils/ids"
 
 export default {
   components: {
-    // NftSelectCard,
     Assets,
     TransferNFTModal,
     NftCard,
@@ -234,7 +232,6 @@ export default {
       return filters
     },
   },
-
 }
 </script>
 
