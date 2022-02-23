@@ -53,7 +53,7 @@
             <v-tab-item v-for="item in items" :key="item.tab">
               <v-card flat>
 
-                <div class="collectionSection" v-if="item.id === 1">
+                <div class="collectionSection" v-if="item.id === 1" style="min-height: 200px">
                   <v-row justify="center" v-if="!nftToFetch && item.id === 1">
                     <v-row class="pt-15 filters-row" style="min-width: 98%;max-width: 98%">
                       <v-col cols="3" style="display: flex">
@@ -97,7 +97,6 @@
                 <Claim class="claimSection" v-if="item.id === 2"/>
 
                 <v-row class="walletSection" v-if="item.id === 3">
-<!--                  <Assets/> -->
                   <Assets/>
 <!--                  <CollectionInfo />-->
                 </v-row>
