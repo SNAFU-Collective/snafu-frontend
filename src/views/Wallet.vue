@@ -11,6 +11,7 @@
             text-color="black"
             style="border: #A7A7A7;justify-content: center;"
             class="mt-5"
+            v-if="isConnected"
         >
           {{ account | abbreviateAddress }}
         </v-chip>
