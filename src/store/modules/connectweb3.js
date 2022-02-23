@@ -14,7 +14,7 @@ import {
     xdaiRPC,
     commonFarmAddress,
     xDaiSnafuLiquidityAddress,
-    pSnafuAddress
+    pSnafuAddress, rareFarmAddress, ultraRareFarmAddress,
 } from "../../utils/constants"
 
 import {getField, updateField} from 'vuex-map-fields'
@@ -41,6 +41,10 @@ export default {
         pSnafuSupply: 0,
         xDaiSnafuLPBalance: 0,
         xDaiSnafuLPSupply: 1,
+
+        commonFarm: null,
+        rareFarm: null,
+        ultraRareFarm: null,
     },
     getters: {
         getField,
@@ -50,6 +54,8 @@ export default {
         getUserSnafu721: (state) => state.connected.snafu721,
         getSnafu721: (state) => state.snafu721,
         getCommonFarm: (state) => state.commonFarm,
+        getRareFarm: (state) => state.rareFarm,
+        getUltraRareFarm: (state) => state.ultraRareFarm,
         getUserSnafu20: (state) => state.connected.snafu20,
         getUserAccount: (state) => state.account,
         getUserSigner: (state) => state.connected.signer,
@@ -108,6 +114,8 @@ export default {
                 state.snafu721 = await new ethers.Contract(snafu721Address, SNAFU721.output.abi, signer)
                 state.snafu20 = await new ethers.Contract(snafu20Address, SNAFU20, signer)
                 state.commonFarm = await new ethers.Contract(commonFarmAddress, FARM, signer)
+                state.rareFarm = await new ethers.Contract(rareFarmAddress, FARM, signer)
+                state.ultraRareFarm = await new ethers.Contract(ultraRareFarmAddress, FARM, signer)
                 state.xDaiSnafuLP = await new ethers.Contract(xDaiSnafuLiquidityAddress, SNAFUXDAILP, signer)
                 state.pSnafu = await new ethers.Contract(pSnafuAddress, SNAFUXDAILP, signer)
             } else {
@@ -116,6 +124,8 @@ export default {
                 state.snafu721 = await new ethers.Contract(snafu721Address, SNAFU721.output.abi, web3)
                 state.snafu20 = await new ethers.Contract(snafu20Address, SNAFU20, web3)
                 state.commonFarm = await new ethers.Contract(commonFarmAddress, FARM, web3)
+                state.rareFarm = await new ethers.Contract(rareFarmAddress, FARM, web3)
+                state.ultraRareFarm = await new ethers.Contract(ultraRareFarmAddress, FARM, web3)
                 state.xDaiSnafuLP = await new ethers.Contract(xDaiSnafuLiquidityAddress, SNAFUXDAILP, web3)
                 state.pSnafu = await new ethers.Contract(pSnafuAddress, SNAFUXDAILP, web3)
                 context.dispatch("nftContract/getNftsFromPool", null, {root: true})

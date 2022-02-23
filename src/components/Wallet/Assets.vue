@@ -119,6 +119,22 @@
                 Manage <v-icon class="ml-1" style="font-size:1em; color:black"> mdi-open-in-new </v-icon>
               </v-btn>
             </v-row>
+
+            <v-row justify="end" v-if="item.id === 'stakedLP'">
+              <v-btn
+                  x-small
+                  @click="goTo('https://rarity.garden/xdai/farm-view.html?address=0x88CfEea7BE8A7695A3012276e8C68bf303Afe49a')"
+              >
+                Manage RARE Farm<v-icon class="ml-1" style="font-size:1em; color:black"> mdi-open-in-new </v-icon>
+              </v-btn>
+              <v-btn
+                  x-small
+                  class="ml-2"
+                  @click="goTo('https://rarity.garden/xdai/farm-view.html?address=0x662D6C48818abD8bBCb7cb589D24E2Fe11Cdba52')"
+              >
+                Manage ULTRA RARE Farm<v-icon class="ml-1" style="font-size:1em; color:black"> mdi-open-in-new </v-icon>
+              </v-btn>
+            </v-row>
           </template>
         </v-data-table>
       </v-row>
@@ -149,17 +165,19 @@ export default {
     this.updateSnafuxDaiLPBalance();
     this.updatePSnafuBalance();
     this.updateCommonFarmStakedBalance();
+    this.updateRareFarmStakedBalance();
+    this.updateUltraRareFarmStakedBalance();
   },
   methods: {
     ...mapActions("connectweb3", ["updatexDaiBalance", "updateSnafuxDaiLPBalance", "updatePSnafuBalance"]),
-    ...mapActions("farming", ["updateCommonFarmStakedBalance",]),
+    ...mapActions("farming", ["updateCommonFarmStakedBalance", "updateRareFarmStakedBalance", "updateUltraRareFarmStakedBalance"]),
     goTo(url) {
       window.open(url, '_blank')
     },
   },
   computed: {
     ...mapFields("connectweb3", [ "snafuBalance", "xDaiBalance", "xDaiSnafuLPBalance", "xDaiSnafuLPSupply", "pSnafuBalance", "pSnafuSupply"]),
-    ...mapFields("farming", [ "commonFarmStakedBalance"]),
+    ...mapFields("farming", [ "commonFarmStakedBalance", "rareFarmStakedBalance", "ultraRareFarmStakedBalance",]),
     snafuValue() {
       if (!this.pair)
         return 0
@@ -193,6 +211,13 @@ export default {
         return 0
 
       return parseFloat(this.pair.token1Price) * parseFloat(this.commonFarmStakedBalance)
+    },
+    stakedLPTotalValue() {
+      if (!this.pair)
+        return 0
+
+      let totalStaked = parseFloat(this.rareFarmStakedBalance) + parseFloat(this.ultraRareFarmStakedBalance)
+      return parseFloat(this.snafuXDaiLPPrice) * parseFloat(totalStaked)
     },
     assets() {
       console.log('xdai balance', this.xDaiBalance)
@@ -246,6 +271,16 @@ export default {
           total_value: this.commonPoolTotalValue,
           actions: [],
           id: 'stakedSnafu'
+        },
+        {
+          currency: 'Staked SNAFU - xDAI LP',
+          logo: './coins/snafuxdai.png',
+          show_only_logo: false,
+          balance: parseFloat(this.rareFarmStakedBalance) + parseFloat(this.ultraRareFarmStakedBalance),
+          price: this.snafuXDaiLPPrice,
+          total_value: this.stakedLPTotalValue,
+          actions: [],
+          id: 'stakedLP'
         },
      ]
     }
