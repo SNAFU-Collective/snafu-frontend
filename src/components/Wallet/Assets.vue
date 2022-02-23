@@ -10,6 +10,9 @@
 
       <v-row class="mt-15" justify="center">
         <h2>Assets</h2>
+        <v-btn icon color="black" @click="updateAssets">
+          <v-icon>mdi-cached</v-icon>
+        </v-btn>
       </v-row>
 
       <v-row class="mt-8">
@@ -94,7 +97,7 @@
                   class="ml-2"
                   @click="goTo('https://app.honeyswap.org/#/remove/0x27B9C2Bd4BaEa18ABdF49169054c1C1c12af9862/0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d')"
               >
-                Remove Liquidty <v-icon class="ml-1" style="font-size: 1em; color:black"> mdi-open-in-new </v-icon></v-btn>
+                Remove Liquidity <v-icon class="ml-1" style="font-size: 1em; color:black"> mdi-open-in-new </v-icon></v-btn>
               <v-btn
                   x-small
                   class="ml-2"
@@ -163,16 +166,10 @@ import {mapActions} from "vuex"
 
 export default {
   beforeMount(){
-    this.updatexDaiBalance();
-    this.updateSnafuxDaiLPBalance();
-    this.updatePSnafuBalance();
-    this.updateCommonFarmStakedBalance();
-    this.updateRareFarmStakedBalance();
-    this.updateUltraRareFarmStakedBalance();
+    this.updateAssets()
   },
   methods: {
-    ...mapActions("connectweb3", ["updatexDaiBalance", "updateSnafuxDaiLPBalance", "updatePSnafuBalance"]),
-    ...mapActions("farming", ["updateCommonFarmStakedBalance", "updateRareFarmStakedBalance", "updateUltraRareFarmStakedBalance"]),
+    ...mapActions("connectweb3", ["updateAssets"]),
     goTo(url) {
       window.open(url, '_blank')
     },
@@ -191,7 +188,7 @@ export default {
         return 0
 
       return parseFloat(this.snafuValue) + parseFloat(this.xDaiBalance) + parseFloat(this.snafuXDaiLPValue) + parseFloat(this.pSnafuValue)
-          + parseFloat(this.commonPoolTotalValue)
+          + parseFloat(this.commonPoolTotalValue) + parseFloat(this.stakedLPTotalValue)
     },
     snafuXDaiLPPrice() {
       if (!this.pair)

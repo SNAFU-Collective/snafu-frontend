@@ -118,6 +118,8 @@ export default {
                 state.ultraRareFarm = await new ethers.Contract(ultraRareFarmAddress, FARM, signer)
                 state.xDaiSnafuLP = await new ethers.Contract(xDaiSnafuLiquidityAddress, SNAFUXDAILP, signer)
                 state.pSnafu = await new ethers.Contract(pSnafuAddress, SNAFUXDAILP, signer)
+
+                context.dispatch('updateAssets')
             } else {
                 state.web3 = web3
                 state.snafuNft = await new ethers.Contract(snafuNftAddress, ERC1155ABI, web3)
@@ -159,11 +161,6 @@ export default {
                     context.dispatch("connectWallet")
                     //Reset Selected NFT
                     context.commit("nftContract/resetSelectedNft", null, {root: true})
-
-                    //Update balances
-                    context.dispatch("updatexDaiBalance")
-                    context.dispatch("updatePSnafuBalance")
-                    context.dispatch("updateSnafuxDaiLPBalance")
                 })
 
                 // Subscribe to chainId change
@@ -224,8 +221,8 @@ export default {
             let supply = await contract.totalSupply()
             context.commit("setSnafuXDaiLPSupply", ethers.utils.formatEther(supply))
         },
-        async updatePSnafuBalance(context) {
-            console.log("updatePSnafuBalance")
+        async updatePSnafuBalance(context,) {
+            console.log("updatePSnafuBalance", context.state.account)
             let contract = context.state.pSnafu
             let account = context.state.account
             let balance = await contract.balanceOf(account)
@@ -291,6 +288,15 @@ export default {
             context.dispatch("nftContract/getNftsFromUser", null, {root: true})
             context.dispatch("prizeContract/getNftsFromUser", null, {root: true})
 
+        },
+        updateAssets(context) {
+            context.dispatch("updateSnafu20Balance")
+            context.dispatch("farming/updateCommonFarmStakedBalance", null, {root: true})
+            context.dispatch("farming/updateRareFarmStakedBalance", null, {root: true})
+            context.dispatch("farming/updateUltraRareFarmStakedBalance", null, {root: true})
+            context.dispatch("updatexDaiBalance")
+            context.dispatch("updateSnafuxDaiLPBalance")
+            context.dispatch("updatePSnafuBalance")
         },
         async addGnosisChainNetwork() {
             const provider = await detectEthereumProvider();

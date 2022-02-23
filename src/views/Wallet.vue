@@ -88,9 +88,9 @@
                         tyle="margin-top: 80px"
                     ><h3 style="padding-top: 150px;white-space: pre;">Loading Collection</h3></v-progress-circular>
                   </v-row>
-                  <div v-else-if="userNfts.length === 0" class="text-body-2 my-5">
+                  <v-row justify="center" v-else-if="userNfts.length === 0" class="text-body-2 my-5">
                     No SNAFU NFTs found in your wallet.
-                  </div>
+                  </v-row>
                 </div>
 
                 <Claim class="claimSection" v-if="item.id === 2"/>
