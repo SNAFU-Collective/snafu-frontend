@@ -58,6 +58,29 @@
                 Sell <v-icon class="ml-1" style="font-size: 1em; color:black"> mdi-open-in-new </v-icon></v-btn>
             </v-row>
 
+            <v-row justify="end" v-else-if="item.id === 'xdai'">
+              <v-btn
+                  x-small
+                  @click="goTo('https://ramp.network/buy/')"
+              >
+                Buy with card<v-icon class="ml-1" style="font-size:1em; color:black"> mdi-open-in-new </v-icon>
+              </v-btn>
+              <v-btn
+                  x-small
+                  class="ml-2"
+                  @click="goTo('https://bridge.xdaichain.com/')"
+              >
+                Mainnet Bridge <v-icon class="ml-1" style="font-size:1em; color:black"> mdi-open-in-new </v-icon>
+              </v-btn>
+              <v-btn
+                  x-small
+                  class="ml-2"
+                  @click="goTo('https://www.xpollinate.io/')"
+              >
+                Multichain Bridge <v-icon class="ml-1" style="font-size:1em; color:black"> mdi-open-in-new </v-icon>
+              </v-btn>
+            </v-row>
+
             <v-row justify="end" v-if="item.id === 'snafuxdai'">
               <v-btn
                   x-small
@@ -79,26 +102,12 @@
                 Manage <v-icon class="ml-1" style="font-size: 1em; color:black"> mdi-open-in-new </v-icon></v-btn>
             </v-row>
 
-            <v-row justify="end" v-else-if="item.id === 'xdai'">
+            <v-row justify="end" v-if="item.id === 'pSnafu'">
               <v-btn
                   x-small
-                  @click="goTo('https://ramp.network/buy/')"
+                  @click="goTo('https://community.pooltogether.com/pools/xdai/0x1221fe13f8aa51856538b41e85a737d843edd825/home')"
               >
-                Buy with card<v-icon class="ml-1" style="font-size:1em; color:black"> mdi-open-in-new </v-icon>
-              </v-btn>
-              <v-btn
-                  x-small
-                  class="ml-2"
-                  @click="goTo('https://bridge.xdaichain.com/')"
-              >
-                Mainnet Bridge <v-icon class="ml-1" style="font-size:1em; color:black"> mdi-open-in-new </v-icon>
-              </v-btn>
-              <v-btn
-                  x-small
-                  class="ml-2"
-                  @click="goTo('https://www.xpollinate.io/')"
-              >
-                Multichain Bridge <v-icon class="ml-1" style="font-size:1em; color:black"> mdi-open-in-new </v-icon>
+                Manage <v-icon class="ml-1" style="font-size:1em; color:black"> mdi-open-in-new </v-icon>
               </v-btn>
             </v-row>
           </template>
@@ -129,9 +138,10 @@ export default {
   beforeMount(){
     this.updatexDaiBalance();
     this.updateSnafuxDaiLPBalance();
+    this.updatePSnafuBalance();
   },
   computed: {
-    ...mapFields("connectweb3", [ "snafuBalance", "xDaiBalance", "xDaiSnafuLPBalance", "xDaiSnafuLPSupply"]),
+    ...mapFields("connectweb3", [ "snafuBalance", "xDaiBalance", "xDaiSnafuLPBalance", "xDaiSnafuLPSupply", "pSnafuBalance", "pSnafuSupply"]),
     snafuValue() {
       if (!this.pair)
         return 0
@@ -142,7 +152,7 @@ export default {
       if (!this.pair)
         return 0
 
-      return parseFloat(this.snafuValue) + parseFloat(this.xDaiBalance) + parseFloat(this.snafuXDaiLPValue)
+      return parseFloat(this.snafuValue) + parseFloat(this.xDaiBalance) + parseFloat(this.snafuXDaiLPValue) + parseFloat(this.pSnafuValue)
     },
     snafuXDaiLPPrice() {
       if (!this.pair)
@@ -155,6 +165,9 @@ export default {
         return 0
 
       return parseFloat(this.snafuXDaiLPPrice) * parseFloat(ethers.utils.formatEther(this.xDaiSnafuLPBalance))
+    },
+    pSnafuValue() {
+      return parseFloat(ethers.utils.formatEther(this.pSnafuBalance)) * parseFloat(this.snafuXDaiLPPrice)
     },
     assets() {
       console.log('xdai balance', this.xDaiBalance)
@@ -189,11 +202,21 @@ export default {
           actions: [],
           id: 'snafuxdai'
         },
+        {
+          currency: 'pSNAFU',
+          logo: './coins/pSnafu.png',
+          show_only_logo: false,
+          balance: parseFloat(ethers.utils.formatEther(this.pSnafuBalance)),
+          price: this.snafuXDaiLPPrice,
+          total_value: parseFloat(this.pSnafuValue),
+          actions: [],
+          id: 'pSnafu'
+        },
      ]
     }
   },
   methods: {
-    ...mapActions("connectweb3", ["updatexDaiBalance", "updateSnafuxDaiLPBalance"]),
+    ...mapActions("connectweb3", ["updatexDaiBalance", "updateSnafuxDaiLPBalance", "updatePSnafuBalance"]),
     goTo(url) {
       window.open(url, '_blank')
     },
