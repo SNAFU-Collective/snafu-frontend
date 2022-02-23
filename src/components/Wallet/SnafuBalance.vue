@@ -42,6 +42,45 @@
           <template v-slot:item.total_value={item}>
             <b> $ {{item.total_value | truncatePrice }}</b>
           </template>
+          <template v-slot:item.actions={item} style="align-items: center">
+            <v-row justify="end" v-if="item.id === 'snafu'">
+              <v-btn
+                  x-small
+                  @click="goTo('https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862&outputCurrency=0xe91d153e0b41518a2ce8dd3d7944fa863463a97d&chainId=100')"
+              >
+                Buy <v-icon class="ml-1" style="font-size:1em; color:black"> mdi-open-in-new </v-icon>
+              </v-btn>
+              <v-btn
+                  x-small
+                  class="ml-2"
+                  @click="goTo('https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862&outputCurrency=0xe91d153e0b41518a2ce8dd3d7944fa863463a97d&chainId=100')"
+              >
+                Sell <v-icon class="ml-1" style="font-size: 1em; color:black"> mdi-open-in-new </v-icon></v-btn>
+            </v-row>
+
+            <v-row justify="end" v-else-if="item.id === 'xdai'">
+              <v-btn
+                  x-small
+                  @click="goTo('https://ramp.network/buy/')"
+              >
+                Buy with card<v-icon class="ml-1" style="font-size:1em; color:black"> mdi-open-in-new </v-icon>
+              </v-btn>
+              <v-btn
+                  x-small
+                  class="ml-2"
+                  @click="goTo('https://bridge.xdaichain.com/')"
+              >
+                Mainnet Bridge <v-icon class="ml-1" style="font-size:1em; color:black"> mdi-open-in-new </v-icon>
+              </v-btn>
+              <v-btn
+                  x-small
+                  class="ml-2"
+                  @click="goTo('https://www.xpollinate.io/')"
+              >
+                Multichain Bridge <v-icon class="ml-1" style="font-size:1em; color:black"> mdi-open-in-new </v-icon>
+              </v-btn>
+            </v-row>
+          </template>
         </v-data-table>
       </v-row>
     </div>
@@ -82,25 +121,33 @@ export default {
       console.log('xdai balance', this.xDaiBalance)
       return [
         {
-          currency: 'SNAFU',
-          logo: './coins/snafu.jpeg',
-          show_only_logo: false,
-          balance: parseFloat(ethers.utils.formatEther(this.snafuBalance)),
-          price: this.pair ? parseFloat(this.pair.token1Price) : '-',
-          total_value: this.snafuValue,
-        },
-        {
           currency: 'xDAI',
           logo: './coins/xdai-light.png',
           show_only_logo: true,
           balance: this.xDaiBalance,
           price: 1,
           total_value: this.xDaiBalance,
-        }]
+          actions: [],
+          id: 'xdai'
+        },
+        {
+          currency: 'SNAFU',
+          logo: './coins/snafu.jpeg',
+          show_only_logo: false,
+          balance: parseFloat(ethers.utils.formatEther(this.snafuBalance)),
+          price: this.pair ? parseFloat(this.pair.token1Price) : '-',
+          total_value: this.snafuValue,
+          actions: [],
+          id: 'snafu'
+        },
+     ]
     }
   },
   methods: {
     ...mapActions("connectweb3", ["updatexDaiBalance"]),
+    goTo(url) {
+      window.open(url, '_blank')
+    },
   },
   apollo: {
     //WXDAI - SNAFU pair
@@ -140,6 +187,11 @@ export default {
           text: 'Value',
           sortable: true,
           value: 'total_value',
+        },
+        {
+          text: '',
+          sortable: false,
+          value: 'actions',
         },
       ],
     }
