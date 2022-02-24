@@ -66,7 +66,9 @@ import NftCard from "../components/Collection/NftCard.vue"
 import ids from "../utils/ids.json"
 
 export default {
-  components: {NftCard},
+  components: {
+    NftCard,
+  },
   data() {
     return {
       currentPage: 1,

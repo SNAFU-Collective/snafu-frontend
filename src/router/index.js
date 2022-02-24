@@ -30,7 +30,7 @@ const routes = [
             title: 'Wallet | SNAFU',
             headerSubtitle: 'Wallet',
         },
-        component: () => import('../views/Wallet.vue'),
+        component: () => import('../views/Profile.vue'),
     },
     {
         path: '/swap',

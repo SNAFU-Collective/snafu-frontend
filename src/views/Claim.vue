@@ -5,7 +5,7 @@
       <v-row style="margin-top: 100px" class="boxRow">
         <v-col class="claimBox">
           <v-row justify="center">
-            <h2>CLAIM</h2>
+            <h3>Claim</h3>
           </v-row>
           <v-row justify="center">
             <nft-select-card
@@ -36,7 +36,7 @@
         <v-col class="redeemBox">
           <v-row justify="center"
           >
-            <h2>REDEEM</h2>
+            <h3>Redeem</h3>
           </v-row
           >
           <v-row justify="center">
