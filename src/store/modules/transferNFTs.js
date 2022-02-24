@@ -38,8 +38,7 @@ export default {
         async singleTransfer(context, payload) {
             let snafuContract = context.rootGetters["connectweb3/getUserNftSnafu"]
             let userAddress = context.rootGetters["connectweb3/getUserAccount"]
-            let gasPrice = await snafuContract.estimateGas.safeTransferFrom(userAddress, payload.destinationAddress,  payload.id, payload.amount, ethers.utils.hexlify("0x00"))
-            // provider.getFeeData()
+           
             return await snafuContract.safeTransferFrom(userAddress, payload.destinationAddress,  payload.id, payload.amount, ethers.utils.hexlify("0x00"), {gasPrice: "10000000000"})
         },
         refreshUserNfts(context) {
