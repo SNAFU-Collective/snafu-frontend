@@ -27,21 +27,6 @@
       </div>
 
       <div v-if="isConnected">
-        <!--      TODO: Refactor Transfer-->
-        <!--      <v-row v-if="nfts">-->
-        <!--        <v-col no-gutters align="center" justify="center">-->
-        <!--          <v-tooltip bottom color="rgb(0 0 0 / 89%)">-->
-        <!--            <template v-slot:activator="{ on, attrs }">-->
-        <!--              <v-btn v-bind="attrs" v-on="on" small dark @click="openTransferNftModal">-->
-        <!--                Transfer-->
-        <!--                <v-icon size="15px" style="width: 20px">mdi-send</v-icon>-->
-        <!--              </v-btn>-->
-        <!--            </template>-->
-        <!--            <span>Transfer one or multiple NFTs</span>-->
-        <!--          </v-tooltip>-->
-        <!--        </v-col>-->
-        <!--      </v-row>-->
-
 
           <v-tabs v-model="tab" color="black" centered>
             <v-tab v-for="item in items" :key="item.tab">
@@ -73,7 +58,7 @@
                     </v-row>
                     <v-row>
                       <NftCard style="margin-top: 50px !important;" :cardSize=200 v-for="nft in paginatedNFTs" :key="nft.id"
-                               :nft="nft" class="ma-1"/>
+                               :nft="nft" class="ma-1" :show-transfer-btn="true"/>
                     </v-row>
                     <v-row justify="center" class="pb-15 pt-15">
                       <h3 v-if="filteredGallery.length === 0">No NFT available</h3>
@@ -106,7 +91,6 @@
 
       </div>
     </v-container>
-    <TransferNFTModal :show="showModal" @updateDialog="() => showModal = false"/>
   </div>
 </template>
 
@@ -116,7 +100,6 @@ import {mapState} from "vuex"
 import WalletStatus from "../components/Wallet/WalletStatus"
 import Assets from '../components/Wallet/Assets.vue'
 import {mapFields} from "vuex-map-fields"
-import TransferNFTModal from "../components/Transfer/TransferNFTModal"
 import NftCard from "../components/Collection/NftCard.vue"
 import Claim from "./Claim.vue"
 import ids from "../utils/ids"
@@ -124,7 +107,6 @@ import ids from "../utils/ids"
 export default {
   components: {
     Assets,
-    TransferNFTModal,
     NftCard,
     Claim,
     WalletStatus,
