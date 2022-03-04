@@ -10,7 +10,7 @@
                 <a href="https://info.honeyswap.org/#/pair/0xd6c8ad00302ca94952e7746d956e8b45b0ea90e3"
                    target="_blank" style="display: inline-flex;align-items: center;text-decoration: none !important; color: #303030">
                   <v-img src="/coins/snafu.jpeg" width="20px" style="border-radius: 5pc; margin: 5px;"/>
-                  <span class="ml-1" >{{ pair.token1Price| truncatePrice | numberWithCommas }} $</span>
+                  <span class="ml-1" >{{ pair ? pair.token1Price : '-' | truncatePrice | numberWithCommas }} $</span>
                 </a>
               </div>
             </template>
