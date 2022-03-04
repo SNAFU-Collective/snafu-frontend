@@ -6,7 +6,6 @@
       </v-btn>
     </div>
     <div cols="9" no-gutters v-else>
-
       <v-chip
           :color="isXdai ? '#303030' : '#bc423e'"
           :text-color="isXdai ? '#fff' : '#fff'"
@@ -17,7 +16,6 @@
               style="border: #A7A7A7; cursor: pointer; background-color: #f3f3f3;"
           >
             <v-avatar left style="width: 50px !important; height: 50px !important; margin-left: -15px; padding-right: 5px">
-              <!--            <v-icon color="#fff" size="20px">mdi-account</v-icon>-->
               <v-img src="/pfp/unknown.jpeg"/>
             </v-avatar>
             <v-tooltip bottom>
