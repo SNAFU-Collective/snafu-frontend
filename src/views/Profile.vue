@@ -24,6 +24,40 @@
             <wallet-status class="mt-15 pb-2 walletHeader" style="justify-content: center"/>
           </v-col>
         </v-row>
+        <v-row style="margin-top: 100px" class="boxRow">
+          <v-col class="claimBox">
+            <v-row justify="center">
+              <h3>Desktop</h3>
+            </v-row>
+            <v-row>
+              <v-img src="login/metamask.gif" width="10px"></v-img>
+            </v-row>
+            <v-row justify="center">
+              <div class="text-body-2 my-50 mt-10 mb-10" style="text-align: center">
+               <span style="font-size: 13px; text-align: center">
+                <a href="https://metamask.io/" target="_blank">Install Metamask</a> extension on your browser. <br/>
+                <b>Metamask</b> is a crypto wallet & your gateway to blockchain apps.
+               </span>
+              </div>
+            </v-row>
+          </v-col>
+          <v-col class="ml-1">
+            <v-row justify="center" >
+              <h3>Mobile</h3>
+            </v-row>
+            <v-row>
+              <v-img src="login/metamask.gif" width="10px"></v-img>
+            </v-row>
+            <v-row justify="center">
+              <div class="text-body-2 my-50 mt-10 mb-10" style="text-align: center">
+               <span style="font-size: 13px; text-align: center">
+                <a href="https://metamask.io/" target="_blank">Install Metamask</a> extension on your browser. <br/>
+                <b>Metamask</b> is a crypto wallet & your gateway to blockchain apps.
+               </span>
+              </div>
+            </v-row>
+          </v-col>
+        </v-row>
       </div>
 
       <div v-if="isConnected">
@@ -222,5 +256,38 @@ export default {
   #mainRowStatus {
     padding-top: 0px !important;
   }
+}
+
+@media screen and (max-width: 768px) {
+  #mainRowStatus {
+    padding-top: 0px !important;
+  }
+
+  .claimBox {
+    width: 100% !important;
+    box-shadow: none !important;
+  }
+
+  .redeemBox {
+    margin-top: 100px;
+    width: 100% !important;
+  }
+
+  .boxRow {
+    display: block !important;
+  }
+}
+
+.claimBox {
+  width: 50%;
+  box-shadow: #0202023d 2px 0px
+}
+
+.redeemBox {
+  width: 50%;
+}
+
+.boxRow {
+  display: flex;
 }
 </style>
