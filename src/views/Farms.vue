@@ -2,7 +2,7 @@
   <div style="margin-bottom: 50px">
     <v-container>
       <v-row>
-        <v-col cols-md="12" colls-xs="12" class="topTextPool px-15" style="text-align: center; color: #303030d4">
+        <v-col cols-md="12" colls-xs="12" class="topTextPool px-15 mt-15" style="text-align: center; color: #303030d4">
           <b class="h2 mt-5">Add Liquidity to <b>$SNAFU</b> token, <b>accumulate points</b> and <b>redeem</b> unique
             artworks from our artists.</b>
         </v-col>
@@ -21,17 +21,16 @@
             <div>
               <div class="cardText" style="display: grid">
                 <v-row>
-                  <div cols="12" style="font-size: 28px">
-                    <p>COMMON</p>
-                  </div>
+                  <v-col cols="12" style="font-size: 28px">
+                    COMMON
+                  </v-col>
                 </v-row>
                 <v-row>
-                  <p>Less than 15 Editions</p>
-                </v-row>
-                <v-row>
-                  <p>STAKE $SNAFU TOKEN</p>
-                  <br>
-                  <p>MIN/MAX: 100/2000</p>
+                  <v-col cols="12" style="font-size: 15px">
+                    STAKE $SNAFU TOKEN
+                    <br>
+                    MIN/MAX: 100/2000
+                  </v-col>
                 </v-row>
               </div>
               <v-row style="padding: 0 0; margin: 0 0">

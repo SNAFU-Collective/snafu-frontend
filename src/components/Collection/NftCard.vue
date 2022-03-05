@@ -52,8 +52,21 @@
           <v-col cols="9" style="text-align: left; padding: 0;">Value:
             {{ (+metadata.price + +metadata.fee) | truncatePrice }} SNAFU
           </v-col>
+
           <v-col cols="3" v-if="showBuyButton" style="position:absolute; left: 71%; bottom: -5px;">
             <v-btn small outlined color="black" style="font-weight: 600;" @click="prepareCheckout"> BUY</v-btn>
+          </v-col>
+
+          <v-col cols="3" v-if="showTransferBtn" style="position:absolute; left: 75%; bottom: -5px;">
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn x-small text color="black" v-bind="attrs" v-on="on" style="font-weight: 600;" @click="openTransferNftModal">
+                  <v-icon size="20px">mdi-swap-horizontal</v-icon>
+                </v-btn>
+              </template>
+              <span>Transfer NFT</span>
+            </v-tooltip>
+            <TransferSingleNFTModal :nftToTransfer="nft" :show="showTransferModal" @updateDialog="() => showTransferModal = false"/>
           </v-col>
         </v-row>
       </v-card-text>
@@ -65,6 +78,7 @@
 
 import axios from "axios"
 import {mapFields} from "vuex-map-fields"
+import TransferSingleNFTModal from "../Transfer/TransferSingleNFTModal"
 
 export default {
   props: {
@@ -79,7 +93,14 @@ export default {
     showBuyButton:{
       type: Boolean,
       default: false
+    },
+    showTransferBtn: {
+      type: Boolean,
+      default: false
     }
+  },
+  components: {
+    TransferSingleNFTModal,
   },
   computed:{
     ...mapFields("nftContract", [
@@ -127,12 +148,18 @@ export default {
       this.selectedNft = this.nft;
       this.selectedNftMetadata = this.metadata;
       this.selectedQuantity = 1;
-    }
+    },
+    openTransferNftModal() {
+      if (!this.disableActions) {
+        this.showTransferModal = true
+      }
+    },
   },
   data() {
     return {
       metadata: {},
       fullscreen: false,
+      showTransferModal: false,
     }
   },
   async beforeMount() {

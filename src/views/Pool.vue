@@ -4,7 +4,7 @@
       <v-col cols-md="12" colls-xs="12" class="topTextPool px-15" style="text-align: center; color: #303030d4">
         <p class="h2 mt-5">This is the Community Pool: here is where collectors <b>discard the NFTs</b> they are not able to sell, and receive <b>$SNAFU</b> for them.</p>
         <p class="h2">Here you will find very good trade opportunities, by buying SNAFU NFTs at their <b>base price</b>.</p>
-        <v-btn text class="font-weight-thin" @click="goTo('https://www.nftsnafu.org/swap-protocol')">
+        <v-btn text class="font-weight-thin" @click="goTo('https://www.info.nftsnafu.org/swap-protocol')">
           Learn more
         </v-btn>
       </v-col>

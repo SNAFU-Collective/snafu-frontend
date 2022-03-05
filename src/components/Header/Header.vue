@@ -18,7 +18,8 @@
         <router-link class="backHome" :to="{ name: 'Manifest'}">MANIFEST</router-link>
       </v-col>
 
-      <v-col cols="2">
+      <v-col cols="2" style="display: inline-flex;align-items: center;text-decoration: none !important; color: #303030">
+        <SnafuPrice class="pr-10"/>
         <wallet-status class="mt-5 pb-2 walletHeader" style="justify-content: end"/>
       </v-col>
     </div>
@@ -122,7 +123,7 @@
           <v-card-actions class="pb-10">
             <v-row justify="center">
               <v-btn class="ma-2" @click="closeModal()">CLOSE</v-btn>
-              <v-btn class="ma-2" @click="goTo('https://nftsnafu.org')">CONTINUE</v-btn>
+              <v-btn class="ma-2" @click="goTo('https://info.nftsnafu.org')">CONTINUE</v-btn>
             </v-row>
           </v-card-actions>
         </v-card>
@@ -135,9 +136,10 @@
 <script>
 import {Slide} from 'vue-burger-menu'
 import WalletStatus from '../Wallet/WalletStatus.vue'
+import SnafuPrice from "../Wallet/SnafuPrice"
 
 export default {
-  components: {WalletStatus, Slide},
+  components: {SnafuPrice, WalletStatus, Slide},
   methods: {
     handleOpenMenu() {
       document.querySelector(".bm-burger-button").style.display = 'none'

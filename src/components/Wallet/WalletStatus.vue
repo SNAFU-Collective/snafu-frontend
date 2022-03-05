@@ -2,11 +2,10 @@
   <div style="display: flex">
     <div v-if="!isConnected" cols="1" >
       <v-btn @click="connectWallet" style="margin-bottom: 10px">
-        Sign in
+        Connect wallet
       </v-btn>
     </div>
     <div cols="9" no-gutters v-else>
-
       <v-chip
           :color="isXdai ? '#303030' : '#bc423e'"
           :text-color="isXdai ? '#fff' : '#fff'"
@@ -17,15 +16,25 @@
               style="border: #A7A7A7; cursor: pointer; background-color: #f3f3f3;"
           >
             <v-avatar left style="width: 50px !important; height: 50px !important; margin-left: -15px; padding-right: 5px">
-              <!--            <v-icon color="#fff" size="20px">mdi-account</v-icon>-->
               <v-img src="/pfp/unknown.jpeg"/>
             </v-avatar>
-            <span style="color: #303030; font-weight: 500">{{ account | abbreviateAddress }}</span>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <span style="color: #303030; font-weight: 500" v-bind="attrs" v-on="on">{{ account | abbreviateAddress }}</span>
+              </template>
+              <span>Go to your profile</span>
+            </v-tooltip>
           </v-chip>
         </router-link>
-        <span style="padding-left: 5px; font-weight: 500">{{ chainId | networkName }}</span>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <span style="padding-left: 5px; font-weight: 500; cursor: pointer"
+                  v-bind="attrs" v-on="on" @click="addGnosisChainNetwork"
+            >{{ chainId | networkName }}</span>
+          </template>
+          <span>Change network</span>
+        </v-tooltip>
       </v-chip>
-
     </div>
 
     <div cols="1" v-if="isConnected" style="margin-left: 10px;margin-top: 2.5px">
@@ -64,7 +73,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions("connectweb3", ["connectWallet", "disconnectWallet"]),
+    ...mapActions("connectweb3", ["connectWallet", "disconnectWallet", "addGnosisChainNetwork"]),
   },
   computed: {
     ...mapFields("connectweb3", ["isConnected", "account", 'chainId']),

@@ -61,7 +61,7 @@ Vue.filter('abbreviateAddress', (value) => {
 })
 
 Vue.filter('truncatePrice', (value) => {
-    if (!value){
+    if (value !== 0 && !value){
       return ''
     }
 
