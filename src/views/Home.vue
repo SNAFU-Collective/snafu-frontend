@@ -13,7 +13,9 @@
       >
         <v-img src="/banners/preview.jpeg"></v-img>
       </v-card>
+      <DavidPreviews class="mt-10"/>
 
+      <v-img src="/banners/banner-coll-3.png" style="margin-top: 100px"></v-img>
       <Explore :shuffle="true" />
     </v-row>
   </v-container>
@@ -23,6 +25,7 @@
 import Explore from '../components/Collection/Explore.vue'
 import TopBanner from '../components/HomeComponents/TopBanner.vue'
 import LatestReleases from "../components/HomeComponents/LatestReleases"
+import DavidPreviews from "../components/HomeComponents/DavidPreviews"
 import Banner from "./../components/Common/Banner"
 import {mapFields} from "vuex-map-fields"
 import NftCard from "../components/Collection/NftCard"
@@ -33,6 +36,7 @@ export default {
     LatestReleases,
     Explore,
     TopBanner,
+    DavidPreviews
     // Banner,
     // NftCard,
   },
