@@ -37,16 +37,17 @@
       </v-col>
       <v-col class="ml-1">
         <v-row justify="center">
-          <h3>Mobile</h3>
+          <h3 align="center">Mobile <br/>
+            <span style="font-size: 15px">(Wallet Connect)</span></h3>
         </v-row>
-        <v-row>
-          <!--              <v-img src="login/metamask.gif" width="10px"></v-img>-->
+        <v-row  justify="center">
+          <v-img src="login/minerva.png"  style="max-height: 450px;max-width: 450px; margin-top: 25px"></v-img>
         </v-row>
         <v-row justify="center">
-          <div class="text-body-2 my-50 mt-10 mb-10" style="text-align: center">
+          <div class="text-body-2 my-50  mb-10" style="text-align: center">
                <span style="font-size: 13px; text-align: center">
-                <a href="https://metamask.io/" target="_blank">Install Metamask</a> extension on your browser. <br/>
-                <b>Metamask</b> is a crypto wallet & your gateway to blockchain apps.
+                  <b>Minerva Wallet</b> is a user friendly app for sovereign identities, data and money.<br/>
+                  <a href="https://minerva.digital/" target="_blank">Install Minerva</a> app on your phone. <br/>
                </span>
           </div>
         </v-row>
