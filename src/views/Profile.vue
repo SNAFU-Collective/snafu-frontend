@@ -18,110 +18,73 @@
       </v-row>
 
       <div v-if="!isConnected">
-        <v-row class="mt-15">
-          <v-col cols-md="12" colls-xs="12" class="topTextPool px-15" style="text-align: center; color: #303030d4">
-            <b class="h2 mt-15">Welcome! <br> Login to access your NFTs.</b>
-            <wallet-status class="mt-15 pb-2 walletHeader" style="justify-content: center"/>
-          </v-col>
-        </v-row>
-        <v-row style="margin-top: 100px" class="boxRow">
-          <v-col class="claimBox">
-            <v-row justify="center">
-              <h3>Desktop</h3>
-            </v-row>
-            <v-row>
-              <v-img src="login/metamask.gif" width="10px"></v-img>
-            </v-row>
-            <v-row justify="center">
-              <div class="text-body-2 my-50 mt-10 mb-10" style="text-align: center">
-               <span style="font-size: 13px; text-align: center">
-                <a href="https://metamask.io/" target="_blank">Install Metamask</a> extension on your browser. <br/>
-                <b>Metamask</b> is a crypto wallet & your gateway to blockchain apps.
-               </span>
-              </div>
-            </v-row>
-          </v-col>
-          <v-col class="ml-1">
-            <v-row justify="center" >
-              <h3>Mobile</h3>
-            </v-row>
-            <v-row>
-              <v-img src="login/metamask.gif" width="10px"></v-img>
-            </v-row>
-            <v-row justify="center">
-              <div class="text-body-2 my-50 mt-10 mb-10" style="text-align: center">
-               <span style="font-size: 13px; text-align: center">
-                <a href="https://metamask.io/" target="_blank">Install Metamask</a> extension on your browser. <br/>
-                <b>Metamask</b> is a crypto wallet & your gateway to blockchain apps.
-               </span>
-              </div>
-            </v-row>
-          </v-col>
-        </v-row>
+        <Login/>
       </div>
 
       <div v-if="isConnected">
 
-          <v-tabs v-model="tab" color="black" centered>
-            <v-tab v-for="item in items" :key="item.tab">
-              {{ item.tab }}
-            </v-tab>
-          </v-tabs>
+        <v-tabs v-model="tab" color="black" centered>
+          <v-tab v-for="item in items" :key="item.tab">
+            {{ item.tab }}
+          </v-tab>
+        </v-tabs>
 
-          <v-tabs-items v-model="tab">
-            <v-tab-item v-for="item in items" :key="item.tab">
-              <v-card flat>
+        <v-tabs-items v-model="tab">
+          <v-tab-item v-for="item in items" :key="item.tab">
+            <v-card flat>
 
-                <div class="collectionSection" v-if="item.id === 1" style="min-height: 200px">
-                  <v-row justify="center" v-if="!nftToFetch && item.id === 1">
-                    <v-row class="pt-15 filters-row" style="min-width: 98%;max-width: 98%">
-                      <v-col cols="3" style="display: flex">
-                        <h4 style="padding-top: 6px;padding-left: 10px;">Amount:
-                          {{ filteredGallery ? filteredGallery.length : '0' }} NFTs</h4>
-                      </v-col>
-                      <v-col cols="9" style="text-align: right;">
-                        <v-btn plain v-on:click="filter('all')" class="filter"
-                               :class="currentTag === 'all' ? 'currentTag' : ''">All
-                        </v-btn>
-                        <v-btn v-for="category in extractedFilters" :key="category" plain v-on:click="filter(category)"
-                               class="filter"
-                               :class="currentTag === category ? 'currentTag' : ''">{{ category }}
-                        </v-btn>
-
-                      </v-col>
-                    </v-row>
-                    <v-row>
-                      <NftCard style="margin-top: 50px !important;" :cardSize=200 v-for="nft in paginatedNFTs" :key="nft.id"
-                               :nft="nft" class="ma-1" :show-transfer-btn="true"/>
-                    </v-row>
-                    <v-row justify="center" class="pb-15 pt-15">
-                      <h3 v-if="filteredGallery.length === 0">No NFT available</h3>
-                      <v-btn medium dark @click="loadMore" v-if="currentPage * maxPerPage < filteredGallery.length"> LOAD MORE
+              <div class="collectionSection" v-if="item.id === 1" style="min-height: 200px">
+                <v-row justify="center" v-if="!nftToFetch && item.id === 1">
+                  <v-row class="pt-15 filters-row" style="min-width: 98%;max-width: 98%">
+                    <v-col cols="3" style="display: flex">
+                      <h4 style="padding-top: 6px;padding-left: 10px;">Amount:
+                        {{ filteredGallery ? filteredGallery.length : '0' }} NFTs</h4>
+                    </v-col>
+                    <v-col cols="9" style="text-align: right;">
+                      <v-btn plain v-on:click="filter('all')" class="filter"
+                             :class="currentTag === 'all' ? 'currentTag' : ''">All
                       </v-btn>
-                    </v-row>
-                  </v-row>
-                  <v-row v-if="nftToFetch" justify="center" class="my-15">
-                    <v-progress-circular
-                        size="40"
-                        indeterminate
-                        color="black"
-                        tyle="margin-top: 80px"
-                    ><h3 style="padding-top: 150px;white-space: pre;">Loading Collection</h3></v-progress-circular>
-                  </v-row>
-                  <v-row justify="center" v-else-if="userNfts.length === 0" class="text-body-2 my-5">
-                    No SNAFU NFTs found in your wallet.
-                  </v-row>
-                </div>
+                      <v-btn v-for="category in extractedFilters" :key="category" plain v-on:click="filter(category)"
+                             class="filter"
+                             :class="currentTag === category ? 'currentTag' : ''">{{ category }}
+                      </v-btn>
 
-                <Claim class="claimSection" v-if="item.id === 2"/>
-
-                <v-row class="walletSection" v-if="item.id === 3">
-                  <Assets/>
-<!--                  <CollectionInfo />-->
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <NftCard style="margin-top: 50px !important;" :cardSize=200 v-for="nft in paginatedNFTs"
+                             :key="nft.id"
+                             :nft="nft" class="ma-1" :show-transfer-btn="true"/>
+                  </v-row>
+                  <v-row justify="center" class="pb-15 pt-15">
+                    <h3 v-if="filteredGallery.length === 0">No NFT available</h3>
+                    <v-btn medium dark @click="loadMore" v-if="currentPage * maxPerPage < filteredGallery.length"> LOAD
+                      MORE
+                    </v-btn>
+                  </v-row>
                 </v-row>
-              </v-card>
-            </v-tab-item>
-          </v-tabs-items>
+                <v-row v-if="nftToFetch" justify="center" class="my-15">
+                  <v-progress-circular
+                      size="40"
+                      indeterminate
+                      color="black"
+                      tyle="margin-top: 80px"
+                  ><h3 style="padding-top: 150px;white-space: pre;">Loading Collection</h3></v-progress-circular>
+                </v-row>
+                <v-row justify="center" v-else-if="userNfts.length === 0" class="text-body-2 my-5">
+                  No SNAFU NFTs found in your wallet.
+                </v-row>
+              </div>
+
+              <Claim class="claimSection" v-if="item.id === 2"/>
+
+              <v-row class="walletSection" v-if="item.id === 3">
+                <Assets/>
+                <!--                  <CollectionInfo />-->
+              </v-row>
+            </v-card>
+          </v-tab-item>
+        </v-tabs-items>
 
       </div>
     </v-container>
@@ -130,6 +93,7 @@
 
 <script>
 import CollectionInfo from '../components/Collection/CollectionInfo.vue'
+import Login from '../components/Common/Login.vue'
 import {mapState} from "vuex"
 import WalletStatus from "../components/Wallet/WalletStatus"
 import Assets from '../components/Wallet/Assets.vue'
@@ -143,7 +107,7 @@ export default {
     Assets,
     NftCard,
     Claim,
-    WalletStatus,
+    Login
     // CollectionInfo
   },
   data() {
@@ -156,9 +120,9 @@ export default {
       allNFTs: ids,
       tab: null,
       items: [
-        { tab: 'My Collection', id: 1 },
-        { tab: 'Claim', id: 2 },
-        { tab: 'Wallet', id: 3 },
+        {tab: 'My Collection', id: 1},
+        {tab: 'Claim', id: 2},
+        {tab: 'Wallet', id: 3},
       ],
     }
   },
