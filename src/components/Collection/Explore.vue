@@ -1,6 +1,6 @@
 <template>
   <div style="min-width: 100%;">
-    <v-row style="min-width: 100%; justify-content: center; margin-top: 100px">
+    <v-row style="min-width: 100%; justify-content: center;">
       <v-col cols="3" style="display: flex">
         <h4 style="padding-top: 6px;padding-left: 10px;">Explore</h4>
       </v-col>

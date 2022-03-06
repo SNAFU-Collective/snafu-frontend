@@ -13,8 +13,10 @@
       >
         <v-img src="/banners/preview.jpeg"></v-img>
       </v-card>
+      <DavidPreviews class="mt-10"/>
 
-      <Explore :shuffle="true" />
+      <v-img src="/banners/banner-coll-3.png" class="bannerColl3"></v-img>
+      <Explore :shuffle="true" class="mt-10"/>
     </v-row>
   </v-container>
 </template>
@@ -23,6 +25,7 @@
 import Explore from '../components/Collection/Explore.vue'
 import TopBanner from '../components/HomeComponents/TopBanner.vue'
 import LatestReleases from "../components/HomeComponents/LatestReleases"
+import DavidPreviews from "../components/HomeComponents/DavidPreviews"
 import Banner from "./../components/Common/Banner"
 import {mapFields} from "vuex-map-fields"
 import NftCard from "../components/Collection/NftCard"
@@ -33,6 +36,7 @@ export default {
     LatestReleases,
     Explore,
     TopBanner,
+    DavidPreviews
     // Banner,
     // NftCard,
   },
@@ -60,5 +64,16 @@ font-weight: bold;
 .topText h2 {
   color: #303030;
   font:normal normal normal 30px/1.4em barlow-medium,barlow,sans-serif;
+}
+
+@media screen and (min-width: 768px) {
+  .bannerColl3 {
+    margin-top: 200px
+  }
+}
+@media screen and (max-width: 768px) {
+  .bannerColl3 {
+    margin-top: 100px
+  }
 }
 </style>
