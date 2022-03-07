@@ -1,7 +1,7 @@
 <template>
   <div style="width: 100%">
     <v-row className="mt-5">
-      <v-card :ripple="false" class="mx-auto " max-width="300">
+      <v-card :ripple="false" class="mx-auto mt-5" max-width="300">
         <v-card-text style="">
           <v-hover>
             <v-img
@@ -22,7 +22,7 @@
           </v-hover>
         </v-card-text>
       </v-card>
-      <v-card :ripple="false" class="mx-auto " max-width="300">
+      <v-card :ripple="false" class="mx-auto mt-5" max-width="300">
         <v-card-text style="">
           <v-hover>
             <v-img
@@ -43,7 +43,7 @@
           </v-hover>
         </v-card-text>
       </v-card>
-      <v-card :ripple="false" class="mx-auto " max-width="300">
+      <v-card :ripple="false" class="mx-auto mt-5" max-width="300">
         <v-card-text style="">
           <v-hover>
             <v-img
