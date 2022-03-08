@@ -51,7 +51,7 @@ const routes = [
     },
     {
         path: '/leaderboard',
-        name: 'Leaderboard',
+        name: 'Community',
         meta: {
             title: 'Collectors leaderboard | SNAFU',
             headerSubtitle: 'Collectors',

@@ -10,10 +10,10 @@
 
       <v-col cols="8" offset="1" id="subtitle">
         <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
-        <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
         <router-link class="backHome" :to="{ name: 'Wallet'}">MY PROFILE</router-link>
+        <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
         <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
-        <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
+        <router-link class="backHome" :to="{ name: 'Community'}">COMMUNITY</router-link>
         <router-link class="backHome" :to="{ name: 'Catalog'}">CATALOG</router-link>
         <router-link class="backHome" :to="{ name: 'Manifest'}">MANIFEST</router-link>
       </v-col>
@@ -37,10 +37,10 @@
                :width=windowWidth>
           <wallet-status class="mt-5 pb-2 walletHeader"/>
           <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
-          <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
           <router-link class="backHome" :to="{ name: 'Wallet'}">MY PROFILE</router-link>
+          <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
           <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
-          <router-link class="backHome" :to="{ name: 'Leaderboard'}">LEADERBOARD</router-link>
+          <router-link class="backHome" :to="{ name: 'Community'}">COMMUNITY</router-link>
           <router-link class="backHome" :to="{ name: 'Catalog'}">CATALOG</router-link>
           <router-link class="backHome" :to="{ name: 'Manifest'}">MANIFEST</router-link>
 <!--          <a class="backHome" @click="openBuySnafuModal()">BUY SNAFU <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
