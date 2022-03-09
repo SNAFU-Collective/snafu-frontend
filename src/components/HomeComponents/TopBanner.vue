@@ -8,6 +8,7 @@
 
     <v-col v-if="allNFTs.length !== 0" cols-md="5"  colls-xs="12" style="justify-content: end" class="onlyDesktop">
       <nft-card
+          :showPrice="false"
           :key="allNFTs.find(x => x.id === currentId+'').id"
           :nft="allNFTs.find(x => x.id === currentId+'')"
           :cardSize=300

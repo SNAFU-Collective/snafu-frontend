@@ -6,11 +6,11 @@
       </v-col>
     </v-row>
     <v-row v-if="allNFTs.length !== 0" class="mt-5">
-      <nft-card :key="allNFTs.find(x => x.id === '218').id" :nft="allNFTs.find(x => x.id === '218')" :cardSize=300
+      <nft-card :showPrice="false" :key="allNFTs.find(x => x.id === '218').id" :nft="allNFTs.find(x => x.id === '218')" :cardSize=300
                 class="ma-6"/>
-      <nft-card :key="allNFTs.find(x => x.id === '228').id" :nft="allNFTs.find(x => x.id === '228')" :cardSize=300
+      <nft-card :showPrice="false" :key="allNFTs.find(x => x.id === '228').id" :nft="allNFTs.find(x => x.id === '228')" :cardSize=300
                 class="ma-6"/>
-      <nft-card :key="allNFTs.find(x => x.id === '172').id" :nft="allNFTs.find(x => x.id === '172')" :cardSize=300
+      <nft-card :showPrice="false" :key="allNFTs.find(x => x.id === '172').id" :nft="allNFTs.find(x => x.id === '172')" :cardSize=300
                 class="ma-6"/>
     </v-row>
     <v-row v-else justify="center" class="pt-16">
