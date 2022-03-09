@@ -15,6 +15,9 @@
         <v-row justify="center" style=" margin-top: 50px">
           <h3 ><a class="addressLink" style="text-decoration: unset;" :href="'https://blockscout.com/poa/xdai/address/'+$route.params.address" target="_blank">{{$route.params.address }} <v-icon style="font-size: 0.8em; color:black"> mdi-open-in-new </v-icon></a></h3>
         </v-row>
+        <v-row justify="center" style=" margin-top: 25px">
+          <v-btn color="blue" style="color:#fff;" onclick="window.open('https://chat.blockscan.com/start', '_blank')">Chat with owner <v-icon class="ml-2">mdi-chat</v-icon></v-btn>
+        </v-row>
 
       </v-row>
       <v-row justify="center">
