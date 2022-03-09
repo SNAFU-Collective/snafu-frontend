@@ -47,7 +47,7 @@
           <div class="text-body-2 my-50  mb-10" style="text-align: center">
                <span style="font-size: 13px; text-align: center">
                   <b>Minerva Wallet</b> is a user friendly app for sovereign identities, data and money.<br/>
-                  <a href="https://minerva.digital/" target="_blank">Install Minerva</a> app on your phone. <br/>
+                 <a href="https://minerva.digital/" target="_blank">Install Minerva</a> app on your phone. <br/> Click <a href="https://www.youtube.com/watch?v=URFPQKpdjFc&t" target="_blank">here</a> to see a 30 seconds <b>tutorial</b>  on how to connect Minerva from your phone.
                </span>
           </div>
         </v-row>
