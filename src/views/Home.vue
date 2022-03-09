@@ -16,7 +16,7 @@
       <DavidPreviews class="mt-10"/>
 
       <v-img src="/banners/banner-coll-3.png" class="bannerColl3"></v-img>
-      <Explore :shuffle="true" class="mt-10"/>
+      <Explore :shuffle="true" :showPrice="false" class="mt-10"/>
     </v-row>
   </v-container>
 </template>

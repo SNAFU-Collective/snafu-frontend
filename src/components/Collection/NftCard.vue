@@ -49,7 +49,7 @@
         </v-row>
         <v-row class="px-2 subtext">ID: {{ nft.id }}</v-row>
         <v-row class="px-2 subtext">
-          <v-col cols="9" style="text-align: left; padding: 0;">Value:
+          <v-col cols="9" style="text-align: left; padding: 0;"  v-if="showPrice">Value:
             {{ (+metadata.price + +metadata.fee) | truncatePrice }} SNAFU
           </v-col>
 
@@ -97,7 +97,11 @@ export default {
     showTransferBtn: {
       type: Boolean,
       default: false
-    }
+    },
+    showPrice: {
+      type: Boolean,
+      default: true,
+    },
   },
   components: {
     TransferSingleNFTModal,
