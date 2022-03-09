@@ -51,36 +51,50 @@
         </v-btn>
       </v-row>
       <v-row justify="center" no-gutters class="py-6">
-        <v-data-table
-          :items="tableItems"
-          :headers="tableHeaders"
-          sort-desc
-          sort-by="totalValue"
-          class="leaderboardTable"
-          mobile-breakpoint="0"
-          :page.sync="pagination.page"
-          :items-per-page.sync="pagination.itemsPerPage"
-          @click:row="goToUserPage"
-        >
-          <template v-slot:item.address={item}>
-            <span :style="item.address === account ? 'color:red' : ''">{{item.address}}</span>
-          </template>
+        <div>
+          <v-card-title>
+            Search address
+            <v-spacer></v-spacer>
+            <v-text-field
+                v-model="search"
+                append-icon="mdi-magnify"
+                label="Search"
+                single-line
+                hide-details
+            ></v-text-field>
+          </v-card-title>
+          <v-data-table
+            :items="tableItems"
+            :headers="tableHeaders"
+            sort-desc
+            sort-by="totalValue"
+            class="leaderboardTable"
+            mobile-breakpoint="0"
+            :page.sync="pagination.page"
+            :items-per-page.sync="pagination.itemsPerPage"
+            @click:row="goToUserPage"
+            :search="search"
+          >
+            <template v-slot:item.address={item}>
+              <span :style="item.address === account ? 'color:red' : ''">{{item.address}}</span>
+            </template>
 
-          <template slot="item.rank" slot-scope="props">
-            <b>{{(pagination.page -1 ) * pagination.itemsPerPage + props.index  + 1}}</b>
-          </template>
+            <template slot="item.rank" slot-scope="props">
+              <b v-if="search === ''">{{(pagination.page -1 ) * pagination.itemsPerPage + props.index  + 1}}</b>
+            </template>
 
-          <template v-slot:item.totalValue={item}>
-          <b> {{item.totalValue | truncatePrice }}</b>
-          </template>
+            <template v-slot:item.totalValue={item}>
+            <b> {{item.totalValue | truncatePrice }}</b>
+            </template>
 
-          <template v-slot:item.blockie>
-            <v-avatar style="margin: 5px !important;">
-              <v-img src="/pfp/unknown.jpeg"/>
-            </v-avatar>
-<!--            <vth-blockie :string=item.address />-->
-          </template>
-        </v-data-table>
+            <template v-slot:item.blockie>
+              <v-avatar style="margin: 5px !important;">
+                <v-img src="/pfp/unknown.jpeg"/>
+              </v-avatar>
+  <!--            <vth-blockie :string=item.address />-->
+            </template>
+          </v-data-table>
+        </div>
       </v-row>
     </div>
   </v-container>
@@ -93,6 +107,7 @@ import {mapFields} from "vuex-map-fields"
 export default {
   data() {
     return {
+      search: '',
       pagination: {
         page: 1,
         itemsPerPage: 10
@@ -204,7 +219,7 @@ export default {
         {
           text: "User",
           value: "address",
-          sortable: false
+          sortable: false,
         },
         {
           text: "Unique NFTs",

@@ -13,10 +13,10 @@
           </v-avatar>
         </v-row>
         <v-row justify="center" style=" margin-top: 50px">
-          <h3 ><a class="addressLink" style="text-decoration: unset;" :href="'https://blockscout.com/poa/xdai/address/'+$route.params.address" target="_blank">{{$route.params.address }} <v-icon style="font-size: 0.8em; color:black"> mdi-open-in-new </v-icon></a></h3>
+          <h3 ><a class="addressLink" style="text-decoration: unset; color: #2196f3" :href="'https://blockscout.com/poa/xdai/address/'+$route.params.address" target="_blank">{{$route.params.address }} <v-icon style="font-size: 0.8em; color:black"> mdi-open-in-new </v-icon></a></h3>
         </v-row>
         <v-row justify="center" style=" margin-top: 25px">
-          <v-btn color="blue" style="color:#fff;" onclick="window.open('https://chat.blockscan.com/start', '_blank')">Chat with owner <v-icon class="ml-2">mdi-chat</v-icon></v-btn>
+          <v-btn color="blue" style="color:#fff;" @click="chatWithOwner">Chat with owner <v-icon class="ml-2">mdi-chat</v-icon></v-btn>
         </v-row>
 
       </v-row>
@@ -82,6 +82,11 @@ export default {
     }
   },
   methods: {
+    chatWithOwner() {
+      console.log('opening inew tab')
+      let url = 'https://chat.blockscan.com/index?a=' + this.$route.params.address
+      window.open(url, '_blank')
+    },
     ...mapActions("nftContract", ["getNftsByAddress"]),
     async loadMore() {
       this.currentPage += 1
