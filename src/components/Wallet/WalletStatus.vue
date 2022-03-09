@@ -26,13 +26,13 @@
             </v-tooltip>
           </v-chip>
         </router-link>
-        <v-tooltip bottom>
+        <v-tooltip bottom style="text-align: center">
           <template v-slot:activator="{ on, attrs }">
             <span style="padding-left: 5px; font-weight: 500; cursor: pointer"
                   v-bind="attrs" v-on="on" @click="addGnosisChainNetwork"
             >{{ chainId | networkName }}</span>
           </template>
-          <span>Change network</span>
+          <span>Click here to switch to the correct network!</span>
         </v-tooltip>
       </v-chip>
     </div>
@@ -54,7 +54,7 @@
             <v-icon size="25px">mdi-exit-to-app</v-icon>
           </v-btn>
         </template>
-        <span>Logout</span>
+        <span>Disconnect</span>
       </v-tooltip>
     </div>
   </div>
