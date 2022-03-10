@@ -9,60 +9,46 @@
       <v-row justify="center" class="pt-8 filters-row">
         <v-btn
           small
+          plain
           v-on:click="currentTag = 'all'"
           style="margin: 10px"
-          :style="
-            currentTag === 'all' ? 'background-color: black; color: white' : ''
-          "
+          :class="currentTag === 'all' ? 'currentTag' : ''"
           >Total
         </v-btn>
         <v-btn
             small
+            plain
             v-on:click="currentTag = 'collection3'"
             style="margin: 10px"
-            :style="
-            currentTag === 'collection3'
-              ? 'background-color: black; color: white'
-              : ''
-          "
+            :class="currentTag === 'collection3' ? 'currentTag' : ''"
         >Collection #3
         </v-btn>
         <v-btn
             small
+            plain
             v-on:click="currentTag = 'collection2'"
             style="margin: 10px"
-            :style="
-            currentTag === 'collection2'
-              ? 'background-color: black; color: white'
-              : ''
-          "
+            :class="currentTag === 'collection2' ? 'currentTag' : ''"
         >Collection #2
         </v-btn>
         <v-btn
           small
+          plain
           v-on:click="currentTag = 'collection1'"
           style="margin: 10px"
-          :style="
-            currentTag === 'collection1'
-              ? 'background-color: black; color: white'
-              : ''
-          "
+          :class="currentTag === 'collection1' ? 'currentTag' : ''"
           >Collection #1
         </v-btn>
       </v-row>
-      <v-row justify="center" no-gutters class="py-6">
-        <div>
-          <v-card-title>
-            Search address
-            <v-spacer></v-spacer>
-            <v-text-field
-                v-model="search"
-                append-icon="mdi-magnify"
-                label="Search"
-                single-line
-                hide-details
-            ></v-text-field>
-          </v-card-title>
+      <v-row justify="center" no-gutters class="py-6 leaderboardRow">
+          <v-text-field
+              v-model="search"
+              append-icon="mdi-magnify"
+              label="Search an address"
+              single-line
+              hide-details
+              class="mb-5 px-1"
+          ></v-text-field>
           <v-data-table
             :items="tableItems"
             :headers="tableHeaders"
@@ -94,7 +80,6 @@
   <!--            <vth-blockie :string=item.address />-->
             </template>
           </v-data-table>
-        </div>
       </v-row>
     </div>
   </v-container>
@@ -260,6 +245,12 @@ tr:hover > td {
 @media screen and (max-width: 768px) {
   .allNFTsContainer {
     padding-top: 0px !important;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .leaderboardRow {
+    display: grid;
   }
 }
 </style>
