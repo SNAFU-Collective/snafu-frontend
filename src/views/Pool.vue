@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols-md="12" colls-xs="12" class="topTextPool px-15" style="text-align: center; color: #303030d4">
-        <p class="h2">Inside the <b>community pool</b> you will find very good trade opportunities by buying SNAFU NFTs at their <b>minimum floor price guaranteed</b> in $SNAFU.</p>
+        <p class="h2">Inside this <b>pool</b> you will find <b>the best</b> trade opportunities by buying SNAFU NFTs at their <b>guaranteed minimum floor price</b> in $SNAFU.</p>
         <v-btn text class="font-weight-thin" @click="goTo('https://www.info.nftsnafu.org/swap-protocol')">
           Learn more
         </v-btn>
