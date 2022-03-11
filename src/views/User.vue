@@ -13,10 +13,14 @@
           </v-avatar>
         </v-row>
         <v-row justify="center" style=" margin-top: 50px">
+          <div v-if="userRank === 1" style="color: #c49b00"> Rank: {{userRank}}° place ({{userPoints | truncatePrice}} points)</div>
+          <h4 v-else style="color: #a1a1a1">Rank: {{userRank}}° place ({{userPoints | truncatePrice}} points)</h4>
+        </v-row>
+        <v-row justify="center" style=" margin-top: 10px">
           <h3 ><a class="addressLink" style="text-decoration: unset; color: #2196f3" :href="'https://blockscout.com/poa/xdai/address/'+$route.params.address" target="_blank">{{$route.params.address }} <v-icon style="font-size: 0.8em; color:black"> mdi-open-in-new </v-icon></a></h3>
         </v-row>
         <v-row justify="center" style=" margin-top: 25px">
-          <v-btn color="blue" style="color:#fff;" @click="chatWithOwner">Chat with owner <v-icon class="ml-2">mdi-chat</v-icon></v-btn>
+          <v-btn color="blue" style="color:#fff;" @click="chatWithOwner">Chat with collector <v-icon class="ml-2">mdi-chat</v-icon></v-btn>
         </v-row>
 
       </v-row>
@@ -67,6 +71,7 @@
 import {mapActions, mapState} from "vuex"
 import NftCard from "../components/Collection/NftCard.vue"
 import ids from "../utils/ids.json"
+import {mapFields} from "vuex-map-fields"
 
 export default {
   components: {
@@ -79,15 +84,17 @@ export default {
       showReadMore: true,
       currentTag: 'all',
       allNFTs: ids,
+      userRank: 0,
+      userPoints: 0,
     }
   },
   methods: {
     chatWithOwner() {
-      console.log('opening inew tab')
       let url = 'https://chat.blockscan.com/index?a=' + this.$route.params.address
       window.open(url, '_blank')
     },
     ...mapActions("nftContract", ["getNftsByAddress"]),
+    ...mapActions("leaderboard", ["getLeaderboard", "getUserRank", "getUserTotalPoints"]),
     async loadMore() {
       this.currentPage += 1
 
@@ -123,7 +130,13 @@ export default {
   mounted(){
         this.getNftsByAddress(this.$route.params.address)
   },
+  async beforeMount() {
+    await this.getLeaderboard()
+    this.userRank = await this.getUserRank(this.$route.params.address)
+    this.userPoints = await this.getUserTotalPoints(this.$route.params.address)
+  },
   computed: {
+    ...mapFields("leaderboard", ["leaderboard", "lastUpdate"]),
     ...mapState("nftContract", {
       nfts(state) {
         return state[this.$route.params.address]
