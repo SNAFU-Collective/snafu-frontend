@@ -96,8 +96,8 @@ html, body {
 }
 
 a.link {
-  color: #303030;
-  text-decoration: underline;
+  color: #303030 !important;
+  text-decoration: underline !important;
 }
 
 .pointerOnHover {
