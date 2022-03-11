@@ -39,6 +39,8 @@ export default {
 @media screen and (max-width: 768px) {
   .topTextPool {
     margin: 0;
+    margin-top: 50px;
+    margin-bottom: 20px;
   }
   .topTextPool.h2 {
     color: rgba(48, 48, 48, 0.91);
