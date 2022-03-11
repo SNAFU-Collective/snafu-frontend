@@ -94,7 +94,7 @@
 <script>
 import CollectionInfo from '../components/Collection/CollectionInfo.vue'
 import Login from '../components/Common/Login.vue'
-import {mapState} from "vuex"
+import {mapActions, mapState} from "vuex"
 import WalletStatus from "../components/Wallet/WalletStatus"
 import Assets from '../components/Wallet/Assets.vue'
 import {mapFields} from "vuex-map-fields"

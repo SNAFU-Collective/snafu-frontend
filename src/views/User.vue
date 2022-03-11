@@ -136,6 +136,7 @@ export default {
     this.userPoints = await this.getUserTotalPoints(this.$route.params.address)
   },
   computed: {
+    ...mapFields("leaderboard", ["leaderboard", "lastUpdate"]),
     ...mapState("nftContract", {
       nfts(state) {
         return state[this.$route.params.address]
@@ -144,7 +145,6 @@ export default {
         return state[this.$route.params.address] == undefined
       },
     }),
-    ...mapFields("leaderboard", ["leaderboard", "lastUpdate"]),
     userNfts() {
       return this.nfts
     },

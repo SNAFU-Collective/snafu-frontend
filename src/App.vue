@@ -95,4 +95,12 @@ html, body {
   }
 }
 
+a.link {
+  color: #303030;
+  text-decoration: underline;
+}
+
+.pointerOnHover {
+  cursor: pointer;
+}
 </style>

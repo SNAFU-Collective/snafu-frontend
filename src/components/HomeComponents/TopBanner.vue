@@ -3,7 +3,7 @@
     <v-col cols-md="5" colls-xs="12" class="ma-6 leftText">
       <p class="h1"><b>Artists Collective</b></p>
       <p class="h2 mt-5">Welcome to the home of the <b>underground NFT artists</b>.</p>
-      <p class="h2 mt-5">Here you can find exclusive <b>NFTs</b> and <b>Original Artworks</b>. Join the other collectors in <b>farming NFTs</b> or try to win one of them at the <b>lottery</b>!</p>
+      <p class="h2 mt-5">Here you can find exclusive <b>NFTs</b> and <b>Original Artworks</b>. Join the other collectors in <b><router-link class="link" :to="{ name: 'Farm'}">farming NFTs</router-link></b> or try to win one of them at the <b><a class="link" href="https://community.pooltogether.com/pools/xdai/0x1221fe13f8aa51856538b41e85a737d843edd825/home" target="_blank">lottery</a></b>!</p>
     </v-col>
 
     <v-col v-if="allNFTs.length !== 0" cols-md="5"  colls-xs="12" style="justify-content: end" class="onlyDesktop">
