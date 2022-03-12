@@ -1,10 +1,26 @@
 <template>
   <v-container style="max-width: 726px !important;">
+    <v-row justify="center" style="text-align: justify; display: flex; " class="topTextManifest mt-15">
+      <div class="ma-6 leftText">
+        <p class="h1"><b>Introduction</b></p>
+        <br>
+        <p class="h2">SNAFU is an <b>Italian underground art collective</b> that established a platform
+          that leverages the new power NFTs have brought to the art world to <b>provide a steadier revenue stream to the global and local art community.</b>
+          The collective created a colorful and engaging platform (also called SNAFU) where artists can mint their work as NFTs and interact directly with patrons
+          and collectors. SNAFU also issued a <b>token with the same name</b>, dedicated to creating a <b>DAO</b> that will decide how to sustain the artistic collective’s initiatives,
+          financing projects, and young artists. This independent sustainability-oriented thinking positions SNAFU in the first line with other art world pioneers to
+          genuinely utilize and maximize the relatively young NFT market to reinvent how we deal and consume art.</p>
+      </div>
+<!--      <br>-->
+<!--      <p class="h2">Under you can read our "Artist Collective's Artbook #1".</p>-->
+    </v-row>
     <v-row justify="center" class="mt-15">
       <iframe style="width:700px;height:400px" src="https://online.fliphtml5.com/lceji/nohs/"  seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" ></iframe>
     </v-row>
     <v-row justify="center" style="text-align: justify; display: flex; " class="topTextManifest mt-15">
       <div class="ma-6 leftText">
+        <p class="h1"><b>Manifest</b></p>
+        <br>
         <p class="h2"><b>In 1950</b> the mathematician Ben Laposky realized an oscillogram and
           inserted in his processor a mathematical function, obtaining a basis
           for a graphical projection, then with an oscilloscope he varied the
