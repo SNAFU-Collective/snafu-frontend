@@ -2,7 +2,7 @@
   <div style="min-width: 100%">
     <v-container>
 
-      <v-row justify="center" style="margin: 80px; display: grid">
+      <v-row justify="center" style="margin-top: 80px; margin-left: 80px;margin-right: 80px; display: grid">
         <v-avatar left style="width: 200px !important; height: 200px !important;">
           <v-img src="/pfp/unknown.jpeg"/>
         </v-avatar>
@@ -15,6 +15,10 @@
         >
           {{ account | abbreviateAddress }}
         </v-chip>
+      </v-row>
+
+      <v-row justify="center" style=" margin-top: 25px; margin-bottom: 25px">
+        <v-btn color="blue" style="color:#fff;" @click="openChat">Check messages <v-icon class="ml-2">mdi-chat</v-icon></v-btn>
       </v-row>
 
       <div v-if="!isConnected">
@@ -131,6 +135,9 @@ export default {
       if (!this.disableActions) {
         this.showModal = true
       }
+    },
+    openChat() {
+      window.open('https://chat.blockscan.com/index', '_blank')
     },
     async loadMore() {
       this.currentPage += 1
