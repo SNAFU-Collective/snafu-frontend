@@ -70,8 +70,13 @@ html, body {
   color:  rgb(143, 143, 143);
 }
 
+.currentTag > span {
+  color: #000;
+  opacity: 1 !important;
+  font-weight: 600;
+}
+
 .currentTag {
-  color: #303030;
   left: 0;
   bottom: 1px;
   border-radius: 0 !important;
@@ -90,4 +95,12 @@ html, body {
   }
 }
 
+a.link {
+  color: #303030 !important;
+  text-decoration: underline !important;
+}
+
+.pointerOnHover {
+  cursor: pointer;
+}
 </style>

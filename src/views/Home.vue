@@ -5,18 +5,20 @@
 
       <LatestReleases class="mt-10"/>
 
+      <TopCollectors />
+
+      <v-img src="/banners/banner-coll-3.png" class="bannerColl3"></v-img>
+      <Explore :shuffle="true" :showPrice="false" class="mt-10"/>
+
       <v-card
-          class="mx-auto"
+          class="mx-auto davidBanner"
           :ripple="true"
-          style="margin-top: 150px; cursor: pointer;"
+          style=" cursor: pointer;"
           @click="openInNewPage"
       >
         <v-img src="/banners/preview.jpeg"></v-img>
       </v-card>
-      <DavidPreviews class="mt-10"/>
-
-      <v-img src="/banners/banner-coll-3.png" class="bannerColl3"></v-img>
-      <Explore :shuffle="true" :showPrice="false" class="mt-10"/>
+      <DavidPreviews class="mt-10 mb-10"/>
     </v-row>
   </v-container>
 </template>
@@ -26,9 +28,11 @@ import Explore from '../components/Collection/Explore.vue'
 import TopBanner from '../components/HomeComponents/TopBanner.vue'
 import LatestReleases from "../components/HomeComponents/LatestReleases"
 import DavidPreviews from "../components/HomeComponents/DavidPreviews"
+import TopCollectors from "../components/HomeComponents/TopCollectors"
 import Banner from "./../components/Common/Banner"
 import {mapFields} from "vuex-map-fields"
 import NftCard from "../components/Collection/NftCard"
+import {mapActions} from "vuex"
 
 export default {
   name: 'NFTs',
@@ -36,21 +40,31 @@ export default {
     LatestReleases,
     Explore,
     TopBanner,
-    DavidPreviews
+    DavidPreviews,
+    TopCollectors
     // Banner,
     // NftCard,
   },
   computed: {
+    ...mapFields("leaderboard", ["leaderboard"]),
     ...mapFields("nftContract", ["allNFTs"]),
     screenHeight() {
       return window.innerHeight
     },
+    topCollectors() {
+      let top10 = this.leaderboard.slice(0, 8)
+      return top10
+    }
   },
   methods: {
+    ...mapActions("leaderboard", ["getLeaderboard", "getUserRank", "getUserTotalPoints"]),
     openInNewPage() {
       window.open('https://boreddavid.com', '_blank')
     },
-  }
+  },
+  async beforeMount() {
+    await this.getLeaderboard()
+  },
 }
 </script>
 
@@ -70,10 +84,17 @@ font-weight: bold;
   .bannerColl3 {
     margin-top: 200px
   }
+  .davidBanner {
+    margin-top: 150px;
+  }
 }
 @media screen and (max-width: 768px) {
   .bannerColl3 {
     margin-top: 100px
+  }
+
+  .davidBanner {
+    margin-top: 75px;
   }
 }
 </style>

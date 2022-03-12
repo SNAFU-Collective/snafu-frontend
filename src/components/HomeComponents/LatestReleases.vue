@@ -1,8 +1,8 @@
 <template>
   <div style="width: 100%">
     <v-row class="pt-15" justify="start">
-      <v-col cols="3" style="display: flex">
-        <h4 style="padding-top: 6px;padding-left: 10px;">Latest releases</h4>
+      <v-col colls-md="3" colls-xs="12" style="display: flex; align-items: baseline;">
+        <h4 style="padding-top: 6px;padding-left: 10px;">Latest releases</h4> <h5 class="ml-5"> <router-link class="link" :to="{ name: 'Catalog'}">View all</router-link></h5>
       </v-col>
     </v-row>
     <v-row v-if="allNFTs.length !== 0" class="mt-5">
