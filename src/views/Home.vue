@@ -11,9 +11,9 @@
       <Explore :shuffle="true" :showPrice="false" class="mt-10"/>
 
       <v-card
-          class="mx-auto"
+          class="mx-auto davidBanner"
           :ripple="true"
-          style="margin-top: 150px; cursor: pointer;"
+          style=" cursor: pointer;"
           @click="openInNewPage"
       >
         <v-img src="/banners/preview.jpeg"></v-img>
@@ -84,10 +84,17 @@ font-weight: bold;
   .bannerColl3 {
     margin-top: 200px
   }
+  .davidBanner {
+    margin-top: 150px;
+  }
 }
 @media screen and (max-width: 768px) {
   .bannerColl3 {
     margin-top: 100px
+  }
+
+  .davidBanner {
+    margin-top: 75px;
   }
 }
 </style>
