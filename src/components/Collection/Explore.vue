@@ -77,6 +77,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    scrollToHeightEnabled: {
+      type: Boolean,
+      default: true,
+    }
   },
   computed: {
     ...mapFields("nftContract", ["allNFTs"]),
@@ -118,7 +122,7 @@ export default {
 
       await setTimeout(() => {
         //scroll down only on desktop
-        if (window.innerWidth > 768) {
+        if (this.scrollToHeightEnabled && window.innerWidth > 768) {
           window.scrollTo({
             left: 0,
             top: document.body.scrollHeight || document.documentElement.scrollHeight,
