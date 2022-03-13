@@ -8,7 +8,7 @@
 
     <!--        for each user from list-->
     <v-row>
-      <v-col cols-md="2" colls-xs="6" v-for="collector in topCollectors" :key="collector.address" style="display: flex">
+      <v-col colls-md="2" colls-xs="6" v-for="collector in topCollectors" :key="collector.address" style="display: flex">
         <v-avatar style="margin: 5px !important;">
           <v-img src="/pfp/unknown.jpeg" @click="$router.push('/user/' + collector.address)" class="pointerOnHover"/>
         </v-avatar>

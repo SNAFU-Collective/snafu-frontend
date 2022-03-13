@@ -14,6 +14,15 @@
             v-if="isConnected"
         >
           {{ account | abbreviateAddress }}
+          <span class="px-3">|</span>
+          <button
+              type="button"
+              v-clipboard:copy="account"
+              v-clipboard:success="onCopy"
+              v-clipboard:error="onError"
+          >
+            <v-icon size="15px" class="px-1" color="rgb(0 0 0 / 58%)">mdi-clipboard-multiple</v-icon> Copy!
+          </button>
         </v-chip>
       </v-row>
 
@@ -131,6 +140,13 @@ export default {
     }
   },
   methods: {
+    onCopy: function (e) {
+      alert('You just copied the following text to the clipboard: ' + e.text)
+    },
+    onError: function (e) {
+      alert('Failed to copy the text to the clipboard')
+      console.log(e);
+    },
     openTransferNftModal() {
       if (!this.disableActions) {
         this.showModal = true
