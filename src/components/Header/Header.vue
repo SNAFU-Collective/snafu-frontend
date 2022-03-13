@@ -408,6 +408,7 @@ export default {
     justify-content: flex-end;
     font-weight: 500;
     letter-spacing: 2px;
+    white-space: nowrap;
   }
 
   .bm-item-list {
