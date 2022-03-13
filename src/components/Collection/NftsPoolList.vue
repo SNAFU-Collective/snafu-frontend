@@ -59,16 +59,16 @@ export default {
     async loadMore() {
       this.currentPage += 1
 
-      await setTimeout(() => {
-        //scroll down only on desktop
-        if (window.innerWidth > 768) {
-          window.scrollTo({
-            left: 0,
-            top: document.body.scrollHeight || document.documentElement.scrollHeight,
-            behavior: 'smooth',
-          })
-        }
-      }, 500)
+      // await setTimeout(() => {
+      //   //scroll down only on desktop
+      //   if (window.innerWidth > 768) {
+      //     window.scrollTo({
+      //       left: 0,
+      //       top: document.body.scrollHeight || document.documentElement.scrollHeight,
+      //       behavior: 'smooth',
+      //     })
+      //   }
+      // }, 500)
     },
     filter: function (tag) {
       this.currentPage = 1
