@@ -31,7 +31,7 @@
                   </v-btn>
                 </v-col>
               </v-row>
-              <img v-if="!metadata.animation_url" :src="'/nfts/'+nft.id+'/image'" style="max-width:500px; max-height: 500px"/>
+              <img v-if="!metadata.animation_url" :src="'/nfts/'+nft.id+'/image'"  class="fullscreenImage"/>
               <video controls loop v-else :src="metadata.animation_url" style="width: 100%"/>
             </v-card>
           </v-dialog>
@@ -205,4 +205,20 @@ export default {
   margin-top: 10px;
   white-space: break-spaces;
 }
+
+@media screen and (min-width: 768px) {
+  .fullscreenImage {
+    max-width: 500px;
+    max-height: 500px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .fullscreenImage {
+    max-width: 500px;
+    max-height: 350px;
+  }
+}
+
+
 </style>
