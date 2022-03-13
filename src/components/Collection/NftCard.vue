@@ -8,8 +8,8 @@
               width="600px"
               @input="v => v || pauseAllVideos()"
           >
-            <v-card>
-              <v-row>
+            <v-card style="text-align: center">
+              <v-row style="text-align: left">
                 <v-col cols="10">
                   <v-card-title>
                     <span class="truncateLong">{{ metadata.name }}</span>
@@ -31,7 +31,7 @@
                   </v-btn>
                 </v-col>
               </v-row>
-              <v-img v-if="!metadata.animation_url" :src="'/nfts/'+nft.id+'/image'"/>
+              <img v-if="!metadata.animation_url" :src="'/nfts/'+nft.id+'/image'" style="max-height: 550px"/>
               <video controls loop v-else :src="metadata.animation_url" style="width: 100%"/>
             </v-card>
           </v-dialog>
