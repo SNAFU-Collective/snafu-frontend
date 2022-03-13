@@ -396,7 +396,7 @@ export default {
     top: 0;
     transition: .5s;
     z-index: 1000;
-    opacity: 0.9;
+    opacity:1;
   }
 
   .bm-item-list > * {
