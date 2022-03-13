@@ -18,6 +18,16 @@
       "key": "Unlock",
       "trait_type": "Unlock",
       "value": "High-quality image"
+    },
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "Cliff Blank"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "cliffblank"
     }
   ],
   "id": "125",

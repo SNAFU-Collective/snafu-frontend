@@ -13,6 +13,16 @@
       "key": "Materials",
       "trait_type": "Materials",
       "value": "China on canvas"
+    },
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "Andrea Marchetti"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "andreamarchetti"
     }
   ],
   "id": "187",

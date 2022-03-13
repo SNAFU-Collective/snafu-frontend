@@ -8,6 +8,11 @@
       "key": "Artist",
       "trait_type": "Artist",
       "value": "Simone Marchetti"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "simonemarchetti"
     }
   ],
   "id": "229",

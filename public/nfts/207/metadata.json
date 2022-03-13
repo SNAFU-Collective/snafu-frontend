@@ -3,7 +3,18 @@
   "description": "Community Drop | Okki by snafumett",
   "image": "https://ipfs.infura.io/ipfs/QmQADPzgk2EyqT5M6MParUG9yoCmxPXwfTtZv5k1Y2Vdjs",
   "external_url": "https://xdai.unique.one/token2/0xED1eFC6EFCEAAB9F6d609feC89c9E675Bf1efB0a:207",
-  "attributes": [],
+  "attributes": [
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "snafumett"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "snafumett"
+    }
+  ],
   "id": "207",
   "editions": "1",
   "price": "950",

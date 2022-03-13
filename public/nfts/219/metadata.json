@@ -3,7 +3,18 @@
   "description": "Farming Edition - Christmas 2021 | Andrea Marchetti\n\n",
   "image": "https://ipfs.infura.io/ipfs/QmdDr5rANijmkt43sJZ3Diw4FtQ5wNgCktba8CZmrGWm4z",
   "external_url": "https://xdai.unique.one/token2/0xED1eFC6EFCEAAB9F6d609feC89c9E675Bf1efB0a:219",
-  "attributes": [],
+  "attributes": [
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "Andrea Marchetti"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "andreamarchetti"
+    }
+  ],
   "id": "219",
   "editions": "20",
   "price": "47.5",

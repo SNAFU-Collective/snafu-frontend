@@ -18,6 +18,16 @@
       "key": "Unlock",
       "trait_type": "Unlock",
       "value": "High resolution image"
+    },
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "Alessandro Nalli"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "alessandronalli"
     }
   ],
   "id": "108",

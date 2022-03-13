@@ -3,7 +3,18 @@
   "description": "Andrea Dionigi | Farming Edition",
   "image": "https://ipfs.infura.io/ipfs/QmZyuovH9aNpDWbUwXreV8P6hTnPwBsfsWsyrmKZTY5aBY",
   "external_url": "https://xdai.unique.one/token2/0xED1eFC6EFCEAAB9F6d609feC89c9E675Bf1efB0a:145",
-  "attributes": [],
+  "attributes": [
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "Andrea Dionigi"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "andreadionigi"
+    }
+  ],
   "id": "145",
   "editions": "25",
   "price": "38",

@@ -8,6 +8,16 @@
       "key": "Dimension",
       "trait_type": "Dimension",
       "value": "1080x1477"
+    },
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "Buda"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "buda"
     }
   ],
   "id": "70",

@@ -13,6 +13,16 @@
       "key": "Unlockable content",
       "trait_type": "Unlockable content",
       "value": "GIF Version"
+    },
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "Andrea Dionigi"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "andreadionigi"
     }
   ],
   "id": "89",

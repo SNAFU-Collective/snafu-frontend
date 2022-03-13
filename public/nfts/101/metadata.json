@@ -13,6 +13,16 @@
       "key": "Unlock",
       "trait_type": "Unlock",
       "value": "High resolution image"
+    },
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "Andrea Marchetti"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "andreamarchetti"
     }
   ],
   "id": "101",

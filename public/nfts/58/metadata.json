@@ -3,7 +3,18 @@
   "description": "@buda\n\nA whirlwind of human fears made even more frightening by the bright colors of the whirlpool that make everything paradoxical. The viewer would be tempted to enter it by challenging vertigo, but it is a risk, the choice is yours.",
   "image": "https://ipfs.infura.io/ipfs/QmUoghzvVXa95HJgaBg77hwayKDFRGaKb6Ze4T2K37XMCm",
   "external_url": "https://xdai.unique.one/token2/0xED1eFC6EFCEAAB9F6d609feC89c9E675Bf1efB0a:58",
-  "attributes": [],
+  "attributes": [
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "Buda"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "buda"
+    }
+  ],
   "id": "58",
   "editions": "4",
   "price": "237.5",

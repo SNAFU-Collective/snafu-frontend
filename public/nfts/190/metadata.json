@@ -13,6 +13,16 @@
       "key": "Materials",
       "trait_type": "Materials",
       "value": "Acrylic on canvas"
+    },
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "Emme"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "emme"
     }
   ],
   "id": "190",

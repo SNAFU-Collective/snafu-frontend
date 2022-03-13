@@ -8,6 +8,16 @@
       "key": "Dimension",
       "trait_type": "Dimension",
       "value": "3640x2685"
+    },
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "EmmE"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "emme"
     }
   ],
   "id": "67",

@@ -8,6 +8,16 @@
       "key": "Dimension",
       "trait_type": "Dimension",
       "value": "4096x2731"
+    },
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "Faranush"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "faranush"
     }
   ],
   "id": "73",

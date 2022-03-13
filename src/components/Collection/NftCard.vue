@@ -47,7 +47,17 @@
             }} of {{ metadata.editions }}</strong></span>
           <span v-else style="width: 40%; text-align: right"><strong>{{ metadata.editions }} Editions</strong></span>
         </v-row>
-        <v-row class="px-2 subtext">ID: {{ nft.id }}</v-row>
+        <v-row class="px-2 subtext">
+          <v-col cols="9" style="justify-content: left; padding-left: 0 !important;">
+            ID: {{ nft.id }}
+          </v-col>
+          <v-col cols="3" style=""  v-if="showArtist">
+            <!--  {{artist()}}-->
+            <v-avatar class="mr-2" size="25">
+              <v-img src="/pfp/unknown.jpeg" />
+            </v-avatar>
+          </v-col>
+        </v-row>
         <v-row class="px-2 subtext">
           <v-col cols="9" style="text-align: left; padding: 0;"  v-if="showPrice">Value:
             {{ (+metadata.price + +metadata.fee) | truncatePrice }} SNAFU
@@ -79,6 +89,7 @@
 import axios from "axios"
 import {mapFields} from "vuex-map-fields"
 import TransferSingleNFTModal from "../Transfer/TransferSingleNFTModal"
+import {find} from "lodash"
 
 export default {
   props: {
@@ -101,6 +112,10 @@ export default {
     showPrice: {
       type: Boolean,
       default: true,
+    },
+    showArtist: {
+      type: Boolean,
+      default: false,
     },
   },
   components: {
@@ -125,6 +140,10 @@ export default {
     },
   },
   methods: {
+    artist() {
+      let artist = find(this.metadata.attributes, {'key': 'artist-nick'})
+      return artist ? artist.value : ""
+    },
     pauseAllVideos() {
       let videoList = document.getElementsByTagName("video");
       for (let i = 0; i < videoList.length; i++) {

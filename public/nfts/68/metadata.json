@@ -8,6 +8,16 @@
       "key": "Dimension",
       "trait_type": "Dimension",
       "value": "2592x3854"
+    },
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "snafumett"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "snafumett"
     }
   ],
   "id": "68",

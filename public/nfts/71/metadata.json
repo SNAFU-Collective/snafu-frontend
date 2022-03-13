@@ -8,6 +8,16 @@
       "key": "Dimension",
       "trait_type": "Dimension",
       "value": "3958x5728"
+    },
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "Giorgia"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "giorgia"
     }
   ],
   "id": "71",

@@ -18,6 +18,16 @@
       "key": "Unlock",
       "trait_type": "Unlock",
       "value": "High resolution image"
+    },
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "Jasmine Bernardeschi"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "jasminebernardeschi"
     }
   ],
   "id": "113",

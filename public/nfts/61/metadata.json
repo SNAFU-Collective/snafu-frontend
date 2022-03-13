@@ -8,6 +8,16 @@
       "key": "Dimension",
       "trait_type": "Dimension",
       "value": "6016x4016"
+    },
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "Alessandro Nalli"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "alessandronalli"
     }
   ],
   "id": "61",

@@ -13,6 +13,16 @@
       "key": "Materials",
       "trait_type": "Materials",
       "value": "Pencil, tempera and gold leaf  on canvas board"
+    },
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "snafumett"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "snafumett"
     }
   ],
   "id": "195",

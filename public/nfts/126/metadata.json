@@ -13,6 +13,16 @@
       "key": "Framed",
       "trait_type": "Framed",
       "value": "Yes"
+    },
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "SNAFU"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "snafu"
     }
   ],
   "id": "126",

@@ -8,6 +8,16 @@
       "key": "Redeem",
       "trait_type": "Redeem",
       "value": "Autographed copy"
+    },
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "SNAFU"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "snafu"
     }
   ],
   "id": "129",

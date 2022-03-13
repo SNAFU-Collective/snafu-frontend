@@ -8,6 +8,16 @@
       "key": "Unlock",
       "trait_type": "Unlock",
       "value": "SNAFU Artbook #1"
+    },
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "SNAFU"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "snafu"
     }
   ],
   "id": "124",

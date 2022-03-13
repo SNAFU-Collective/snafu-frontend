@@ -3,7 +3,18 @@
   "description": "Ebby | Collection #2 Farming\n\nThe pride and independence of the female body in its minimal concept. A cry for emancipation, a slap in the face to those who see us as only a mere object of sexual desire.",
   "image": "https://ipfs.infura.io/ipfs/QmTyiiRibeXH3dcHrVeqpsXEjgPfrdce3mpp3hDFqRVmBF",
   "external_url": "https://xdai.unique.one/token2/0xED1eFC6EFCEAAB9F6d609feC89c9E675Bf1efB0a:120",
-  "attributes": [],
+  "attributes": [
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "Ebby"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "ebby"
+    }
+  ],
   "id": "120",
   "editions": "5",
   "price": "190",

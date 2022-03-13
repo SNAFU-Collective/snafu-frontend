@@ -13,6 +13,16 @@
       "key": "Size",
       "trait_type": "Size",
       "value": "2.3 MB"
+    },
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "Jasmine"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "jasmine"
     }
   ],
   "id": "80",

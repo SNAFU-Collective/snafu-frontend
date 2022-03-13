@@ -3,7 +3,18 @@
   "description": "Silvia Righetti | Farming Edition",
   "image": "https://ipfs.infura.io/ipfs/QmSATiJUTN9m7DQybKqSzcQKDBfekNG5peLqVeAVCq3Beb",
   "external_url": "https://xdai.unique.one/token2/0xED1eFC6EFCEAAB9F6d609feC89c9E675Bf1efB0a:147",
-  "attributes": [],
+  "attributes": [
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "Silvia Righetti"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "silviarighetti"
+    }
+  ],
   "id": "147",
   "editions": "25",
   "price": "38",

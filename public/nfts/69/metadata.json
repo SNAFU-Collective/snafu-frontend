@@ -8,6 +8,16 @@
       "key": "Dimension",
       "trait_type": "Dimension",
       "value": "2058x2957"
+    },
+    {
+      "key": "Artist",
+      "trait_type": "Artist",
+      "value": "Elisa"
+    },
+    {
+      "key": "artist-nick",
+      "trait_type": "Artist Nickname",
+      "value": "elisa"
     }
   ],
   "id": "69",
