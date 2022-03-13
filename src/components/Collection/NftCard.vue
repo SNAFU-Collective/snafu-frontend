@@ -9,7 +9,7 @@
               @input="v => v || pauseAllVideos()"
           >
             <v-card style="text-align: center">
-              <v-row style="text-align: left">
+              <v-row style="text-align: left" class="pa-2">
                 <v-col cols="10">
                   <v-card-title>
                     <span class="truncateLong">{{ metadata.name }}</span>
