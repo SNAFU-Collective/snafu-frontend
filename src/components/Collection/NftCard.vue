@@ -31,7 +31,7 @@
                   </v-btn>
                 </v-col>
               </v-row>
-              <img v-if="!metadata.animation_url" :src="'/nfts/'+nft.id+'/image'" style="max-height: 500px"/>
+              <img v-if="!metadata.animation_url" :src="'/nfts/'+nft.id+'/image'" style="max-width:500px; max-height: 500px"/>
               <video controls loop v-else :src="metadata.animation_url" style="width: 100%"/>
             </v-card>
           </v-dialog>
