@@ -215,7 +215,7 @@ export default {
 
 @media screen and (max-width: 768px) {
   .fullscreenImage {
-    max-width: 500px;
+    max-width: 300px;
     max-height: 300px;
   }
 }
