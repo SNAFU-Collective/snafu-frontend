@@ -21,7 +21,7 @@
               v-clipboard:success="onCopy"
               v-clipboard:error="onError"
           >
-            <v-icon size="15px" class="px-1" color="rgb(0 0 0 / 58%)">mdi-clipboard-multiple</v-icon> Copy!
+            <v-icon size="15px" class="px-1" color="rgb(0 0 0 / 58%)">mdi-clipboard-multiple</v-icon> Copy
           </button>
         </v-chip>
       </v-row>
