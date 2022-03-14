@@ -7,7 +7,7 @@
       </v-col>
     </v-row>
     <v-row justify="center" class="mt-10">
-      <Explore :shuffle="false" />
+      <Explore :shuffle="false"  :scrollToHeightEnabled="false"/>
     </v-row>
   </v-container>
 </template>
