@@ -199,6 +199,7 @@ export default {
 }
 
 .nftDescription {
+  text-align: justify;
   font-size: 13px;
   line-height: 14px;
   font-family: 'Barlow', serif;
