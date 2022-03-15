@@ -6,7 +6,6 @@ import prizeContract from "./modules/prizeContract"
 import transferNFTs from "./modules/transferNFTs"
 import farming from "./modules/farming"
 import leaderboard from "./modules/leaderboard"
-
 import { getField, updateField } from 'vuex-map-fields';
 
 Vue.use(Vuex)

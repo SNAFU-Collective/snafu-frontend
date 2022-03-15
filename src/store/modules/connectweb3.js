@@ -4,9 +4,7 @@ import SNAFU20 from "../../assets/abis/SNAFU20Pair.json"
 import SNAFU721 from "../../assets/abis/SNAFU721.json"
 import FARM from "../../assets/abis/UNIFTY_FARM.json"
 import SNAFUXDAILP from "../../assets/abis/SNAFUXDAILP.json"
-
 import detectEthereumProvider from '@metamask/detect-provider';
-
 import {
     snafu20Address,
     snafuNftAddress,
@@ -16,8 +14,8 @@ import {
     xDaiSnafuLiquidityAddress,
     pSnafuAddress, rareFarmAddress, ultraRareFarmAddress,
 } from "../../utils/constants"
-
 import {getField, updateField} from 'vuex-map-fields'
+import cookie from 'js-cookie'
 
 export default {
     namespaced: true,
@@ -181,9 +179,28 @@ export default {
         },
         disconnectWallet: async function (context) {
             await this._vm.$web3Modal.clearCachedProvider()
+            context.dispatch("removeAllCookies")
+
             context.commit("disconnectWallet")
             context.commit("nftContract/resetSelectedNft", null, {root: true})
             context.commit("setConnected", false)
+        },
+        removeAllCookies: () => {
+            let names = cookie.get()
+            const hostParts = location.host.split('.')
+            const domains = hostParts.reduce(
+                (acc, current, index) => [
+                    ...acc,
+                    hostParts.slice(index).join('.'),
+                ],
+                []
+            )
+
+            if (typeof names === 'object' && names !== null) {
+                Object.keys(names).forEach(key => {
+                    domains.forEach((domain) => cookie.remove(key, { domain }))
+                });
+            }
         },
         startWeb3: async function (context) {
             let web3 = new ethers.providers.JsonRpcProvider(xdaiRPC)
