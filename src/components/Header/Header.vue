@@ -10,7 +10,7 @@
       <v-col cols="8" offset="1" id="subtitle">
         <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
         <router-link class="backHome" :to="{ name: 'Wallet'}">MY PROFILE</router-link>
-        <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
+        <router-link class="backHome" :to="{ name: 'Pool'}">MINT</router-link>
         <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
         <router-link class="backHome" :to="{ name: 'Community'}">COMMUNITY</router-link>
         <router-link class="backHome" :to="{ name: 'Catalog'}">CATALOG</router-link>
@@ -37,7 +37,7 @@
           <wallet-status class="mt-5 pb-2 walletHeader"/>
           <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
           <router-link class="backHome" :to="{ name: 'Wallet'}">MY PROFILE</router-link>
-          <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
+          <router-link class="backHome" :to="{ name: 'Pool'}">MINT</router-link>
           <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
           <router-link class="backHome" :to="{ name: 'Community'}">COMMUNITY</router-link>
           <router-link class="backHome" :to="{ name: 'Catalog'}">CATALOG</router-link>
