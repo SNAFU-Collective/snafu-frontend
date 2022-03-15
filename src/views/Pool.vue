@@ -8,7 +8,7 @@
 <!--        </v-btn>-->
 <!--      </v-col>-->
 <!--    </v-row>-->
-    <v-row id="mainRow" justify="center" style="display: grid; padding-top: 30px">
+    <v-row id="mainRow" justify="center" style="display: grid; padding-top: 100px">
       <swap-card />
     </v-row>
     <v-row justify="center" class="pt-10">
