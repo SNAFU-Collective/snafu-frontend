@@ -2,9 +2,9 @@
   <v-dialog v-model="showModal" scrollable max-width="500px">
     <v-card color="#F5F5F5">
       <v-card-title>
-        <v-row no-gutters
-          ><v-col cols="11" style="word-break: break-word"> Select the SNAFU Collective’s NFT </v-col>
-          <v-col cols="1"> <v-icon small class="pl-3" @click="closeModal"> mdi-close </v-icon> </v-col>
+        <v-row >
+          <v-col cols="11" style="word-break: break-word"> Select the NFT to mint </v-col>
+          <v-col cols="1"> <v-icon small class="pr-3" @click="closeModal"> mdi-close </v-icon> </v-col>
         </v-row>
         <v-row no-gutters class="pt-5">
           <v-text-field
