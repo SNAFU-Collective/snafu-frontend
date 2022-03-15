@@ -42,9 +42,7 @@
 
         <v-row style="display: flex; padding-top: 10px; padding-bottom: 5px" class="px-2">
           <span style="width: 60%; text-align: left" class="truncate"><strong>{{ metadata.name }}</strong></span>
-          <span v-if="nft.editions" style="width: 40%; text-align: right"><strong>{{
-              nft.editions
-            }} of {{ metadata.editions }}</strong></span>
+          <span v-if="nft.editions" style="width: 40%; text-align: right"><strong>{{nft.editions}} of {{ metadata.editions }}</strong></span>
           <span v-else style="width: 40%; text-align: right"><strong>{{ metadata.editions }} Editions</strong></span>
         </v-row>
         <v-row class="px-2 subtext">ID: {{ nft.id }}</v-row>
@@ -53,8 +51,8 @@
             {{ (+metadata.price + +metadata.fee) | truncatePrice }} SNAFU
           </v-col>
 
-          <v-col cols="3" v-if="showBuyButton" style="position:absolute; left: 71%; bottom: -5px;">
-            <v-btn small outlined color="black" style="font-weight: 600;" @click="prepareCheckout"> BUY</v-btn>
+          <v-col cols="3" v-if="showBuyButton" style="position:absolute; left: 68%; bottom: -5px;">
+            <v-btn small outlined color="black" style="font-weight: 600;" @click="prepareCheckout"> MINT</v-btn>
           </v-col>
 
           <v-col cols="3" v-if="showTransferBtn" style="position:absolute; left: 75%; bottom: -5px;">

@@ -59,7 +59,7 @@
                   class="ml-2"
                   @click="goTo('https://app.honeyswap.org/#/swap?inputCurrency=0x27b9c2bd4baea18abdf49169054c1c1c12af9862&outputCurrency=0xe91d153e0b41518a2ce8dd3d7944fa863463a97d&chainId=100')"
               >
-                Sell <v-icon class="ml-1" style="font-size: 1em; color:black"> mdi-open-in-new </v-icon></v-btn>
+                Burn <v-icon class="ml-1" style="font-size: 1em; color:black"> mdi-open-in-new </v-icon></v-btn>
             </v-row>
 
             <v-row justify="end" v-else-if="item.id === 'xdai'">

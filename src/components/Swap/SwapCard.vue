@@ -46,7 +46,7 @@
     <v-row no-gutters justify="center" align="end" class="rounded-0">
       <v-btn
         width="350"
-        height="60"
+        height="52"
         color="black"
         class="white--text rounded-0 rounded-b-lg"
         @click="startSwap"
@@ -160,11 +160,11 @@ export default {
       }
 
       if (this.withdrawFromPool) {
-        return "Buy"
+        return "Mint"
       }
 
       if (!this.withdrawFromPool) {
-        return "Sell"
+        return "Burn"
       }
       return "Swap";
     },
