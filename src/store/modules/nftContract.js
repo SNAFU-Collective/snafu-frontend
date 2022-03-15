@@ -2,6 +2,7 @@ import { getField, updateField } from 'vuex-map-fields';
 import { snafu20Address } from "../../utils/constants"
 import { ethers } from "ethers";
 import Vue from "vue"
+import axios from "axios"
 //Block when the collection was deployed
 const minBlock = 14958798;
 
@@ -9,6 +10,7 @@ export default {
     namespaced: true,
     state: {
         allNFTs: [],
+        allNFTsWithMetadata: [],
 
         selectedNft: null,
         selectedNftMetadata: null,
@@ -33,7 +35,8 @@ export default {
             state.selectedNft = null;
             state.selectedNftMetadata = null;
             state.selectedQuantity = 0;
-        }
+        },
+        setAllNftsWithMetadata: (state, payload) =>  state.allNFTsWithMetadata = payload,
     },
     actions: {
         async getNftsFromUser(context) {
@@ -142,6 +145,17 @@ export default {
             nfts = nfts.filter((nft) => !burnedIds.includes(nft.id))
             
             context.commit("setAllNfts", nfts);
-        }
+            context.dispatch("getAllNftsWithMetadata")
+        },
+        async getAllNftsWithMetadata(context) {
+            let allNFTsMetadata = []
+            for (let nft of context.state.allNFTs) {
+                let res = await axios.get("./nfts/" + nft.id + "/metadata.json")
+                allNFTsMetadata.push(res.data)
+            }
+
+            console.log(allNFTsMetadata)
+            context.commit("setAllNftsWithMetadata", allNFTsMetadata);
+        },
     }
 }

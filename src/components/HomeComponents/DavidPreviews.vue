@@ -11,6 +11,18 @@
                 width="300px"
                 height="300px"
             >
+              <template v-slot:placeholder>
+                <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                >
+                  <v-progress-circular
+                      indeterminate
+                      color="#303030"
+                  ></v-progress-circular>
+                </v-row>
+              </template>
             </v-img>
             <v-img
                 v-else
@@ -18,6 +30,18 @@
                 width="300px"
                 height="300px"
             >
+              <template v-slot:placeholder>
+                <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                >
+                  <v-progress-circular
+                      indeterminate
+                      color="#303030"
+                  ></v-progress-circular>
+                </v-row>
+              </template>
             </v-img>
           </v-hover>
         </v-card-text>
@@ -32,6 +56,18 @@
                 width="300px"
                 height="300px"
             >
+              <template v-slot:placeholder>
+                <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                >
+                  <v-progress-circular
+                      indeterminate
+                      color="#303030"
+                  ></v-progress-circular>
+                </v-row>
+              </template>
             </v-img>
             <v-img
                 v-else
@@ -39,6 +75,18 @@
                 width="300px"
                 height="300px"
             >
+              <template v-slot:placeholder>
+                <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                >
+                  <v-progress-circular
+                      indeterminate
+                      color="#303030"
+                  ></v-progress-circular>
+                </v-row>
+              </template>
             </v-img>
           </v-hover>
         </v-card-text>
@@ -53,6 +101,18 @@
                 width="300px"
                 height="300px"
             >
+              <template v-slot:placeholder>
+                <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                >
+                  <v-progress-circular
+                      indeterminate
+                      color="#303030"
+                  ></v-progress-circular>
+                </v-row>
+              </template>
             </v-img>
             <v-img
                 v-else
@@ -60,6 +120,18 @@
                 width="300px"
                 height="300px"
             >
+              <template v-slot:placeholder>
+                <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                >
+                  <v-progress-circular
+                      indeterminate
+                      color="#303030"
+                  ></v-progress-circular>
+                </v-row>
+              </template>
             </v-img>
           </v-hover>
         </v-card-text>

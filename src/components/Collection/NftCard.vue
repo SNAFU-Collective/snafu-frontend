@@ -16,10 +16,10 @@
                   </v-card-title>
                   <v-card-subtitle>
                     <pre class="nftDescription">{{ metadata.description }}</pre>
+                    <pre class="nftDescription"><b>Artist</b>: <a :href="artistNickname()">{{artistName()}}</a></pre>
                   </v-card-subtitle>
                   <v-card-subtitle style="margin-top: -20px">
-                    <a :href="metadata.external_url" target="_blank"
-                       style="color: rgba(0, 0, 0, 0.6) !important;">Unique Marketplace <v-icon style="font-size: 0.7em;"> mdi-arrow-top-right </v-icon></a>
+                    <a href="" style="color: rgba(0, 0, 0, 0.6) !important;">View details</a>
                   </v-card-subtitle>
                 </v-col>
                 <v-col cols="2" style="margin-top: 15px; text-align: right; padding-right: 25px;">
@@ -63,7 +63,6 @@
             ID: {{ nft.id }}
           </v-col>
           <v-col cols="3" style=""  v-if="showArtist">
-            <!--  {{artist()}}-->
             <v-avatar class="mr-2" size="25">
               <v-img src="/pfp/unknown.jpeg" />
             </v-avatar>
@@ -151,8 +150,18 @@ export default {
     },
   },
   methods: {
-    artist() {
+    attributes() {
+      let arr = {};
+
+      arr = this.metadata.attributes.map((event) => ({ ...arr, [event.key]: event.value }));
+      return arr
+    },
+    artistNickname() {
       let artist = find(this.metadata.attributes, {'key': 'artist-nick'})
+      return artist ? artist.value : ""
+    },
+    artistName() {
+      let artist = find(this.metadata.attributes, {'key': 'Artist'})
       return artist ? artist.value : ""
     },
     pauseAllVideos() {
