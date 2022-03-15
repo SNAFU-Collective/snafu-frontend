@@ -209,7 +209,7 @@ export default {
     position: absolute;
     top: 45px;
     display: inline-table;
-    z-index: 11111;
+    z-index: 1;
     left: 80px;
     width: fit-content;
   }
