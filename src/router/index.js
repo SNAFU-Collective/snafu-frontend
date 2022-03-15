@@ -108,6 +108,16 @@ const routes = [
         component: () => import('../views/XPNetworkBridge.vue'),
         props: true,
     },
+    {
+        path: '/artist/:username',
+        name: 'Artist',
+        meta: {
+            title: 'Artist | SNAFU',
+            headerSubtitle: 'Artist',
+        },
+        component: () => import('../views/Artist.vue'),
+        props: true,
+    },
 ]
 
 const router = new VueRouter({

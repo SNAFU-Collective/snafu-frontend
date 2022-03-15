@@ -16,7 +16,7 @@
                   </v-card-title>
                   <v-card-subtitle>
                     <pre class="nftDescription">{{ metadata.description }}</pre>
-                    <pre class="nftDescription"><b>Artist</b>: <a :href="artistNickname()">{{artistName()}}</a></pre>
+                    <pre class="nftDescription"><b>Artist</b>:  <a @click="goToArtistPage()">{{artistName()}} {{artistNickname()}}</a></pre>
                   </v-card-subtitle>
                   <v-card-subtitle style="margin-top: -20px">
                     <a href="" style="color: rgba(0, 0, 0, 0.6) !important;">View details</a>
@@ -150,6 +150,10 @@ export default {
     },
   },
   methods: {
+    goToArtistPage() {
+      console.log('goToArtistPage', this.artistNickname())
+      this.$router.push({path: `artist/` + this.artistNickname()})
+    },
     attributes() {
       let arr = {};
 
