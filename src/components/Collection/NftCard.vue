@@ -36,7 +36,20 @@
             </v-card>
           </v-dialog>
           <a @click="toggle" >
-            <v-img  :src="'/nfts/'+nft.id+'/image'" :height="cardSize || 250" :width="cardSize || 250"/>
+            <v-img  :src="'/nfts/'+nft.id+'/image'" :height="cardSize || 250" :width="cardSize || 250">
+              <template v-slot:placeholder>
+                <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                >
+                  <v-progress-circular
+                      indeterminate
+                      color="#303030"
+                  ></v-progress-circular>
+                </v-row>
+              </template>
+            </v-img>
           </a>
         </v-row>
 
