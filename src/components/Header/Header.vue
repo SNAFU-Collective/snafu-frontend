@@ -2,16 +2,15 @@
   <div class="headerMain">
     <div id="desktopHeader">
       <v-col cols="2" id="pinnedLeftHeader">
-        <div id="transformedText" style="justify-content: center; display: flex">
-          <router-link :to="{ name: 'Home'}" id="snafuText">SNAFU</router-link>
+        <div style="justify-content: center; display: flex; width: fit-content">
+          <router-link :to="{ name: 'Home'}" id="snafuText"> <img src="logo-vertical.png" alt="logo-SNAFU.png"></router-link>
         </div>
-        <img src="logo.png" alt="logo-SNAFU.png" id="logo">
       </v-col>
 
       <v-col cols="8" offset="1" id="subtitle">
         <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
         <router-link class="backHome" :to="{ name: 'Wallet'}">MY PROFILE</router-link>
-        <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
+        <router-link class="backHome" :to="{ name: 'Pool'}">MINT</router-link>
         <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
         <router-link class="backHome" :to="{ name: 'Community'}">COMMUNITY</router-link>
         <router-link class="backHome" :to="{ name: 'Catalog'}">CATALOG</router-link>
@@ -39,7 +38,7 @@
           <wallet-status class="mt-5 pb-2 walletHeader"/>
           <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
           <router-link class="backHome" :to="{ name: 'Wallet'}">MY PROFILE</router-link>
-          <router-link class="backHome" :to="{ name: 'Pool'}">POOL</router-link>
+          <router-link class="backHome" :to="{ name: 'Pool'}">MINT</router-link>
           <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
           <router-link class="backHome" :to="{ name: 'Community'}">COMMUNITY</router-link>
           <router-link class="backHome" :to="{ name: 'Catalog'}">CATALOG</router-link>
@@ -209,19 +208,11 @@ export default {
 
   #pinnedLeftHeader {
     position: absolute;
-    top: 110px;
+    top: 45px;
     display: inline-table;
-    z-index: 11111;
-    left: -15px
-  }
-
-  #snafuText {
-    text-decoration: unset;
-    font-size: 52px;
-    font-weight: bold;
-    color: #303030;
-    letter-spacing: 0.05em;
-    line-height: 1.2em;
+    z-index: 1;
+    left: 80px;
+    width: fit-content;
   }
 
   #logo {

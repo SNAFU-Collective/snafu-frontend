@@ -7,9 +7,14 @@
     style="max-width: 350px"
   >
     <v-row no-gutters class="text-caption pa-3 pb-0">
-      <v-col cols="11" class="text-caption greyColor px-2"> <span style="font-size: 10px">FROM</span> </v-col>
+      <v-col cols="8" class="text-caption greyColor px-2"> <span style="font-size: 10px">FROM</span> </v-col>
+      <v-col cols="4" class="text-caption greyColor px-2" style="text-align: end;">
+        <span style="font-size: 8px">
+          <a href="https://info.honeyswap.org/#/pair/0xd6c8ad00302ca94952e7746d956e8b45b0ea90e3" target="_blank" class="link" style="font-decoration: underline">BUY $SNAFU</a>
+        </span>
+      </v-col>
     </v-row>
-    <v-row no-gutters justify="center" v-if="!withdrawFromPool">
+    <v-row class="mt-1" no-gutters justify="center" v-if="!withdrawFromPool">
       <nft-input
         class="mx-3"
         :disableActions="disableActions"
@@ -46,7 +51,7 @@
     <v-row no-gutters justify="center" align="end" class="rounded-0">
       <v-btn
         width="350"
-        height="60"
+        height="52"
         color="black"
         class="white--text rounded-0 rounded-b-lg"
         @click="startSwap"
@@ -160,11 +165,11 @@ export default {
       }
 
       if (this.withdrawFromPool) {
-        return "Buy"
+        return "Mint"
       }
 
       if (!this.withdrawFromPool) {
-        return "Sell"
+        return "Burn"
       }
       return "Swap";
     },

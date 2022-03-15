@@ -36,15 +36,26 @@
             </v-card>
           </v-dialog>
           <a @click="toggle" >
-            <v-img  :src="'/nfts/'+nft.id+'/image'" :height="cardSize || 250" :width="cardSize || 250"/>
+            <v-img  :src="'/nfts/'+nft.id+'/image'" :height="cardSize || 250" :width="cardSize || 250">
+              <template v-slot:placeholder>
+                <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                >
+                  <v-progress-circular
+                      indeterminate
+                      color="#303030"
+                  ></v-progress-circular>
+                </v-row>
+              </template>
+            </v-img>
           </a>
         </v-row>
 
         <v-row style="display: flex; padding-top: 10px; padding-bottom: 5px" class="px-2">
           <span style="width: 60%; text-align: left" class="truncate"><strong>{{ metadata.name }}</strong></span>
-          <span v-if="nft.editions" style="width: 40%; text-align: right"><strong>{{
-              nft.editions
-            }} of {{ metadata.editions }}</strong></span>
+          <span v-if="nft.editions" style="width: 40%; text-align: right"><strong>{{nft.editions}} of {{ metadata.editions }}</strong></span>
           <span v-else style="width: 40%; text-align: right"><strong>{{ metadata.editions }} Editions</strong></span>
         </v-row>
         <v-row class="px-2 subtext">
@@ -59,12 +70,12 @@
           </v-col>
         </v-row>
         <v-row class="px-2 subtext">
-          <v-col cols="9" style="text-align: left; padding: 0;"  v-if="showPrice">Value:
+          <v-col cols="9" style="text-align: left; padding: 0;"  v-if="showPrice">Price:
             {{ (+metadata.price + +metadata.fee) | truncatePrice }} SNAFU
           </v-col>
 
-          <v-col cols="3" v-if="showBuyButton" style="position:absolute; left: 71%; bottom: -5px;">
-            <v-btn small outlined color="black" style="font-weight: 600;" @click="prepareCheckout"> BUY</v-btn>
+          <v-col cols="3" v-if="showBuyButton" style="position:absolute; left: 68%; bottom: -5px;">
+            <v-btn small outlined color="black" style="font-weight: 600;" @click="prepareCheckout"> MINT</v-btn>
           </v-col>
 
           <v-col cols="3" v-if="showTransferBtn" style="position:absolute; left: 75%; bottom: -5px;">
@@ -218,6 +229,7 @@ export default {
 }
 
 .nftDescription {
+  text-align: justify;
   font-size: 13px;
   line-height: 14px;
   font-family: 'Barlow', serif;

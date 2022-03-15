@@ -1,14 +1,14 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col cols-md="12" colls-xs="12" class="topTextPool px-15" style="text-align: center; color: #303030d4">
-        <p class="h2">Inside this <b>pool</b> you will find <b>the best</b> trade opportunities by buying SNAFU NFTs at their <b>guaranteed minimum floor price</b> in $SNAFU.</p>
-        <v-btn text class="font-weight-thin" @click="goTo('https://www.info.nftsnafu.org/swap-protocol')">
-          Learn more
-        </v-btn>
-      </v-col>
-    </v-row>
-    <v-row id="mainRow" justify="center" style="display: grid; padding-top: 30px">
+<!--    <v-row>-->
+<!--      <v-col cols-md="12" colls-xs="12" class="topTextPool px-15" style="text-align: center; color: #303030d4">-->
+<!--        <p class="h2" style="text-align: justify">Inside this <b>pool</b> you will find <b>the best</b> trade opportunities by buying SNAFU NFTs at their <b>guaranteed minimum floor price</b> in $SNAFU.</p>-->
+<!--        <v-btn text class="font-weight-thin" @click="goTo('https://www.info.nftsnafu.org/swap-protocol')">-->
+<!--          Learn more-->
+<!--        </v-btn>-->
+<!--      </v-col>-->
+<!--    </v-row>-->
+    <v-row id="mainRow" justify="center" style="display: grid; padding-top: 100px">
       <swap-card />
     </v-row>
     <v-row justify="center" class="pt-10">
