@@ -14,7 +14,7 @@
         <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
         <router-link class="backHome" :to="{ name: 'Community'}">COMMUNITY</router-link>
         <router-link class="backHome" :to="{ name: 'Catalog'}">CATALOG</router-link>
-        <router-link class="backHome" :to="{ name: 'Manifest'}">MANIFEST</router-link>
+<!--        <router-link class="backHome" :to="{ name: 'Manifest'}">MANIFEST</router-link>-->
       </v-col>
 
       <v-col cols="2" style="display: inline-flex;align-items: center;text-decoration: none !important; color: #303030">
@@ -41,7 +41,7 @@
           <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
           <router-link class="backHome" :to="{ name: 'Community'}">COMMUNITY</router-link>
           <router-link class="backHome" :to="{ name: 'Catalog'}">CATALOG</router-link>
-          <router-link class="backHome" :to="{ name: 'Manifest'}">MANIFEST</router-link>
+<!--          <router-link class="backHome" :to="{ name: 'Manifest'}">MANIFEST</router-link>-->
 <!--          <a class="backHome" @click="openBuySnafuModal()">BUY SNAFU <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
 <!--          <a class="backHome" @click="openVoteModal()">VOTE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
 <!--&lt;!&ndash;          <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>&ndash;&gt;-->
