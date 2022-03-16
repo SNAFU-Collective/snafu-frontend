@@ -3,6 +3,8 @@
     <v-row class="mt-15">
       <v-col cols-md="12" colls-xs="12" class="topTextPool px-15" style="text-align: center; color: #303030d4">
         <b class="h2 mt-15">Welcome! <br> Connect your wallet to access your NFTs.</b>
+        <br/>
+        <span class="h3 mt-15">Connecting your wallet is like “logging in” to Web3. Select your wallet from the options to get started.</span>
         <wallet-status class="mt-15 pb-2 walletHeader" style="justify-content: center"/>
       </v-col>
     </v-row>
