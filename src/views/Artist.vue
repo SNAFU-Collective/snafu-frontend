@@ -1,58 +1,96 @@
 <template>
-<div></div>
+  <v-container>
+    <div class="allNFTsContainer" style="padding-top: 20px;">
+      <!--      <v-row justify="center" class="backBtnRow">-->
+      <!--        <router-link class="backHome" :to="{ name: 'Leaderboard'}" style="display: flex">-->
+      <!--          <v-icon class="backIcon">mdi-arrow-left</v-icon>  BACK-->
+      <!--        </router-link>-->
+      <!--      </v-row>-->
+      <v-row justify="center" class="pt-15" style="display: block; text-align: center">
+        <v-row justify="center">
+          <v-avatar left style="width: 200px !important; height: 200px !important;">
+            <v-img src="/pfp/unknown.jpeg"/>
+          </v-avatar>
+        </v-row>
+        <v-row justify="center" style=" margin-top: 10px">
+          <h3 >{{$route.params.address}}</h3>
+        </v-row>
+        <v-row justify="center" style=" margin-top: 25px">
+          <v-btn color="blue" style="color:#fff;" @click="chatWithOwner">Chat with artist <v-icon class="ml-2">mdi-chat</v-icon></v-btn>
+        </v-row>
+
+      </v-row>
+      <v-row justify="center">
+        <v-row  v-if="userNfts" class="pt-15 filters-row" style="min-width: 98%;max-width: 98%">
+          <v-col cols="3" style="display: flex">
+            <h4 style="padding-top: 6px;padding-left: 10px;">Collection: {{ filteredGallery ? filteredGallery.length : '0' }} NFTs</h4>
+          </v-col>
+          <v-col cols="9" style="text-align: right;">
+            <v-btn plain v-on:click="filter('all')" class="filter"
+                   :class="currentTag === 'all' ? 'currentTag' : ''">All
+            </v-btn>
+            <v-btn v-for="category in extractedFilters" :key="category" plain v-on:click="filter(category)"
+                   class="filter"
+                   :class="currentTag === category ? 'currentTag' : ''">{{ category }}
+            </v-btn>
+          </v-col>
+        </v-row>
+        <v-row>
+          <NftCard :showPrice="false" style="margin-top: 50px !important;" :cardSize=200 v-for="nft in paginatedNFTs" :key="nft.id"
+                   :nft="nft" class="ma-1"/>
+        </v-row>
+
+        <v-row justify="center" class="pb-15 pt-15">
+          <h3 v-if="filteredGallery && filteredGallery.length === 0">No NFT available</h3>
+          <v-btn medium dark @click="loadMore" v-if="filteredGallery && currentPage * maxPerPage < filteredGallery.length"> LOAD MORE
+          </v-btn>
+        </v-row>
+      </v-row>
+      <v-row v-if="nftToFetch" justify="center" class="my-3" >
+        <v-progress-circular
+            size="40"
+            indeterminate
+            color="black"
+            style="margin-top: 80px"
+        >
+          <h3 style="padding-top: 150px;white-space: pre;">Loading Creations</h3>
+        </v-progress-circular>
+      </v-row>
+      <div v-else-if="nftsToSelect.length === 0" class="text-body-2 my-5">
+        No SNAFU NFTs found on this profile.
+      </div>
+    </div>
+  </v-container>
 </template>
 
 <script>
-import CollectionInfo from '../components/Collection/CollectionInfo.vue'
-import Login from '../components/Common/Login.vue'
 import {mapActions, mapState} from "vuex"
-import WalletStatus from "../components/Wallet/WalletStatus"
-import Assets from '../components/Wallet/Assets.vue'
-import {mapFields} from "vuex-map-fields"
 import NftCard from "../components/Collection/NftCard.vue"
-import Claim from "./Claim.vue"
-import ids from "../utils/ids"
+import ids from "../utils/ids.json"
+import {mapFields} from "vuex-map-fields"
 
 export default {
   components: {
-    // Assets,
-    // NftCard,
-    // Claim,
-    // Login
-    // CollectionInfo
+    NftCard,
   },
   data() {
     return {
-      showModal: false,
       currentPage: 1,
       maxPerPage: 10,
       showReadMore: true,
       currentTag: 'all',
       allNFTs: ids,
-      tab: null,
-      items: [
-        {tab: 'My Collection', id: 1},
-        {tab: 'Claim', id: 2},
-        {tab: 'Wallet', id: 3},
-      ],
+      userRank: 0,
+      userPoints: 0,
     }
   },
   methods: {
-    onCopy: function (e) {
-      alert('You just copied the following text to the clipboard: ' + e.text)
+    chatWithOwner() {
+      let url = 'https://chat.blockscan.com/index?a=' + this.$route.params.username
+      window.open(url, '_blank')
     },
-    onError: function (e) {
-      alert('Failed to copy the text to the clipboard')
-      console.log(e);
-    },
-    openTransferNftModal() {
-      if (!this.disableActions) {
-        this.showModal = true
-      }
-    },
-    openChat() {
-      window.open('https://chat.blockscan.com/index', '_blank')
-    },
+    ...mapActions("nftContract", ["getNftsByAddress"]),
+    ...mapActions("leaderboard", ["getLeaderboard", "getUserRank", "getUserTotalPoints"]),
     async loadMore() {
       this.currentPage += 1
 
@@ -85,20 +123,36 @@ export default {
       return my_array
     },
   },
+  mounted(){
+    this.getNftsByAddress(this.$route.params.address)
+  },
+  async beforeMount() {
+    await this.getLeaderboard()
+    this.userRank = await this.getUserRank(this.$route.params.address)
+    this.userPoints = await this.getUserTotalPoints(this.$route.params.address)
+  },
   computed: {
-    ...mapFields("connectweb3", ["account", "isConnected"]),
+    ...mapFields("leaderboard", ["leaderboard", "lastUpdate"]),
     ...mapState("nftContract", {
       nfts(state) {
-        return state[this.account]
+        return state[this.$route.params.address]
       },
       nftToFetch(state) {
-        return state[this.account] == undefined
+        return []
+        // return state[this.$route.params.address] == undefined
       },
     }),
     userNfts() {
-      return this.nfts
+      return []
+      // return this.nfts
+    },
+    nftsToSelect() {
+      return this.filteredGallery
     },
     paginatedNFTs() {
+      if (!this.filteredGallery)
+        return null
+
       return this.filteredGallery.slice(0, this.currentPage * this.maxPerPage)
     },
     filteredGallery: function () {
@@ -122,12 +176,10 @@ export default {
       const nfts = this.toArray(this.allNFTs)
 
       nfts.forEach(function (val, index, theArray) {
-        if (userNfts !== undefined) {
-          userNfts.forEach((nft) => {
-            if (val.includes(parseInt(nft.id)) && !filters.includes(val.key))
-              filters.push(val.key)
-          })
-        }
+        userNfts.forEach((nft) => {
+          if (val.includes(parseInt(nft.id)) && !filters.includes(val.key))
+            filters.push(val.key)
+        })
       })
 
       return filters
@@ -137,42 +189,38 @@ export default {
 </script>
 
 <style>
-@media screen and (max-width: 768px) {
-  #mainRowStatus {
-    padding-top: 0px !important;
-  }
+.backHome:hover > .backIcon {
+  color: rgb(219, 219, 219) !important;
+}
+
+.backIcon:before  {
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+.addressLink:hover {
+  text-decoration: underline !important;
+}
+
+.backBtnRow {
+  padding-top: 60px;
 }
 
 @media screen and (max-width: 768px) {
-  #mainRowStatus {
-    padding-top: 0px !important;
+  .addressLink{
+    color: #303030 !important;
+    font-size: 15px;
   }
 
-  .claimBox {
-    width: 100% !important;
-    box-shadow: none !important;
+  a.backIcon {
+    color: #303030 !important;
+    text-decoration: unset;
+    font-weight: 600;
   }
 
-  .redeemBox {
-    margin-top: 100px;
-    width: 100% !important;
+  .backBtnRow {
+    padding-top: 0px;
   }
 
-  .boxRow {
-    display: block !important;
-  }
-}
-
-.claimBox {
-  width: 50%;
-  box-shadow: #0202023d 2px 0px
-}
-
-.redeemBox {
-  width: 50%;
-}
-
-.boxRow {
-  display: flex;
 }
 </style>
