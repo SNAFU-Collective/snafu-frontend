@@ -59,13 +59,23 @@
           <span v-else style="width: 40%; text-align: right"><strong>{{ metadata.editions }} Editions</strong></span>
         </v-row>
         <v-row class="px-2 subtext">
-          <v-col cols="9" style="justify-content: left; padding-left: 0 !important;">
+          <v-col cols="9" style="justify-content: left; padding-left: 0 !important;    padding-bottom: 2px;">
             ID: {{ nft.id }}
           </v-col>
-          <v-col cols="3" style=""  v-if="showArtist">
-            <v-avatar class="mr-2" size="25">
-              <v-img src="/pfp/unknown.jpeg" />
-            </v-avatar>
+          <v-col cols="3" style="position: absolute; right: 0px; bottom: 0px"  v-if="showArtist">
+            <v-tooltip bottom color="rgb(0 0 0 / 100%)">
+              <template v-slot:activator="{ on, attrs }">
+              <v-avatar class="mr-0 pointerOnHover" size="22" v-bind="attrs" v-on="on">
+                <v-img src="/pfp/unknown.jpeg" />
+              </v-avatar>
+              </template>
+              <span>
+                <v-avatar class="mr-0" size="26">
+                  <v-img src="/pfp/unknown.jpeg" />
+                </v-avatar>
+                @{{artistNickname()}}
+              </span>
+            </v-tooltip>
           </v-col>
         </v-row>
         <v-row class="px-2 subtext">

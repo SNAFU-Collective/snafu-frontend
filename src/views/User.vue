@@ -40,7 +40,7 @@
           </v-col>
         </v-row>
         <v-row>
-          <NftCard :showPrice="false" style="margin-top: 50px !important;" :cardSize=200 v-for="nft in paginatedNFTs" :key="nft.id"
+          <NftCard :showPrice="false" :showArtist="true" style="margin-top: 50px !important;" :cardSize=200 v-for="nft in paginatedNFTs" :key="nft.id"
                    :nft="nft" class="ma-1"/>
         </v-row>
         

@@ -126,4 +126,8 @@ a.link {
     margin: 40px;
   }
 }
+
+.pointerOnHover:hover {
+  cursor: pointer;
+}
 </style>
