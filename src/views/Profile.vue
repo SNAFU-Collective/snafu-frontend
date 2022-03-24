@@ -26,7 +26,7 @@
         </v-chip>
       </v-row>
 
-      <v-row justify="center" style=" margin-top: 25px; margin-bottom: 25px">
+      <v-row v-if="isConnected" justify="center" style=" margin-top: 25px; margin-bottom: 25px">
         <v-btn color="blue" style="color:#fff;" @click="openChat">Check messages <v-icon class="ml-2">mdi-chat</v-icon></v-btn>
       </v-row>
 
