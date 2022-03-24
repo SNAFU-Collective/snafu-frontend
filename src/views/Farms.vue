@@ -185,11 +185,12 @@ export default {
   .topTextPool .h2 {
     color: #303030;
     font: normal normal normal 25px/1.4em barlow-medium, barlow, sans-serif;
-    text-align: center !important;
+    text-align: center;
   }
 
   .topTextPool {
     margin: 40px;
+    text-align: center;
   }
 }
 </style>
