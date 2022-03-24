@@ -103,4 +103,27 @@ a.link {
 .pointerOnHover {
   cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+  .topCatalogText {
+    margin: 0;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  .topCatalogText.h2, .topCatalogText.h6 {
+    color: rgba(48, 48, 48, 0.91);
+    font:normal normal normal 20px/1em barlow-medium,barlow,sans-serif;
+  }
+
+}
+@media screen and (min-width: 768px) {
+  .topCatalogText .h2, .topCatalogText.h6 {
+    color: #303030;
+    font:normal normal normal 25px/1.4em barlow-medium,barlow,sans-serif;
+    text-align: center;
+  }
+  .topCatalogText {
+    margin: 40px;
+  }
+}
 </style>
