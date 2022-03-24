@@ -16,7 +16,8 @@
                   </v-card-title>
                   <v-card-subtitle>
                     <pre class="nftDescription">{{ metadata.description }}</pre>
-                    <pre class="nftDescription"><b>Artist</b>:  <a @click="goToArtistPage()">{{artistName()}} {{artistNickname()}}</a></pre>
+                    <pre class="nftDescription"><b>Artist</b>:  <a
+                        @click="goToArtistPage()">{{ artistName() }} {{ artistNickname() }}</a></pre>
                   </v-card-subtitle>
                   <v-card-subtitle style="margin-top: -20px">
                     <a href="" style="color: rgba(0, 0, 0, 0.6) !important;">View details</a>
@@ -31,12 +32,12 @@
                   </v-btn>
                 </v-col>
               </v-row>
-              <img v-if="!metadata.animation_url" :src="'/nfts/'+nft.id+'/image'"  class="fullscreenImage"/>
+              <img v-if="!metadata.animation_url" :src="'/nfts/'+nft.id+'/image'" class="fullscreenImage"/>
               <video controls loop v-else :src="metadata.animation_url" style="width: 100%"/>
             </v-card>
           </v-dialog>
-          <a @click="toggle" >
-            <v-img  :src="'/nfts/'+nft.id+'/image'" :height="cardSize || 250" :width="cardSize || 250">
+          <a @click="toggle">
+            <v-img :src="'/nfts/'+nft.id+'/image'" :height="cardSize || 250" :width="cardSize || 250">
               <template v-slot:placeholder>
                 <v-row
                     class="fill-height ma-0"
@@ -55,31 +56,35 @@
 
         <v-row style="display: flex; padding-top: 10px; padding-bottom: 5px" class="px-2">
           <span style="width: 60%; text-align: left" class="truncate"><strong>{{ metadata.name }}</strong></span>
-          <span v-if="nft.editions" style="width: 40%; text-align: right"><strong>{{nft.editions}} of {{ metadata.editions }}</strong></span>
+          <span v-if="nft.editions" style="width: 40%; text-align: right"><strong>{{ nft.editions }} of {{
+              metadata.editions
+            }}</strong></span>
           <span v-else style="width: 40%; text-align: right"><strong>{{ metadata.editions }} Editions</strong></span>
         </v-row>
+
         <v-row class="px-2 subtext">
           <v-col cols="9" style="justify-content: left; padding-left: 0 !important;    padding-bottom: 2px;">
             ID: {{ nft.id }}
           </v-col>
-          <v-col cols="3" style="position: absolute; right: 0px; bottom: 0px"  v-if="showArtist">
-            <v-tooltip bottom color="rgb(0 0 0 / 100%)">
+          <v-col cols="3" style="position: absolute; right: 0px; bottom: 0px" v-if="showArtist">
+            <v-tooltip bottom color="#000">
               <template v-slot:activator="{ on, attrs }">
-              <v-avatar class="mr-0 pointerOnHover" size="22" v-bind="attrs" v-on="on">
-                <v-img src="/pfp/unknown.jpeg" />
-              </v-avatar>
+                <v-avatar class="mr-0 pointerOnHover" size="22" v-bind="attrs" v-on="on">
+                  <v-img :src="artist.profile_image"></v-img>
+                </v-avatar>
               </template>
               <span>
-                <v-avatar class="mr-0" size="26">
-                  <v-img src="/pfp/unknown.jpeg" />
+                <v-avatar class="mr-0" size="30">
+                  <v-img :src="artist.profile_image"/>
                 </v-avatar>
-                @{{artistNickname()}}
+                @{{ artistNickname() }}
               </span>
             </v-tooltip>
           </v-col>
         </v-row>
+
         <v-row class="px-2 subtext">
-          <v-col cols="9" style="text-align: left; padding: 0;"  v-if="showPrice">Price:
+          <v-col cols="9" style="text-align: left; padding: 0;" v-if="showPrice">Price:
             {{ (+metadata.price + +metadata.fee) | truncatePrice }} SNAFU
           </v-col>
 
@@ -90,13 +95,15 @@
           <v-col cols="3" v-if="showTransferBtn" style="position:absolute; left: 75%; bottom: -5px;">
             <v-tooltip bottom>
               <template v-slot:activator="{ on, attrs }">
-                <v-btn x-small text color="black" v-bind="attrs" v-on="on" style="font-weight: 600;" @click="openTransferNftModal">
+                <v-btn x-small text color="black" v-bind="attrs" v-on="on" style="font-weight: 600;"
+                       @click="openTransferNftModal">
                   <v-icon size="20px">mdi-swap-horizontal</v-icon>
                 </v-btn>
               </template>
               <span>Transfer NFT</span>
             </v-tooltip>
-            <TransferSingleNFTModal :nftToTransfer="nft" :show="showTransferModal" @updateDialog="() => showTransferModal = false"/>
+            <TransferSingleNFTModal :nftToTransfer="nft" :show="showTransferModal"
+                                    @updateDialog="() => showTransferModal = false"/>
           </v-col>
         </v-row>
       </v-card-text>
@@ -109,7 +116,8 @@
 import axios from "axios"
 import {mapFields} from "vuex-map-fields"
 import TransferSingleNFTModal from "../Transfer/TransferSingleNFTModal"
-import {find} from "lodash"
+import {find, orderBy} from "lodash"
+import {leaderboardAddressToFilter} from "../../utils/constants"
 
 export default {
   props: {
@@ -121,13 +129,13 @@ export default {
       type: Number,
       required: false,
     },
-    showBuyButton:{
+    showBuyButton: {
       type: Boolean,
-      default: false
+      default: false,
     },
     showTransferBtn: {
       type: Boolean,
-      default: false
+      default: false,
     },
     showPrice: {
       type: Boolean,
@@ -141,33 +149,37 @@ export default {
   components: {
     TransferSingleNFTModal,
   },
-  computed:{
+  computed: {
     ...mapFields("nftContract", [
       "selectedNft",
       "selectedQuantity",
       "selectedNftMetadata",
-      "withdrawFromPool"
+      "withdrawFromPool",
     ]),
   },
+  beforeUpdate () {
+    axios.get("http://localhost:80/api/v1/user/username/" + this.artistNickname())
+        .then(response => (this.artist = response.data.data))
+        .catch(error => console.log(error))
+  },
   watch: {
-    'fullscreen' :{
+    'fullscreen': {
       async handler(newVal, oldVal) {
-        await setTimeout(()=>{
+        await setTimeout(() => {
           this.pauseAllVideos()
         }, 700)
       },
-      deep: true
+      deep: true,
     },
   },
   methods: {
     goToArtistPage() {
-      console.log('goToArtistPage', this.artistNickname())
       this.$router.push({path: `artist/` + this.artistNickname()})
     },
     attributes() {
-      let arr = {};
+      let arr = {}
 
-      arr = this.metadata.attributes.map((event) => ({ ...arr, [event.key]: event.value }));
+      arr = this.metadata.attributes.map((event) => ({...arr, [event.key]: event.value}))
       return arr
     },
     artistNickname() {
@@ -179,9 +191,9 @@ export default {
       return artist ? artist.value : ""
     },
     pauseAllVideos() {
-      let videoList = document.getElementsByTagName("video");
+      let videoList = document.getElementsByTagName("video")
       for (let i = 0; i < videoList.length; i++) {
-        videoList[i].pause();
+        videoList[i].pause()
       }
     },
     toggle() {
@@ -191,20 +203,20 @@ export default {
       //SCROLLA SU
       await setTimeout(() => {
         //scroll down only on desktop
-          window.scrollTo({
-            left: 0,
-            top: 0,
-            behavior: 'smooth',
-          })
+        window.scrollTo({
+          left: 0,
+          top: 0,
+          behavior: 'smooth',
+        })
       }, 500)
 
       //IMPOSTA SWAP SNAFU -> NFT
-      this.withdrawFromPool = true;
+      this.withdrawFromPool = true
 
       //NFT SElEZIONATO QUELLO CLICCATO
-      this.selectedNft = this.nft;
-      this.selectedNftMetadata = this.metadata;
-      this.selectedQuantity = 1;
+      this.selectedNft = this.nft
+      this.selectedNftMetadata = this.metadata
+      this.selectedQuantity = 1
     },
     openTransferNftModal() {
       if (!this.disableActions) {
@@ -217,6 +229,9 @@ export default {
       metadata: {},
       fullscreen: false,
       showTransferModal: false,
+      artist: {
+        profile_image: '/pfp/unknown.jpeg'
+      },
     }
   },
   async beforeMount() {
