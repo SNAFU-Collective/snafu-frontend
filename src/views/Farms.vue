@@ -2,7 +2,7 @@
   <div style="margin-bottom: 50px">
     <v-container>
       <v-row>
-        <v-col cols-md="12" colls-xs="12" class="topTextPool px-15 mt-15" style="text-align: justify; color: #303030d4">
+        <v-col cols-md="12" colls-xs="12" class="topTextPool px-15 mt-15" style=" color: #303030d4">
           <b class="h2 mt-5">Add Liquidity to <b>$SNAFU</b> token, <b>accumulate points</b> and <b>redeem</b> unique
             artworks from our artists.</b>
         </v-col>
@@ -174,6 +174,7 @@ export default {
   }
 
   .topTextPool.h2 {
+    text-align: justify;
     color: rgba(48, 48, 48, 0.91);
     font: normal normal normal 20px/1em barlow-medium, barlow, sans-serif;
   }
@@ -184,6 +185,7 @@ export default {
   .topTextPool .h2 {
     color: #303030;
     font: normal normal normal 25px/1.4em barlow-medium, barlow, sans-serif;
+    text-align: center !important;
   }
 
   .topTextPool {

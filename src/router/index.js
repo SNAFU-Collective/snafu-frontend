@@ -100,7 +100,7 @@ const routes = [
     },
     {
         path: '/bridge',
-        name: 'NFT Bridge',
+        name: 'Bridge',
         meta: {
             title: 'NFT Bridge | SNAFU',
             headerSubtitle: 'NFT Bridge',
