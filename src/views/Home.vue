@@ -7,7 +7,7 @@
 
       <TopCollectors />
 
-      <v-img src="/banners/banner-coll-3.png" class="bannerColl3"></v-img>
+      <v-img src="/banners/SOLDOUT-COLL3.png" class="bannerColl3"></v-img>
       <Explore :shuffle="true" :showPrice="false" :scrollToHeightEnabled="false" class="mt-10"/>
 
       <v-card
