@@ -67,33 +67,34 @@
         height="70"
         class="elevation-0 "
     >
-      <v-col cols="2.5" class="ma-1 status-bar status-bar">
+      <v-col cols="2" class="status-bar status-bar">
         <v-btn icon class="ma-1">
-          <v-icon size="30" class="mt-5">mdi-home</v-icon>
+          <v-icon size="25" class="mt-5">mdi-home</v-icon>
           <p class="menuTitle">Home</p>
         </v-btn>
       </v-col>
-      <v-col cols="2.5" class="ma-1 status-bar">
+      <v-col cols="2" class="ma-1 status-bar">
         <v-btn icon >
-          <v-icon size="30"  class="mt-5">mdi-account</v-icon>
+          <v-icon size="25"  class="mt-5">mdi-account</v-icon>
           <p class="menuTitle">Profile</p>
         </v-btn>
       </v-col>
-      <v-col cols="2.5"  class="ma-1 status-bar">
+      <v-col cols="2"  class="ma-1 status-bar">
         <v-btn icon >
-          <v-icon size="30" class="mt-5">mdi-tractor</v-icon>
+          <v-icon size="25" class="mt-5">mdi-tractor</v-icon>
           <p class="menuTitle">Mint</p>
         </v-btn>
       </v-col>
-      <v-col cols="2.5"  class="ma-1 status-bar">
+      <v-col cols="2"  class="ma-1 status-bar">
         <v-btn icon>
-          <v-icon size="30" class="mt-5">mdi-account-group</v-icon>
+          <v-icon size="25" class="mt-5">mdi-account-group</v-icon>
           <p class="menuTitle">Community</p>
         </v-btn>
       </v-col>
-      <v-col cols="2" offset="1" class="status-bar">
+      <v-col cols="1"></v-col>
+      <v-col cols="2" class="status-bar">
         <v-btn icon>
-          <v-icon size="30" class="mt-5">mdi-menu</v-icon>
+          <v-icon size="25" class="mt-5">mdi-menu</v-icon>
           <p></p>
         </v-btn>
       </v-col>
@@ -192,7 +193,8 @@ a.modalSocials:hover {
   }
 
   .mobileTitle {
-    font-size: 12px;
+    font-size: 10px;
+    font-weight: 400;
   }
 }
 </style>
