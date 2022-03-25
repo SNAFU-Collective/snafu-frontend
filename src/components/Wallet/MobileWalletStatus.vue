@@ -63,7 +63,7 @@
 <template>
     <v-app-bar
         color="#303030 accent-4"
-        dark
+        light
         height="70"
         class="elevation-0 "
         style="border-top-right-radius: 10px;border-top-left-radius: 10px;"
@@ -132,6 +132,11 @@ export default {
   computed: {
     ...mapFields("connectweb3", ["isConnected", "account", 'chainId']),
     ...mapGetters("connectweb3", ["isMetamask", "isXdai"]),
+    computed: {
+      currentRouteName() {
+        return this.$route.meta.headerSubtitle
+      },
+    },
   },
 
 }
@@ -207,6 +212,10 @@ a.modalSocials:hover {
   .mobileTitle {
     font-size: 5px;
     font-weight: 400;
+  }
+
+  #mobileWalletStatus > header > div > div > .router-link-active > button > span > i {
+    color: darkgrey;
   }
 }
 </style>

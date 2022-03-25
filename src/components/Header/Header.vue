@@ -413,14 +413,6 @@ export default {
     margin-top: 25px;
   }
 
-  #menuMobile > div > div > div.bm-menu > nav > a.backHome.router-link-exact-active.router-link-active {
-    color: rgb(143, 143, 143) !important;
-  }
-
-  #menuMobile > div > div > div.bm-menu > nav > a {
-    color: white;
-  }
-
   .arrowRedirect:before {
     font-size: 18px;
     padding-bottom: 5px;
