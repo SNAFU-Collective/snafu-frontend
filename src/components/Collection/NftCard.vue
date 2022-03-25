@@ -74,7 +74,7 @@
                 </v-avatar>
               </template>
               <span>
-                <v-avatar class="mr-0" size="30">
+                <v-avatar class="mr-0" size="40">
                   <v-img :src="artist.profile_image"/>
                 </v-avatar>
                 @{{ artistNickname() }}
