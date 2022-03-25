@@ -193,7 +193,7 @@ a.modalSocials:hover {
   }
 
   .mobileTitle {
-    font-size: 10px;
+    font-size: 5px;
     font-weight: 400;
   }
 }
