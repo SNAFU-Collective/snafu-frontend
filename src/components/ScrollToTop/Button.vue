@@ -28,7 +28,6 @@ export default {
 
 <style>
 #scrollToTopButton {
-  display: inline-block;
   background-color: #30303057;
   width: 40px;
   height: 40px;
@@ -38,6 +37,7 @@ export default {
   bottom: 30px;
   right: 30px;
   z-index: 1000;
+  display: none !important;
 }
 
 /* Styles for the content section */
@@ -47,6 +47,7 @@ export default {
   }
   #scrollToTopButton {
     margin: 30px;
+    display: block;
   }
 }
 </style>

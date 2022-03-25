@@ -31,23 +31,26 @@
         </div>
       </div>
 
-      <div id="menuMobile">
-        <Slide right :closeOnNavigation="true" @openMenu="handleOpenMenu" @closeMenu="handleCloseMenu"
-               :width=windowWidth>
-          <wallet-status class="mt-5 pb-2 walletHeader"/>
-          <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>
-          <router-link class="backHome" :to="{ name: 'Wallet'}">MY PROFILE</router-link>
-          <router-link class="backHome" :to="{ name: 'Pool'}">MINT</router-link>
-          <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>
-          <router-link class="backHome" :to="{ name: 'Community'}">COMMUNITY</router-link>
-          <router-link class="backHome" :to="{ name: 'Catalog'}">CATALOG</router-link>
-<!--          <router-link class="backHome" :to="{ name: 'Manifest'}">MANIFEST</router-link>-->
-<!--          <a class="backHome" @click="openBuySnafuModal()">BUY SNAFU <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
-<!--          <a class="backHome" @click="openVoteModal()">VOTE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
-<!--&lt;!&ndash;          <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>&ndash;&gt;-->
-<!--          <a class="backHome" @click="openMarketModal()">MARKETS <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
-<!--          <a class="backHome" @click="openLearnMoreModal()">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>-->
-        </Slide>
+<!--      <div id="menuMobile">-->
+<!--        <Slide right :closeOnNavigation="true" @openMenu="handleOpenMenu" @closeMenu="handleCloseMenu"-->
+<!--               :width=windowWidth>-->
+<!--          <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>-->
+<!--          <router-link class="backHome" :to="{ name: 'Wallet'}">MY PROFILE</router-link>-->
+<!--          <router-link class="backHome" :to="{ name: 'Pool'}">MINT</router-link>-->
+<!--          <router-link class="backHome" :to="{ name: 'Farm'}">FARM</router-link>-->
+<!--          <router-link class="backHome" :to="{ name: 'Community'}">COMMUNITY</router-link>-->
+<!--          <router-link class="backHome" :to="{ name: 'Catalog'}">CATALOG</router-link>-->
+<!--&lt;!&ndash;          <router-link class="backHome" :to="{ name: 'Manifest'}">MANIFEST</router-link>&ndash;&gt;-->
+<!--&lt;!&ndash;          <a class="backHome" @click="openBuySnafuModal()">BUY SNAFU <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>&ndash;&gt;-->
+<!--&lt;!&ndash;          <a class="backHome" @click="openVoteModal()">VOTE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;          <a class="backHome" href="https://www.nftsnafu.org/farms" target="_blank">FARM <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;          <a class="backHome" @click="openMarketModal()">MARKETS <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>&ndash;&gt;-->
+<!--&lt;!&ndash;          <a class="backHome" @click="openLearnMoreModal()">LEARN MORE <v-icon class="backHome arrowRedirect"> mdi-arrow-top-right </v-icon></a>&ndash;&gt;-->
+<!--        </Slide>-->
+<!--      </div>-->
+
+      <div id="mobileWalletStatus">
+        <mobile-wallet-status class="pb-2"/>
       </div>
 
       <v-dialog v-model="showBuySnafuModal" @input="v => v || closeModal()" max-width="400">
@@ -135,10 +138,13 @@
 <script>
 import {Slide} from 'vue-burger-menu'
 import WalletStatus from '../Wallet/WalletStatus.vue'
+import MobileWalletStatus from '../Wallet/MobileWalletStatus.vue'
 import SnafuPrice from "../Wallet/SnafuPrice"
 
 export default {
-  components: {SnafuPrice, WalletStatus, Slide},
+  components: {SnafuPrice, WalletStatus,
+    // Slide,
+    MobileWalletStatus},
   methods: {
     handleOpenMenu() {
       document.querySelector(".bm-burger-button").style.display = 'none'
@@ -420,5 +426,15 @@ export default {
     color: white;
   }
 
+
+  #mobileWalletStatus {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1111111111;
+    padding: 0 !important;
+    width: 100%;
+    margin: 0 !important;
+  }
 }
 </style>
