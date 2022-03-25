@@ -1,11 +1,11 @@
 <template>
   <v-app>
     <Header/>
-    <router-view />
-<!--    <v-main />-->
+    <router-view/>
+    <!--    <v-main />-->
     <ScrollToTop/>
     <Footer
-      style="margin-top: 100px"
+        style="margin-top: 100px; padding-bottom: 80px;"
     />
   </v-app>
 </template>
@@ -22,16 +22,16 @@ export default {
   components: {
     Footer,
     Header,
-    ScrollToTop
+    ScrollToTop,
   },
 
   methods: {
     ...mapActions("connectweb3", ["startWeb3"]),
   },
-  beforeMount(){
-    this.startWeb3();
+  beforeMount() {
+    this.startWeb3()
   },
-};
+}
 </script>
 
 <style>
@@ -67,7 +67,7 @@ html, body {
 .filter {
   margin: 0;
   font-size: 12px !important;
-  color:  rgb(143, 143, 143);
+  color: rgb(143, 143, 143);
 }
 
 .currentTag > span {

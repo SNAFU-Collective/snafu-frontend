@@ -32,6 +32,7 @@
       </div>
 
 <!--      <div id="menuMobile">-->
+<!--        <SnafuPrice class="pr-10"/>-->
 <!--        <Slide right :closeOnNavigation="true" @openMenu="handleOpenMenu" @closeMenu="handleCloseMenu"-->
 <!--               :width=windowWidth>-->
 <!--          <router-link class="backHome" :to="{ name: 'Home'}">HOME</router-link>-->

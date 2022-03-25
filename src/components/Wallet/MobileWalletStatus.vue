@@ -66,35 +66,47 @@
         dark
         height="70"
         class="elevation-0 "
+        style="border-top-right-radius: 10px;border-top-left-radius: 10px;"
     >
       <v-col cols="2" class="status-bar status-bar">
-        <v-btn icon class="ma-1">
-          <v-icon size="25" class="mt-5">mdi-home</v-icon>
-          <p class="menuTitle">Home</p>
-        </v-btn>
+        <router-link :to="{ name: 'Home'}" style="color: transparent;">
+          <v-btn icon class="ma-1">
+            <v-icon size="28" class="">mdi-home</v-icon>
+            <!--          <p class="menuTitle">Home</p>-->
+          </v-btn>
+        </router-link>
+
       </v-col>
       <v-col cols="2" class="ma-1 status-bar">
-        <v-btn icon >
-          <v-icon size="25"  class="mt-5">mdi-account</v-icon>
-          <p class="menuTitle">Profile</p>
-        </v-btn>
+        <router-link :to="{ name: 'Wallet'}" style="color: transparent;">
+          <v-btn icon >
+            <v-icon size="28"  class="">mdi-account</v-icon>
+            <!--          <p class="menuTitle">Profile</p>-->
+          </v-btn>
+        </router-link>
+
       </v-col>
       <v-col cols="2"  class="ma-1 status-bar">
-        <v-btn icon >
-          <v-icon size="25" class="mt-5">mdi-tractor</v-icon>
-          <p class="menuTitle">Mint</p>
-        </v-btn>
+        <router-link :to="{ name: 'Community'}"  style="color: transparent;">
+          <v-btn icon>
+            <v-icon size="28" class="">mdi-account-group</v-icon>
+            <!--          <p class="menuTitle">Community</p>-->
+          </v-btn>
+        </router-link>
       </v-col>
       <v-col cols="2"  class="ma-1 status-bar">
-        <v-btn icon>
-          <v-icon size="25" class="mt-5">mdi-account-group</v-icon>
-          <p class="menuTitle">Community</p>
-        </v-btn>
+        <router-link :to="{ name: 'Pool'}" style="color: transparent;">
+          <v-btn icon >
+            <v-icon size="28" class="">mdi-swap-vertical</v-icon>
+            <!--          <p class="menuTitle">Mint</p>-->
+          </v-btn>
+        </router-link>
+
       </v-col>
       <v-col cols="1"></v-col>
-      <v-col cols="2" class="status-bar">
+      <v-col cols="2" >
         <v-btn icon>
-          <v-icon size="25" class="mt-5">mdi-menu</v-icon>
+          <v-icon size="28" class="">mdi-menu</v-icon>
           <p></p>
         </v-btn>
       </v-col>
