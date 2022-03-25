@@ -158,7 +158,7 @@ export default {
     ]),
   },
   beforeUpdate () {
-    axios.get("http://localhost:80/api/v1/user/username/" + this.artistNickname())
+    axios.get(process.env.VUE_APP_API_URL + "/api/v1/user/username/" + this.artistNickname())
         .then(response => (this.artist = response.data.data))
         .catch(error => console.log(error))
   },
