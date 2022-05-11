@@ -24,7 +24,7 @@
           <v-btn
               class="mx-4 black--text"
               icon
-              @click="goTo('https://discord.gg/kvbxMfUyQD')"
+              @click="goTo('https://discord.gg/hWH9WFskXc')"
           >
             <v-icon size="24px">
               mdi-discord
