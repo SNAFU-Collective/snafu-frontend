@@ -98,6 +98,16 @@ const routes = [
         component: () => import('../views/Catalog.vue'),
         props: true,
     },
+    {
+        path: '/bridge',
+        name: 'Bridge',
+        meta: {
+            title: 'NFT Bridge | SNAFU',
+            headerSubtitle: 'NFT Bridge',
+        },
+        component: () => import('../views/Bridge.vue'),
+        props: true,
+    },
 ]
 
 const router = new VueRouter({
