@@ -3,22 +3,22 @@
     <v-row justify="center" class="pt-10">
       <TopBanner />
 
-      <LatestReleases class="mt-10"/>
-
-      <TopCollectors />
-
-      <v-img src="/banners/banner-coll-3.png" class="bannerColl3"></v-img>
-      <Explore :shuffle="true" :showPrice="false" :scrollToHeightEnabled="false" class="mt-10"/>
-
       <v-card
           class="mx-auto davidBanner"
           :ripple="true"
           style=" cursor: pointer;"
           @click="openInNewPage"
       >
-        <v-img src="/banners/preview.jpeg"></v-img>
+        <v-img src="/banners/boreddavidmint.png"></v-img>
       </v-card>
       <DavidPreviews class="mt-10 mb-10"/>
+
+      <LatestReleases class="mt-10"/>
+
+      <TopCollectors />
+
+      <v-img src="/banners/SOLDOUT-COLL3.png" class="bannerColl3"></v-img>
+      <Explore :shuffle="true" :showPrice="false" :scrollToHeightEnabled="false" class="mt-10"/>
     </v-row>
   </v-container>
 </template>
