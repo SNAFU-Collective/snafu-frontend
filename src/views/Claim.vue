@@ -115,7 +115,7 @@ export default {
       showConfirmClaim: false,
       showConfirmBurn: false,
       showManualClaim: false,
-      prizesId: ["126", "129", "131", "132", "133", "134", "135", "136", "137", "138", "139"],
+      prizesId: ["126", "129", "131", "132", "133", "134", "135", "136", "137", "138", "139", '225', '213'],
     }
   },
   computed: {
