@@ -18,7 +18,7 @@
       </v-col>
 
       <v-col cols="2" style="display: inline-flex;align-items: center;text-decoration: none !important; color: #303030">
-        <SnafuPrice class="pr-10"/>
+        <!-- <SnafuPrice class="pr-10"/> -->
         <wallet-status class="mt-5 pb-2 walletHeader" style="justify-content: end"/>
       </v-col>
     </div>
@@ -135,10 +135,12 @@
 <script>
 import {Slide} from 'vue-burger-menu'
 import WalletStatus from '../Wallet/WalletStatus.vue'
-import SnafuPrice from "../Wallet/SnafuPrice"
+// import SnafuPrice from "../Wallet/SnafuPrice"
 
 export default {
-  components: {SnafuPrice, WalletStatus, Slide},
+  components: { 
+    // SnafuPrice, 
+    WalletStatus, Slide},
   methods: {
     handleOpenMenu() {
       document.querySelector(".bm-burger-button").style.display = 'none'
